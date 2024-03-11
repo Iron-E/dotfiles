@@ -8,6 +8,11 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
+		neovim-nightly-overlay = {
+			url = "github:nix-community/neovim-nightly-overlay";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = inputs @ {
@@ -35,7 +40,7 @@
 
 		# Reusable home-manager modules you might want to export. Usually things you would upstream into home-manager
 		homeManagerModules = import ./home-manager/modules;
-	} // (lib.mkConfig home-manager ./home-manager/hosts {
+	} // (lib.config.declare ./home-manager/hosts home-manager {
 		origin = {
 			args = {
 				inherit inputs outputs;
