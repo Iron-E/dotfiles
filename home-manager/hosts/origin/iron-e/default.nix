@@ -7,21 +7,18 @@
 	config,
 	pkgs,
 	...
-}: {
+}: let
+	username = "iron-e";
+in {
 	imports = [
-		../../../../home-manager
+		../../_common_
 	];
 
-	home =
-	let
-		username = "iron-e";
-	in {
-		inherit username;
-		homeDirectory = "/home/${username}";
+	home.username = username;
+	home.homeDirectory = "/home/${username}";
 
-		# SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-		stateVersion = "24.05";
-	};
+	# SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+	home.stateVersion = "24.05";
 
 	# Add stuff for your user as you see fit:
 	# programs.neovim.enable = true;

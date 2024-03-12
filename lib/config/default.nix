@@ -18,7 +18,7 @@ in {
 			args = configs.${argsKey};
 
 			# the config dir for the host
-			hostConfigDir = ./${configDir} + "/@${hostname}";
+			hostConfigDir = configDir + "/${hostname}";
 
 			# nixos config
 			osConfigKey = "os";
@@ -41,7 +41,7 @@ in {
 						# default home config
 						defaultHomeConfig = {
 							pkgs = nixpkgs.legacyPackages.${args.system};
-							modules = [(./${hostConfigDir}/${username})];
+							modules = [(hostConfigDir + "/${username}")];
 						};
 
 						# recursively updates the deeply-nested defaults, and shallowly applies the shallow defaults
