@@ -27,9 +27,13 @@
 	in {
 		inherit lib;
 
-		# Your custom packages
 		# Accessible through 'nix build', 'nix shell', etc
-		packages = lib.systems.genValues (system: import ./pkgs nixpkgs.legacyPackages.${system});
+		packages = lib.systems.genValues (system: (
+			# Your custom packages
+			import ./pkgs nixpkgs.legacyPackages.${system}) //
+			# `nix run .#home-manager`
+			{ home-manager = home-manager.defaultPackage.${system}; }
+		);
 
 		# Formatter for your nix files, available through 'nix fmt'
 		# TODO: https://github.com/kamadorueda/alejandra/issues/387
