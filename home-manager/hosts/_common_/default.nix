@@ -15,6 +15,18 @@ args @ {
 		./fontconfig
 		./gtk
 		./qt
+
+		# TODO: ./git
+		# TODO: ./i3
+		# TODO: ./lsd
+		# TODO: ./lxterminal
+		# TODO: ./maven
+		# TODO: ./nvim
+		# TODO: ./picom
+		# TODO: ./starship
+		# TODO: ./Typora
+		# TODO: ./wezterm
+		# TODO: ./zathura
 	];
 
 	nixpkgs = outputs.lib.config.nixpkgs args {
