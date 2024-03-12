@@ -12,6 +12,9 @@ args @ {
 		./bat
 		./cargo
 		./fish
+		./fontconfig
+		./gtk
+		./qt
 	];
 
 	nixpkgs = outputs.lib.config.nixpkgs args {
