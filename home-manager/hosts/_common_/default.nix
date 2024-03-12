@@ -11,6 +11,7 @@ args @ {
 	imports = [
 		./bat
 		./cargo
+		./fish
 	];
 
 	nixpkgs = outputs.lib.config.nixpkgs args {
