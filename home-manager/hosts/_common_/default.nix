@@ -14,11 +14,11 @@ args @ {
 		./fish
 		./fontconfig
 		./gtk
+		./lsd
 		./qt
 
 		# TODO: ./git
 		# TODO: ./i3
-		# TODO: ./lsd
 		# TODO: ./lxterminal
 		# TODO: ./maven
 		# TODO: ./nvim
