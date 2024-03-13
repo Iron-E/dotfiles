@@ -1,17 +1,20 @@
 function word --description 'get a password'
 	argparse (fish_opt -s y -l cp) -- $argv
 
-	set -l file "/mnt/vaults/words/$argv"
+	set -f file "/mnt/vaults/words/$argv"
 
-	if command -qs bat
-		set -f cmd bat $file
-	else
-		set -f cat $file '|' less -R
+	function __word_cmd
+		functions -e __word_cmd
+		if command -qs bat
+			bat $argv[1]
+		else
+			cat $argv[1] | less -R
+		end
 	end
 
 	if [ -n "$_flag_cp" ]
-		$cmd | xclip -i -selection clipboard
+		__word_cmd $file | xclip -i -selection clipboard
 	else
-		$cmd
+		__word_cmd $file
 	end
 end
