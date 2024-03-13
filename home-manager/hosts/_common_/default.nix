@@ -15,6 +15,7 @@ args @ {
 		./fontconfig
 		./gtk
 		./lsd
+		./picom
 		./qt
 
 		# TODO: ./git
@@ -22,7 +23,6 @@ args @ {
 		# TODO: ./lxterminal
 		# TODO: ./maven
 		# TODO: ./nvim
-		# TODO: ./picom
 		# TODO: ./starship
 		# TODO: ./Typora
 		# TODO: ./wezterm
