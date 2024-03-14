@@ -18,6 +18,7 @@ args @ {
 		./maven
 		./picom
 		./qt
+		./zathura
 
 		# TODO: ./git
 		# TODO: ./i3
@@ -25,7 +26,6 @@ args @ {
 		# TODO: ./starship
 		# TODO: ./Typora
 		# TODO: ./wezterm
-		# TODO: ./zathura
 	];
 
 	nixpkgs = outputs.lib.config.nixpkgs args {

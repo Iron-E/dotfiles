@@ -1,10 +1,5 @@
-{
-	inputs,
-	outputs,
-	lib,
-	config,
-	pkgs,
-	...
-}: {
-	imports = [];
+{ outputs, ... }: {
+	imports = outputs.lib.fs.readPathsExceptDefault ./.;
+
+	programs.zathura.enable = true;
 }

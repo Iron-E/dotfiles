@@ -1,5 +1,5 @@
 { outputs, ... }: {
-	imports = builtins.filter (path: path != ./default.nix) (outputs.lib.fs.readPaths ./.);
+	imports = outputs.lib.fs.readPathsExceptDefault ./.;
 
 	services.picom.enable = true;
 }
