@@ -15,13 +15,12 @@ args @ {
 		./fontconfig
 		./gtk
 		./lsd
+		./maven
 		./picom
 		./qt
 
 		# TODO: ./git
 		# TODO: ./i3
-		# TODO: ./lxterminal
-		# TODO: ./maven
 		# TODO: ./nvim
 		# TODO: ./starship
 		# TODO: ./Typora
