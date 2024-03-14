@@ -1,8 +1,11 @@
-{ config, lib, outputs, ... }: {
+{ config, outputs, ... }:
+let
+	util = outputs.lib;
+in {
 	imports = [];
 
 	programs.starship.settings.env_var = {
-		NNN = lib.optionalAttrs (outputs.lib.config.isProgramEnabled "nnn" config) {
+		NNN = util.config.ifProgramEnabled "nnn" config {
 			description = "Show whether the shell is being accessed inside NNN";
 			format = "[]($style inverted)[ $env_value \${symbol} ]($style)";
 			style = "bg:cyan fg:black";
@@ -10,7 +13,7 @@
 			variable = "NNNLVL";
 		};
 
-		VIM = lib.optionalAttrs (outputs.lib.config.isAnyProgramEnabled ["neovim" "vim"] config) {
+		VIM = util.ifAnyProgramEnabled ["neovim" "vim"] config {
 			description = "Show whether the shell is being accessed inside (Neo)Vim";
 			format = "[]($style inverted)[ \${symbol} ]($style)";
 			style = "bg:green fg:black";
