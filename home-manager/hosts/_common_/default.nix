@@ -26,6 +26,11 @@ args @ {
 		# TODO: ./nvim
 		# TODO: ./Typora
 		# TODO: ./wezterm
+
+		# TODO: ./librewolf ?
+		# TODO: ./vivid ?
+		# TODO: ./editorconfig ?
+		# TODO: ./Xorg / xmodmap / Xresources ?
 	];
 
 	nixpkgs = outputs.lib.config.nixpkgs args {
