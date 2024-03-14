@@ -2,7 +2,40 @@ nixpkgs: # `flake`
 let
 	inherit (nixpkgs) lib;
 	util = import ../util nixpkgs;
+
+	isEnabled = # returns `true` if the come `attrPath` has an `enable` flag set to `true`
+	attrPath: # the attr path
+	config: # `home-manager` config
+	let
+		value = lib.attrByPath (attrPath ++ ["enable"]) false config;
+	in value == true
+	;
+
+	isProgramEnabled = # returns true if `programs.${program}.enable` is set to `true`
+	program: # `string`
+	config: # `home-manager` config
+		isEnabled ["programs" program] config
+	;
+
+	isServiceEnabled = # returns true if `services.${service}.enable` is set to `true`
+	service: # `string`
+	config: # `home-manager` config
+		isEnabled ["services" service] config
+	;
+
+	***REMOVED***AnyEnabled = # uses `fn` to check if `any` of the `args` are enabled in `config`
+	fn: # <arg> -> <config>
+	args: # [<arg>]
+	config: # <config>
+	let
+		areProgramsEnabled = map (v: fn v config) args;
+	in builtins.any
+		(v: v == true)
+		areProgramsEnabled
+	;
 in {
+	inherit isEnabled isProgramEnabled isServiceEnabled;
+
 	declare =
 	configDir: # the configuration dir
 	home-manager: # `pkg` the home-manager install
@@ -75,6 +108,10 @@ in {
 		{ homeConfigurations = {}; nixosConfigurations = {}; }
 		configsByHost
 	;
+
+	isAnyEnabled = ***REMOVED***AnyEnabled isEnabled;
+	isAnyProgramEnabled = ***REMOVED***AnyEnabled isProgramEnabled;
+	isAnyServiceEnabled = ***REMOVED***AnyEnabled isServiceEnabled;
 
 	nixpkgs =
 	args: # `args@{…}` at the start of the config
