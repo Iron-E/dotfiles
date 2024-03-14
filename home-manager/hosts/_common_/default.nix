@@ -18,12 +18,12 @@ args @ {
 		./maven
 		./picom
 		./qt
+		./starship
 		./zathura
 
 		# TODO: ./git
 		# TODO: ./i3
 		# TODO: ./nvim
-		# TODO: ./starship
 		# TODO: ./Typora
 		# TODO: ./wezterm
 	];

@@ -1,0 +1,5 @@
+{ ... }: {
+	imports = [
+		./highlite.nix
+	];
+}
