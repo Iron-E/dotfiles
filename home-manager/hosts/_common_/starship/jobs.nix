@@ -1,12 +1,12 @@
-{ ... }: {
+{ outputs, ... }: {
 	imports = [];
 
 	programs.starship.settings.jobs = {
-		format =
+		format = outputs.lib.string.concat [
 			"[](bg:black fg:gray_darker)"
-			+ "[ $number$symbol ]($style)"
-			+ "[]($style fg:black)"
-		;
+			"[ $number$symbol ]($style)"
+			"[]($style fg:black)"
+		];
 
 		style = "bg:gray_darker fg:blue";
 	};

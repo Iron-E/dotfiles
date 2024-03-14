@@ -1,15 +1,12 @@
-{ ... }: {
-	imports = [];
+{ outputs, ... }: {
+	imports = outputs.lib.fs.readSubmodules ./.;
 
-	programs.bat.enable = true;
-	programs.bat.config = {
-		italic-text = "always";
-		pager = "less -R";
-		style = "full";
-		theme = "highlite";
-	};
-
-	programs.bat.themes = {
-		highlite.src = ./highlite.tmTheme;
+	programs.bat = {
+		enable = true;
+		config = {
+			italic-text = "always";
+			pager = "less -R";
+			style = "full";
+		};
 	};
 }

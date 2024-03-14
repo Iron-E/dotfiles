@@ -1,13 +1,13 @@
-{ ... }: {
+{ outputs, ... }: {
 	imports = [];
 
 	# WARN: this module is very slow on WSL. set `windows_starship` to fix
 	programs.starship.settings.git_status = {
-		format =
+		format = outputs.lib.strings.concat [
 			"[("
-				+ " $all_status$ahead_behind[]($style inverted)"
-			+ ")]($style)"
-		;
+				" $all_status$ahead_behind[]($style inverted)"
+			")]($style)"
+		];
 
 		ahead = "\${count}↑ ";
 		behind = "\${count}↓ ";

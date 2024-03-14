@@ -1,5 +1,11 @@
 { ... }: {
 	imports = [];
 
-	programs.zathura.options.font = "input sans regular 8";
+	programs.zathura.options = {
+		recolor = "true";
+		recolor-darkcolor = "#E0E0E0";
+		recolor-keephue = "true";
+		recolor-lightcolor = "#000000";
+		recolor-reverse-video = "true";
+	};
 }

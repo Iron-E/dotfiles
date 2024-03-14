@@ -117,9 +117,11 @@
 		   # Specify what to sort by.
 		   # Possible values: extension, name, time, size, version
 		   column = "name";
+
 		   # Whether to reverse the sorting.
 		   # Possible values: false, true
 		   reverse = false;
+
 		   # Whether to group directories together and where.
 		   # When "classic" is set, this is set to "none".
 		   # Possible values: first, last, none
