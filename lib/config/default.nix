@@ -1,7 +1,7 @@
 nixpkgs: # `flake`
 let
 	inherit (nixpkgs) lib;
-	util = import ../util nixpkgs;
+	attrsets = import ../attrsets nixpkgs;
 
 	isEnabled = # returns `true` if the come `attrPath` has an `enable` flag set to `true`
 	attrPath: # the attr path
@@ -87,7 +87,7 @@ in {
 				homeConfigsByUsername
 			;
 
-			nixosConfigurations = util.optionalMapAttrByPath [osConfigKey] configs (osConfig: let
+			nixosConfigurations = attrsets.optionalMapByPath [osConfigKey] configs (osConfig: let
 				# the default os configuration
 				defaultOsConfig = {
 					specialArgs = args;
