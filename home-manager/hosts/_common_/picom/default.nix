@@ -1,5 +1,5 @@
 { outputs, ... }: {
-	imports = outputs.lib.fs.readPathsExceptDefault ./.;
+	imports = outputs.lib.fs.readSubmodules ./.;
 
 	services.picom.enable = true;
 }
