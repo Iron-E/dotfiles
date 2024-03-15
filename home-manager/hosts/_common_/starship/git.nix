@@ -4,7 +4,7 @@ let
 in {
 	imports = [];
 
-	programs.starship.settings = lib.mapAttrs' (name: lib.nameValuePair "git_${name}") (lib.optionalAttrs (config.programs.git.enable) {
+	programs.starship.settings = lib.mapAttrs' (name: lib.nameValuePair "git_${name}") (lib.optionalAttrs config.programs.git.enable {
 		branch = {
 			format = "[($symbol $branch(:$remote_branch) )]($style)";
 			symbol = "";

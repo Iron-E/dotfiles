@@ -13,7 +13,7 @@ in {
 			format = outputs.lib.strings.join [
 				[ "([░▒▓\${directory}](purple_light))" ]
 
-				(lib.optionals config.programs.git.enabled [
+				(lib.optionals config.programs.git.enable [
 					"("
 						"[ ](fg:black bg:green_dark)"
 						"\${git_branch}\${git_commit}\${git_state}"
