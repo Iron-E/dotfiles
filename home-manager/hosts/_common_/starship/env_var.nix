@@ -5,7 +5,7 @@ in {
 	imports = [];
 
 	programs.starship.settings.env_var = {
-		NNN = lib.optionalAttrs config.programs.nnn.enabled {
+		NNN = lib.optionalAttrs config.programs.nnn.enable {
 			description = "Show whether the shell is being accessed inside NNN";
 			format = "[]($style inverted)[ $env_value \${symbol} ]($style)";
 			style = "bg:cyan fg:black";

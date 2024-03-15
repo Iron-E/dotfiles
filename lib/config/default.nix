@@ -3,7 +3,7 @@ let
 	inherit (nixpkgs) lib;
 	attrsets = import ../attrsets nixpkgs;
 
-	getEnabled = builtins.getAttr "enabled";
+	getEnabled = builtins.getAttr "enable";
 in {
 	inherit getEnabled;
 

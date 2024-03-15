@@ -12,7 +12,7 @@ in {
 			let
 				env = (
 					lib.findFirst
-					(v: config.${v.scope}.${v.name}.enabled)
+					(v: config.${v.scope}.${v.name}.enable)
 					{ cmd = ""; }
 					[{ cmd = "env TERM=wezterm "; name = "wezterm"; scope = "programs"; }]
 				).cmd;
