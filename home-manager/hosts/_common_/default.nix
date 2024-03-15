@@ -1,13 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-args @ {
-	inputs,
-	outputs,
-	lib,
-	config,
-	pkgs,
-	...
-}: {
+args @ { inputs, outputs, lib, config, pkgs, ... }: {
 	# TODO: ./i3
 	# TODO: ./nvim
 	# TODO: ./Typora

@@ -1,11 +1,12 @@
-{ ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+	util = outputs.lib;
+in {
 	imports = [];
 
 	programs.starship.settings = {
 		palette = "highlite";
 		palettes.highlite = {
-			black        = "#202020";
-			blue         = "#7766ff";
 			cyan         = "#33dbc3";
 			gray         = "#808080";
 			gray_dark    = "#505050";

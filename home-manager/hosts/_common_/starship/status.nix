@@ -1,4 +1,7 @@
-{ ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+	util = outputs.lib;
+in {
 	imports = [];
 
 	# this can be massively simplified after starship/starship#4945

@@ -1,4 +1,7 @@
-args @ { ... }: {
+args @ { inputs, outputs, lib, config, pkgs, ... }:
+let
+	util = outputs.lib;
+in {
 	mkConfig = {
 		theme ? import ../theme args, # the `theme`
 		...

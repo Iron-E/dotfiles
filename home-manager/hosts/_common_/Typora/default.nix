@@ -1,10 +1,6 @@
-{
-	inputs,
-	outputs,
-	lib,
-	config,
-	pkgs,
-	...
-}: {
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+	util = outputs.lib;
+in {
 	imports = [];
 }

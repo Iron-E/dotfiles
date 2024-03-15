@@ -1,7 +1,11 @@
-{ config, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+	util = outputs.lib;
+in {
 	imports = [];
 
-	xdg.configFile."maven/settings.xml".text = /* xml */ ''
+	xdg.configFile."maven/settings.xml".text = # xml
+''
 <settings
 	xmlns="http://maven.apache.org/SETTINGS/1.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

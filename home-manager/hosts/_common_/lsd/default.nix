@@ -1,4 +1,7 @@
-{ ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+	util = outputs.lib;
+in {
 	imports = [];
 
 	programs.lsd.enable = true;
@@ -14,31 +17,31 @@
 		# This specifies the columns and their order when using the long and the tree
 		# layout.
 		blocks = [
-		   "permission"
-		   # "context"
-		   # "user"
-		   "group"
-		   "date"
-		   # "inode"
-		   # "links"
-		   "size"
-		   "git"
-		   "name"
+			"permission"
+			# "context"
+			# "user"
+			"group"
+			"date"
+			# "inode"
+			# "links"
+			"size"
+			"git"
+			"name"
 		];
 
 		# == Color ==
 		# This has various color options. (Will be expanded in the future.)
 		color = {
-		   # When to colorize the output.
-		   # When "classic" is set, this is set to "never".
-		   # Possible values: never, auto, always
-		   when = "auto";
+			# When to colorize the output.
+			# When "classic" is set, this is set to "never".
+			# Possible values: never, auto, always
+			when = "auto";
 
-		   # How to colorize the output.
-		   # When "classic" is set, this is set to "no-color".
-		   # Possible values: default, custom
-		   # When "custom" is set, lsd will look in the config directory for `colors.yaml`.
-		   theme = "default";
+			# How to colorize the output.
+			# When "classic" is set, this is set to "no-color".
+			# Possible values: default, custom
+			# When "custom" is set, lsd will look in the config directory for `colors.yaml`.
+			theme = "default";
 		};
 
 		# == Date ==
@@ -61,18 +64,18 @@
 
 		# == Icons ==
 		icons = {
-		   # When to use icons.
-		   # When "classic" is set, this is set to "never".
-		   # Possible values: always, auto, never
-		   when = "auto";
+			# When to use icons.
+			# When "classic" is set, this is set to "never".
+			# Possible values: always, auto, never
+			when = "auto";
 
-		   # Which icon theme to use.
-		   # Possible values: fancy, unicode
-		   theme = "fancy";
+			# Which icon theme to use.
+			# Possible values: fancy, unicode
+			theme = "fancy";
 
-		   # Separator between icon and the name
-		   # Default to 1 space
-		   separator = " ";
+			# Separator between icon and the name
+			# Default to 1 space
+			separator = " ";
 		};
 
 		# == Ignore Globs ==
@@ -93,13 +96,13 @@
 
 		# == Recursion ==
 		recursion = {
-		   # Whether to enable recursion.
-		   # Possible values: false, true
-		   enabled = false;
+			# Whether to enable recursion.
+			# Possible values: false, true
+			enabled = false;
 
-		   # How deep the recursion should go. This has to be a positive integer. Leave
-		   # it unspecified for (virtually) infinite.
-		   # depth: 3
+			# How deep the recursion should go. This has to be a positive integer. Leave
+			# it unspecified for (virtually) infinite.
+			# depth: 3
 		};
 
 		# == Size ==
@@ -114,18 +117,18 @@
 
 		# == Sorting ==
 		sorting = {
-		   # Specify what to sort by.
-		   # Possible values: extension, name, time, size, version
-		   column = "name";
+			# Specify what to sort by.
+			# Possible values: extension, name, time, size, version
+			column = "name";
 
-		   # Whether to reverse the sorting.
-		   # Possible values: false, true
-		   reverse = false;
+			# Whether to reverse the sorting.
+			# Possible values: false, true
+			reverse = false;
 
-		   # Whether to group directories together and where.
-		   # When "classic" is set, this is set to "none".
-		   # Possible values: first, last, none
-		   dir-grouping = "first";
+			# Whether to group directories together and where.
+			# When "classic" is set, this is set to "none".
+			# Possible values: first, last, none
+			dir-grouping = "first";
 		};
 
 		# == No Symlink ==

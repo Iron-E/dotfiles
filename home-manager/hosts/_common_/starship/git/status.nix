@@ -1,4 +1,7 @@
-{ outputs, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+	util = outputs.lib;
+in {
 	imports = [];
 
 	# WARN: this module is very slow on WSL. set `windows_starship` to fix

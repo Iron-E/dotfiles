@@ -1,6 +1,6 @@
-{ outputs, ... }:
+{ inputs, outputs, lib, config, pkgs, ... }:
 let
 	util = outputs.lib;
 in {
-	imports = util.fs.readSubmodules ./.;
+	imports = util.lib.fs.readSubmodules ./.;
 }
