@@ -8,30 +8,18 @@ args @ {
 	pkgs,
 	...
 }: {
-	imports = [
-		./bat
-		./cargo
-		./fish
-		./fontconfig
-		./git
-		./gtk
-		./lsd
-		./maven
-		./picom
-		./qt
-		./starship
-		./zathura
-
-		# TODO: ./i3
-		# TODO: ./nvim
-		# TODO: ./Typora
-		# TODO: ./wezterm
-
-		# TODO: ./librewolf ?
-		# TODO: ./vivid ?
-		# TODO: ./editorconfig ?
-		# TODO: ./Xorg / xmodmap / Xresources ?
-	];
+	# TODO: ./i3
+	# TODO: ./nvim
+	# TODO: ./Typora
+	# TODO: ./wezterm
+	# TODO: ./librewolf ?
+	# TODO: ./vivid ?
+	# TODO: ./editorconfig ?
+	# TODO: ./Xorg / xmodmap / Xresources ?
+	imports =
+		# builtins.filter (path: path == ./foo) /* NOTE: for testing */
+		(outputs.lib.fs.readSubmodules ./.)
+	;
 
 	nixpkgs = outputs.lib.config.nixpkgs args {
 		# overlays = [
