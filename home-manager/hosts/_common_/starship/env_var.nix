@@ -13,7 +13,7 @@ in {
 			variable = "NNNLVL";
 		};
 
-		VIM = util.attrsets.optionalIfAnyEnabled (with config.programs; [neovim vim]) {
+		VIM = util.config.optionalIfAnyEnabled (with config.programs; [neovim vim]) {
 			description = "Show whether the shell is being accessed inside (Neo)Vim";
 			format = "[]($style inverted)[ \${symbol} ]($style)";
 			style = "bg:green fg:black";
