@@ -1,5 +1,10 @@
-{ ... }: {
-	imports = [
-		./kvantum.nix
-	];
+{
+	inputs,
+	outputs,
+	lib,
+	config,
+	pkgs,
+	...
+}: {
+	imports = [./kvantum];
 }
