@@ -1,4 +1,4 @@
-{ config, outputs, lib, pkgs, ... }:
+{ config, outputs, lib, ... }:
 let
 	util = outputs.lib;
 in {
@@ -12,12 +12,12 @@ in {
 			let
 				env = (
 					lib.findFirst
-					(e: util.config.isProgramEnabled e.prog config)
+					(v: config.${v.scope}.${v.name}.enabled)
 					{ cmd = ""; }
-					[{ cmd = "env TERM=wezterm "; prog = "wezterm"; }]
+					[{ cmd = "env TERM=wezterm "; name = "wezterm"; scope = "programs"; }]
 				).cmd;
 			in
-				"${env}${pkgs.neovim}/bin/nvim"
+				"${env}${config.programs.neovim.package}/bin/nvim"
 			;
 
 			diff.tool = "nvim";

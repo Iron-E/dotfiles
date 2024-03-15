@@ -9,20 +9,18 @@ args @ {
 	...
 }: {
 	imports = [
-
-		# ./bat
-		# ./cargo
-		# ./fish
-		# ./fontconfig
-		# ./gtk
-		# ./lsd
-		# ./maven
-		# ./picom
-		# ./qt
-		# ./starship
-		# ./zathura
-
+		./bat
+		./cargo
+		./fish
+		./fontconfig
 		./git
+		./gtk
+		./lsd
+		./maven
+		./picom
+		./qt
+		./starship
+		./zathura
 
 		# TODO: ./i3
 		# TODO: ./nvim

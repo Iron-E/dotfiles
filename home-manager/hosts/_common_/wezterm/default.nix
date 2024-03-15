@@ -7,4 +7,6 @@
 	...
 }: {
 	imports = [];
+
+	programs.wezterm.enable = true;
 }
