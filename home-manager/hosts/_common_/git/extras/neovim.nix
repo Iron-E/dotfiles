@@ -1,7 +1,4 @@
-{ config, outputs, lib, ... }:
-let
-	util = outputs.lib;
-in {
+{ config, lib, ... }: {
 	imports = [];
 
 	programs = {
@@ -17,7 +14,7 @@ in {
 					[{ cmd = "env TERM=wezterm "; name = "wezterm"; scope = "programs"; }]
 				).cmd;
 			in
-				"${env}${config.programs.neovim.package}/bin/nvim"
+				"${env}${lib.getBin config.programs.neovim.package}"
 			;
 
 			diff.tool = "nvim";
