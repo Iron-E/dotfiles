@@ -1,14 +1,3 @@
-{ config, ... }:
-let
-	templateFile = "git/message";
-in {
-	imports = [];
-
-	programs.git.extraConfig.commit = {
-		template = "${config.xdg.configHome}/${templateFile}";
-	};
-
-	xdg.configFile.${templateFile}.text = /* gitcommit */ ''
 
 # <type> ::=
 #   build | change to the build script / dependencies
@@ -35,5 +24,3 @@ in {
 #   TODO: something left to do
 
 # vim: ft=gitcommit
-'';
-}
