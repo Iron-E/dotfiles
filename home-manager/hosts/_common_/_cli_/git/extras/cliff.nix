@@ -84,22 +84,22 @@ in {
 				# how to group commits
 				commit_parsers =
 				let
-					allWithGroupIdx = # put all the `parsers` in a `group`
-					group: # see `withGroupIdx`
+					withGroupIdx = # put all the `parsers` in a `group`
 					idx: # see `withGroupIdx`
+					group: # see `withGroupIdx`
 					parsers: # list of parsers, or a single parser
 						map
-						(parser: parser // { group = "<!-- ${idx} -->${group}"; })
+						(parser: parser // { group = "<!-- ${builtins.toString idx} -->${group}"; })
 						(lib.toList parsers)
 					;
 
-					features = allWithGroupIdx 0 "Features";
-					fixes = allWithGroupIdx 1 "Bug Fixes";
-					improvements = allWithGroupIdx 2 "Improvements";
-					buildChanges = allWithGroupIdx 3 "Build Changes";
-					removals = allWithGroupIdx 4 "Removals";
-					deprecations = allWithGroupIdx 5 "Deprecations";
-					maintenance = allWithGroupIdx 6 "Maintenance";
+					features = withGroupIdx 0 "Features";
+					fixes = withGroupIdx 1 "Bug Fixes";
+					improvements = withGroupIdx 2 "Improvements";
+					buildChanges = withGroupIdx 3 "Build Changes";
+					removals = withGroupIdx 4 "Removals";
+					deprecations = withGroupIdx 5 "Deprecations";
+					maintenance = withGroupIdx 6 "Maintenance";
 
 					skip = # do not include the `parsers` in the output
 					parsers: # list of parsers, or a single parser
