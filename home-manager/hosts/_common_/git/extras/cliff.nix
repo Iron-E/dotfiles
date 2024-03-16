@@ -90,7 +90,7 @@ in {
 					parsers: # list of parsers, or a single parser
 						map
 						(parser: parser // { group = "<!-- ${idx} -->${group}"; })
-						(util.lists.singleton parsers)
+						(lib.toList parsers)
 					;
 
 					features = allWithGroupIdx 0 "Features";
