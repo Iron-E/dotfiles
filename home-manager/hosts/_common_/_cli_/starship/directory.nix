@@ -12,7 +12,7 @@ in {
 		truncation_length = 8;
 		truncation_symbol = "…/";
 		repo_root_style = "bg:purple_light fg:white bold italic";
-		repo_root_format = outputs.lib.strings.concat [
+		repo_root_format = lib.concatStrings [
 			"[ $before_root_path]($style)"
 			"[$repo_root]($repo_root_style)"
 			"[$path ($read_only )]($style)"

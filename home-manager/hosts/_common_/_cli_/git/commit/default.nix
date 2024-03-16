@@ -4,7 +4,5 @@ let
 in {
 	imports = [];
 
-	programs.git.extraConfig.commit = {
-		template = "${./message.txt}";
-	};
+	programs.git.extraConfig.commit.template = "${./message.txt}";
 }

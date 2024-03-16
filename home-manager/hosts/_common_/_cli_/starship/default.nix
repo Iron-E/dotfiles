@@ -10,7 +10,7 @@ in {
 		settings = {
 			"$schema" = "https://starship.rs/config-schema.json";
 			add_newline = true;
-			format = outputs.lib.strings.join [
+			format = util.strings.join [
 				[ "([░▒▓\${directory}](purple_light))" ]
 
 				(lib.optionals config.programs.git.enable [

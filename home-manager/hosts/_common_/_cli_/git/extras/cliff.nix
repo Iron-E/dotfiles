@@ -105,7 +105,7 @@ in {
 					parsers: # list of parsers, or a single parser
 						map
 						(parser: parser // { skip = true; })
-						(util.lists.singleton parsers)
+						(lib.toList parsers)
 					;
 				in builtins.concatLists [
 					(buildChanges { message = "^build"; })

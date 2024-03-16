@@ -1,6 +1,7 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 let
 	util = outputs.lib;
+	inherit (lib) concatStrings;
 in {
 	imports = [];
 
@@ -20,7 +21,7 @@ in {
 		};
 
 		state = {
-			format = outputs.lib.strings.concat [
+			format = concatStrings [
 				"[\\(]($style fg:gray_dark)"
 				"[$state( $progress_current/$progress_total)]($style)"
 				"[\\) ]($style fg:gray_dark)"
@@ -31,7 +32,7 @@ in {
 
 		# WARN: this module is very slow on WSL. set `windows_starship` to fix
 		status = {
-			format = outputs.lib.strings.concat [
+			format = concatStrings [
 				"[("
 					" $all_status$ahead_behind[]($style inverted)"
 				")]($style)"
