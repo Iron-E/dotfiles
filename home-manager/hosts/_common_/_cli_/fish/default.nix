@@ -5,5 +5,8 @@ in {
 	imports = [];
 
 	programs.fish.enable = true;
-	xdg.configFile.fish.source = ./config;
+	xdg.configFile.fish = {
+		source = ./config;
+		recursive = true;
+	};
 }
