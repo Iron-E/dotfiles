@@ -6,8 +6,6 @@ args @ { inputs, outputs, lib, config, pkgs, ... }: {
 	# TODO: ./Typora
 	# TODO: ./wezterm
 	# TODO: ./librewolf ?
-	# TODO: ./vivid ?
-	# TODO: ./editorconfig ?
 	# TODO: ./Xorg / xmodmap / Xresources ?
 	imports =
 		# builtins.filter (path: path == ./foo) /* NOTE: for testing */
