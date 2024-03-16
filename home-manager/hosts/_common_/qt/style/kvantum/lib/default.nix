@@ -8,12 +8,7 @@ in {
 	}: {
 			qt.style.name = "kvantum";
 			home.packages = [ theme.package ];
-			xdg.configFile."Kvantum/kvantum.kvconfig".text = # ini
-''
-[General]
-theme=${theme.name}
-''
-			;
+			xdg.configFile."Kvantum/kvantum.kvconfig".text = lib.generators.toINI {} { General.theme = theme.name; };
 		}
 	;
 }

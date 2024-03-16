@@ -4,12 +4,10 @@ let
 in {
 	imports = [];
 
-	home.file.".cargo/config.toml".text = outputs.lib.strings.joinLines [
-		[ /* toml */ "[target.x86_64-unknown-linux-gnu]" ]
-
-		(lib.optional (builtins.elem pkgs.mold config.home.packages) [
-			/* toml */ "linker = 'clang'"
-			/* toml */ "rustflags = ['-C', 'link-arg=-fuse-ld=/usr/bin/mold']"
-		])
-	];
+	home.file.".cargo/config.toml".source = (pkgs.formats.toml {}).generate "cargo-config" {
+		target.x86_64-unknown-linux-gnu = (lib.optionalAttrs (builtins.elem pkgs.mold config.home.packages) {
+			linker = "clang";
+			rustflags = ["-C" "link-arg=-fuse-ld=/usr/bin/mold"];
+		});
+	};
 }
