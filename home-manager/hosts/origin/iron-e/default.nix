@@ -4,14 +4,14 @@
 let
 	util = outputs.lib;
 in {
-	imports = [../../_common_] ++ util.fs.readSubmodules ./.;
+	imports = (util.fs.readSubmodules ./.) ++ [
+		../../_common_
+		../../_extras_/_gui_/xsession
+		../../_extras_/xdg/mime
+	];
 
-	home =
-	let
+	home = {
 		username = "iron-e";
-	in {
-		inherit username;
-		homeDirectory = "/home/${username}";
 
 		# SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 		stateVersion = "24.05";
