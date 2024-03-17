@@ -2,7 +2,7 @@
 let
 	util = outputs.lib;
 in {
-	imports = [];
+	imports = util.fs.readSubmodules ./.;
 
 	xdg.configFile."maven/settings.xml".text = # xml
 ''

@@ -4,6 +4,10 @@ let
 in {
 	imports = [];
 
-	home.packages = with pkgs; [ vivid ];
-	xdg.configFile."vivid/highlite.yaml".source = ./highlite.yaml;
+	home = {
+		packages = with pkgs; [ vivid ];
+		sessionVariables = {
+			LS_COLORS = "$(${lib.getBin pkgs.vivid} generate ${./highlite.yaml})";
+		};
+	};
 }

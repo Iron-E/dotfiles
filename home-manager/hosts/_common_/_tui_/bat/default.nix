@@ -2,8 +2,9 @@
 let
 	util = outputs.lib;
 in {
-	imports = [];
+	imports = util.fs.readSubmodules ./.;
 
+	home.packages = with pkgs; [ less ];
 	programs.bat = {
 		enable = true;
 		config = {
