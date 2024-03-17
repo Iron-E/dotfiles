@@ -25,8 +25,7 @@ in {
 			merge.tool = "nvimdiff";
 
 			mergetool =
-			let
-				nvimdiff.layout = "LOCAL,REMOTE / MERGED";
+			let nvimdiff.layout = "LOCAL,REMOTE / MERGED";
 			in {
 				inherit nvimdiff;
 
