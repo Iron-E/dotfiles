@@ -3,8 +3,6 @@
 args @ { inputs, outputs, lib, config, pkgs, ... }: {
 	# TODO: ./i3
 	# TODO: ./nvim
-	# TODO: ./Typora
-	# TODO: ./wezterm
 	# TODO: ./librewolf ?
 	# TODO: ./Xorg / xmodmap / Xresources ?
 	imports =
