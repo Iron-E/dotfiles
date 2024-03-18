@@ -4,5 +4,5 @@ let
 in {
 	imports = [];
 
-	home.packages = with pkgs; [ git-absorb ];
+	home.packages = [pkgs.git-absorb];
 }

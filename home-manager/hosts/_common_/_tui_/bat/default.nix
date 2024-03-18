@@ -4,7 +4,7 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [ less ];
+	home.packages = [pkgs.less];
 	programs.bat = {
 		enable = true;
 		config = {

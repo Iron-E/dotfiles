@@ -4,6 +4,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	# home.packages = with pkgs; [ fd ];
 	programs.fzf.enable = true;
 }

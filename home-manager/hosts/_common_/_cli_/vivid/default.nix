@@ -5,7 +5,7 @@ in {
 	imports = [];
 
 	home = {
-		packages = with pkgs; [ vivid ];
+		packages = [pkgs.vivid];
 		sessionVariables = {
 			LS_COLORS = "$(${lib.getExe pkgs.vivid} generate ${./highlite.yaml})";
 		};

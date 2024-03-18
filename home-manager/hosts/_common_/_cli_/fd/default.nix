@@ -4,8 +4,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home = {
-		packages = [pkgs.rustup];
-		sessionVariables.RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
-	};
+	home.packages = [pkgs.fd];
 }
