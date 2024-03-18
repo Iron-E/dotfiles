@@ -7,7 +7,7 @@ in {
 	home = {
 		packages = with pkgs; [ vivid ];
 		sessionVariables = {
-			LS_COLORS = "$(${lib.getBin pkgs.vivid} generate ${./highlite.yaml})";
+			LS_COLORS = "$(${lib.getExe pkgs.vivid} generate ${./highlite.yaml})";
 		};
 	};
 }

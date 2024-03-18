@@ -17,7 +17,7 @@ in {
 					[{ cmd = "env TERM=wezterm "; name = "wezterm"; scope = "programs"; }]
 				).cmd;
 			in
-				"${env}${lib.getBin config.programs.neovim.package}"
+				"${env}${lib.getExe config.programs.neovim.finalPackage}"
 			;
 
 			diff.tool = "nvim";
