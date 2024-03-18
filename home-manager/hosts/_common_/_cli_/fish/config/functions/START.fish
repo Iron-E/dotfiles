@@ -3,7 +3,7 @@ function START --description 'system startup commands'
 
 	# Update nameservers using /etc/resolvconf.conf
 	sudo resolvconf -u
-	
+
 	# Power settings
 	sudo powertop --auto-tune
 	sudo tlp start
