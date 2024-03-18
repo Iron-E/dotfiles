@@ -31,16 +31,27 @@ let
 		let paths = readPaths path;
 		in builtins.filter pathIsModule paths
 	;
-in {
-	inherit entriesToPaths pathIsModule readModules;
 
-	readSubmodules = # read all paths from the `path` except 'default.nix'
-	path:
+	readSubmodules' = # read all paths from the `path` except 'default.nix'
+	path: # the path to read submodules in
 	let
 		currentModule = path + "/default.nix";
 		modules = readModules path;
 	in builtins.filter
 		(p: p != currentModule)
 		modules
+	;
+in {
+	inherit entriesToPaths pathIsModule readModules readSubmodules';
+
+	readSubmodules = # like `readSubmodules'` but skips the `lib` dir
+	path:
+		let
+			libPath = path + "/lib";
+			submodules = readSubmodules' path;
+		in
+			builtins.filter
+			(path: path != libPath)
+			submodules
 	;
 }
