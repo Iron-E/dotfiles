@@ -13,6 +13,18 @@
 			url = "github:nix-community/neovim-nightly-overlay";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
+		# non-flakes
+
+		i3blocks-contrib = {
+			url = "github:vivien/i3blocks-contrib";
+			flake = false;
+		};
+
+		i3switch = {
+			url = "github:lokeshlkr/i3switch";
+			flake = false;
+		};
 	};
 
 	outputs = inputs @ {

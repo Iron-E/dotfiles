@@ -118,6 +118,38 @@
         "type": "github"
       }
     },
+    "i3blocks-contrib": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707384458,
+        "narHash": "sha256-iY9y3zLw5rUIHZkA9YLmyTDlgzZtIYAwWgHxaCS1+PI=",
+        "owner": "vivien",
+        "repo": "i3blocks-contrib",
+        "rev": "9d66d81da8d521941a349da26457f4965fd6fcbd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vivien",
+        "repo": "i3blocks-contrib",
+        "type": "github"
+      }
+    },
+    "i3switch": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1616295750,
+        "narHash": "sha256-P39capjq71iNybMfsgwEnu2tL6A0wbEjRE3o8kDNR/E=",
+        "owner": "lokeshlkr",
+        "repo": "i3switch",
+        "rev": "a431e9e35fce2d5162954d069edef15a734a93ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lokeshlkr",
+        "repo": "i3switch",
+        "type": "github"
+      }
+    },
     "neovim-flake": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -199,6 +231,8 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "i3blocks-contrib": "i3blocks-contrib",
+        "i3switch": "i3switch",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
