@@ -1,6 +1,7 @@
 { inputs, outputs, config, lib, pkgs, ... }:
 let
 	util = outputs.lib;
+	inherit (util.strings) multiline;
 in {
 	imports = util.fs.readSubmodules ./.;
 
@@ -282,5 +283,7 @@ in {
 		".Xmodmap-ext".text = util.generators.toXmodmap common;
 	};
 
-	xsession.initExtra = /* sh */ ''xmodmap "$HOME/.Xmodmap-ext"'';
+	xsession.initExtra = multiline /* sh */ ''
+		xmodmap "$HOME/.Xmodmap-ext"
+	'';
 }
