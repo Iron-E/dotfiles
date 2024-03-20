@@ -1,6 +1,8 @@
 nixpkgs: # `flake`
 let
 	inherit (nixpkgs) lib;
+	inherit (lib) toList;
+	inherit (builtins) length;
 
 	reserveWith = # grows the list to at least the given size using `fn`
 	fn: # `(integer) -> T`
@@ -40,7 +42,7 @@ in {
 	repeat = # what `repeat 5 [2 3 4]` is equal to `[2, 3, 4] * 5` in python
 	count: # integer
 	list: # to repeat
-		let replicated = lib.lists.replicate count (lib.toList list);
+		let replicated = lib.lists.replicate count (toList list);
 		in builtins.concatLists replicated
 	;
 
