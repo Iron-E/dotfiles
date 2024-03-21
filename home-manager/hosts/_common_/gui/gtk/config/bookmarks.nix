@@ -1,8 +1,11 @@
 { inputs, outputs, config, lib, pkgs, ... }:
 let
 	util = outputs.lib;
+	inherit (util.strings) multiline;
 in {
 	imports = [];
 
-	gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+	gtk.gtk3.bookmarks = [
+		"file:///tmp"
+	];
 }
