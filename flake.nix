@@ -9,6 +9,8 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+		# overlays
+
 		neovim-nightly-overlay = {
 			url = "github:nix-community/neovim-nightly-overlay";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -16,24 +18,12 @@
 
 		# non-flakes
 
-		i3blocks-contrib = {
-			url = "github:vivien/i3blocks-contrib";
-			flake = false;
-		};
-
-		i3switch = {
-			url = "github:lokeshlkr/i3switch";
-			flake = false;
-		};
+		i3blocks-contrib = { flake = false; url = "github:vivien/i3blocks-contrib"; };
+		i3switch = { flake = false; url = "github:lokeshlkr/i3switch"; };
 	};
 
-	outputs = inputs @ {
-		self,
-		nixpkgs,
-		nixos-hardware,
-		home-manager,
-		...
-	}: let
+	outputs = inputs @ { self, nixpkgs, home-manager, ... }:
+	let
 		inherit (self) outputs;
 		lib = import ./lib nixpkgs;
 	in {
@@ -56,15 +46,11 @@
 
 		# Reusable home-manager modules you might want to export. Usually things you would upstream into home-manager
 		homeManagerModules = import ./home-manager/modules;
+
 	} // (lib.config.declare ./home-manager/hosts home-manager {
 		origin = {
-			args = {
-				inherit inputs outputs;
-				system = "x86_64-linux";
-			};
-
-			# Available through 'home-manager --flake .#iron-e@origin'
-			iron-e = {};
+			args = { inherit inputs outputs; system = "x86_64-linux"; };
+			iron-e = {}; # Available through 'home-manager --flake .#iron-e@origin'
 		};
 	});
 }

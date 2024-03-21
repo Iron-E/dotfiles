@@ -5,7 +5,7 @@ let
 in {
 	imports = [];
 
-	home.packages = with pkgs; [open-dyslexic];
+	home.packages = with pkgs; [nerdfonts-open-dyslexic];
 	xsession.windowManager.i3.config.fonts = {
 		names = ["OpenDyslexic"];
 		style = "Regular";

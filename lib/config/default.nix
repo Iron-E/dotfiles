@@ -85,13 +85,13 @@ in {
 	config: # the nixpkgs config
 	let
 		defaultNixpkgsConfig = {
-			overlays = [
+			overlays = with args; [
 				# Add overlays your own flake exports (from overlays and pkgs dir):
-				args.outputs.overlays.additions
-				args.outputs.overlays.modifications
+				outputs.overlays.additions
+				outputs.overlays.modifications
 
 				# You can also add overlays exported from other flakes:
-				args.inputs.neovim-nightly-overlay.overlays.default
+				inputs.neovim-nightly-overlay.overlays.default
 			];
 			# Configure your nixpkgs instance
 			config = {

@@ -4,7 +4,7 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [jetbrains-mono nerdfonts];
+	home.packages = with pkgs; [jetbrains-mono nerdfonts-symbols];
 	programs.wezterm = {
 		enable = true;
 		extraConfig = builtins.readFile ./config.lua;
