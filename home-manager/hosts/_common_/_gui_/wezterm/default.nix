@@ -4,8 +4,9 @@ let
 in {
 	imports = [];
 
+	home.packages = with pkgs; [jetbrains-mono nerdfonts];
 	programs.wezterm = {
 		enable = true;
-		extraConfig = builtins.readFile ./wezterm.lua;
+		extraConfig = builtins.readFile ./config.lua;
 	};
 }

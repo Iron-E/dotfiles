@@ -5,5 +5,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = [pkgs.brightnessctl];
+	home.packages = with pkgs; [brightnessctl];
 }

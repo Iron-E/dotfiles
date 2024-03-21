@@ -28,7 +28,7 @@ in {
 			};
 
 			changeTemparature =
-			let redshift = getExe pkgs.redshift;
+			let redshift = getExe config.services.redshift.package;
 			in temp: execInBg "${redshift} -PO ${builtins.toString temp}"
 			;
 
