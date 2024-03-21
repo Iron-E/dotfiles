@@ -6,7 +6,7 @@ let
 in {
 	imports = (util.fs.readSubmodules ./.) ++ [
 		../../_common_
-		../../_extras_/_gui_/xsession
+		../../_extras_/gui/xsession
 		../../_extras_/xdg/mime
 	];
 
