@@ -2,5 +2,5 @@
 let
 	util = outputs.lib;
 in {
-	imports = util.fs.readSubmodules ./.;
+	imports = [./fd.nix];
 }
