@@ -7,6 +7,18 @@ let
 
 	util = outputs.lib;
 in {
+	# dependencies for the bars
+	home.packages = with pkgs; [
+		acpi # battery2
+		alsa-utils # volume
+		coreutils # date disk time
+		font-awesome # battery2
+		gawk # disk
+		lm_sensors # temperature
+		networkmanagerapplet # Wi-Fi
+		python3 # battery2
+	];
+
 	xsession.windowManager.i3.config.bars = toList {
 		colors = {
 			inherit (presets.inactive) background;
@@ -105,7 +117,7 @@ in {
 					})
 				])
 
-				"# vim: ft=dosini"
+				("# vim" + ": ft=dosini")
 			])}"
 		;
 	};
