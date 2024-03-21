@@ -1,0 +1,84 @@
+{
+  "flake": {
+    "body": [
+      "{",
+      "\tdescription = \"${1:desc}\";",
+      "",
+      "\tinputs = {",
+      "\t\tnixpkgs.url = \"github:nixos/nixpkgs/nixos-unstable\";",
+      "\t};",
+      "",
+      "\toutputs = inputs @ {",
+      "\t\tself,",
+      "\t\tnixpkgs,",
+      "\t\t...",
+      "\t}: {",
+      "\t\t$0",
+      "\t};",
+      "}"
+    ],
+    "prefix": "flake"
+  },
+  "home-manager": {
+    "body": [
+      "{ inputs, outputs, config, lib, pkgs, ... }:",
+      "let",
+      "\tutil = outputs.lib;",
+      "\tinherit (util.strings) multiline;",
+      "in {",
+      "\timports = [];",
+      "",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "prefix": "home-manager"
+  },
+  "home-manager-default": {
+    "body": [
+      "{ inputs, outputs, config, lib, pkgs, ... }:",
+      "let",
+      "\tutil = outputs.lib;",
+      "\tinherit (util.strings) multiline;",
+      "in {",
+      "\timports = util.fs.readSubmodules ./.;",
+      "",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "prefix": "home-manager-default"
+  },
+  "istrlang": {
+    "body": "/* ${1:lang} */ ''$0''",
+    "prefix": "istrlang"
+  },
+  "let-util": {
+    "body": [
+      "let",
+      "\tutil = outputs.lib;",
+      "in"
+    ],
+    "prefix": "let-util"
+  },
+  "module": {
+    "body": [
+      "{ ... }: {",
+      "\timports = [];",
+      "",
+      "\t$0",
+      "}"
+    ],
+    "prefix": "module"
+  },
+  "readSubmodules": {
+    "body": "outputs.lib.fs.readSubmodules ./.",
+    "prefix": "readSubmodules"
+  },
+  "strlang": {
+    "body": "/* ${1:lang} */ \"$0\"",
+    "prefix": "strlang"
+  },
+  "util": {
+    "body": "util = outputs.lib;",
+    "prefix": "util"
+  }
+}

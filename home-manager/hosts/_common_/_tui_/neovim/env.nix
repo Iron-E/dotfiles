@@ -4,8 +4,8 @@ let
 in {
 	imports = [];
 
+	programs.neovim.defaultEditor = true;
 	home.sessionVariables = {
-		EDITOR = "nvim";
 		MANPAGER = "nvim --cmd 'let g:man = v:true' +Man!";
 	};
 }

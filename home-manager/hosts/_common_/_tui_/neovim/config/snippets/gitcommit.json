@@ -1,0 +1,42 @@
+{
+  "CLOSES": {
+    "body": "CLOSES #${1:issue}",
+    "prefix": "CLOSES"
+  },
+  "FIXES": {
+    "body": "FIXES #${1:issue}",
+    "prefix": "FIXES"
+  },
+  "NOTE": {
+    "body": "NOTE: ${1:task}",
+    "prefix": "NOTE"
+  },
+  "RELATED": {
+    "body": "RELATED: ${1:link}",
+    "prefix": "RELATED"
+  },
+  "SEE": {
+    "body": "SEE #${1:issue}",
+    "prefix": "SEE"
+  },
+  "TODO": {
+    "body": "TODO: ${1:task}",
+    "prefix": "TODO"
+  },
+  "ref": {
+    "body": [
+      "ref(${1:scope}): ${2:title}",
+      "",
+      "$0"
+    ],
+    "prefix": "ref"
+  },
+  "rev": {
+    "body": [
+      "rev(${1:scope}): ${2:title}",
+      "",
+      "$0"
+    ],
+    "prefix": "rev"
+  }
+}

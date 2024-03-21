@@ -1,0 +1,95 @@
+{
+  "c": {
+    "body": [
+      "\n",
+      " * $0"
+    ],
+    "prefix": "c"
+  },
+  "debug": {
+    "body": "console.debug({$0});",
+    "prefix": "debug"
+  },
+  "describe": {
+    "body": [
+      "describe(${1:function}, ${2:async }() => {",
+      "\t$0",
+      "});"
+    ],
+    "prefix": "describe"
+  },
+  "doc": {
+    "body": "/** $0 */",
+    "prefix": "doc"
+  },
+  "docc": {
+    "body": [
+      "/**",
+      " * $0",
+      " */"
+    ],
+    "prefix": "docc"
+  },
+  "doctest": {
+    "body": [
+      "",
+      "",
+      " * @import.meta.vitest",
+      " * ```typescript",
+      " * $0",
+      " * ```"
+    ],
+    "prefix": "doctest"
+  },
+  "example": {
+    "body": [
+      "",
+      "",
+      " * @example",
+      " * ```typescript",
+      " * $0",
+      " * ```"
+    ],
+    "prefix": "example"
+  },
+  "interpolate": {
+    "body": "${${1:$TM_SELECTED_TEXT}}$0",
+    "prefix": "interpolate"
+  },
+  "it": {
+    "body": [
+      "it('${1:desc}', ${2:async }() => {",
+      "\t$0",
+      "});"
+    ],
+    "prefix": "it"
+  },
+  "link": {
+    "body": "{@link ${1:$TM_SELECTED_TEXT}}$0",
+    "prefix": "link"
+  },
+  "substitute": {
+    "body": "${${1:$TM_SELECTED_TEXT}}",
+    "prefix": "substitute"
+  },
+  "test": {
+    "body": [
+      "test('${1:desc}', ${2:async }() => {",
+      "\t$0",
+      "});"
+    ],
+    "prefix": "test"
+  },
+  "unimplemented": {
+    "body": "throw Error(\"unimplemented\");",
+    "prefix": "unimplemented"
+  },
+  "***REMOVED***": {
+    "body": [
+      "type ${1:Type} = ${2:Wrapper}<{",
+      "\t$0",
+      "}>;"
+    ],
+    "prefix": "***REMOVED***"
+  }
+}

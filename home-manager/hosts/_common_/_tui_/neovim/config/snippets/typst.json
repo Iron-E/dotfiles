@@ -1,0 +1,6 @@
+{
+  "with_icon": {
+    "body": "show word(\"$1\"): with_icon(\"$0\");",
+    "prefix": "with_icon"
+  }
+}

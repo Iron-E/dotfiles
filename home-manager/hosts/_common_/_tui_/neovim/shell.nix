@@ -5,7 +5,6 @@ in {
 	imports = [];
 
 	home.shellAliases = {
-		nvim = "${lib.getExe pkgs.neovim-nightly}";
-		nvim-stable = "${lib.getExe pkgs.neovim}";
+		nvim_ = "${lib.getExe pkgs.neovim}";
 	};
 }

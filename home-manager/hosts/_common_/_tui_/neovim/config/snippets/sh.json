@@ -1,0 +1,103 @@
+{
+  "SCRIPT_DIR": {
+    "body": "declare -r SCRIPT_DIR=\"${BASH_SOURCE[0]%/*}\"",
+    "prefix": "SCRIPT_DIR"
+  },
+  "cmd": {
+    "body": "$($0)",
+    "prefix": "cmd"
+  },
+  "const": {
+    "body": "declare -r ${1:NAME}=${2:value}",
+    "prefix": "const"
+  },
+  "dq": {
+    "body": [
+      "declare -r ${1:VAR}=\"$(dagger query <<- EOF | query_value",
+      "{",
+      "\t${2:selector} {",
+      "\t\t$0",
+      "\t}",
+      "}",
+      "EOF",
+      ")\""
+    ],
+    "prefix": "dq"
+  },
+  "dqd": {
+    "body": [
+      "declare -r ${1:VAR}=\"$(dagger query --focus --doc \"${${2:document}}\" \\",
+      "\t--var step='${4:desc}' \\",
+      "\t${3:Operation} | query_value)\""
+    ],
+    "prefix": "dqd"
+  },
+  "dqdj": {
+    "body": [
+      "declare -r ${1:var}=\"$(dagger query --focus --doc \"${${2:document}}\" --var-json \"$(cat <<- EOF",
+      "\t{",
+      "\t\t\"step\": \"${4:desc}\"",
+      "\t}",
+      "\tEOF",
+      "\t)\" ${3:Operation} | query_value)\""
+    ],
+    "prefix": "dqdj"
+  },
+  "dqp": {
+    "body": [
+      "declare -r ${1:VAR}=\"$(dagger query <<- EOF | query_value",
+      "{",
+      "\tpipeline(name: \"${2:name}\") {",
+      "\t\t${3:selector} {",
+      "\t\t\t$0",
+      "\t\t}",
+      "\t}",
+      "}",
+      "EOF",
+      ")\""
+    ],
+    "prefix": "dqp"
+  },
+  "join": {
+    "body": "printf '${2:,}\"%s\"' \"${${1:var}[@]}\" | tail -c +${3:2}",
+    "prefix": "join"
+  },
+  "match": {
+    "body": [
+      "${1:pattern})",
+      "\t$0",
+      "\t;;"
+    ],
+    "prefix": "match"
+  },
+  "parseopt": {
+    "body": [
+      "declare -r __OPTIONS=${1:short_options}",
+      "declare -r __LONGOPTIONS=${2:long_options}",
+      "declare -r __PARSED=$(getopt --options=\\$__OPTIONS --longoptions=\\$__LONGOPTIONS --name ${3:\"$\\0\"} -- \"$@\")",
+      "eval set -- \"$__PARSED\"",
+      "while true; do",
+      "\tcase \"\\$1\" in",
+      "\t\t${4:pattern})",
+      "\t\t\t$0",
+      "\t\t\t;;",
+      "\t\t--) shift && break;;",
+      "\t\t*) printf 'Invalid argument %s' \"${1@Q}\" && exit;;",
+      "\tesac",
+      "done"
+    ],
+    "prefix": "parseopt"
+  },
+  "readlines": {
+    "body": "( $(grep '${1:\"^[^#]\"}' ${2:file}) )",
+    "prefix": "readlines"
+  },
+  "shebang-dagger": {
+    "body": "#!/usr/bin/env -S dagger run bash",
+    "prefix": "shebang-dagger"
+  },
+  "sub": {
+    "body": "${$0}",
+    "prefix": "sub"
+  }
+}
