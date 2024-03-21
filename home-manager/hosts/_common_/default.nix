@@ -3,7 +3,6 @@
 args @ { inputs, outputs, lib, config, pkgs, ... }: {
 	# TODO: ./nvim
 	# TODO: ./librewolf ?
-	# TODO: ./Xorg / xmodmap / Xresources ?
 	imports =
 		# builtins.filter (path: path == ./foo) /* NOTE: for testing */
 		(outputs.lib.fs.readSubmodules ./.)
