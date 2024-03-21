@@ -1,28 +1,13 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 let
+	inherit (builtins) fromTOML readFile getAttr;
 	util = outputs.lib;
+
+	getColorsFromTOML = lib.flip lib.pipe [fromTOML (getAttr "colors")];
 in {
 	imports = [];
 
-	programs.wezterm.colorSchemes =
-	let
-		ext = ".toml";
-		fsEntries = builtins.readDir ./.;
-		colorPaths = builtins.filter (lib.hasSuffix ext) fsEntries;
-		colors =
-			builtins.foldl'
-			(result: path: result ++ (
-				let
-					name = lib.removeSuffix ext path;
-					value = builtins.fromTOML (builtins.readFile path);
-				in
-					lib.nameValuePair name value
-			))
-			[]
-			colorPaths
-		;
-	in
-		builtins.listToAttrs
-		colors
-	;
+	programs.wezterm.colorSchemes = {
+		highlite = lib.pipe ./highlite.toml [readFile getColorsFromTOML];
+	};
 }

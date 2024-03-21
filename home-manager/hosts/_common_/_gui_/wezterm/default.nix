@@ -2,7 +2,7 @@
 let
 	util = outputs.lib;
 in {
-	imports = [];
+	imports = util.fs.readSubmodules ./.;
 
 	home.packages = with pkgs; [jetbrains-mono nerdfonts];
 	programs.wezterm = {

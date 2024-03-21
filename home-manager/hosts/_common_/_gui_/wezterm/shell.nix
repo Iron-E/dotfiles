@@ -5,16 +5,10 @@ in {
 	imports = [];
 
 	home.shellAliases = lib.optionalAttrs config.programs.neovim.enable (
-		let
-			hasPrefix = lib.hasPrefix "nvim";
-			oldAliases =
-				lib.filterAttrs
-				(n: v: hasPrefix n)
-				config.home.shellAliases
-			;
-		in
-			lib.mapAttrs
-			oldAliases
-			(alias: cmd: "env TERM=wezterm ${cmd}")
+		let env = pkg: lib.mkForce "env TERM=wezterm ${lib.getExe pkg}";
+		in {
+			nvim = env pkgs.neovim-nightly;
+			nvim-stable = env pkgs.neovim;
+		}
 	);
 }
