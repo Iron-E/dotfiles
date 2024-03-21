@@ -4,7 +4,8 @@ let
 in {
 	imports = [];
 
-	programs.git.extraConfig.merge = {
-		conflictstyle = "zdiff3";
+	programs.git.extraConfig = {
+		merge.conflictstyle = "zdiff3";
+		rerere.enabled = true;
 	};
 }

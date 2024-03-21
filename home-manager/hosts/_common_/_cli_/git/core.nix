@@ -4,8 +4,7 @@ let
 in {
 	imports = [];
 
-	programs.git.extraConfig.commit = {
-		template = "${./message.txt}";
-		verbose = true;
+	programs.git.extraConfig.core = {
+		fsmonitor = true;
 	};
 }
