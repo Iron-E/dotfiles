@@ -1,7 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 args @ { inputs, outputs, lib, config, pkgs, ... }: {
-	# TODO: ./librewolf ?
 	imports =
 		# builtins.filter (path: path == ./foo) /* NOTE: for testing */
 		(outputs.lib.fs.readSubmodules ./.)
