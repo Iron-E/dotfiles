@@ -30,12 +30,10 @@
 		inherit lib;
 
 		# Accessible through 'nix build', 'nix shell', etc
-		packages = lib.systems.genValues (system: (
-			# Your custom packages
-			import ./pkgs nixpkgs.legacyPackages.${system}) //
-			# `nix run .#home-manager`
-			{ home-manager = home-manager.defaultPackage.${system}; }
-		);
+		packages = lib.systems.genValues (system: nixpkgs.lib.mergeAttrsList [
+			(import ./pkgs nixpkgs.legacyPackages.${system}) # Your custom packages
+			{ home-manager = home-manager.defaultPackage.${system}; } # `nix run .#home-manager`
+		]);
 
 		# Formatter for your nix files, available through 'nix fmt'
 		# TODO: https://github.com/kamadorueda/alejandra/issues/387
