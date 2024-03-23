@@ -17,7 +17,7 @@ in {
 
 	xsession.windowManager.i3.config = {
 		inherit defaultWorkspace;
-		startup = toList (pair "command" "${i3Exe "i3-msg"} workspace ${defaultWorkspace}");
+		startup = toList (pair "command" "${i3Exe "i3-msg"} 'workspace ${defaultWorkspace}'");
 		workspaceAutoBackAndForth = true;
 
 		assigns = {
