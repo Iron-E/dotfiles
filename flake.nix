@@ -9,6 +9,11 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+		nixgl = { # required for wezterm
+			url = "github:nix-community/nixGL";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
 		# overlays
 
 		neovim-nightly-overlay = {
