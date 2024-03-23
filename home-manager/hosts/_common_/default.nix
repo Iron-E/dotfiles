@@ -6,16 +6,12 @@ args @ { inputs, outputs, lib, config, pkgs, ... }: {
 		(outputs.lib.fs.readSubmodules ./.)
 	;
 
-	nixpkgs = outputs.lib.config.nixpkgs args {
-		# overlays = [
-			# Or define it inline, for example:
-			# (final: prev: {
-			#		hi = final.hello.overrideAttrs (oldAttrs: {
-			#			patches = [ ./change-hello-to-hi.patch ];
-			#		});
-			# })
-		# ];
-	};
+	nixpkgs =
+		outputs.lib.config.nixpkgs
+		(with inputs; [neovim-nightly-overlay nixgl])
+		(with outputs.overlays; [additions modifications])
+		{}
+	;
 
 	# Nicely reload system units when changing configs
 	# systemd.user.startServices = "sd-switch";

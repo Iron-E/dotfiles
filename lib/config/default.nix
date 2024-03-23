@@ -81,26 +81,16 @@ in {
 	;
 
 	nixpkgs =
-	args: # `args@{…}` at the start of the config
-	config: # the nixpkgs config
+	flakesWithOverlays: # flake inputs that have overlays
+	overlays: # regular overlays to apply
+	extraConfig: # the nixpkgs config
 	let
 		defaultNixpkgsConfig = {
-			overlays = with args; [
-				# Add overlays your own flake exports (from overlays and pkgs dir):
-				outputs.overlays.additions
-				outputs.overlays.modifications
-
-				# You can also add overlays exported from other flakes:
-				inputs.neovim-nightly-overlay.overlays.default
-			];
-			# Configure your nixpkgs instance
-			config = {
-				# Disable if you don't want unfree packages
-				allowUnfree = true;
-			};
+			config.allowUnfree = true;
+			overlays = overlays ++ (map (lib.getAttrFromPath ["overlays" "default"]) flakesWithOverlays);
 		};
-	in if config == null then defaultNixpkgsConfig
-		else lib.recursiveUpdate config defaultNixpkgsConfig
+	in if extraConfig == null then defaultNixpkgsConfig
+		else lib.recursiveUpdate extraConfig defaultNixpkgsConfig
 	;
 
 	optionalIfAnyEnabled = # returns `attrset` if any in the `list` where `{ enabled = true; }`
