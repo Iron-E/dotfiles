@@ -45,7 +45,7 @@ in {
 						# default home config
 						defaultHomeConfig = {
 							pkgs = nixpkgs.legacyPackages.${args.system};
-							modules = [(hostConfigDir + "/${username}")];
+							modules = [(hostConfigDir + "/${username}")] ++ (lib.pipe ../../home-manager/modules [import builtins.attrValues]);
 						};
 
 						# recursively updates the deeply-nested defaults, and shallowly applies the shallow defaults
