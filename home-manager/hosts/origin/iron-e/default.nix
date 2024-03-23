@@ -8,7 +8,7 @@ in {
 		../../_common_
 		../../_extras_/cli
 		../../_extras_/gui/xsession
-		../../_extras_/xdg/mime
+		../../_extras_/xdg
 	];
 
 	home = {

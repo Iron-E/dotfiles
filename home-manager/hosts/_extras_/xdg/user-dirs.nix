@@ -7,10 +7,5 @@ in {
 	xdg.userDirs = {
 		enable = true;
 		createDirectories = true;
-
-		extraConfig =
-			let dir = s: "${config.home.homeDirectory}/${s}";
-			in { XDG_VAULT_DIR = dir "Vaults"; }
-		;
 	};
 }
