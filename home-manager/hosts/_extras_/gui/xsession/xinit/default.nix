@@ -6,7 +6,6 @@ in {
 	imports = util.fs.readSubmodules ./.;
 
 	home = {
-		packages = with pkgs.xorg; [xauth xinit];
 		activation.linkXsessionToXinitrc = # link xsession with xinit so that startx works
 		let
 			homeDir = config.home.homeDirectory;
