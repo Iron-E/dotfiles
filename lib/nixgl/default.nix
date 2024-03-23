@@ -1,6 +1,5 @@
-nixpkgs: # `flake`
+nixpkgs @ { lib, ... }: # nixpkgs flake
 let
-	inherit (nixpkgs) lib;
 	inherit (import ../strings nixpkgs) multiline;
 in {
 	# SEE: https://github.com/nix-community/nixGL/issues/114#issuecomment-1585323281

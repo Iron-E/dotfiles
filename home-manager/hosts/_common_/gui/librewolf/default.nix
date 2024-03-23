@@ -5,5 +5,8 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	programs.librewolf.enable = true;
+	programs.librewolf = {
+		enable = true;
+		package = config.lib.nixgl.***REMOVED*** pkgs.wezterm;
+	};
 }

@@ -1,6 +1,5 @@
-nixpkgs: # `flake`
+{ lib, ... }: # nixpkgs flake
 let
-	inherit (nixpkgs) lib;
 	inherit (lib) concatLines concatStrings flatten pipe toList;
 
 	join' = # join the nested list of strings together without any separator

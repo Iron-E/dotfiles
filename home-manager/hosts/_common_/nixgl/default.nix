@@ -1,9 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+args @ { inputs, outputs, config, lib, pkgs, ... }:
 let
 	util = outputs.lib;
 	inherit (util.strings) multiline;
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	nixGLPrefix = "${lib.getExe' pkgs.nixgl.auto.nixGLDefault "nixGLDefault"}";
+	nixgl.prefix = "${lib.getExe' pkgs.nixgl.auto.nixGLDefault "nixGL"}";
 }

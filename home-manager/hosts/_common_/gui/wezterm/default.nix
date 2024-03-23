@@ -7,6 +7,6 @@ in {
 
 	programs.wezterm = {
 		enable = true;
-		package = (withNixGL pkgs.wezterm);
+		package = config.lib.nixgl.***REMOVED*** pkgs.wezterm;
 	};
 }
