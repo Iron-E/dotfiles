@@ -45,8 +45,8 @@ in {
 			;
 
 			# an icon for a `section` with `name`
-			icon = name: command: section "${name}_icon" {
-				inherit command;
+			icon = name: unicode: section "${name}_icon" {
+				command = /* sh */ "echo -e '\\u${unicode} '";
 				interval = once;
 				markup = pango;
 				separator = false;
@@ -69,19 +69,19 @@ in {
 
 				# These are the individual sections
 				(iniLines [
-					(icon "volume" /* sh */ "echo -e '\uf0f3 '")
+					(icon "volume" "f0f3")
 					(section "volume" {
 						instance = "Master";
 						interval = once;
 						signal = 10;
 					})
 
-					(icon "disk" /* sh */ "echo -e '\uf07c '")
+					(icon "disk" "f07c")
 					(section "disk" {
 						interval = 240;
 					})
 
-					(icon "temperature" /* sh */ "echo -e '\uf2c9'")
+					(icon "temperature" "f2c9")
 					(section "temperature" {
 						color = "#01b9ff";
 						interval = 30;
