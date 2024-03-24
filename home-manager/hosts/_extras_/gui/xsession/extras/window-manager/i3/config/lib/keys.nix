@@ -7,8 +7,8 @@ let
 	inherit (util.strings) multiline;
 
 	enterMode = name: ''mode "${name}"'';
-	exec = cmd: "exec '${multiline cmd}'";
-	execInBg = cmd: "exec --no-startup-id '${multiline cmd}'";
+	exec = cmd: "exec ${multiline cmd}";
+	execInBg = cmd: "exec --no-startup-id ${multiline cmd}";
 
 	keys' = lib.mergeAttrsList [
 		{
