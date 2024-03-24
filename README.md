@@ -16,6 +16,7 @@ Requirements:
 
 * `dconf`
 * `nix`
+* `startx` (for i3)
 
 Add these lines to your `nix.conf`:
 
