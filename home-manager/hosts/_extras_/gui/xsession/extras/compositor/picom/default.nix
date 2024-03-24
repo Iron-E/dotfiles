@@ -4,5 +4,8 @@ let
 in {
 	imports = outputs.lib.fs.readSubmodules ./.;
 
-	services.picom.enable = true;
+	services.picom = {
+		enable = true;
+		package = config.lib.nixgl.***REMOVED*** pkgs.picom;
+	};
 }

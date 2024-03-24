@@ -4,5 +4,8 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	programs.zathura.enable = true;
+	programs.zathura = {
+		enable = true;
+		package = config.lib.nixgl.***REMOVED*** pkgs.zathura;
+	};
 }

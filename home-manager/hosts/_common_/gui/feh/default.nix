@@ -5,5 +5,8 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	programs.feh.enable = true;
+	programs.feh = {
+		enable = true;
+		package = config.lib.nixgl.***REMOVED*** pkgs.feh;
+	};
 }

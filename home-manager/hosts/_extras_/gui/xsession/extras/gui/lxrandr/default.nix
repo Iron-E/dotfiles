@@ -5,5 +5,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [lxde.lxrandr];
+	home.packages = lib.pipe pkgs.lxde.lxrandr [config.lib.nixgl.***REMOVED*** lib.toList];
 }
