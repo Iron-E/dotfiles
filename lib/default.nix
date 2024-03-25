@@ -7,5 +7,4 @@ nixpkgs: # `flake`
 	lists = import ./lists nixpkgs;
 	strings = import ./strings nixpkgs;
 	systems = import ./systems nixpkgs;
-	nixgl = import ./nixgl nixpkgs;
 }
