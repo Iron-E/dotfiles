@@ -34,6 +34,9 @@
 	in {
 		inherit lib;
 
+		# allows nixOS config to use home-manager as a nixOS module
+		hosts = ./home-manager/hosts;
+
 		# Accessible through 'nix build', 'nix shell', etc
 		packages = lib.systems.genValues (system: nixpkgs.lib.mergeAttrsList [
 			(import ./pkgs nixpkgs.legacyPackages.${system}) # Your custom packages
