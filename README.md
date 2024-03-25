@@ -25,12 +25,22 @@ experimental-features = nix-command flakes
 
 ### Optional
 
+#### Wezterm
+
+On non-NixOS systems:
+
+* `wezterm-terminfo` (or else `wezterm` looks weird)
+
 #### xorg
+
+On all systems:
 
 * `xauth` (must be installed system-wide)
 * `xinit` / `startx` (I don't use a display manager)
 
 ##### i3
+
+On all systems:
 
 * `xsecurelock` (lock screen; must be installed system-wide)
 
