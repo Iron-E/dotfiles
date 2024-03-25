@@ -1,6 +1,7 @@
 nixpkgs: # `flake`
 let
 	inherit (nixpkgs) lib;
+	inherit (lib) const flip pipe;
 	attrsets = import ../attrsets nixpkgs;
 
 	getEnabled = builtins.getAttr "enable";
@@ -30,11 +31,14 @@ in {
 		in {
 			homeConfigurations =
 			let
-				# non-home config keys
-				filterKeys = [argsKey osConfigKey];
-
-				# select the `<home-manager-config>` fns
-				homeConfigsByUsername = lib.filterAttrs (n: v: !(builtins.any (k: k == n) filterKeys)) configs;
+				homeConfigsByUsername = # select the `<home-manager-config>` fns
+				let
+					filterKeys = n: !(builtins.elem n [argsKey osConfigKey]);
+				in
+					lib.filterAttrs
+					(flip pipe [filterKeys const])
+					configs
+				;
 
 				# `home-manager` requires the `extraSpecialArgs` and `pkgs` keys, which we can resolve automatically.
 				# this also calls the `homeConfigFn` using `system` to resolve the real `homeConfig`
