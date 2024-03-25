@@ -65,6 +65,12 @@ in {
 					modules = [
 						nixpkgs.nixosModules.notDetected # extra hardware detection
 						hostConfigDir
+
+						# home-manager
+						home-manager.nixosModules.home-manager
+						{
+							home-manager.extraSpecialArgs = args;
+						}
 					];
 				};
 
