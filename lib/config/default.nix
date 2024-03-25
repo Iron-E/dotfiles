@@ -15,6 +15,7 @@ in {
 	# @returns {nixosConfigurations: …, homeConfigurations: …}
 	let
 		homeManagerModules = (lib.pipe ../../home-manager/modules [import builtins.attrValues]);
+
 		unpackConfig =
 		hostname: # `string`
 		configs: # `{args: <special-args>, os: <nixos-config>, [string]: (architecture: <home-manager-config>)}`
@@ -28,6 +29,20 @@ in {
 
 			# nixos config
 			osConfigKey = "os";
+
+			mkExtraSpecialArgs = # generate `specialArgs` / `extraSpecialArgs`
+			let
+				# remove `args.system` from final output, since it should be `args.targetPlatform.architecture`
+				argsWithoutSys = lib.filterAttrs (flip pipe [(n: n == "system") const]) args;
+			in
+			os: /* the os name */ argsWithoutSys // {
+				targetPlatform = {
+					inherit (args) system;
+					isDarwin = os == "darwin";
+					isGenericLinux = os == "linux";
+					isNixOS = os == "nixos";
+				};
+			};
 		in {
 			homeConfigurations =
 			let
@@ -43,7 +58,7 @@ in {
 				# `home-manager` requires the `extraSpecialArgs` and `pkgs` keys, which we can resolve automatically.
 				# this also calls the `homeConfigFn` using `system` to resolve the real `homeConfig`
 				mkHomeConfig =
-				let deepDefaultHomeConfig = { extraSpecialArgs = args // { isNixOS = false; }; }; # default home config parts which needs to be deeply merged
+				let deepDefaultHomeConfig = { extraSpecialArgs = mkExtraSpecialArgs "linux"; }; # default home config parts which needs to be deeply merged
 				in username: # `string`
 					homeConfig: # `<home-manager-config>`
 					let
@@ -76,7 +91,7 @@ in {
 						home-manager.nixosModules.home-manager # include module
 						{
 							home-manager = {
-								extraSpecialArgs = args // { isNixOS = true; }; # arg passing
+								extraSpecialArgs = mkExtraSpecialArgs "nixos"; # arg passing
 								sharedModules = homeManagerModules; # import home manager modules
 							};
 						}
