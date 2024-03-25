@@ -10,7 +10,6 @@ in {
 	# dependencies for the bars
 	home.packages = with pkgs; [
 		acpi # battery2
-		alsa-utils # volume
 		coreutils # date disk time
 		font-awesome # battery2
 		gawk # disk

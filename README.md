@@ -42,7 +42,9 @@ On all systems:
 
 On all systems:
 
-* `xsecurelock` (lock screen; must be installed system-wide)
+* `alsa-utils` for volume control
+* `libpulse` for volume control
+* `xsecurelock` for lock screen (must be installed system-wide)
 
 ## Usage
 

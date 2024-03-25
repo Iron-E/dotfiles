@@ -47,7 +47,7 @@ in {
 					topBarCmd = builtins.elemAt (lib.splitString " " topBar.statusCommand) 0;
 				in
 				cmd:
-					execInBg "${getExe' pkgs.alsa-utils "amixer"} -q -D pulse sset Master ${cmd} && ${getExe' pkgs.procps "pkill"} -RTMIN+10 ${topBarCmd}"
+					execInBg "amixer -q -D pulse sset Master ${cmd} && ${getExe' pkgs.procps "pkill"} -RTMIN+10 ${topBarCmd}"
 				;
 
 			in {
