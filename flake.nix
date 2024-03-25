@@ -23,7 +23,7 @@
 
 		# non-flakes
 
-		i3blocks-contrib = { flake = false; url = "github:vivien/i3blocks-contrib"; };
+		i3blocks-contrib = { flake = false; url = "github:Iron-E/i3blocks-contrib"; };
 		i3switch = { flake = false; url = "github:lokeshlkr/i3switch"; };
 	};
 
