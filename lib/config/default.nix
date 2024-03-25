@@ -13,6 +13,7 @@ in {
 	configsByHost: # `{[string]: {args: <special-args>, os: <nixos-config>, [string]: (architecture: <home-manager-config>)}}`
 	# @returns {nixosConfigurations: …, homeConfigurations: …}
 	let
+		homeManagerModules = (lib.pipe ../../home-manager/modules [import builtins.attrValues]);
 		unpackConfig =
 		hostname: # `string`
 		configs: # `{args: <special-args>, os: <nixos-config>, [string]: (architecture: <home-manager-config>)}`
@@ -45,7 +46,7 @@ in {
 						# default home config
 						defaultHomeConfig = {
 							pkgs = nixpkgs.legacyPackages.${args.system};
-							modules = [(hostConfigDir + "/${username}")] ++ (lib.pipe ../../home-manager/modules [import builtins.attrValues]);
+							modules = [(hostConfigDir + "/${username}")] ++ homeManagerModules;
 						};
 
 						# recursively updates the deeply-nested defaults, and shallowly applies the shallow defaults
@@ -69,8 +70,11 @@ in {
 
 						# home-manager
 						home-manager.nixosModules.home-manager # include module
-						{ # setup arg passing
-							home-manager.extraSpecialArgs = args // { isNixOS = true; };
+						{
+							home-manager = {
+								extraSpecialArgs = args // { isNixOS = true; }; # arg passing
+								sharedModules = homeManagerModules; # import home manager modules
+							};
 						}
 					];
 				};
