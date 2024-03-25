@@ -5,5 +5,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	nix.package = pkgs.nix;
+	nix.package = lib.mkDefault pkgs.nix;
 }
