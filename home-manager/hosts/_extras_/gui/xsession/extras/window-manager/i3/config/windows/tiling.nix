@@ -41,7 +41,7 @@ in {
 		};
 
 		extraConfig = multiline /* i3config */ ''
-			for_window [all] title_window_icon padding 4px
+			default_border pixel ${builtins.toString config.xsession.windowManager.i3.config.window.border}
 		'';
 	};
 }
