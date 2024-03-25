@@ -61,6 +61,7 @@ in {
 			nixosConfigurations = attrsets.optionalMapByPath [osConfigKey] configs (osConfig: let
 				# the default os configuration
 				defaultOsConfig = {
+					inherit (args) system;
 					specialArgs = args;
 					modules = [
 						nixpkgs.nixosModules.notDetected # extra hardware detection
