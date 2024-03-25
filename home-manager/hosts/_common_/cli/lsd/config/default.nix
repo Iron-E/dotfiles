@@ -4,6 +4,4 @@ let
 	inherit (util.strings) multiline;
 in {
 	imports = util.fs.readSubmodules ./.;
-
-	programs.lsd.enable = true;
 }
