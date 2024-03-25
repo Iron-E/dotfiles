@@ -53,9 +53,9 @@
 		# Reusable home-manager modules you might want to export. Usually things you would upstream into home-manager
 		homeManagerModules = import ./home-manager/modules;
 
-	} // (lib.config.declare ./home-manager/hosts home-manager {
+	} // (lib.config.declare ./. home-manager {
 		origin = {
-			args = { inherit inputs outputs; system = "x86_64-linux"; };
+			args = { inherit inputs outputs; architecture = "x86_64-linux"; };
 			iron-e = {}; # Available through 'home-manager --flake .#iron-e@origin'
 		};
 	});
