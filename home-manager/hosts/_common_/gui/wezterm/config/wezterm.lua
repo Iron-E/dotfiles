@@ -108,7 +108,7 @@ do
 end
 
 do
-	local config_dir = ON_UNIX and os.getenv('XDG_CONFIG_HOME') or os.getenv('userprofile')
+	local config_dir = (ON_UNIX and os.getenv('HOME') or os.getenv('userprofile')) .. '/Documents/nix/home'
 	local nvim = { 'env', 'TERM=wezterm', 'nvim', '-c', 'Telescope find_files' }
 
 	--- @param program string
@@ -127,13 +127,7 @@ do
 	config.launch_menu =
 	{
 		-- other options are `set_environment_variables`
-		edit_config('Neovim', 'nvim'),
-		edit_config('Fish', 'fish'),
-		edit_config('Wezterm', 'wezterm'),
-		edit_config('Git', 'git'),
-		edit_config('Bat', 'bat'),
-		edit_config('LSDeluxe', 'lsd'),
-		edit_config('Vivid', 'vivid'),
+		edit_config('home-manager', '.'),
 		{ label = 'List Processes by CPU', args = { 'procs', '--sortd', 'cpu' } },
 		{ label = 'Test internet', args = { 'gping', '1.1.1.1' } },
 	}
