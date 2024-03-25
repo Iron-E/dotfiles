@@ -68,8 +68,9 @@ in {
 			${lhsModShift "r"} = "restart"; # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 
 			## Exit i3 (logs you out of your X session)
-			${lhsModShift "q"} = exec /* sh */ ''
-				${i3Exe "i3-nagbar"} -t warning -m "Do you really want to exit i3?" -B "Yes, exit i3" "${i3Exe "i3-msg"} exit"'';
+			${lhsModShift "q"} = exec ''
+				"${i3Exe "i3-nagbar"} -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' '${i3Exe "i3-msg"} exit'"
+			'';
 
 			##-Keybinds-------------------------##
 
