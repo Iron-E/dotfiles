@@ -38,7 +38,7 @@ in {
 				# `home-manager` requires the `extraSpecialArgs` and `pkgs` keys, which we can resolve automatically.
 				# this also calls the `homeConfigFn` using `system` to resolve the real `homeConfig`
 				mkHomeConfig =
-				let deepDefaultHomeConfig = { extraSpecialArgs = args; }; # default home config parts which needs to be deeply merged
+				let deepDefaultHomeConfig = { extraSpecialArgs = args // { isNixOS = false; }; }; # default home config parts which needs to be deeply merged
 				in username: # `string`
 					homeConfig: # `<home-manager-config>`
 					let
@@ -68,9 +68,9 @@ in {
 						hostConfigDir
 
 						# home-manager
-						home-manager.nixosModules.home-manager
-						{
-							home-manager.extraSpecialArgs = args;
+						home-manager.nixosModules.home-manager # include module
+						{ # setup arg passing
+							home-manager.extraSpecialArgs = args // { isNixOS = true; };
 						}
 					];
 				};
