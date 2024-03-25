@@ -14,15 +14,24 @@ My old dotfiles can be found [here](https://gitlab.com/Iron_E/dotfiles/).
 
 Requirements:
 
-* `dconf`
-* `nix`
-* `startx` (for i3)
+* `dconf` (for `home-manager` activation script)
+* `nix` (for `home-manager`)
 
 Add these lines to your `nix.conf`:
 
 ```ini
 experimental-features = nix-command flakes
 ```
+
+### Optional
+
+#### xorg
+
+* `startx` (I don't use a display manager)
+
+##### i3
+
+* `xsecurelock` (lock screen; must be installed system-wide)
 
 ## Usage
 
