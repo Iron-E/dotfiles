@@ -5,10 +5,11 @@ in {
 	imports = [];
 
 	home.shellAliases = lib.optionalAttrs config.programs.neovim.enable (
-		let env = cmd: "env TERM=wezterm ${cmd}";
+		let
+			env = pkg: "env TERM=wezterm ${lib.getExe pkg}";
 		in {
-			nvim = env "nvim";
-			nvim_ = lib.pipe pkgs.neovim [lib.getExe env lib.mkForce];
+			nvim = env config.programs.neovim.finalPackage;
+			vi = lib.pipe pkgs.neovim-nightly [env lib.mkForce];
 		}
 	);
 }

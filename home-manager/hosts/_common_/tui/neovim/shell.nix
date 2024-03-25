@@ -4,7 +4,5 @@ let
 in {
 	imports = [];
 
-	home.shellAliases = {
-		nvim_ = "${lib.getExe pkgs.neovim}";
-	};
+	home.shellAliases.vi = "${lib.getExe pkgs.neovim-nightly}";
 }

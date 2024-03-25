@@ -4,8 +4,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	programs.neovim = {
-		enable = true;
-		package = pkgs.neovim-nightly;
-	};
+	programs.neovim.enable = true;
 }
