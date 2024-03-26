@@ -6,9 +6,8 @@ let
 in {
 	imports = (util.fs.readSubmodules ./.) ++ [
 		../../_common_
-		../../_extras_/cli
-		../../_extras_/gui/xsession
-		../../_extras_/xdg
+		../../_extras_/programs+services/cli
+		../../_extras_/programs+services/gui/xsession
 	];
 
 	home = {
