@@ -27,7 +27,7 @@ experimental-features = nix-command flakes
 
 #### Neovim
 
-Optionally, to set up synchronization of the lazy.nvim lockfile to this repo, run this script:
+Optionally, to set up synchronization of the lazy.nvim lockfile to this repo, save this as a script and run it:
 
 ```sh
 #!/usr/bin/env bash
@@ -38,6 +38,8 @@ for dir in $(find -L "$ROOT_PATH" -mindepth 1 -maxdepth 1); do
 	ln -sf "$dir" "$XDG_CONFIG_HOME/nvim/$(basename $dir)"
 done
 ```
+
+This step is performed automatically by the [switch script].
 
 #### Wezterm
 
@@ -64,19 +66,28 @@ On all systems:
 
 ### …as dotfiles
 
-To build a configuration:
+Use the [switch script]:
+
+```sh
+# one-time only
+chmod +x ./switch.fish
+
+# then print usage information
+./switch.fish -h
+```
+
+_Or_, you can manually build a configuration:
 
 ```sh
 # NOTE: `--impure` is required for `nixGL`. The rest of the configuration does not perform any impure action.
 nix run .#home-manager --  build --impure --flake .#<user>@<hostname> --show-trace
 ```
 
-To deploy a configuration to your home directory:
+…and then switch if you like its output:
 
 ```sh
 # NOTE: `--impure` is required for `nixGL`. The rest of the configuration does not perform any impure action.
-# WARN: existing files will be saved as `.backup`s
-nix run .#home-manager -- switch -b backup --impure --flake .#<user>@<hostname>
+nix run .#home-manager -- switch -b pre-home-manager --impure --flake .#<user>@<hostname>
 ```
 
 ### …as flake input
@@ -152,3 +163,5 @@ The `overlays.additions` output is additional packages defined in this repositor
 ###### nerdfonts-symbols
 
 The `nerdfonts` nix package, with only symbols included.
+
+[switch script]: ./switch.fish
