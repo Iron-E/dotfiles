@@ -25,6 +25,19 @@ experimental-features = nix-command flakes
 
 ### Optional
 
+#### Neovim
+
+Optionally, to set up synchronization of the lazy.nvim lockfile to this repo, run this script:
+
+```sh
+#!/usr/bin/env bash
+
+# run this from the root of the dotfiles repo
+
+LAZY_LOCK="$(pwd)/home-manager/hosts/_common_/tui/neovim/config/lazy-lock.json"
+(cd "$XDG_STATE_HOME/nvim" && ln -sf "$LAZY_LOCK" .)
+```
+
 #### Wezterm
 
 On non-NixOS systems:

@@ -10,7 +10,7 @@ in {
 	imports = [];
 
 	# my neovim config manages itself (but is not self-contained, see below)
-	xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink ./config;
+	xdg.configFile.nvim.source = ./nvim;
 
 	# these are the runtime dependencies of my neovim config
 	programs.neovim = {

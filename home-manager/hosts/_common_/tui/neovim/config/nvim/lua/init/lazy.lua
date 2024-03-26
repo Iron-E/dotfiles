@@ -809,6 +809,7 @@ require('lazy').setup(
 	{
 		dev = {fallback = true, path = '~/Programming', patterns = {'Iron-E'}},
 		install = {colorscheme = {'highlite', 'habamax'}},
+		lockfile = vim.fn.stdpath('state') .. '/lazy-lock.json',
 		performance = {rtp = {disabled_plugins =
 		{
 			'gzip',
