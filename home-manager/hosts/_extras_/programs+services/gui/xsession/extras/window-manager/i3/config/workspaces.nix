@@ -23,23 +23,18 @@ in {
 		assigns = {
 			${workspace 1} = [
 				{ class = "Chromium"; }
-				{ class = "LibreWolf"; }
-				{ class = "firefoxdeveloperedition"; }
-				{ class = "dolphin"; }
+				{ class = "librewolf"; }
+				{ instance = "chromium"; }
+				{ instance = "Navigator"; }
 			];
 
 			### Word Processors
 			${workspace 3} = [
-				{ class = "Apache NetBeans IDE Dev"; }
-				{ class = "jetbrains-idea-ce"; }
 				{ instance = "libreoffice"; }
-				{ title = "ViNo"; }
 			];
 
 			### Chat Applications
 			${workspace 5} = [
-				{ class = "Ripcord"; }
-				{ class = "Riot"; }
 				{ class = "Signal"; }
 			];
 		};
