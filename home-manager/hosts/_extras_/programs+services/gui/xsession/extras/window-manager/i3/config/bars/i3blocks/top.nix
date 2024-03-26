@@ -10,7 +10,6 @@ in {
 	# dependencies for the bars
 	home.packages = with pkgs; [
 		acpi # battery2
-		coreutils # date disk time
 		font-awesome # battery2
 		gawk # disk
 		lm_sensors # temperature
@@ -32,16 +31,18 @@ in {
 		position = "top";
 		statusCommand =
 		let
-			section = util.attrsets.pair;
-
+			# i3blocks constants
 			none = "none";
 			once = "once";
 			pango = "pango";
 
-			iniLines =
-				let toIni = generators.toINI {};
-				in list: concatLines (map toIni list)
-			;
+			iniLines = lib.flip lib.pipe [
+				(map (generators.toINI {}))
+				concatLines
+			];
+
+			# an i3blocks sections
+			section = util.attrsets.pair;
 
 			# an icon for a `section` with `name`
 			icon = name: unicode: section "${name}_icon" {
