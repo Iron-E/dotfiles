@@ -4,7 +4,7 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.GNUPGHOME =
+	programs.gpg.homedir =
 	let
 		inherit (config) xdg;
 	in
