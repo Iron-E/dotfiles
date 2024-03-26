@@ -6,6 +6,6 @@ in {
 
 	gtk.theme = {
 		name = "vimix-dark-beryl";
-		package = pkgs.vimix-gtk-themes;
+		package = pkgs.vimix-gtk-beryl-themes;
 	};
 }

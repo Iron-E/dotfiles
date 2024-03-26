@@ -9,9 +9,11 @@
 	modifications = final: prev:
 	let
 		nerdfont = font: prev.nerdfonts.override { fonts = [font]; };
+		vimix = variant: prev.vimix-gtk-themes.override { themeVariants = [variant]; };
 	in {
-		nerdfonts-symbols = nerdfont "NerdFontsSymbolsOnly";
 		nerdfonts-open-dyslexic = nerdfont "OpenDyslexic";
+		nerdfonts-symbols = nerdfont "NerdFontsSymbolsOnly";
+		vimix-gtk-beryl-themes = vimix "beryl";
 		# example = prev.example.overrideAttrs (oldAttrs: rec {
 		# ...
 		# });
