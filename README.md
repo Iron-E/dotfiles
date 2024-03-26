@@ -14,8 +14,7 @@ My old dotfiles can be found [here](https://gitlab.com/Iron_E/dotfiles/).
 
 Requirements:
 
-* `dconf` for `home-manager`
-* `gcr` for `pinentry-gnome3` (for `gpg-agent`)
+* `dconf` for `home-manager` activation script
 * `nix` for `home-manager`
 
 Add these lines to your `nix.conf`:
