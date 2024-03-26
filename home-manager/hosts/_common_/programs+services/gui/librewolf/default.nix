@@ -7,6 +7,6 @@ in {
 
 	programs.librewolf = {
 		enable = true;
-		package = config.lib.nixgl.wrap pkgs.wezterm;
+		package = config.lib.nixgl.wrap pkgs.librewolf;
 	};
 }
