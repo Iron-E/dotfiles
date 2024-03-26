@@ -12,7 +12,7 @@ in {
 
 	programs.librewolf.settings = lib.mapAttrs' (n: lib.nameValuePair "browser.${n}") {
 		"compactmode.show" = true;
-		"contentblocking.category" = true;
+		"contentblocking.category" = "strict";
 		"display.use_document_fonts" = 0;
 		"download.panel.shown" = true;
 		"engagement.ctrlTab.has-used" = true;
