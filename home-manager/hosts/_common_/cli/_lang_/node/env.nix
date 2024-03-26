@@ -4,5 +4,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.NODE_REPL_HISTORY = "$XDG_DATA_HOME/node_repl_history";
+	home.sessionVariables.NODE_REPL_HISTORY =
+	let
+		inherit (config) xdg;
+	in
+		"${xdg.dataHome}/node_repl_history"
+	;
 }

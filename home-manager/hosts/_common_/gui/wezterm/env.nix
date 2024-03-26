@@ -5,7 +5,5 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables = {
-		MPLBACKEND = "module://matplotlib-backend-wezterm";
-	};
+	home.sessionVariables.MPLBACKEND = "module://matplotlib-backend-wezterm";
 }

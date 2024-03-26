@@ -4,8 +4,11 @@ let
 in {
 	imports = [];
 
-	home = {
-		sessionPath = ["$XDG_DATA_HOME/npm/bin"];
-		sessionVariables.NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
+	home =
+	let
+		inherit (config) xdg;
+	in {
+		sessionPath = ["${xdg.dataHome}/npm/bin"];
+		sessionVariables.NPM_CONFIG_USERCONFIG = "${xdg.configHome}/npm/npmrc";
 	};
 }

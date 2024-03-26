@@ -4,14 +4,15 @@ let
 in {
 	imports = [];
 
-	home = {
+	home =
+	let
+		inherit (config.home) homeDirectory;
+	in {
 		sessionPath = [
-			"$HOME/bin"
-			"$HOME/.local/bin"
+			"${homeDirectory}/bin"
+			"${homeDirectory}/.local/bin"
 		];
 
-		sessionVariables = {
-			DO_NOT_TRACK = 1;
-		};
+		sessionVariables.DO_NOT_TRACK = 1;
 	};
 }

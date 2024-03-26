@@ -4,5 +4,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.GNUPGHOME = "$XDG_DATA_HOME/gnupg";
+	home.sessionVariables.GNUPGHOME =
+	let
+		inherit (config) xdg;
+	in
+		"${xdg.dataHome}/gnupg"
+	;
 }

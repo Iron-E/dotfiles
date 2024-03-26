@@ -4,5 +4,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables._JAVA_OPTIONS = "-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java";
+	home.sessionVariables._JAVA_OPTIONS =
+	let
+		inherit (config) xdg;
+	in
+		"-Djava.util.prefs.userRoot=${xdg.configHome}/java"
+	;
 }

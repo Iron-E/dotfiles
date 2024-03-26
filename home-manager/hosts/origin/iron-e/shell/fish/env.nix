@@ -5,12 +5,15 @@ let
 in {
 	imports = [];
 
-	programs.fish.shellInit = multiline /* fish */ ''
+	programs.fish.shellInit =
+	let
+		inherit (config) xdg;
+	in multiline /* fish */ ''
 		# Android
 
 		## SDK
 		set -gx ANDROID_HOME '/opt/android-sdk'
-		set -gx ANDROID_SDK_HOME $XDG_CONFIG_HOME/android
+		set -gx ANDROID_SDK_HOME ${xdg.configHome}/android
 		set -gx PATH $PATH $ANDROID_HOME/{build-tools, platform-tools, tools, tools/bin}
 
 		# Arch

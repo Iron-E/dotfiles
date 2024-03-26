@@ -4,5 +4,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.HISTFILE = "$XDG_STATE_HOME/bash/history";
+	home.sessionVariables.HISTFILE =
+	let
+		inherit (config) xdg;
+	in
+		"${xdg.stateHome}/bash/history"
+	;
 }

@@ -4,5 +4,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.GRADLE_USER_HOME = "$XDG_DATA_HOME/gradle";
+	home.sessionVariables.GRADLE_USER_HOME =
+	let
+		inherit (config) xdg;
+	in
+		"${xdg.dataHome}/gradle"
+	;
 }

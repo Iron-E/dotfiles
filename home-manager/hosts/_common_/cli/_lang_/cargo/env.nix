@@ -5,5 +5,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.CARGO_HOME = "$XDG_DATA_HOME/cargo";
+	home.sessionVariables.CARGO_HOME =
+	let
+		inherit (config) xdg;
+	in
+		"${xdg.dataHome}/cargo"
+	;
 }

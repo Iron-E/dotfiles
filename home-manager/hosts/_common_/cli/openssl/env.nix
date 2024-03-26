@@ -4,5 +4,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.RANDFILE = "$XDG_DATA_HOME/openssl/rnd";
+	home.sessionVariables.RANDFILE =
+	let
+		inherit (config) xdg;
+	in
+		"${xdg.dataHome}/openssl/rnd"
+	;
 }

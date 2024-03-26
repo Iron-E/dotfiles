@@ -4,9 +4,12 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables = {
-		PYTHON_HISTORY = "$XDG_STATE_HOME/python/history";
-		PYTHONPYCACHEPREFIX = "$XDG_CACHE_HOME/python";
-		PYTHONUSERBASE = "$XDG_DATA_HOME/python";
+	home.sessionVariables =
+	let
+		inherit (config) xdg;
+	in {
+		PYTHON_HISTORY = "${xdg.stateHome}/python/history";
+		PYTHONPYCACHEPREFIX = "${xdg.cacheHome}/python";
+		PYTHONUSERBASE = "${xdg.dataHome}/python";
 	};
 }

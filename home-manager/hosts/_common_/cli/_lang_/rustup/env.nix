@@ -6,6 +6,11 @@ in {
 
 	home = {
 		packages = [pkgs.rustup];
-		sessionVariables.RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
+		sessionVariables.RUSTUP_HOME =
+		let
+			inherit (config) xdg;
+		in
+			"${xdg.dataHome}/rustup"
+		;
 	};
 }

@@ -4,5 +4,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.WGETRC = "$XDG_CONFIG_HOME/wgetrc";
+	home.sessionVariables =
+	let
+		inherit (config) xdg;
+	in {
+		WGETRC = "${xdg.configHome}/wgetrc";
+	};
 }

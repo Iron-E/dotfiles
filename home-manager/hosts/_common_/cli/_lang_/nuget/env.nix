@@ -4,5 +4,10 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.NUGET_PACKAGES = "$XDG_CACHE_HOME/NuGetPackages";
+	home.sessionVariables.NUGET_PACKAGES =
+	let
+		inherit (config) xdg;
+	in
+		"${xdg.cacheHome}/NuGetPackages"
+	;
 }
