@@ -27,7 +27,7 @@
   "nvim-nio": { "branch": "master", "commit": "33c62b3eadd8154169e42144de16ba4db6784bec" },
   "nvim-scissors": { "branch": "main", "commit": "7064fc1d84c8dcd3d87a5026bad87452147cfcf2" },
   "nvim-tabmode": { "branch": "master", "commit": "fa5981530e87efaf7ee363e998322267b24b2ba6" },
-  "nvim-treesitter": { "branch": "master", "commit": "aa31b8d4ccaa05e1ab30120e103f72adbd2837bc" },
+  "nvim-treesitter": { "branch": "master", "commit": "7f3179315959bd762abd0f8dbe0361db805fb2d4" },
   "nvim-treesitter-context": { "branch": "master", "commit": "f19766163c18515fb4d3c12d572bf9cba6cdb990" },
   "nvim-web-devicons": { "branch": "master", "commit": "3ee60deaa539360518eaab93a6c701fe9f4d82ef" },
   "plantuml-syntax": { "branch": "master", "commit": "309c15c77794433f276fb09eb4e3b8f381003cfd" },
