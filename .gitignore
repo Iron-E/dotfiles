@@ -5,6 +5,8 @@ result
 #--------------------------------------------------#
 # Gitignore for the following technologies: Lua
 
+home-manager/hosts/**/neovim/**/spell
+
 # Compiled Lua sources
 luac.out
 
