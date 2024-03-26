@@ -139,8 +139,8 @@ vim.api.nvim_set_keymap('n', '<Leader>c', '', {
     /_/
 --]]
 
--- Toggle line***REMOVED***
-vim.api.nvim_set_keymap('n', '<Leader>l', '', {callback = toggle('***REMOVED***', true)})
+-- Toggle linewrap
+vim.api.nvim_set_keymap('n', '<Leader>l', '', {callback = toggle('wrap', true)})
 
 -- Toggle Spellcheck
 vim.api.nvim_set_keymap('n', '<Leader>s', '', {callback = toggle('spell', true)})

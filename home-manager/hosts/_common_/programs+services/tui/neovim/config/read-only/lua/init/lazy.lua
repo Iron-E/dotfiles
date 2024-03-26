@@ -12,7 +12,7 @@
 local has_nvim_10 = _G['nvim >= 0.10'];
 local not_man = vim.g.man ~= true
 
---- Return a ***REMOVED***per function which loads the `plugin`'s configuration file
+--- Return a wrapper function which loads the `plugin`'s configuration file
 --- @param plugin string
 --- @return fun()
 local function req(plugin)
@@ -809,7 +809,6 @@ require('lazy').setup(
 	{
 		dev = {fallback = true, path = '~/Programming', patterns = {'Iron-E'}},
 		install = {colorscheme = {'highlite', 'habamax'}},
-		lockfile = vim.fn.stdpath('state') .. '/lazy-lock.json',
 		performance = {rtp = {disabled_plugins =
 		{
 			'gzip',

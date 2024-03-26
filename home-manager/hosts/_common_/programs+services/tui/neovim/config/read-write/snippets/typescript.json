@@ -84,12 +84,12 @@
     "body": "throw Error(\"unimplemented\");",
     "prefix": "unimplemented"
   },
-  "***REMOVED***": {
+  "wrap": {
     "body": [
       "type ${1:Type} = ${2:Wrapper}<{",
       "\t$0",
       "}>;"
     ],
-    "prefix": "***REMOVED***"
+    "prefix": "wrap"
   }
 }

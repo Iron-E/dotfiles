@@ -7,9 +7,9 @@ in {
 
 	home.activation.linkXsessionToXinitrc = # link xsession with xinit so that startx works
 	let
-		homeDir = config.home.homeDirectory;
-		scriptPath = config.xsession.scriptPath;
-	in lib.hm.dag.entryAfter ["writeBoundary"] (multiline /* sh */ ''
-		run ln -sf ${homeDir}/${scriptPath} ${homeDir}/.xinitrc
+		inherit (config.home) homeDirectory;
+		inherit (config.xsession) scriptPath;
+	in lib.hm.dag.entryAfter ["linkGeneration"] (multiline /* sh */ ''
+		run ln -sf ${homeDirectory}/${scriptPath} ${homeDirectory}/.xinitrc
 	'');
 }

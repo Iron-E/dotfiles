@@ -72,7 +72,7 @@ local function filetype_info()
 end
 
 --- Redraw the statusline
-local redrawstatus = vim.schedule_***REMOVED***(function() vim.api.nvim_command 'redrawstatus' end)
+local redrawstatus = vim.schedule_wrap(function() vim.api.nvim_command 'redrawstatus' end)
 
 --[[/* HEIRLINE CONFIG */]]
 

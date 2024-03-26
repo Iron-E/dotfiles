@@ -268,7 +268,7 @@
 		<setting id="org.eclipse.jdt.core.formatter.insert_space_between_empty_parens_in_method_declaration" value="do not insert" />
 		<setting id="org.eclipse.jdt.core.formatter.insert_space_between_empty_parens_in_method_invocation" value="do not insert" />
 		<setting id="org.eclipse.jdt.core.formatter.join_lines_in_comments" value="true" />
-		<setting id="org.eclipse.jdt.core.formatter.join_***REMOVED***ped_lines" value="false" />
+		<setting id="org.eclipse.jdt.core.formatter.join_wrapped_lines" value="false" />
 		<setting id="org.eclipse.jdt.core.formatter.keep_else_statement_on_same_line" value="false" />
 		<setting id="org.eclipse.jdt.core.formatter.keep_empty_array_initializer_on_one_line" value="false" />
 		<setting id="org.eclipse.jdt.core.formatter.keep_imple_if_on_one_line" value="false" />
@@ -283,8 +283,8 @@
 		<setting id="org.eclipse.jdt.core.formatter.tabulation.size" value="4" />
 		<setting id="org.eclipse.jdt.core.formatter.use_on_off_tags" value="false" />
 		<setting id="org.eclipse.jdt.core.formatter.use_tabs_only_for_leading_indentations" value="true" />
-		<setting id="org.eclipse.jdt.core.formatter.***REMOVED***_before_binary_operator" value="true" />
-		<setting id="org.eclipse.jdt.core.formatter.***REMOVED***_before_or_operator_multicatch" value="true" />
-		<setting id="org.eclipse.jdt.core.formatter.***REMOVED***_outer_expressions_when_nested" value="true" />
+		<setting id="org.eclipse.jdt.core.formatter.wrap_before_binary_operator" value="true" />
+		<setting id="org.eclipse.jdt.core.formatter.wrap_before_or_operator_multicatch" value="true" />
+		<setting id="org.eclipse.jdt.core.formatter.wrap_outer_expressions_when_nested" value="true" />
 	</profile>
 </profiles>

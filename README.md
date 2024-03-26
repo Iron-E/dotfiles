@@ -32,10 +32,11 @@ Optionally, to set up synchronization of the lazy.nvim lockfile to this repo, ru
 ```sh
 #!/usr/bin/env bash
 
-# run this from the root of the dotfiles repo
-
-LAZY_LOCK="$(pwd)/home-manager/hosts/_common_/tui/neovim/config/lazy-lock.json"
-(cd "$XDG_STATE_HOME/nvim" && ln -sf "$LAZY_LOCK" .)
+# link rw nvim config into place
+ROOT_PATH="$(git rev-parse --show-toplevel)/home-manager/hosts/_common_/programs+services/tui/neovim/config/read-write"
+for dir in $(find -L "$ROOT_PATH" -mindepth 1 -maxdepth 1); do
+	ln -sf "$dir" "$XDG_CONFIG_HOME/nvim/$(basename $dir)"
+done
 ```
 
 #### Wezterm

@@ -10,7 +10,10 @@ in {
 	imports = [];
 
 	# my neovim config manages itself (but is not self-contained, see below)
-	xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/home-manager/hosts/_common_/tui/neovim/config";
+	xdg.configFile.nvim = {
+		source = ./read-only;
+		recursive = true;
+	};
 
 	# these are the runtime dependencies of my neovim config
 	programs.neovim = {

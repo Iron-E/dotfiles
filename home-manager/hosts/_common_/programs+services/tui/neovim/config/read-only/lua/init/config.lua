@@ -10,7 +10,7 @@
 --]]
 
 vim.api.nvim_set_option_value('background', 'dark', {})      -- Use a dark background
-vim.api.nvim_set_option_value('breakindent', true, {})       -- Preserve tabs when ***REMOVED***ping lines.
+vim.api.nvim_set_option_value('breakindent', true, {})       -- Preserve tabs when wrapping lines.
 vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}    -- Completion visual settings
 vim.api.nvim_set_option_value('concealcursor', 'nc', {})     -- Don't unconceal in normal or command mode
 vim.api.nvim_set_option_value('cursorline', true, {})        -- Highlight current line
@@ -133,7 +133,7 @@ do -- Brightness
 	local function cmd(count)
 		local opts = {'brightnessctl', 'set', math.abs(count * 5) .. '%' .. (count > -1 and '+' or '-')}
 		if _G['nvim >= 0.10'] then
-			vim.system(opts, {}, vim.schedule_***REMOVED***(function(shell)
+			vim.system(opts, {}, vim.schedule_wrap(function(shell)
 				vim.notify(vim.trim(vim.split(shell.stdout, '\n', {trimpempty = true})[3]))
 			end))
 		else
