@@ -91,11 +91,13 @@ in {
 						(repoDir + "/nixos/hosts/${hostname}") # the config for the host
 
 						home-manager.nixosModules.home-manager # home-manager module
-						{ # home-manager default settings
+						{
 							home-manager = {
 								sharedModules = homeManagerModules; # import home manager modules
 								useUserPackages = true; # likely to become default value in the future
 							};
+
+							programs.dconf.enable = true; # required for home-manager activation
 						}
 					];
 				};
