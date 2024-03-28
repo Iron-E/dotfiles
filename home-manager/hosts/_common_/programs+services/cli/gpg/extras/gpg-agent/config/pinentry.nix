@@ -5,5 +5,5 @@ let
 in {
 	imports = [];
 
-	services.gpg-agent.pinentryPackage = config.lib.nixgl.wrap pkgs.pinentry-gtk2;
+	services.gpg-agent.pinentryPackage = pkgs.pinentry-gtk2;
 }
