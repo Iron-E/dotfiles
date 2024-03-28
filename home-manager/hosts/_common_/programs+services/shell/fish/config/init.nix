@@ -20,6 +20,7 @@ in {
 		};
 
 		interactiveShellInit = multiline /* fish */ ''
+			set -g fish_greeting
 			set -g fish_key_bindings vi_bindings # set keybindings
 		'';
 	};
