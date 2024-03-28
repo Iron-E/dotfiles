@@ -4,12 +4,9 @@ let
 in {
 	imports = [];
 
-	home.shellAliases = lib.optionalAttrs config.programs.neovim.enable (
-		let
-			env = pkg: "env TERM=wezterm ${lib.getExe pkg}";
-		in {
-			nvim = env config.programs.neovim.finalPackage;
-			vi = lib.pipe pkgs.neovim-nightly [env lib.mkForce];
-		}
-	);
+	home.shellAliases =
+	let inherit (config.programs.neovim) enable finalPackage;
+	in lib.optionalAttrs enable {
+		nvim = "env TERM=wezterm ${lib.getExe finalPackage}";
+	};
 }
