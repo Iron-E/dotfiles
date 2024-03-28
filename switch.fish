@@ -1,13 +1,6 @@
 #!/usr/bin/env fish
 
-argparse (fish_opt -s b -l backup --required-val) (fish_opt -s d -l dry-run) (fish_opt -s h -l help) (fish_opt -s l -l link) -- $argv
-
-set -l backup ''
-if [ -n "$_flag_backup" ]
-	set backup $_flag_backup
-else
-	set backup 'pre-home-manager'
-end
+argparse (fish_opt -s d -l dry-run) (fish_opt -s h -l help) (fish_opt -s l -l link) -- $argv
 
 set -l operation ''
 if [ -n "$_flag_dry_run" ]
@@ -18,10 +11,11 @@ end
 
 if [ -n "$_flag_help" ] || [ -z "$argv[1]" ]
 	echo  "
-Usage: switch.fish [OPTIONS] [USER]@[HOSTNAME]
+Usage: switch.fish [OPTIONS] [USER]@[HOSTNAME] [-- [HOME-MANAGER OPTIONS]]
+
+Example: switch.fish --dry-run iron-e@origin --show-trace
 
 Options:
-  -b, --backup   Backup files before overwriting them
   -d, --dry-run  Show home-manager output instead of activating immediately
   -h, --help     Print help
   -l, --link     Link additional targets into place
@@ -29,7 +23,7 @@ Options:
 	return
 end
 
-nix run .#home-manager -- $operation --impure -b pre-home-manager --flake .#$argv[1]
+nix run .#home-manager -- $operation --impure --flake .#$argv[1] $argv[2..]
 
 if [ -z "$_flag_link" ]
 	return
