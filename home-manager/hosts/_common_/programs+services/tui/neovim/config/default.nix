@@ -47,7 +47,7 @@ in {
 				gopls
 				jdt-language-server
 				lua-language-server
-				nixd
+				nil
 				rust-analyzer
 				sqls
 				tailwindcss-language-server
@@ -56,7 +56,6 @@ in {
 			;
 
 			inherit (pkgs.nodePackages_latest)
-				# cssmodules-ls # SEE: https://github.com/NixOS/nixpkgs/blob/nixos-23.11/doc/languages-frameworks/javascript.section.md
 				bash-language-server
 				graphql-language-service-cli
 				pyright

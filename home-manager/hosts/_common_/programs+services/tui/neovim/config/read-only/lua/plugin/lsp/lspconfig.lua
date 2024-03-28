@@ -71,7 +71,6 @@ local function setup(lsp, config)
 end
 
 setup 'csharp_ls'
-setup 'cssmodules_ls'
 setup 'graphql'
 setup 'nil_ls'
 setup 'tailwindcss'
