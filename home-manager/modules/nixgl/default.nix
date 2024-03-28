@@ -1,7 +1,7 @@
 args @ { config, lib, pkgs, ... }:
 let
 	cfg = config.nixgl;
-	inherit (import ../../lib/strings args) multiline;
+	inherit (import ../../../lib/strings args) multiline;
 in {
 	# SEE: https://github.com/nix-community/nixGL/issues/114#issuecomment-1585323281
 	options.nixgl = {
