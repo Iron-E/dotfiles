@@ -5,5 +5,5 @@ let
 in {
 	imports = [];
 
-	home.sessionVariables.DELTA_PAGER = "${lib.getExe pkgs.bat} --style=plain";
+	home.sessionVariables.DELTA_PAGER = "${lib.getExe pkgs.less} -R";
 }
