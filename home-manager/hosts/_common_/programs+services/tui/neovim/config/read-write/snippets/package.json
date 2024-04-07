@@ -48,6 +48,12 @@
           "nix"
         ],
         "path": "./nix.json"
+      },
+      {
+        "language": [
+          "cs"
+        ],
+        "path": "./cs.json"
       }
     ]
   },
