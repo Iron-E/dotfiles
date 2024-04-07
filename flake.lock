@@ -136,15 +136,15 @@
     "i3blocks-contrib": {
       "flake": false,
       "locked": {
-        "lastModified": 1711395336,
-        "narHash": "sha256-affHC1b255uzwz/E6FrW10V0Jn2tN3c3ji13JtJSEfM=",
-        "owner": "Iron-E",
+        "lastModified": 1707384458,
+        "narHash": "sha256-iY9y3zLw5rUIHZkA9YLmyTDlgzZtIYAwWgHxaCS1+PI=",
+        "owner": "vivien",
         "repo": "i3blocks-contrib",
-        "rev": "3eac89d6131c197fb1c75e81f3147463f4fa1aa9",
+        "rev": "9d66d81da8d521941a349da26457f4965fd6fcbd",
         "type": "github"
       },
       "original": {
-        "owner": "Iron-E",
+        "owner": "vivien",
         "repo": "i3blocks-contrib",
         "type": "github"
       }
