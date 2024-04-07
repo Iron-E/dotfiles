@@ -31,6 +31,7 @@ in {
 				clang # treesitter parsers
 				cmake # telescope-fzf-native build
 				fd # fuzzy finder
+				xclip # clipboard
 			;
 
 			git = prg "git"; # cloning plugins
