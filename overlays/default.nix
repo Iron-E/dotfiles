@@ -9,13 +9,16 @@
 	modifications = final: prev:
 	let
 		nerdfont = font: prev.nerdfonts.override { fonts = [font]; };
-		vimix = variant: prev.vimix-gtk-themes.override { themeVariants = [variant]; };
+
+		vimix-icon = variant: prev.vimix-icon-theme.override { colorVariants = [variant]; };
+		vimix-theme = variant: prev.vimix-gtk-themes.override { themeVariants = [variant]; };
 	in {
 		nerdfonts-jetbrains-mono  = nerdfont "JetBrainsMono";
 		nerdfonts-open-dyslexic = nerdfont "OpenDyslexic";
 		nerdfonts-symbols = nerdfont "NerdFontsSymbolsOnly";
 
-		vimix-gtk-beryl-themes = vimix "beryl";
+		vimix-gtk-theme-beryl = vimix-theme "beryl";
+		vimix-icon-theme-beryl = vimix-icon "Beryl";
 
 		# example = prev.example.overrideAttrs (oldAttrs: rec {
 		# ...

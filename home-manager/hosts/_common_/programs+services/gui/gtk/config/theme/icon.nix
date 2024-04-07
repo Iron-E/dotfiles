@@ -5,7 +5,7 @@ in {
 	imports = [];
 
 	gtk.iconTheme = {
-		name = "Papirus-Dark";
-		package = pkgs.papirus-icon-theme;
+		name = "Vimix-Beryl-dark";
+		package = pkgs.vimix-icon-theme-beryl;
 	};
 }
