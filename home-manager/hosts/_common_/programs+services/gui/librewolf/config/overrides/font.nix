@@ -5,11 +5,14 @@ let
 in {
 	imports = [];
 
-	# needed for default font settings
-	home.packages = with pkgs; [jetbrains-mono nerdfonts-open-dyslexic];
+	home.packages = with pkgs; [
+		nerdfonts-jetbrains-mono # monospace font
+		nerdfonts-open-dyslexic # (sans) serif font
+	];
+
 	programs.librewolf.settings = lib.mapAttrs' (n: lib.nameValuePair "font.${n}") {
 		"minimum-size.x-western" = 18;
-		"name.monospace.x-western" = "JetBrains Mono";
+		"name.monospace.x-western" = "JetBrainsMono Nerd Font Mono";
 		"name.sans-serif.x-western" = "OpenDyslexic Nerd Font";
 		"name.serif.x-western" = "OpenDyslexic Nerd Font";
 		"size.monospace.x-western" = 14;
