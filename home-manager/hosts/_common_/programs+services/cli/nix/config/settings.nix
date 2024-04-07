@@ -5,7 +5,15 @@ let
 in {
 	imports = [];
 
-	nix.settings = {
-		experimental-features = ["nix-command" "flakes"];
+	nix = {
+		gc = {
+			automatic = true;
+			frequency = "weekly";
+		};
+
+		settings = {
+			auto-optimise-store = true;
+			experimental-features = ["nix-command" "flakes"];
+		};
 	};
 }
