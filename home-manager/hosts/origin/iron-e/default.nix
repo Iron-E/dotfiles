@@ -7,6 +7,7 @@ in {
 	imports = (util.fs.readSubmodules ./.) ++ [
 		../../_common_
 		../../_extras_/programs+services/cli
+		../../_extras_/programs+services/ctl
 		../../_extras_/programs+services/gui/xsession
 	];
 
