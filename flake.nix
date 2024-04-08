@@ -52,7 +52,6 @@
 
 		# Reusable home-manager modules you might want to export. Usually things you would upstream into home-manager
 		homeManagerModules = import ./home-manager/modules;
-
 	} // (lib.config.declare ./. home-manager {
 		origin = {
 			args = { inherit inputs outputs; architecture = "x86_64-linux"; };
