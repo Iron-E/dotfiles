@@ -4,4 +4,6 @@ let
 	inherit (util.strings) multiline;
 in {
 	imports = util.fs.readSubmodules ./.;
+
+	home.packages = with pkgs; [kubectl];
 }
