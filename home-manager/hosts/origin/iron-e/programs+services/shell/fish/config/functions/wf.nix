@@ -8,11 +8,15 @@ in {
 		./word.nix
 	];
 
-	programs.fish.functions.fzw = {
-		description = "alias fzw=word --cp (wd /mnt/vaults/words fzf)";
-		wraps = "word --cp (wd /mnt/vaults/words fzf)";
+	programs.fish.functions.wf = {
+		description = "(w)ord fuzzy (f)inder";
 		body = multiline /* fish */ ''
-			word --cp (wd /mnt/vaults/words ${lib.getExe config.programs.fzf.package}) $argv
+			set -f _word (wd /mnt/vaults/words ${lib.getExe config.programs.fzf.package})
+			if [ (count $_word) -gt 0 ]
+				word --cp $_word
+			else
+				echo "Nothing selected, skipping"
+			end
 		'';
 	};
 }
