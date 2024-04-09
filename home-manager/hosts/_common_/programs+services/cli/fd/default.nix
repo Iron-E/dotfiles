@@ -4,5 +4,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = [pkgs.fd];
+	home.packages = with pkgs; [fd];
 }

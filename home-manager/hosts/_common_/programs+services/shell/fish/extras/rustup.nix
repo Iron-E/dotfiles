@@ -5,7 +5,7 @@ let
 in {
 	imports = [];
 
-	programs.fish.shellInit = multiline /* fish */ ''
+	programs.fish.shellInit = lib.optionalString (builtins.elem pkgs.rustup config.home.packages) (multiline /* fish */ ''
 		set -gx PATH $PATH $XDG_DATA_HOME/rustup/toolchains/stable-*/bin
-	'';
+	'');
 }

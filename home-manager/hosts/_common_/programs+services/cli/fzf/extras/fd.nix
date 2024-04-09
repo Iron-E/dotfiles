@@ -2,8 +2,7 @@
 let
 	util = outputs.lib;
 in {
-	imports = [../../fd];
-
+	home.packages = with pkgs; [fd];
 	programs.fzf =
 	let
 		cmd = # the fzf find command
