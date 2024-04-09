@@ -1,0 +1,29 @@
+{
+  "kind": {
+    "body": [
+      "kind: $1",
+      "metadata:",
+      "  labels:",
+      "    app.kubernetes.io/name: '$2'",
+      "    app.kubernetes.io/version: '${3:latest}'",
+      "    app.kubernetes.io/component: '$4'",
+      "    app.kubernetes.io/part-of: '$5'",
+      "    app.kubernetes.io/managed-by: '${6:kubectl}'",
+      "    app.kubernetes.io/instance: '${5}-${4}-${2}-${3}'",
+      "  name: '${5}-${4}-${2}-${1/(.*)/${1:/downcase}/}-${3}'"
+    ],
+    "prefix": "kind"
+  },
+  "labels": {
+    "body": [
+      "labels:",
+      "  app.kubernetes.io/name: '$1'",
+      "  app.kubernetes.io/version: '${2:latest}'",
+      "  app.kubernetes.io/component: '$3'",
+      "  app.kubernetes.io/part-of: '$4'",
+      "  app.kubernetes.io/managed-by: '${5:kubectl}'",
+      "  app.kubernetes.io/instance: '${4}-${3}-${1}-${2}'"
+    ],
+    "prefix": "labels"
+  }
+}

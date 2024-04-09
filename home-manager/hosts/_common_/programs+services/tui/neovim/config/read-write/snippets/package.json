@@ -54,6 +54,12 @@
           "cs"
         ],
         "path": "./cs.json"
+      },
+      {
+        "language": [
+          "yaml"
+        ],
+        "path": "./yaml.json"
       }
     ]
   },
