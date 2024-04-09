@@ -11,7 +11,9 @@ in {
 		(lib.optionals config.programs.git.enable [
 			"("
 				"[ ](fg:black bg:green_dark)"
-				"\${git_branch}\${git_commit}\${git_state}"
+				"\${git_branch}"
+				"\${git_commit}"
+				"\${git_state}"
 				"[](fg:green_dark)"
 			")"
 			"\${git_status}"
@@ -19,8 +21,15 @@ in {
 
 		[
 			"\${fill}"
-			"\${status}\${cmd_duration}\${jobs}\${env_var.NNN}\${env_var.VIM}\${time}"
-			"\n\${character}"
+			"\${status}"
+			"\${cmd_duration}"
+			"\${jobs}"
+			"\${nix_shell}"
+			"\${env_var.NNN}"
+			"\${env_var.VIM}"
+			"\${time}"
+			"\n"
+			"\${character}"
 		]
 	];
 }
