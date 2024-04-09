@@ -8,11 +8,7 @@ in {
 	let
 		inherit (config.home) homeDirectory;
 	in {
-		sessionPath = [
-			"${homeDirectory}/bin"
-			"${homeDirectory}/.local/bin"
-		];
-
+		sessionPath = ["${homeDirectory}/bin"];
 		sessionVariables.DO_NOT_TRACK = 1;
 	};
 }

@@ -1,11 +1,9 @@
 { inputs, outputs, config, lib, pkgs, ... }:
 let
 	util = outputs.lib;
+	inherit (util.strings) multiline;
 in {
 	imports = [];
 
-	xdg.userDirs = {
-		enable = true;
-		createDirectories = true;
-	};
+	xdg.userDirs.createDirectories = true;
 }
