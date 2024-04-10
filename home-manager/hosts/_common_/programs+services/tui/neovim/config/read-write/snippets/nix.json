@@ -19,9 +19,9 @@
     ],
     "prefix": "flake"
   },
-  "forEachSystem": {
-    "body": "nixpkgs.lib.genAttrs [\"aarch64-darwin\" \"aarch64-linux\" \"i686-linux\" \"x86_64-darwin\" \"x86_64-linux\"] (system: system)",
-    "prefix": "forEachSystem"
+  "genSystems": {
+    "body": "genSystems = lib.genAttrs [\"aarch64-darwin\" \"aarch64-linux\" \"i686-linux\" \"x86_64-darwin\" \"x86_64-linux\"];",
+    "prefix": "genSystems"
   },
   "home-manager": {
     "body": [
@@ -67,7 +67,7 @@
     "body": [
       "mkPkgs = system: import nixpkgs {",
       "\tinherit system;",
-      "\toverlays = [$0];",
+      "\toverlays = (builtins.attrValues outputs.overlays) ++ [$0];",
       "};"
     ],
     "prefix": "mkPkgs"
