@@ -63,6 +63,15 @@
     ],
     "prefix": "let-util"
   },
+  "mkPkgs": {
+    "body": [
+      "mkPkgs = system: import nixpkgs {",
+      "\tinherit system;",
+      "\toverlays = [$0];",
+      "};"
+    ],
+    "prefix": "mkPkgs"
+  },
   "module": {
     "body": [
       "{ ... }: {",
