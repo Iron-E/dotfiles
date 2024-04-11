@@ -39,6 +39,7 @@ in {
 				xclip # clipboard
 			;
 
+			gh = prg "gh"; # octo.nvim
 			git = prg "git"; # cloning plugins
 			redshift = srv "redshift"; # `:Redshift` command
 			ripgrep = prg "ripgrep"; # `:Grep`

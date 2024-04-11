@@ -654,7 +654,24 @@ require('lazy').setup(
 			lazy = true,
 		},
 
-		{ 'wintermute-cell/gitignore.nvim', cmd = 'Gitignore', dependencies = 'nvim-telescope/telescope.nvim' },
+		{'pwntester/octo.nvim',
+			cmd = 'Octo',
+			dependencies = {
+				'nvim-lua/plenary.nvim',
+				'nvim-telescope/telescope.nvim',
+				'nvim-tree/nvim-web-devicons',
+			},
+			keys = {{'<A-w>o', '<Cmd>Octo<CR>', desc = 'octo.nvim fuzy find', mode = 'n'}},
+			opts = function(_, o)
+				o.default_merge_method = 'squash'
+				o.enable_builtin = true
+			end,
+		},
+
+		{ 'wintermute-cell/gitignore.nvim',
+			cmd = 'Gitignore',
+			dependencies = 'nvim-telescope/telescope.nvim',
+		},
 
 		--[[ UI
 			___
