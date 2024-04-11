@@ -1,1 +1,5 @@
-vim.filetype.add { filename = { ['.dockerignore'] = "dockerignore" } }
+vim.filetype.add {
+	filename = {
+		['.dockerignore'] = 'dockerignore',
+	},
+}
