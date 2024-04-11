@@ -58,6 +58,7 @@ in {
 				rust-analyzer
 				sqls
 				tailwindcss-language-server
+				terraform-ls
 				typst-lsp
 				vscode-langservers-extracted
 				yaml-language-server

@@ -75,7 +75,9 @@ setup 'graphql'
 setup 'nil_ls'
 setup 'tailwindcss'
 
-setup('bashls', { filetypes = { 'sh', 'zsh' } })
+setup('bashls', {
+	filetypes = { 'sh', 'zsh' },
+})
 
 setup('emmet_ls', {
 	filetypes = {
@@ -97,7 +99,7 @@ setup('emmet_ls', {
 })
 
 setup('gopls', {
-	--- @param client lsp.Client
+	--- @param client vim.lsp.Client
 	on_attach = function(client)
 		if not client.server_capabilities.semanticTokensProvider then
 			local semantic = vim.tbl_get(client, 'config', 'capabilities', 'textDocument', 'semanticTokens')
@@ -201,6 +203,10 @@ setup('rust_analyzer', {
 setup('sqlls', {
 	cmd = {'sql-language-server', 'up', '--method', 'stdio'},
 	filetypes = {'mysql', 'plsql', 'sql'},
+})
+
+setup('terraformls', {
+	filetypes = { 'terraform', 'terraform-vars', 'tf' },
 })
 
 setup('tsserver', {
