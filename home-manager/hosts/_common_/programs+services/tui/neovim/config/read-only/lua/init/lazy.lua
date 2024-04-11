@@ -666,6 +666,8 @@ require('lazy').setup(
 				o.default_merge_method = 'squash'
 				o.enable_builtin = true
 				o.use_local_fs = true
+
+				vim.treesitter.language.register('markdown', 'octo')
 			end,
 		},
 
