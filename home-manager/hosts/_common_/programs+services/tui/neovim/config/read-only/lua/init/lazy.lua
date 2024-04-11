@@ -665,6 +665,7 @@ require('lazy').setup(
 			opts = function(_, o)
 				o.default_merge_method = 'squash'
 				o.enable_builtin = true
+				o.use_local_fs = true
 			end,
 		},
 
