@@ -581,11 +581,11 @@ require('lazy').setup(
 			{
 				{'<A-b>', '<Cmd>Telescope buffers<CR>', desc = 'Fuzzy find buffer', mode = 'n'},
 				{'<A-f>', '<Cmd>Telescope find_files<CR>', desc = 'Fuzzy find file', mode = 'n'},
-				{'<A-g>', '<Cmd>Telescope live_grep<CR>', desc = 'Fuzzy find telescope live grep', mode = 'n'},
 				{'<C-b>', '<C-w>s<A-b>', desc = 'Fuzzy find buffer in new split', mode = 'n', remap = true},
 				{'<C-f>', '<C-w>s<A-f>', desc = 'Fuzzy find file in new split', mode = 'n', remap = true},
 				{'<Leader>F', '<Cmd>Telescope resume<CR>', desc = 'Resume last telescope search', mode = 'n'},
 				{'<Leader>f', '<Cmd>Telescope<CR>', desc = 'Fuzzy find telescope pickers', mode = 'n'},
+				{'<Leader>g', '<Cmd>Telescope live_grep<CR>', desc = 'Fuzzy find telescope live grep', mode = 'n'},
 				{'z=', '<Cmd>Telescope spell_suggest<CR>', desc = 'Fuzzy find spelling suggestion', mode = 'n'},
 			},
 			opts = function(_, o)
