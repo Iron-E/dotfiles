@@ -83,28 +83,6 @@ require('lazy').setup(
 						--- @param fallback fun()
 						['<C-n>'] = cmp.mapping(function(fallback)
 							if not cmp.select_next_item() then
-								if cursor_on_word() then
-									cmp.complete()
-								else
-									fallback()
-								end
-							end
-						end),
-
-						--- @param fallback fun()
-						['<C-p>'] = cmp.mapping(function(fallback)
-							if not cmp.select_prev_item() then
-								if cursor_on_word() then
-									cmp.complete()
-								else
-									fallback()
-								end
-							end
-						end),
-
-						--- @param fallback fun()
-						['<Tab>'] = cmp.mapping(function(fallback)
-							if not cmp.select_next_item() then
 								if luasnip.expand_or_locally_jumpable() then
 									luasnip.expand_or_jump()
 								elseif cursor_on_word() then
@@ -113,10 +91,10 @@ require('lazy').setup(
 									fallback()
 								end
 							end
-						end, {'i', 's'}),
+						end, { 'i', 'n', 's' }),
 
 						--- @param fallback fun()
-						['<S-Tab>'] = cmp.mapping(function(fallback)
+						['<C-p>'] = cmp.mapping(function(fallback)
 							if not cmp.select_prev_item() then
 								if luasnip.jumpable(-1) then
 									luasnip.jump(-1)
@@ -126,7 +104,29 @@ require('lazy').setup(
 									fallback()
 								end
 							end
-						end, {'i', 's'}),
+						end, { 'i', 'n', 's' }),
+
+						--- @param fallback fun()
+						['<Tab>'] = cmp.mapping(function(fallback)
+							if not cmp.select_next_item() then
+								if cursor_on_word() then
+									cmp.complete()
+								else
+									fallback()
+								end
+							end
+						end),
+
+						--- @param fallback fun()
+						['<S-Tab>'] = cmp.mapping(function(fallback)
+							if not cmp.select_prev_item() then
+								if cursor_on_word() then
+									cmp.complete()
+								else
+									fallback()
+								end
+							end
+						end),
 					},
 
 					sources = cmp.config.sources(
