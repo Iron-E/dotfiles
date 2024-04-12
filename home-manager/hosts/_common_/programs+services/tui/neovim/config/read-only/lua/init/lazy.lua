@@ -103,23 +103,17 @@ require('lazy').setup(
 						['<C-f>'] = cmp.mapping.scroll_docs(20),
 						['<C-Space>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
 
-						['<C-c>'] = cmp.mapping(function(fallback)
-							local options = {
-								config = {
-									sources = cmp.config.sources(
-										{ sources.nvim_lsp },
-										{ sources.nvim_lua, sources.dadbod },
-										{ sources.path },
-										{ sources.buffer },
-										{ sources.latex_symbols }
-									),
-								},
-							}
-
-							if not cmp.complete(options) then
-								fallback()
-							end
-						end, { 'i', 'n' }),
+						['<C-c>'] = cmp.mapping.complete {
+							config = {
+								source = cmp.config.sources(
+									{ sources.nvim_lsp },
+									{ sources.nvim_lua, sources.dadbod },
+									{ sources.path },
+									{ sources.buffer },
+									{ sources.latex_symbols }
+								),
+							},
+						},
 
 						--- @param fallback fun()
 						['<C-n>'] = cmp.mapping(function(fallback)

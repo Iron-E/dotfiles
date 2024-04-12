@@ -60,6 +60,12 @@
           "yaml"
         ],
         "path": "./yaml.json"
+      },
+      {
+        "language": [
+          "terraform"
+        ],
+        "path": "./terraform.json"
       }
     ]
   },

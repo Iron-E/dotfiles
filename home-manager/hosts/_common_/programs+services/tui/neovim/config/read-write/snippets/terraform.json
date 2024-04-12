@@ -1,0 +1,67 @@
+{
+  "default": {
+    "body": "optional(${1:type}, ${2:default})",
+    "prefix": "default"
+  },
+  "for": {
+    "body": [
+      "[",
+      "\tfor ${1:k}, ${2:v} in ${3:values}: ${4:foo}",
+      "]"
+    ],
+    "prefix": "for"
+  },
+  "forif": {
+    "body": [
+      "[",
+      "\tfor ${1:k}, ${2:v} in ${3:values}: ${4:foo}",
+      "\tif ${5:true}",
+      "]"
+    ],
+    "prefix": "forif"
+  },
+  "fork": {
+    "body": [
+      "{ ",
+      "\tfor ${1:k}, ${2:v} in ${3:values}: ${4:foo} => ${5:bar}",
+      "}"
+    ],
+    "prefix": "fork"
+  },
+  "forkif": {
+    "body": [
+      "{ ",
+      "\tfor ${1:k}, ${2:v} in ${3:values}: ${4:foo} => ${5:bar}",
+      "\tif ${6:true}",
+      "}"
+    ],
+    "prefix": "forkif"
+  },
+  "mod": {
+    "body": [
+      "module \"$1\" {",
+      "\tsource = \"$2\"",
+      "}"
+    ],
+    "prefix": "mod"
+  },
+  "required_providers": {
+    "body": [
+      "terraform {",
+      "\trequired_providers {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "prefix": "required_providers"
+  },
+  "tf-require-docker": {
+    "body": [
+      "docker = {",
+      "  source  = \"kreuzwerker/docker\"",
+      "  version = \"~> 3.0\"",
+      "}"
+    ],
+    "prefix": "tf-require-docker"
+  }
+}
