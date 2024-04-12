@@ -68,6 +68,29 @@ require('lazy').setup(
 				local kind = require('cmp.types').lsp.CompletionItemKind --- @type lsp.CompletionItemKind
 				local luasnip = require 'luasnip'
 
+				local sources = {
+					buffer = { name = 'buffer' },
+					dadbod = { name = 'vim-dadbod-completion' },
+
+					latex_symbols = {
+						name = 'latex_symbols',
+						max_item_count = 10,
+					},
+
+					luasnip = {
+						name = 'luasnip',
+						max_item_count = 10,
+					},
+
+					nvim_lsp = {
+						name = 'nvim_lsp',
+						entry_filter = function(entry) return kind[entry:get_kind()] ~= 'Text' end,
+					},
+
+					nvim_lua = { name = 'nvim_lua' },
+					path = { name = 'path' },
+				}
+
 				cmp.setup(
 				{
 					formatting = o.formatting,
@@ -79,6 +102,24 @@ require('lazy').setup(
 						['<C-b>'] = cmp.mapping.scroll_docs(-20),
 						['<C-f>'] = cmp.mapping.scroll_docs(20),
 						['<C-Space>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+
+						['<C-c>'] = cmp.mapping(function(fallback)
+							local options = {
+								config = {
+									sources = cmp.config.sources(
+										{ sources.nvim_lsp },
+										{ sources.nvim_lua, sources.dadbod },
+										{ sources.path },
+										{ sources.buffer },
+										{ sources.latex_symbols }
+									),
+								},
+							}
+
+							if not cmp.complete(options) then
+								fallback()
+							end
+						end, { 'i', 'n' }),
 
 						--- @param fallback fun()
 						['<C-n>'] = cmp.mapping(function(fallback)
@@ -130,14 +171,11 @@ require('lazy').setup(
 					},
 
 					sources = cmp.config.sources(
-						{
-							{ name = 'luasnip' },
-							{ name = 'nvim_lsp', entry_filter = function(entry) return kind[entry:get_kind()] ~= 'Text' end },
-						},
-						{ { name = 'nvim_lua' }, { name = 'vim-dadbod-completion' } },
-						{ { name = 'path' } },
-						{ { name = 'buffer' } },
-						{ { name = 'latex_symbols', max_item_count = 10 } }
+						{ sources.luasnip, sources.nvim_lsp },
+						{ sources.nvim_lua, sources.dadbod },
+						{ sources.path },
+						{ sources.buffer },
+						{ sources.latex_symbols }
 					),
 				})
 			end,
