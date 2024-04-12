@@ -10,6 +10,9 @@ _G['nvim >= 0.10'] = vim.fn.has('nvim-0.10') == 1
 
 vim.loader.enable()
 
+-- Environment
+require 'init/filetype'
+
 -- Config
 require 'init/config'
 require 'init/mappings'
