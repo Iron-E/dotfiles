@@ -71,6 +71,7 @@ local function setup(lsp, config)
 end
 
 setup 'csharp_ls'
+setup 'docker_compose_language_service'
 setup 'graphql'
 setup 'nil_ls'
 setup 'tailwindcss'
@@ -227,6 +228,7 @@ setup('tsserver', {
 })
 
 setup('yamlls', {
+	filetypes = { 'yaml' },
 	settings = {
 		yaml = {
 			schemas = {

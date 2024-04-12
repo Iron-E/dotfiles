@@ -50,6 +50,7 @@ in {
 
 			inherit (pkgs)
 				csharp-ls
+				docker-compose-language-service
 				emmet-ls
 				gopls
 				jdt-language-server
