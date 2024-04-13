@@ -5,5 +5,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [man man-pages];
+	programs.thefuck.enable = true;
 }
