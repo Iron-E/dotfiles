@@ -4,6 +4,12 @@ let
 in {
 	imports = [];
 
-	programs.neovim.defaultEditor = true;
-	home.sessionVariables.MANPAGER = "${lib.getExe config.programs.neovim.finalPackage} --cmd 'let g:man = v:true' +Man!";
+	home.sessionVariables =
+	let
+		inherit (config) home programs;
+		nvim = home.shellAliases.nvim or (lib.getExe programs.neovim.finalPackage);
+	in {
+		EDITOR = nvim;
+		MANPAGER = "${nvim} --cmd 'let g:man = v:true' +Man!";
+	};
 }
