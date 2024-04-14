@@ -15,6 +15,7 @@ vim.filetype.add {
 		['docker-compose.yaml'] = 'yaml.docker-compose',
 		['docker-compose.yml'] = 'yaml.docker-compose',
 		['fish_history'] = 'yaml',
+		['librewolf.overrides.cfg'] = 'javascript',
 	},
 
 	extension = {
