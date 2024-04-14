@@ -3,5 +3,7 @@ let
 	util = outputs.lib;
 	inherit (util.strings) multiline;
 in {
-	imports = util.fs.readSubmodules ./.;
+	imports = [];
+
+	home.shellAliases.y = "yazi";
 }
