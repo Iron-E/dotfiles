@@ -145,6 +145,12 @@ vim.api.nvim_set_keymap('n', '<Leader>l', '', {callback = toggle('wrap', true)})
 -- Toggle Spellcheck
 vim.api.nvim_set_keymap('n', '<Leader>s', '', {callback = toggle('spell', true)})
 
+vim.api.nvim_set_keymap('n', '<Leader>m', '', {
+	callback = toggle('mouse', false, function(v)
+		return v == '' and 'nvi' or ''
+	end),
+})
+
 --[[
  _      ___         __
 | | /| / (_)__  ___/ /__ _    _____
