@@ -257,7 +257,8 @@
         "i3switch": "i3switch",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixgl": "nixgl",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "yazi-relative-motions": "yazi-relative-motions"
       }
     },
     "systems": {
@@ -272,6 +273,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "yazi-relative-motions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711920274,
+        "narHash": "sha256-WPGoHx70Xrq037zT12DWcICAzolwltqbu+WeTRAsoFs=",
+        "owner": "dedukun",
+        "repo": "relative-motions.yazi",
+        "rev": "585554d512ae31fbb6211ab20372f4d913884a3f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dedukun",
+        "repo": "relative-motions.yazi",
         "type": "github"
       }
     }
