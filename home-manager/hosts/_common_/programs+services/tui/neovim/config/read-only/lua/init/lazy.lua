@@ -117,27 +117,19 @@ require('lazy').setup(
 
 						--- @param fallback fun()
 						['<C-n>'] = cmp.mapping(function(fallback)
-							if not cmp.select_next_item() then
-								if luasnip.expand_or_locally_jumpable() then
-									luasnip.expand_or_jump()
-								elseif cursor_on_word() then
-									cmp.complete()
-								else
-									fallback()
-								end
+							if luasnip.expand_or_locally_jumpable() then
+								luasnip.expand_or_jump()
+							else
+								fallback()
 							end
 						end, { 'i', 'n', 's' }),
 
 						--- @param fallback fun()
 						['<C-p>'] = cmp.mapping(function(fallback)
-							if not cmp.select_prev_item() then
-								if luasnip.jumpable(-1) then
-									luasnip.jump(-1)
-								elseif cursor_on_word() then
-									cmp.complete()
-								else
-									fallback()
-								end
+							if luasnip.jumpable(-1) then
+								luasnip.jump(-1)
+							else
+								fallback()
 							end
 						end, { 'i', 'n', 's' }),
 
