@@ -82,6 +82,14 @@
     ],
     "prefix": "module"
   },
+  "multiline": {
+    "body": [
+      "multiline /* ${1:lang} */ ''",
+      "\t${0:body}",
+      "'';"
+    ],
+    "prefix": "multiline"
+  },
   "readSubmodules": {
     "body": "outputs.lib.fs.readSubmodules ./.",
     "prefix": "readSubmodules"
