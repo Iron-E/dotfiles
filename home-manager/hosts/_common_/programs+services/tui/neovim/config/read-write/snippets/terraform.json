@@ -77,5 +77,14 @@
       "}"
     ],
     "prefix": "tf-require-docker"
+  },
+  "tf-require-kubernetes": {
+    "body": [
+      "kubernetes = {",
+      "\tsource  = \"hashicorp/kubernetes\"",
+      "\tversion = \"~> 2.0\"",
+      "}"
+    ],
+    "prefix": "tf-require-kubernetes"
   }
 }
