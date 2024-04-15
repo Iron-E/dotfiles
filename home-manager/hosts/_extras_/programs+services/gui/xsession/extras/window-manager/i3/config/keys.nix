@@ -15,15 +15,9 @@ in {
 		keybindings =
 		let
 			changeBrightness =
-			let
-				brightnessctl = getExe pkgs.brightnessctl;
-				fontName = builtins.elemAt fonts.names 0;
-				fontSize = builtins.toString fonts.size;
-				popup = multiline /* sh */ ''
-					${getExe pkgs.gxmessage} -buttons "" -center -nofocus -font "${fontName} ${fontSize}" -ontop -sticky -timeout 1 -title "Screen Brightness" -wrap''
-				;
+			let brightnessctl = getExe pkgs.brightnessctl;
 			in {
-				monitor = sign: exec "${popup} $(${brightnessctl} set 5%${sign})";
+				monitor = sign: exec "${brightnessctl} set 5%${sign}";
 				keyboard = sign: execInBg ''${brightnessctl} -d "smc::kbd_backlight" set 10%${sign}'';
 			};
 
