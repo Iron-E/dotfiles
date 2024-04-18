@@ -66,6 +66,12 @@
           "terraform"
         ],
         "path": "./terraform.json"
+      },
+      {
+        "language": [
+          "python"
+        ],
+        "path": "./python.json"
       }
     ]
   },

@@ -1,0 +1,6 @@
+{
+  "printf": {
+    "body": "print(f'$0')",
+    "prefix": "printf"
+  }
+}
