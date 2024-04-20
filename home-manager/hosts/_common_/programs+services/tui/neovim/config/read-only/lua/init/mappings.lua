@@ -32,50 +32,6 @@ local function toggle(option, setlocal, map)
 end
 
 --[[
-       _           ___                         __  _
- _  __(_)_ _   ___/ (_)__ ____ ____  ___  ___ / /_(_)___
-| |/ / /  ' \_/ _  / / _ `/ _ `/ _ \/ _ \(_-</ __/ / __/
-|___/_/_/_/_(_)_,_/_/\_,_/\_, /_//_/\___/___/\__/_/\__/
-                         /___/
---]]
-vim.api.nvim_set_keymap('n', '[d', '', {callback = vim.diagnostic.goto_prev})
-vim.api.nvim_set_keymap('n', ']d', '', {callback = vim.diagnostic.goto_next})
-vim.api.nvim_set_keymap('n', 'gC', '', {callback = function() vim.diagnostic.reset(nil, 0) end})
-vim.api.nvim_set_keymap('n', 'gK', '', {callback = vim.diagnostic.open_float})
-
---[[
-       _         __
- _  __(_)_ _    / /__ ___
-| |/ / /  ' \_ / (_-</ _ \
-|___/_/_/_/_(_)_/___/ .__/
-                   /_/
---]]
-vim.api.nvim_create_autocmd('LspAttach', {
-	callback = function(event)
-		local bufnr = event.buf
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gA', '', {callback = vim.lsp.buf.rename})
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '', {callback = vim.lsp.buf.declaration})
-		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '', {callback = vim.lsp.buf.definition})
-		do
-			local opts = {callback = vim.lsp.buf.signature_help}
-			vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-h>', '', opts)
-			vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-h>', '', opts)
-		end
-		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '', {callback = vim.lsp.buf.implementation})
-		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '', {callback = vim.lsp.buf.references})
-		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gw', '', {callback = vim.lsp.buf.document_symbol})
-		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gW', '', {callback = vim.lsp.buf.workspace_symbol})
-		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '', {callback = vim.lsp.buf.type_definition})
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '', {callback = vim.lsp.buf.hover}) -- TODO: remove when 10 releases
-		for _, mode in ipairs {'n', 'x'} do
-			vim.api.nvim_buf_set_keymap(bufnr, mode, 'gq', '', {callback = vim.lsp.buf.format})
-			vim.api.nvim_buf_set_keymap(bufnr, mode, 'gx', '', {callback = vim.lsp.buf.code_action})
-		end
-	end,
-	group = 'config',
-})
-
---[[
    __  ____
   /  |/  (_)__ ____
  / /|_/ / (_-</ __/
@@ -127,9 +83,8 @@ vim.api.nvim_set_keymap('', '<C-j>', 'gj', noremap)
 vim.api.nvim_set_keymap('', '<C-k>', 'gk', noremap)
 
 -- Toggle concealing
-vim.api.nvim_set_keymap('n', '<Leader>c', '', {
-	callback = toggle('conceallevel', true, function(v) return v < 2 and 2 or 0 end),
-})
+local toggle_conceal = toggle('conceallevel', true, function(v) return v < 2 and 2 or 0 end)
+vim.api.nvim_set_keymap('n', '<Leader>c', '', { callback = toggle_conceal })
 
 --[[
   ____       __  _
@@ -149,6 +104,64 @@ vim.api.nvim_set_keymap('n', '<Leader>m', '', {
 	callback = toggle('mouse', false, function(v)
 		return v == '' and 'nvi' or ''
 	end),
+})
+
+--[[
+       _           ___                         __  _
+ _  __(_)_ _   ___/ (_)__ ____ ____  ___  ___ / /_(_)___
+| |/ / /  ' \_/ _  / / _ `/ _ `/ _ \/ _ \(_-</ __/ / __/
+|___/_/_/_/_(_)_,_/_/\_,_/\_, /_//_/\___/___/\__/_/\__/
+                         /___/
+--]]
+vim.api.nvim_set_keymap('n', '[d', '', {callback = vim.diagnostic.goto_prev})
+vim.api.nvim_set_keymap('n', ']d', '', {callback = vim.diagnostic.goto_next})
+vim.api.nvim_set_keymap('n', 'gC', '', {callback = function() vim.diagnostic.reset(nil, 0) end})
+vim.api.nvim_set_keymap('n', 'gK', '', {callback = vim.diagnostic.open_float})
+
+--[[
+       _         __
+ _  __(_)_ _    / /__ ___
+| |/ / /  ' \_ / (_-</ _ \
+|___/_/_/_/_(_)_/___/ .__/
+                   /_/
+--]]
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(event)
+		local bufnr = event.buf
+		local opts = { buffer = bufnr }
+
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gA', '', { callback = vim.lsp.buf.rename })
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '', { callback = vim.lsp.buf.declaration })
+		vim.keymap.set({ 'i', 'n' }, '<C-h>', vim.lsp.buf.signature_help, opts)
+
+		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '', { callback = vim.lsp.buf.definition })
+		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '', { callback = vim.lsp.buf.implementation })
+		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '', { callback = vim.lsp.buf.references })
+		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gw', '', { callback = vim.lsp.buf.document_symbol })
+		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gW', '', { callback = vim.lsp.buf.workspace_symbol })
+		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '', { callback = vim.lsp.buf.type_definition })
+
+		do
+			local modes = { 'n', 'x' }
+			vim.keymap.set(modes, 'gq', vim.lsp.buf.format, opts)
+			vim.keymap.set(modes, 'gx', vim.lsp.buf.code_action, opts)
+		end
+
+		if _G['nvim >= 0.10'] then
+			if vim.lsp.get_client_by_id(event.data.client_id).server_capabilities.inlayHintProvider then
+				local conceallevel = vim.api.nvim_get_option_value('conceallevel', { scope = 'local' })
+
+				vim.lsp.inlay_hint.enable(bufnr, conceallevel > 0)
+				vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>c', '', { callback = function()
+						vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+						toggle_conceal()
+				end })
+			end
+		else
+			vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '', { callback = vim.lsp.buf.hover })
+		end
+	end,
+	group = 'config',
 })
 
 --[[

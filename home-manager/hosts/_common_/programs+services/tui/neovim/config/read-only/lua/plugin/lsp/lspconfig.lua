@@ -15,19 +15,7 @@ local HANDLERS =
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, FLOAT_CONFIG),
 }
 
-if _G['nvim >= 0.10'] then
-	vim.api.nvim_create_autocmd('LspAttach', {
-		callback = function(ev)
-			if vim.lsp.get_client_by_id(ev.data.client_id).server_capabilities.inlayHintProvider then
-				vim.lsp.inlay_hint.enable(ev.buf, true)
-				vim.api.nvim_buf_set_keymap(ev.buf, 'n', '<Leader>c', '', {
-					callback = function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
-				})
-			end
-		end,
-		group = 'config',
-	})
-else
+if not _G['nvim >= 0.10'] then
 	vim.cmd [[
 		sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
 		sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
