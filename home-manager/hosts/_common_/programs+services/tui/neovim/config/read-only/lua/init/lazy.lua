@@ -231,7 +231,10 @@ require('lazy').setup(
 				o.editSnippetPopup = {
 					height = 0.85, -- relative to the window, number between 0 and 1
 					width = 0.8,
-					keymaps = { deleteSnippet = '<Leader>d' }
+					keymaps = {
+						deleteSnippet = '<Leader>d',
+						duplicateSnippet = '<Leader>r',
+					}
 				}
 			end,
 		},
