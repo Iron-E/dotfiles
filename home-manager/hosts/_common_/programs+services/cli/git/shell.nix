@@ -11,6 +11,9 @@ in {
 		ga = "g add";
 		gA = "ga -A";
 		gaa = "ga -A";
+		gac = "gaa && gc";
+		gacb = "gaa && gcb";
+		gacbr = "gacb --and-rebase";
 		gap = "ga --patch";
 
 		gb = "g rebase";
