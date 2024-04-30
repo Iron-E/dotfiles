@@ -61,6 +61,7 @@ end
 setup 'csharp_ls'
 setup 'docker_compose_language_service'
 setup 'graphql'
+setup 'html'
 setup 'nil_ls'
 setup 'tailwindcss'
 
@@ -109,8 +110,6 @@ setup('gopls', {
 	end,
 	settings = {gopls = {semanticTokens = true}}
 })
-
-setup('html', {cmd = {'vscode-html-languageserver', '--stdio'}})
 
 setup('jdtls', {
 	init_options =
