@@ -1,0 +1,10 @@
+{
+  "arg": {
+    "body": "ARG ${1:name}=${2:value}",
+    "prefix": "arg"
+  },
+  "env": {
+    "body": "ENV ${1:name}=${2:value}",
+    "prefix": "env"
+  }
+}
