@@ -41,9 +41,9 @@
   "thethethe.nvim": { "branch": "main", "commit": "c32cf4290a03cedd67e41627ca3714b7f1a09d41" },
   "todo-comments.nvim": { "branch": "main", "commit": "a7e39ae9e74f2c8c6dc4eea6d40c3971ae84752d" },
   "trouble.nvim": { "branch": "main", "commit": "b9cf677f20bb2faa2dacfa870b084e568dca9572" },
-  "vim-dadbod": { "branch": "master", "commit": "960bbb7de11b7282a68d579a64e838b487934493" },
+  "vim-dadbod": { "branch": "master", "commit": "37523ffe0849b51db07fa7f48430c2aca5420a0e" },
   "vim-dadbod-completion": { "branch": "master", "commit": "c920cb0ba3dff4b1b0ed373e1c0b3007dec696c2" },
-  "vim-dadbod-ui": { "branch": "master", "commit": "066922699bdf1c6e14d517b844454b12b93ce25a" },
+  "vim-dadbod-ui": { "branch": "master", "commit": "5835df6497cc0e79cb149518d01f4f5c86dc546f" },
   "vim-log-highlighting": { "branch": "master", "commit": "1037e26f3120e6a6a2c0c33b14a84336dee2a78f" },
   "vim-renpy": { "branch": "master", "commit": "3434523ae70818573f5e24045547ea302eab4437" },
   "vim-win": { "branch": "master", "commit": "00a31b44f9388927102dcd96606e236f13681a33" }
