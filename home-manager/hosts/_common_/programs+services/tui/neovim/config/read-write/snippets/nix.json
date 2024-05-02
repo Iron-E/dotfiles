@@ -1,4 +1,76 @@
 {
+  "buildRustPackage": {
+    "body": [
+      "(pkgs.makeRustPlatform { cargo = toolchain; rustc = toolchain; }).buildRustPackage {",
+      "\tpname = \"${1:name}\";",
+      "\tversion = \"${2:0.1.0}\";",
+      "",
+      "\t# linked in final output/check",
+      "\tbuildInputs = with pkgs; [ ${3:openssl} ];",
+      "\tcheckInputs = with pkgs; [ $4 ];",
+      "",
+      "\t# available during build/check",
+      "\tnativeBuildInputs = with pkgs; [ makeWrapper pkg-config ];",
+      "\tnativeCheckInputs = with pkgs; [ $5 ];",
+      "",
+      "\tcargoLock = {",
+      "\t\tlockFile = ./Cargo.lock;",
+      "\t\toutputHashes = {",
+      "\t\t\t\"${6:my_dependency-0.1.0}\" = pkgs.lib.fakeSha256;",
+      "\t\t};",
+      "\t};",
+      "",
+      "\tsrc = with lib.fileset; (toSource {",
+      "\t\troot = ./.;",
+      "\t\tfileset = unions [ ./Cargo.lock ./Cargo.toml ./src$7 ];",
+      "\t});",
+      "",
+      "\tpostFixup = ''",
+      "\t\twrapProgram \"\\$out/bin/${1:name}\" \\",
+      "\t\t\t--suffix PATH : \"${lib.makeBinPath (with pkgs; [ $8 ])}\"",
+      "\t'';",
+      "",
+      "\tmeta = {",
+      "\t\tdescription = \"${9:desc}\";",
+      "\t\thomepage = \"${10:url}\";",
+      "\t\tlicense = with pkgs.lib.licenses; [${11:gpl3Plus}];",
+      "\t\tmainProgram = \"${1:name}\";",
+      "\t};",
+      "}$0"
+    ],
+    "prefix": "buildRustPackage"
+  },
+  "docker-image + oci-image + streamLayeredImage": {
+    "body": [
+      "let",
+      "\tinherit (pkgs) dockerTools;",
+      "\tgroup = \"${3:group}\";",
+      "\tuser = \"${4:user}\";",
+      "in dockerTools.streamLayeredImage { # https://nixos.org/manual/nixpkgs/unstable#ssec-pkgs-dockerTools-streamLayeredImage",
+      "\tname = \"${1:hello-world}\";",
+      "\ttag = \"${2:latest}\";",
+      "\tcreated = \"$CURRENT_YEAR-$CURRENT_MONTH-${CURRENT_DATE}T$CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND$CURRENT_TIMEZONE_OFFSET\"; # date --iso-8601='seconds' --utc",
+      "",
+      "\tenableFakechroot = true;",
+      "\tfakeRootCommands = /* sh */ ''",
+      "\t\t${dockerTools.shadowSetup}",
+      "\t\tgroupadd --system --gid 1001 \\${group}",
+      "\t\tuseradd --system --uid 1001 \\${user}$5",
+      "\t'';",
+      "",
+      "\tcontents = with pkgs; [ $6 ];",
+      "\tconfig = {",
+      "\t\tEntrypoint = [ \"${lib.getExe ${1:hello-world}}\" ];",
+      "\t\tUser = \"\\${user}:\\${group}\";",
+      "\t};",
+      "}$0"
+    ],
+    "prefix": [
+      "docker-image",
+      "oci-image",
+      "streamLayeredImage"
+    ]
+  },
   "flake": {
     "body": [
       "{",
@@ -52,7 +124,7 @@
     "prefix": "home-manager-default"
   },
   "istrlang": {
-    "body": "/* ${1:lang} */ ''$0''",
+    "body": "/* ${1:lang} */ ''$2''$0",
     "prefix": "istrlang"
   },
   "let-util": {
@@ -71,6 +143,21 @@
       "};"
     ],
     "prefix": "mkPkgs"
+  },
+  "mkShell": {
+    "body": [
+      "pkgs.mkShell {",
+      "\tname = \"${1:name}\";",
+      "\tinputsFrom = with pkgs; [ ",
+      "\t\t${2:openssl} ",
+      "\t];",
+      "",
+      "\tpackages = with pkgs; [",
+      "\t\t${3:kubectl}",
+      "\t];",
+      "}$0"
+    ],
+    "prefix": "mkShell"
   },
   "module": {
     "body": [
