@@ -139,7 +139,7 @@
     "body": [
       "mkPkgs = system: import nixpkgs {",
       "\tinherit system;",
-      "\toverlays = (builtins.attrValues outputs.overlays) ++ [$0];",
+      "\toverlays = [$0];",
       "};"
     ],
     "prefix": "mkPkgs"
