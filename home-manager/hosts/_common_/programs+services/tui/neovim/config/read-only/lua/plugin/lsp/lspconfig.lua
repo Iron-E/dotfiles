@@ -62,7 +62,6 @@ setup 'csharp_ls'
 setup 'docker_compose_language_service'
 setup 'graphql'
 setup 'html'
-setup 'nil_ls'
 setup 'tailwindcss'
 
 setup('bashls', {
@@ -151,6 +150,19 @@ setup('lua_ls', {
 		},
 		telemetry = {enable = false},
 	}},
+})
+
+setup('nil_ls', {
+	settings = {
+		['nil'] = {
+			nix = {
+				flake = {
+					autoArchive = true,
+					autoEvalInputs = true,
+				},
+			},
+		},
+	},
 })
 
 setup('pyright', {
