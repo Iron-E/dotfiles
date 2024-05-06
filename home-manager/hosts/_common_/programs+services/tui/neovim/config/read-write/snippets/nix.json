@@ -135,6 +135,15 @@
     ],
     "prefix": "let-util"
   },
+  "mkFileset": {
+    "body": [
+      "mkFileset = fileset: lib.fileset.toSource {",
+      "\tinherit fileset;",
+      "\troot = ./.;",
+      "};"
+    ],
+    "prefix": "mkFileset"
+  },
   "mkPkgs": {
     "body": [
       "mkPkgs = system: import nixpkgs {",
