@@ -158,7 +158,6 @@ setup('nil_ls', {
 			nix = {
 				flake = {
 					autoArchive = true,
-					autoEvalInputs = true,
 				},
 			},
 		},
