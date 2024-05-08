@@ -1,4 +1,62 @@
 {
+  "buildFHSEnv": {
+    "body": [
+      "buildFHSEnv {",
+      "\tname = \"${1:foo}\";",
+      "\trunScript = \"${2:bash}\"; # the program to run inside the env",
+      "\tmultiArch = ${3|false,true|}; # install 32-bit packages in 64-bit environments",
+      "",
+      "\t# Additional derivation outputs to be linked for both target and multi-architecture packages.",
+      "\textraOutputsToInstall = [ $4 ];",
+      "",
+      "\t# cross-platform packages (libraries)",
+      "\tmultiPkgs = pkgs: (with pkgs; [ $5 ]);",
+      "",
+      "\t# host platform packages (binaries)",
+      "\ttargetPkgs = pkgs: (with pkgs; [ $6 ]);",
+      "",
+      "\t# Additional commands to be executed for finalizing the directory structure.",
+      "\textraBuildCommands = /* sh */ ''$7'';",
+      "",
+      "\t# Like extraBuildCommands, but executed only on multilib architectures.",
+      "\textraBuildCommandsMulti = /* sh */ ''$8'';",
+      "",
+      "\t# Additional commands to be executed for finalizing the derivation with runner script.",
+      "\textraInstallCommands = /* sh */ ''$9'';",
+      "}${0:;}"
+    ],
+    "prefix": "buildFHSEnv"
+  },
+  "buildPythonPackage": {
+    "body": [
+      "let",
+      "\towner = \"packit\";",
+      "\tpname = \"specfile\";",
+      "\tversion = \"0.28.2\";",
+      "in python3Packages.buildPythonPackage {",
+      "\tinherit pname version;",
+      "\tpyproject = ${1|true,false|};",
+      "",
+      "\tsrc = fetchFromGitHub {",
+      "\t\tinherit owner;",
+      "\t\trepo = pname;",
+      "\t\trev = version;",
+      "\t\thash = lib.fakeHash;",
+      "\t};",
+      "",
+      "\tbuild-system = with python3Packages; [ ${2:setuptools} ];",
+      "\tdependencies = with python3Packages; [ ${3:rpm} ];",
+      "",
+      "\tmeta = {",
+      "\t\tdescription = \"${4:desc}\";",
+      "\t\thomepage = \"https://github.com/${owner}/${pname}\";",
+      "\t\tlicense = with lib.licenses; [ ${5:mit} ];",
+      "\t\tmainProgram = pname;",
+      "\t};",
+      "}${0:;}"
+    ],
+    "prefix": "buildPythonPackage"
+  },
   "buildRustPackage": {
     "body": [
       "(pkgs.makeRustPlatform { cargo = toolchain; rustc = toolchain; }).buildRustPackage {",
