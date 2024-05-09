@@ -49,6 +49,7 @@ in {
 			#######
 
 			inherit (pkgs)
+				ansible-language-server
 				csharp-ls
 				docker-compose-language-service
 				emmet-ls

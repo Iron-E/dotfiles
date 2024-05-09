@@ -58,6 +58,7 @@ local function setup(lsp, config)
 	lspconfig[lsp].setup(config)
 end
 
+setup 'ansiblels'
 setup 'csharp_ls'
 setup 'docker_compose_language_service'
 setup 'graphql'
