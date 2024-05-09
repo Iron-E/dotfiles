@@ -44,9 +44,9 @@ in {
 			redshift = srv "redshift"; # `:Redshift` command
 			ripgrep = prg "ripgrep"; # `:Grep`
 
-			#######
-			# LSP #
-			#######
+			####################
+			# Language Servers #
+			####################
 
 			inherit (pkgs)
 				ansible-language-server
@@ -72,6 +72,25 @@ in {
 				pyright
 				typescript-language-server
 				vscode-json-languageserver
+			;
+
+			###########
+			# Linters #
+			###########
+
+			inherit (pkgs)
+				ansible-lint
+				deadnix
+				dotenv-linter
+				eslint_d
+				fish
+				htmlhint
+				nix
+				ruff
+				sqlfluff
+				tflint
+				tfsec
+				vale
 			;
 		};
 	};

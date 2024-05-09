@@ -245,6 +245,16 @@ require('lazy').setup(
 					_|       _|
 		--]]
 
+		{'brenoprata10/nvim-highlight-colors',
+			cmd = 'HighlightColors',
+			keys = {{ '<Leader>C', '<Cmd>HighlightColors Toggle<CR>', mode = 'n', desc = 'Toggle colorizer' }},
+			opts = function(_, o)
+				o.enable_named_colors = true
+				o.enable_tailwind = true
+				o.render = 'background'
+			end,
+		},
+
 		{'neovim/nvim-lspconfig', cond = not_man, config = req 'lsp.lspconfig', dependencies = 'cmp-nvim-lsp'},
 		{'ray-x/lsp_signature.nvim',
 			cond = not_man and not has_nvim_10,
@@ -326,19 +336,38 @@ require('lazy').setup(
 				o.highlight = { additional_vim_regex_highlighting = false, enable = true }
 				o.indent = { enable = false }
 
-				vim.treesitter.language.register('gitignore', 'dockerignore');
-				vim.treesitter.language.register('bash', 'zsh');
+				vim.treesitter.language.register('bash', { 'env', 'zsh' })
+				vim.treesitter.language.register('gitignore', 'dockerignore')
 			end,
 			event = new_file_read_file,
 		},
 
-		{'brenoprata10/nvim-highlight-colors',
-			cmd = 'HighlightColors',
-			keys = {{ '<Leader>C', '<Cmd>HighlightColors Toggle<CR>', mode = 'n', desc = 'Toggle colorizer' }},
+		{'mfussenegger/nvim-lint',
+			config = function(_, o)
+				local lint = require 'lint'
+				lint.linters_by_ft = o
+
+				vim.api.nvim_create_autocmd('BufWritePost', {
+					callback = function() lint.try_lint() end,
+					group = 'config',
+				})
+			end,
+			event = new_file_read_file,
 			opts = function(_, o)
-				o.enable_named_colors = true
-				o.enable_tailwind = true
-				o.render = 'background'
+				o.ansible = { 'ansible_lint' }
+				o.env = { 'dotenv_linter' }
+				o.fish = { 'fish' }
+				o.html = { 'htmlhint' }
+				o.javascript = { 'eslint_d' }
+				o.javascriptreact = o.javascript
+				o.markdown = { 'vale' }
+				o.nix = { 'deadnix' }
+				o.nix = { 'nix' }
+				o.python = { 'ruff' }
+				o.sql = { 'sqlfluff' }
+				o.terraform = { 'tflint', 'tfsec' }
+				o.typescript = o.javascript
+				o.typescriptreact = o.typescript
 			end,
 		},
 
