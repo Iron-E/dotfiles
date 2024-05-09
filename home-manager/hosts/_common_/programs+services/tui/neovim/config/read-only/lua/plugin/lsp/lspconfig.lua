@@ -114,8 +114,7 @@ setup('gopls', {
 setup('jdtls', {
 	init_options =
 	{
-		jvm_args = {['java.format.settings.url'] = vim.fn.stdpath('config')..'/eclipse-formatter.xml'},
-		workspace = vim.fn.stdpath('cache')..'/java-workspaces',
+		jvm_args = { ['java.format.settings.url'] = vim.fn.stdpath('config')..'/eclipse-formatter.xml' },
 	},
 })
 
