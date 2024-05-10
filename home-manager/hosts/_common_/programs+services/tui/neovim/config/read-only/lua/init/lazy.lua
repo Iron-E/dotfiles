@@ -346,6 +346,7 @@ require('lazy').setup(
 			config = function(_, o)
 				local lint = require 'lint'
 				lint.linters_by_ft = o
+				table.insert(lint.linters.vale.args, 1, '--config=' .. vim.fn.stdpath('config') .. '/../vale/config.ini')
 
 				vim.api.nvim_create_autocmd('BufWritePost', {
 					callback = function() lint.try_lint() end,
@@ -366,6 +367,7 @@ require('lazy').setup(
 				o.python = { 'ruff' }
 				o.sql = { 'sqlfluff' }
 				o.terraform = { 'tflint', 'tfsec' }
+				o.text = { 'vale' }
 				o.typescript = o.javascript
 				o.typescriptreact = o.typescript
 			end,

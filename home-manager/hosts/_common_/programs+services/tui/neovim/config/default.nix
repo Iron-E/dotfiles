@@ -3,6 +3,8 @@ let
 	util = outputs.lib;
 	inherit (util.strings) multiline;
 
+	iniList = builtins.concatStringsSep ", ";
+
 	package = type: name: config.${type}.${name}.package;
 	prg = package "programs";
 	srv = package "services";
@@ -93,5 +95,21 @@ in {
 				vale
 			;
 		};
+	};
+
+	# extra vale config
+
+	home.activation.valeSync = lib.hm.dag.entryAfter ["linkGeneration"] (multiline /* sh */ ''
+		run ${lib.getExe pkgs.vale} --config="${config.xdg.configHome}/vale/config.ini" sync
+	'');
+
+	xdg.configFile."vale/config.ini".text = lib.generators.toINIWithGlobalSection {} {
+		globalSection = {
+			MinAlertLevel = "suggestion";
+			Packages = iniList ["alex"];
+			StylesPath = "styles";
+		};
+
+		sections."*".BasedOnStyles = iniList ["Vale" "alex"];
 	};
 }
