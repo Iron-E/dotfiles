@@ -33,7 +33,7 @@ in {
 
 	config = mkIf cfg.enable (mkMerge [
 		{
-			home.activation.setFishTheme = lib.hm.dag.entryAfter ["writeBoundary"] (multiline /* sh */ ''
+			home.activation.zzzSetFishTheme = lib.hm.dag.entryAfter ["writeBoundary"] (multiline /* sh */ ''
 				run ${lib.getExe cfg.package} -c "fish_config theme choose ${cfg.theme.name} && fish_config theme save"
 			'');
 		}
