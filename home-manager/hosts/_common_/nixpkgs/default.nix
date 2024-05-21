@@ -7,7 +7,10 @@ in {
 
 	nixpkgs =
 		outputs.lib.config.nixpkgs
-		(with inputs; [neovim-nightly-overlay nixgl])
+		(with inputs; [
+			# neovim-nightly-overlay
+			nixgl
+		])
 		(with outputs.overlays; [additions modifications])
 		{}
 	;
