@@ -9,7 +9,6 @@
 
 --[[/* Vars */]]
 
-local has_nvim_10 = _G['nvim >= 0.10'];
 local not_man = vim.g.man ~= true
 
 --- Return a wrapper function which loads the `plugin`'s configuration file
@@ -256,22 +255,6 @@ require('lazy').setup(
 		},
 
 		{'neovim/nvim-lspconfig', cond = not_man, config = req 'lsp.lspconfig', dependencies = 'cmp-nvim-lsp'},
-		{'ray-x/lsp_signature.nvim',
-			cond = not_man and not has_nvim_10,
-			init = function()
-				vim.api.nvim_create_autocmd('LspAttach', {
-					callback = function(event)
-						require('lsp_signature').on_attach(
-							{floating_window = false, hint_scheme = '@text.literal', hint_prefix = ''},
-							event.buf
-						)
-					end,
-					group = 'config',
-				})
-			end,
-			lazy = true,
-		},
-
 		{'nvim-treesitter/nvim-treesitter',
 			build = ':TSUpdate',
 			cond = not_man,

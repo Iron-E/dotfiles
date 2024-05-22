@@ -10,5 +10,24 @@
       "end,$0"
     ],
     "prefix": "lazy-opts"
+  },
+  "minimal-barbar": {
+    "body": [
+      "--[[ minimal.lua ]]",
+      "local lazy = vim.fn.stdpath('data') .. '/lazy/'",
+      "vim.opt.rtp:prepend {",
+      "  lazy .. 'barbar.nvim',",
+      "  $1",
+      "}",
+      "",
+      "vim.g.barbar_auto_setup = false",
+      "require('barbar').setup {",
+      "  icons = { filetype = { enabled = false } },",
+      "  $2",
+      "}",
+      "",
+      "$0"
+    ],
+    "prefix": "minimal-barbar"
   }
 }

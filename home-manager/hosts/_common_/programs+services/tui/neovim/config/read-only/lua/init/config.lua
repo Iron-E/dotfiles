@@ -34,6 +34,7 @@ vim.api.nvim_set_option_value('showmode', false, {})         -- Don't show the m
 vim.api.nvim_set_option_value('showtabline', 0, {})          -- Don't show the tabline until tabline plugins load
 vim.api.nvim_set_option_value('smartcase', true, {})         -- Case sensitive when a capital is provided
 vim.api.nvim_set_option_value('smartindent', true, {})       -- More intelligent 'autoindent' preset
+vim.api.nvim_set_option_value('smoothscroll', true, {})      -- Scroll virtual lines, not logical lines
 vim.api.nvim_set_option_value('softtabstop', -1, {})         -- Use shiftwidth
 vim.api.nvim_set_option_value('spell', true, {})             -- Check spelling
 vim.api.nvim_set_option_value('splitbelow', true, {})        -- Splits open below
@@ -47,10 +48,6 @@ vim.api.nvim_set_option_value('visualbell', true, {})        -- Disable beeping
 vim.opt.wildignore = {'*.bak', '*.cache', '*/.git/**/*', '*.min.*', '*/node_modules/**/*', '*.pyc', '*.swp'}
 vim.api.nvim_set_option_value('wildignorecase', true, {})    -- Ignore case for command completions
 vim.opt.wildmode = {'longest:full', 'full'}                  -- Command completion mode
-
-if _G['nvim >= 0.10'] then
-	vim.api.nvim_set_option_value('smoothscroll', true, {})
-end
 
 -- WARN: Providers (MUST be `0`, not `false`)
 vim.g.loaded_node_provider = 0 -- disable javascript
@@ -133,16 +130,14 @@ do -- Brightness
 	--- @param count number
 	local function cmd(count)
 		local opts = {'brightnessctl', 'set', math.abs(count * 5) .. '%' .. (count > -1 and '+' or '-')}
-		if _G['nvim >= 0.10'] then
-			vim.system(opts, {}, vim.schedule_wrap(function(shell)
-				vim.notify(vim.trim(vim.split(shell.stdout, '\n', {trimpempty = true})[3]))
-			end))
-		else
-			vim.fn.systemlist(opts)
-		end
+		vim.system(opts, {}, vim.schedule_wrap(function(shell)
+			local output = vim.split(shell.stdout, '\n', { trimpempty = true })
+			local trimmed_output = vim.trim(output[3])
+			vim.notify(trimmed_output)
+		end))
 	end
 
-	local opts = {count = 1, force = true}
+	local opts = { count = 1, force = true }
 	vim.api.nvim_create_user_command('BrightnessCtl', function(tbl) cmd(tbl.count) end, opts)
 	vim.api.nvim_create_user_command('DarknessCtl', function(tbl) cmd(-tbl.count) end, opts)
 end
@@ -169,12 +164,8 @@ do -- Redshift
 
 	--- @param color string
 	local function cmd(color)
-		local opts = {'redshift', '-PO', REDSHIFT_COLORS[color:sub(1, 1)]}
-		if _G['nvim >= 0.10'] then
-			vim.system(opts)
-		else
-			vim.fn.systemlist(opts)
-		end
+		local opts = { 'redshift', '-PO', REDSHIFT_COLORS[color:sub(1, 1)] }
+		vim.system(opts)
 	end
 
 	vim.api.nvim_create_user_command('Redshift', function(tbl) cmd(tbl.args) end, {
@@ -199,10 +190,8 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
 	'Typora',
-	_G['nvim >= 0.10'] and function(tbl)
+	function(tbl)
 		vim.system({'typora', tbl.args == '' and vim.api.nvim_buf_get_name(0) or tbl.args}, {detach = true})
-	end or function(tbl)
-		vim.fn.systemlist({'typora', tbl.args == '' and vim.api.nvim_buf_get_name(0) or tbl.args, '&'})
 	end,
 	{complete = 'file', nargs = '?'}
 )

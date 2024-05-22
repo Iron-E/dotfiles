@@ -147,20 +147,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.keymap.set(modes, 'gx', vim.lsp.buf.code_action, opts)
 		end
 
-		if _G['nvim >= 0.10'] then
-			if vim.lsp.get_client_by_id(event.data.client_id).server_capabilities.inlayHintProvider then
-				local conceallevel = vim.api.nvim_get_option_value('conceallevel', { scope = 'local' })
+		if vim.lsp.get_client_by_id(event.data.client_id).server_capabilities.inlayHintProvider then
+			local conceallevel = vim.api.nvim_get_option_value('conceallevel', { scope = 'local' })
 
-				local filter = { bufnr = bufnr }
-				vim.lsp.inlay_hint.enable(conceallevel > 0, filter)
-				vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>c', '', { callback = function()
-						local is_enabled = vim.lsp.inlay_hint.is_enabled(filter)
-						vim.lsp.inlay_hint.enable(not is_enabled, filter)
-						toggle_conceal()
-				end })
-			end
-		else
-			vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '', { callback = vim.lsp.buf.hover })
+			local filter = { bufnr = bufnr }
+			vim.lsp.inlay_hint.enable(conceallevel > 0, filter)
+			vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>c', '', { callback = function()
+					local is_enabled = vim.lsp.inlay_hint.is_enabled(filter)
+					vim.lsp.inlay_hint.enable(not is_enabled, filter)
+					toggle_conceal()
+			end })
 		end
 	end,
 	group = 'config',

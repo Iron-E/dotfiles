@@ -15,15 +15,6 @@ local HANDLERS =
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, FLOAT_CONFIG),
 }
 
-if not _G['nvim >= 0.10'] then
-	vim.cmd [[
-		sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
-		sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
-		sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
-		sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
-	]]
-end
-
 vim.diagnostic.config
 {
 	float = FLOAT_CONFIG,
