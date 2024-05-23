@@ -27,14 +27,13 @@ in {
 			jsregexp # for luasnip
 		];
 
-		extraPackages = builtins.attrValues {
+		extraPackages = builtins.attrValues ({
 			########
 			# misc #
 			########
 
 			inherit (pkgs)
 				bat # previewer
-				brightnessctl # mappings
 				clang # treesitter parsers
 				cmake # telescope-fzf-native build
 				fd # fuzzy finder
@@ -43,7 +42,6 @@ in {
 
 			gh = prg "gh"; # octo.nvim
 			git = prg "git"; # cloning plugins
-			redshift = srv "redshift"; # `:Redshift` command
 			ripgrep = prg "ripgrep"; # `:Grep`
 
 			####################
@@ -94,7 +92,13 @@ in {
 				tfsec
 				vale
 			;
-		};
+		} // (lib.optionalAttrs (!pkgs.stdenv.isDarwin) {
+			inherit (pkgs)
+				brightnessctl # mappings
+			;
+
+			redshift =  (srv "redshift"); # `:Redshift` command
+		}));
 	};
 
 	# extra vale config

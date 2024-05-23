@@ -13,12 +13,10 @@ let
 		# remove `args.architecture` from final output, since it should be `args.targetPlatform.architecture`
 		argsWithoutSys = filterAttrs (n: const (n != "architecture")) args;
 	in
-	os: /* the os name */ argsWithoutSys // {
+	isNixOS: /* the os name */ argsWithoutSys // {
 		targetPlatform = {
+			inherit isNixOS;
 			architecture = args.architecture;
-			isDarwin = os == "darwin";
-			isGenericLinux = os == "linux";
-			isNixOS = os == "nixos";
 		};
 	};
 in {
@@ -60,7 +58,7 @@ in {
 				# `home-manager` requires the `extraSpecialArgs` and `pkgs` keys, which we can resolve automatically.
 				# this also calls the `homeConfigFn` using `architecture` to resolve the real `homeConfig`
 				mkHomeConfig =
-				let deepDefaultHomeConfig = { extraSpecialArgs = mkArgs "linux"; }; # default home config parts which needs to be deeply merged
+				let deepDefaultHomeConfig = { extraSpecialArgs = mkArgs false; }; # default home config parts which needs to be deeply merged
 				in username: # `string`
 					homeConfig: # `<home-manager-config>`
 					let
@@ -82,7 +80,7 @@ in {
 
 			nixosConfigurations = attrsets.optionalMapByPath [osConfigKey] configs (osConfig:
 			let
-				specialArgs = mkArgs "nixos";
+				specialArgs = mkArgs true;
 				defaultOsConfig = {
 					inherit specialArgs;
 					system = args.architecture;

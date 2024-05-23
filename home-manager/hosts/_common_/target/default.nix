@@ -5,5 +5,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	targets.genericLinux.enable = targetPlatform.isGenericLinux;
+	targets.genericLinux.enable = pkgs.stdenv.isLinux;
 }

@@ -1,4 +1,4 @@
-{ inputs, outputs, config, lib, pkgs, targetPlatform, ... }:
+{ inputs, outputs, config, lib, pkgs, ... }:
 let
 	util = outputs.lib;
 	inherit (util.strings) multiline;

@@ -58,5 +58,10 @@
 			args = { inherit inputs outputs; architecture = "x86_64-linux"; };
 			iron-e = {}; # Available through 'home-manager --flake .#iron-e@origin'
 		};
+
+		turbo = {
+			args = { inherit inputs outputs; architecture = "aarch64-darwin"; };
+			iron-e = {}; # Available through 'home-manager --flake .#iron-e@turbo'
+		};
 	});
 }
