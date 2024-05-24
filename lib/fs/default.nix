@@ -9,6 +9,14 @@ let
 		in map (fsEntry: parent + "/${fsEntry}") entryNames
 	;
 
+	filterPaths = # removes `exclude`d elems from `path`
+	paths: # `[path]`
+	exclude: # `[path]`
+		builtins.filter
+		(p: !(builtins.elem p exclude))
+		paths
+	;
+
 	pathIsModule = # the path is a nix module
 	path: # `path`
 	let
@@ -41,8 +49,6 @@ let
 		(p: p != currentModule)
 		modules
 	;
-in {
-	inherit entriesToPaths pathIsModule readModules readSubmodules';
 
 	readSubmodules = # like `readSubmodules'` but skips the `lib` dir
 	path:
@@ -54,4 +60,15 @@ in {
 			(path: path != libPath)
 			submodules
 	;
+in {
+	inherit
+		entriesToPaths
+		filterPaths
+		pathIsModule
+		readModules
+		readSubmodules
+		readSubmodules'
+	;
+
+	filterSubmodules = lib.flip lib.pipe [readSubmodules filterPaths];
 }
