@@ -10,6 +10,6 @@ in {
 		inherit (config) home;
 	in multiline /* fish */ ''
 		# HACK: fish on MacOS does not seem to load the nix env
-		set -gx PATH ${home.homeDirectory}/.nix-profile/bin $PATH
+		set -gx PATH ${home.homeDirectory}/.nix-profile/bin /nix/var/nix/profiles/default/bin $PATH
 	'';
 }
