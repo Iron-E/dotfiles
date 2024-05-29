@@ -34,7 +34,6 @@ in {
 
 			inherit (pkgs)
 				bat # previewer
-				clang # treesitter parsers
 				cmake # telescope-fzf-native build
 				fd # fuzzy finder
 				xclip # clipboard
@@ -92,6 +91,13 @@ in {
 				tfsec
 				vale
 			;
+
+			###############
+			# Tree Sitter #
+			###############
+
+			inherit (pkgs) clang tree-sitter;
+			inherit (pkgs.nodePackages_latest) nodejs;
 		} // (lib.optionalAttrs (!pkgs.stdenv.isDarwin) {
 			inherit (pkgs)
 				brightnessctl # mappings
