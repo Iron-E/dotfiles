@@ -11,7 +11,6 @@ return {{'echasnovski/mini.nvim', config = function()
 
 	require('mini.ai').setup { mappings = { goto_left = '[g', goto_right = ']g' }, n_lines = 1000 }
 	require('mini.align').setup { mappings = { start = '<Leader>a', start_with_preview = '<Leader>A' } }
-	require('mini.comment').setup { options = { ignore_blank_line = true } }
 	require('mini.jump2d').setup({ mappings = { start_jumping = '<Space>' } })
 	require('mini.misc').setup_restore_cursor()
 	require('mini.surround').setup { n_lines = 1000 }
