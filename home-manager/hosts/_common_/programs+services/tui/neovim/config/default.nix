@@ -51,6 +51,7 @@ in {
 				ansible-language-server
 				csharp-ls
 				docker-compose-language-service
+				dockerfile-language-server-nodejs
 				emmet-ls
 				gopls
 				jdt-language-server
