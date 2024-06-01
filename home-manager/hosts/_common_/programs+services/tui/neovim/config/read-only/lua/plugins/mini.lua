@@ -17,6 +17,16 @@ return {{'echasnovski/mini.nvim', config = function()
 
 	--[[/* Multiline */]]
 
+	do
+		require('mini.git').setup()
+		vim.keymap.set({ 's', 'v' }, '<Leader>K', '<Cmd>lua MiniGit.show_at_cursor()<CR>', { desc = 'Show Git info at cursor' })
+		vim.api.nvim_create_autocmd('FileType', {
+			command = 'setlocal foldmethod=expr foldexpr=v:lua.MiniGit.diff_foldexpr()',
+			pattern = { 'diff', 'git' },
+			group = 'config',
+		})
+	end
+
 	require('mini.move').setup
 	{
 		mappings =
