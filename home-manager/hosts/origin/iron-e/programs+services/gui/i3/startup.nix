@@ -7,7 +7,7 @@ let
 in {
 	xsession.windowManager.i3.config.startup = toList {
 		always = true;
-		command = "${getExe config.programs.feh.package} --bg-fill ${config.xdg.userDirs.pictures}/wallpaper.png";
+		command = "${getExe config.programs.feh.package} --no-fehbg --bg-fill ${config.xdg.userDirs.pictures}/wallpaper.png";
 		notification = false;
 	};
 }
