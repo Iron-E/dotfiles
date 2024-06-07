@@ -4,6 +4,6 @@ return {{ 'brenoprata10/nvim-highlight-colors',
 	opts = function(_, o)
 		o.enable_named_colors = true
 		o.enable_tailwind = true
-		o.render = 'background'
+		o.render = 'virtual'
 	end,
 }}
