@@ -14,6 +14,7 @@ return {{ 'mfussenegger/nvim-lint',
 		o.ansible = { 'ansible_lint' }
 		o.env = { 'dotenv_linter' }
 		o.fish = { 'fish' }
+		o.go = { 'golangcilint' }
 		o.html = { 'htmlhint' }
 		o.javascript = { 'eslint_d' }
 		o.javascriptreact = o.javascript

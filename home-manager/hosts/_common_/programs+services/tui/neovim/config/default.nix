@@ -84,6 +84,7 @@ in {
 				dotenv-linter
 				eslint_d
 				fish
+				golangci-lint
 				htmlhint
 				nix
 				ruff
