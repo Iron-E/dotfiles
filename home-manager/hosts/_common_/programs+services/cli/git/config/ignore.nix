@@ -13,6 +13,8 @@ in {
 		/* gitignore */ "**/*.temp"
 		/* gitignore */ "**/*.tmp"
 		/* gitignore */ "**/*~"
+		/* gitignore */ "**/.env"
+		/* gitignore */ "**/.envrc"
 		/* gitignore */ "**/node_modules/"
 	];
 }
