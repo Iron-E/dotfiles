@@ -80,6 +80,5 @@ return {{ 'stevearc/aerial.nvim',
 			[']]'] = 'actions.next',
 		}
 		o.show_guides = true
-		o.update_events = 'CursorHold,CursorHoldI,InsertLeave'
 	end,
 }}
