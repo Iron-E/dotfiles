@@ -206,6 +206,7 @@
     "body": [
       "mkPkgs = system: import nixpkgs {",
       "\tinherit system;",
+      "\tconfig.allowUnfree = true;",
       "\toverlays = [$0];",
       "};"
     ],
