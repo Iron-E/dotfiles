@@ -43,6 +43,18 @@ in {
 			git = prg "git"; # cloning plugins
 			ripgrep = prg "ripgrep"; # `:Grep`
 
+			##############
+			# Formatters #
+			##############
+
+			inherit (pkgs)
+				gci
+				prettierd
+				rustfmt
+				rustywind
+				yq
+			;
+
 			####################
 			# Language Servers #
 			####################
@@ -88,6 +100,7 @@ in {
 				htmlhint
 				nix
 				ruff
+				shellcheck
 				sqlfluff
 				tflint
 				tfsec

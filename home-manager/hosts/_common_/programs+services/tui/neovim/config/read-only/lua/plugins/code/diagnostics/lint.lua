@@ -1,4 +1,5 @@
-return {{ 'mfussenegger/nvim-lint',
+return { {
+	'mfussenegger/nvim-lint',
 	config = function(_, o)
 		local lint = require 'lint'
 		lint.linters_by_ft = o
@@ -18,14 +19,19 @@ return {{ 'mfussenegger/nvim-lint',
 		o.html = { 'htmlhint' }
 		o.javascript = { 'eslint_d' }
 		o.javascriptreact = o.javascript
+		o.json = { 'jq' }
+		o.less = o.css
 		o.markdown = { 'vale' }
 		o.nix = { 'deadnix' }
 		o.nix = { 'nix' }
 		o.python = { 'ruff' }
+		o.sass = o.scss
+		o.scss = o.css
+		o.sh = { 'shellcheck' }
 		o.sql = { 'sqlfluff' }
 		o.terraform = { 'tflint', 'tfsec' }
 		o.text = { 'vale' }
 		o.typescript = o.javascript
-		o.typescriptreact = o.typescript
+		o.typescriptreact = o.javascriptreact
 	end,
-}}
+} }

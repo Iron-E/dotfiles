@@ -143,7 +143,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 		do
 			local modes = { 'n', 'x' }
-			vim.keymap.set(modes, 'gq', vim.lsp.buf.format, opts)
+			-- vim.keymap.set(modes, 'gq', vim.lsp.buf.format, opts)
 			vim.keymap.set(modes, 'gx', vim.lsp.buf.code_action, opts)
 		end
 
