@@ -16,9 +16,7 @@ return { {
 			rust = { 'rustfmt' },
 			sh = { 'shellcheck' },
 			terraform = { 'terraform_fmt' },
-			toml = { 'yq' },
-			xml = { 'yq' },
-			yaml = { 'yq' },
+			yaml = { 'yamlfmt' },
 		}
 
 		o.formatters_by_ft.less = o.formatters_by_ft.css

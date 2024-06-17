@@ -52,7 +52,7 @@ in {
 				prettierd
 				rustfmt
 				rustywind
-				yq
+				yamlfmt
 			;
 
 			####################
@@ -120,6 +120,17 @@ in {
 
 			redshift =  (srv "redshift"); # `:Redshift` command
 		}));
+	};
+
+	# extra yq config
+
+	xdg.configFile."yamlfmt/yamlfmt.yaml".text = lib.generators.toYAML {} {
+		formatter = {
+			line_ending = "lf";
+			retain_line_breaks_single = true;
+			scan_folded_as_literal = true;
+			type = "basic";
+		};
 	};
 
 	# extra vale config
