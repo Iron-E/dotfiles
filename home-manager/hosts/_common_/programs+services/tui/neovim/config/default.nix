@@ -69,6 +69,7 @@ in {
 				jdt-language-server
 				lua-language-server
 				nil
+				pyright
 				rust-analyzer
 				sqls
 				tailwindcss-language-server
@@ -81,7 +82,6 @@ in {
 			inherit (pkgs.nodePackages_latest)
 				bash-language-server
 				graphql-language-service-cli
-				pyright
 				typescript-language-server
 				vscode-json-languageserver
 			;
