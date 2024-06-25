@@ -6,6 +6,15 @@ in {
 	imports = [];
 
 	programs.fish.functions = lib.optionalAttrs config.programs.git.enable {
+		git-grep-revs = {
+			description = "Reads a stream of revisions from stdin and greps ";
+			wraps = "git grep";
+			body = multiline /* fish */ ''
+				while read revision
+					git grep $argv $revision && echo
+				end
+			'';
+		};
 		git-diff-merge = {
 			description = "Get the diff between (the current branch and its origin) and ((the main branch) and (the commit the current branch's origin branched from master))";
 			body = multiline /* fish */ ''
