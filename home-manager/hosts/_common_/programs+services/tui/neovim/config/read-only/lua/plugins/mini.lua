@@ -224,33 +224,4 @@ return {{'echasnovski/mini.nvim', config = function()
 			end,
 		})
 	end
-
-	do --[[/* mini.visits */]]
-		local visits = require 'mini.visits'
-		visits.setup()
-
-		vim.api.nvim_set_keymap('n', '<Leader>va', '', {
-			desc = 'MiniVisits label add',
-			callback = visits.add_label,
-			noremap = true,
-		})
-
-		vim.api.nvim_set_keymap('n', '<Leader>vl', '', {
-			desc = 'MiniVisits label select',
-			callback = visits.select_label,
-			noremap = true,
-		})
-
-		vim.api.nvim_set_keymap('n', '<Leader>vp', '', {
-			callback = visits.select_path,
-			desc = 'MiniVisits path select',
-			noremap = true,
-		})
-
-		vim.api.nvim_set_keymap('n', '<Leader>vr', '', {
-			callback = visits.remove_label,
-			desc = 'MiniVisits label remove',
-			noremap = true,
-		})
-	end
 end}}
