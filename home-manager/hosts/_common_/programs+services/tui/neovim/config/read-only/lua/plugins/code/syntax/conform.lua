@@ -25,10 +25,13 @@ return { {
 		o.formatters_by_ft.typescript = o.formatters_by_ft.javascript
 		o.formatters_by_ft.typescriptreact = o.formatters_by_ft.javascriptreact
 
-		o.format_on_save = {
-			lsp_fallback = true,
-			timeout_ms = 500,
-		}
+		o.format_on_save = function(bufnr)
+			if vim.api.nvim_get_option_value('filetype', { buf = bufnr }) == 'lua' then
+				return nil
+			end
+
+			return { lsp_fallback = true, timeout_ms = 500 }
+		end
 
 		o.formatters = {
 			yq = { args = { '-y' } },
