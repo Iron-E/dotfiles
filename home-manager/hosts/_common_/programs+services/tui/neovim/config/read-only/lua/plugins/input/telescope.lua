@@ -20,7 +20,7 @@ return {
 					vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gI', '<Cmd>Telescope lsp_implementations<CR>', {})
 					vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<Cmd>Telescope lsp_references<CR>', {})
 					vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gw', '<Cmd>Telescope lsp_document_symbols<CR>', {})
-					vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gW', '<Cmd>Telescope lsp_workspace_symbols<CR>', {})
+					vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gW', '<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>', {})
 					vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<Cmd>Telescope lsp_type_definitions<CR>', {})
 				end,
 				group = 'config',
@@ -78,6 +78,7 @@ return {
 				builtin = { include_extensions = true },
 				lsp_definitions = cursor_theme,
 				lsp_document_symbols = cursor_theme_no_jump,
+				lsp_dynamic_workspace_symbols = cursor_theme_no_jump,
 				lsp_implementations = cursor_theme,
 				lsp_references = cursor_theme_no_jump,
 				lsp_workspace_symbols = cursor_theme_no_jump,
