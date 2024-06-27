@@ -1,18 +1,19 @@
-return { {
-	'stevearc/conform.nvim',
+return {{ 'stevearc/conform.nvim',
 	cmd = 'ConformInfo',
 	event = 'BufWritePre',
-	keys = { {
+	keys = {{
 		'gq',
 		function() require('conform').format { async = true, lsp_fallback = true } end,
 		mode = '',
 		desc = 'Format buffer',
-	} },
+	}},
 	opts = function(_, o)
 		o.formatters_by_ft = {
+			css = { 'prettierd' },
 			go = { 'gci', 'gofmt' },
 			javascript = { 'prettierd' },
 			javascriptreact = { 'prettierd', 'rustywind' },
+			json = { 'prettierd' },
 			rust = { 'rustfmt' },
 			sh = { 'shellcheck' },
 			terraform = { 'terraform_fmt' },
@@ -39,4 +40,4 @@ return { {
 
 		o.log_level = vim.log.levels.OFF
 	end,
-} }
+}}
