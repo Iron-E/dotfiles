@@ -1,4 +1,30 @@
 {
+  "barbar-minimal": {
+    "body": [
+      "--[[ minimal.lua ]]",
+      "local lazy = vim.fn.stdpath('data') .. '/lazy/'",
+      "vim.opt.rtp:prepend {",
+      "  lazy .. 'barbar.nvim',",
+      "  lazy .. 'nvim-web-devicons',",
+      "}",
+      "",
+      "vim.g.barbar_auto_setup = false",
+      "require('barbar').setup {",
+      "  -- additional options",
+      "}",
+      "",
+      "-- additional code",
+      "",
+      "vim.api.nvim_create_autocmd('VimEnter', {",
+      "  callback = vim.schedule_wrap(function()",
+      "    -- additional post-startup code",
+      "    vim.cmd [[",
+      "    ]]",
+      "  end),",
+      "})"
+    ],
+    "prefix": "barbar-minimal"
+  },
   "lazy-module": {
     "body": [
       "return {{ '${1:name}/${2:repo}',",
