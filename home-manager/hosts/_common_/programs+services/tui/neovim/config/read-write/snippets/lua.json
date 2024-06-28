@@ -25,6 +25,10 @@
     ],
     "prefix": "barbar-minimal"
   },
+  "kv": {
+    "body": "$1 = $1,",
+    "prefix": "kv"
+  },
   "lazy-module": {
     "body": [
       "return {{ '${1:name}/${2:repo}',",
@@ -59,5 +63,14 @@
       "$0"
     ],
     "prefix": "minimal-barbar"
+  },
+  "slog": {
+    "body": [
+      "vim.notify(",
+      "  vim.inspect({msg = '${1:message}', $0}),",
+      "  vim.log.levels.${2:LEVEL}",
+      ")"
+    ],
+    "prefix": "slog"
   }
 }
