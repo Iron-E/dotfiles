@@ -37,7 +37,14 @@ end
  / /|_/ / (_-</ __/
 /_/  /_/_/___/\__/
 --]]
+
+-- Open link under cursor
+vim.api.nvim_set_keymap('', 'gX', 'gx', noremap)
+
+-- Highlighting inspect
 vim.api.nvim_set_keymap('n', '<F10>', '<Cmd>Inspect<CR>', no_opts)
+
+-- Syntax tree inspect
 vim.api.nvim_set_keymap('n', '<F11>', '', {callback = function()
 	local winnr = vim.api.nvim_get_current_win()
 	local cursor = vim.api.nvim_win_get_cursor(winnr)
