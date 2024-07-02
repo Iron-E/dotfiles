@@ -1,4 +1,158 @@
 {
+  "/*": {
+    "body": [
+      "/*",
+      " * $0",
+      " */"
+    ],
+    "prefix": "/*"
+  },
+  "/**": {
+    "body": [
+      "/**",
+      " * $0",
+      " */"
+    ],
+    "prefix": "/**"
+  },
+  "/**/": {
+    "body": "/** $0 */",
+    "prefix": "/**/"
+  },
+  "/*/": {
+    "body": "/* $0 */",
+    "prefix": "/*/"
+  },
+  "@defaultValue": {
+    "body": [
+      "",
+      "* @defaultValue `${1:value}`$0"
+    ],
+    "prefix": "@defaultValue"
+  },
+  "@deprecated": {
+    "body": [
+      "",
+      "* @deprecated ${1:guidance}$0"
+    ],
+    "prefix": "@deprecated"
+  },
+  "@eventProperty": {
+    "body": [
+      "",
+      "* @eventProperty"
+    ],
+    "prefix": "@eventProperty"
+  },
+  "@example": {
+    "body": [
+      "",
+      "*",
+      "* @example",
+      "* ```${1:lang}",
+      "* ${2:body}",
+      "* ```$0"
+    ],
+    "prefix": "@example"
+  },
+  "@internal": {
+    "body": [
+      "",
+      "* @internal"
+    ],
+    "prefix": "@internal"
+  },
+  "@link": {
+    "body": "{@link ${1:$TM_SELECTED_TEXT}}$0",
+    "prefix": "@link"
+  },
+  "@linkas": {
+    "body": "{@link ${1:$TM_SELECTED_TEXT} | ${2:desc}}$0",
+    "prefix": "@linkas"
+  },
+  "@override": {
+    "body": [
+      "",
+      "* @override"
+    ],
+    "prefix": "@override"
+  },
+  "@packageDocumentation": {
+    "body": [
+      "",
+      "* @packageDocumentation"
+    ],
+    "prefix": "@packageDocumentation"
+  },
+  "@param": {
+    "body": [
+      "",
+      "* @param ${1:name} - ${2:desc}$0"
+    ],
+    "prefix": "@param"
+  },
+  "@privateRemarks": {
+    "body": [
+      "",
+      "*",
+      "* @privateRemarks",
+      "* ${1:desc}$0"
+    ],
+    "prefix": "@privateRemarks"
+  },
+  "@remarks": {
+    "body": [
+      "",
+      "*",
+      "* @remarks",
+      "* ${1:desc}$0"
+    ],
+    "prefix": "@remarks"
+  },
+  "@returns": {
+    "body": [
+      "",
+      "* @returns ${1:desc}$0"
+    ],
+    "prefix": "@returns"
+  },
+  "@sealed": {
+    "body": [
+      "",
+      "* @sealed"
+    ],
+    "prefix": "@sealed"
+  },
+  "@see": {
+    "body": [
+      "",
+      "* @see $0"
+    ],
+    "prefix": "@see"
+  },
+  "@throws": {
+    "body": [
+      "",
+      "*",
+      "* @throws {@link ${1:type}}",
+      "* ${2:desc}$0"
+    ],
+    "prefix": "@throws"
+  },
+  "@typeParam": {
+    "body": [
+      "",
+      "* @typeParam <${1:T}> - ${2:desc}$0"
+    ],
+    "prefix": "@typeParam"
+  },
+  "@virtual": {
+    "body": [
+      "",
+      "* @virtual"
+    ],
+    "prefix": "@virtual"
+  },
   "c": {
     "body": [
       "",
@@ -18,18 +172,6 @@
     ],
     "prefix": "describe"
   },
-  "doc": {
-    "body": "/** $0 */",
-    "prefix": "doc"
-  },
-  "docc": {
-    "body": [
-      "/**",
-      " * $0",
-      " */"
-    ],
-    "prefix": "docc"
-  },
   "doctest": {
     "body": [
       "",
@@ -40,17 +182,6 @@
       " * ```"
     ],
     "prefix": "doctest"
-  },
-  "example": {
-    "body": [
-      "",
-      "",
-      " * @example",
-      " * ```typescript",
-      " * $0",
-      " * ```"
-    ],
-    "prefix": "example"
   },
   "interpolate": {
     "body": "${${1:$TM_SELECTED_TEXT}}$0",
@@ -64,9 +195,27 @@
     ],
     "prefix": "it"
   },
-  "link": {
-    "body": "{@link ${1:$TM_SELECTED_TEXT}}$0",
-    "prefix": "link"
+  "method": {
+    "body": [
+      "/**",
+      " * ${4:docs}",
+      " */",
+      "private ${1:name}($2)${3:: Type} {",
+      "\t${5:// TODO: implementation}",
+      "}$0"
+    ],
+    "prefix": "method"
+  },
+  "pmethod": {
+    "body": [
+      "/**",
+      " * ${4:docs}",
+      " */",
+      "public ${1:name}($2)${3:: Type} {",
+      "\t${5:// TODO: implementation}",
+      "}$0"
+    ],
+    "prefix": "pmethod"
   },
   "substitute": {
     "body": "${${1:$TM_SELECTED_TEXT}}",
