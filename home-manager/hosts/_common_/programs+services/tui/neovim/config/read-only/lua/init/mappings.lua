@@ -45,7 +45,7 @@ vim.api.nvim_set_keymap('', 'gX', 'gx', noremap)
 vim.api.nvim_set_keymap('n', '<F10>', '<Cmd>Inspect<CR>', no_opts)
 
 -- Syntax tree inspect
-vim.api.nvim_set_keymap('n', '<F11>', '', {callback = function()
+vim.api.nvim_set_keymap('n', '<F11>', '', { callback = function()
 	local winnr = vim.api.nvim_get_current_win()
 	local cursor = vim.api.nvim_win_get_cursor(winnr)
 
@@ -55,7 +55,7 @@ vim.api.nvim_set_keymap('n', '<F11>', '', {callback = function()
 	vim.api.nvim_set_current_win(winnr)
 	vim.api.nvim_win_set_cursor(winnr, cursor)
 	vim.api.nvim_set_current_win(inspect_winnr)
-end})
+end })
 
 -- Make `p` in visual mode not overwrite the unnamed register by default. `P` now does that.
 vim.api.nvim_set_keymap('x', 'p', 'P', noremap)
@@ -120,10 +120,10 @@ vim.api.nvim_set_keymap('n', '<Leader>m', '', {
 |___/_/_/_/_(_)_,_/_/\_,_/\_, /_//_/\___/___/\__/_/\__/
                          /___/
 --]]
-vim.api.nvim_set_keymap('n', '[d', '', {callback = vim.diagnostic.goto_prev})
-vim.api.nvim_set_keymap('n', ']d', '', {callback = vim.diagnostic.goto_next})
-vim.api.nvim_set_keymap('n', 'gC', '', {callback = function() vim.diagnostic.reset(nil, 0) end})
-vim.api.nvim_set_keymap('n', 'gK', '', {callback = vim.diagnostic.open_float})
+vim.api.nvim_set_keymap('n', '[d', '', { callback = vim.diagnostic.goto_prev })
+vim.api.nvim_set_keymap('n', ']d', '', { callback = vim.diagnostic.goto_next })
+vim.api.nvim_set_keymap('n', 'gC', '', { callback = function() vim.diagnostic.reset(nil, 0) end })
+vim.api.nvim_set_keymap('n', 'gK', '', { callback = vim.diagnostic.open_float })
 
 --[[
        _         __

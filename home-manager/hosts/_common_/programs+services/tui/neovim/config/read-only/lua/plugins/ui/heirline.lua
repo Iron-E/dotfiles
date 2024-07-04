@@ -48,15 +48,15 @@ return {{ 'rebelot/heirline.nvim',
 
 		do
 			local command = 'doautocmd User BufEnterOrGitSignsUpdate'
-			vim.api.nvim_create_autocmd('BufEnter', {command = command, group = 'config'})
-			vim.api.nvim_create_autocmd('User', {command = command, group = 'config', pattern = 'GitSignsUpdate'})
+			vim.api.nvim_create_autocmd('BufEnter', { command = command, group = 'config' })
+			vim.api.nvim_create_autocmd('User', { command = command, group = 'config', pattern = 'GitSignsUpdate' })
 		end
 
 		--- Set buffer variables for file icon and color.
 		--- @return {color: string, icon: string}
 		local function buf_init_devicons()
-			local icon, color = devicons.get_icon(vim.fn.expand '%:t', vim.fn.expand '%:e', {default = true})
-			local dev_icons = {color = vim.api.nvim_get_hl(0, {link = false, name = color}).fg, icon = icon}
+			local icon, color = devicons.get_icon(vim.fn.expand '%:t', vim.fn.expand '%:e', { default = true })
+			local dev_icons = { color = vim.api.nvim_get_hl(0, { link = false, name = color }).fg, icon = icon }
 
 			vim.b.dev_icons = dev_icons
 			return dev_icons
@@ -73,20 +73,20 @@ return {{ 'rebelot/heirline.nvim',
 		--[[/* HEIRLINE CONFIG */]]
 
 		--- Components separated by this component will be padded with an equal number of spaces.
-		local ALIGN = {provider = '%='}
+		local ALIGN = { provider = '%=' }
 
 		--- A left separator.
-		local LEFT_SEPARATOR = {provider = ''}
+		local LEFT_SEPARATOR = { provider = '' }
 
 		--- A right separator.
-		local RIGHT_SEPARATOR = {provider = ''}
+		local RIGHT_SEPARATOR = { provider = '' }
 
 		o.statusline =
 		{
 			-- LEFT {{{
 			{ -- ViMode {{{
 				hl = function(self)
-					vim.api.nvim_set_hl(0, self.group, {bg = SIDEBAR, fg = self.color, bold = true})
+					vim.api.nvim_set_hl(0, self.group, { bg = SIDEBAR, fg = self.color, bold = true })
 					return self.group
 				end,
 				init = function(self)
@@ -106,51 +106,51 @@ return {{ 'rebelot/heirline.nvim',
 					group = 'HeirlineViMode',
 					modes =
 					{
-						['c']  = {'COMMAND-LINE', RED},
-						['ce'] = {'NORMAL EX', RED_DARK},
-						['cv'] = {'EX', RED_LIGHT},
+						['c']  = { 'COMMAND-LINE', RED },
+						['ce'] = { 'NORMAL EX', RED_DARK },
+						['cv'] = { 'EX', RED_LIGHT },
 
-						['i'] = {'INSERT', GREEN},
+						['i'] = { 'INSERT', GREEN },
 
-						['ic']  = {'INS-COMPLETE', GREEN_LIGHT},
-						['ix']  = {'INS-COMPLETE', GREEN_LIGHT},
-						['Rc']  = {'REP-COMPLETE', GREEN_LIGHT},
-						['Rvc'] = {'VIRT-REP-COMPLETE', GREEN_LIGHT},
-						['Rvx'] = {'VIRT-REP-COMPLETE', GREEN_LIGHT},
-						['Rx']  = {'REP-COMPLETE', GREEN_LIGHT},
+						['ic']  = { 'INS-COMPLETE', GREEN_LIGHT },
+						['ix']  = { 'INS-COMPLETE', GREEN_LIGHT },
+						['Rc']  = { 'REP-COMPLETE', GREEN_LIGHT },
+						['Rvc'] = { 'VIRT-REP-COMPLETE', GREEN_LIGHT },
+						['Rvx'] = { 'VIRT-REP-COMPLETE', GREEN_LIGHT },
+						['Rx']  = { 'REP-COMPLETE', GREEN_LIGHT },
 
-						['n']   = {'NORMAL', PURPLE_LIGHT},
-						['niI'] = {'INS-NORMAL', PURPLE_LIGHT},
-						['niR'] = {'REP-NORMAL', PURPLE_LIGHT},
-						['niV'] = {'VIRT-REP-NORMAL', PURPLE_LIGHT},
-						['nt']  = {'TERM-NORMAL', PURPLE_LIGHT},
-						['ntT'] = {'TERM-NORMAL', PURPLE_LIGHT},
+						['n']   = { 'NORMAL', PURPLE_LIGHT },
+						['niI'] = { 'INS-NORMAL', PURPLE_LIGHT },
+						['niR'] = { 'REP-NORMAL', PURPLE_LIGHT },
+						['niV'] = { 'VIRT-REP-NORMAL', PURPLE_LIGHT },
+						['nt']  = { 'TERM-NORMAL', PURPLE_LIGHT },
+						['ntT'] = { 'TERM-NORMAL', PURPLE_LIGHT },
 
-						['no']   = {'OPERATOR-PENDING', PURPLE},
-						['nov']  = {'CHAR OPERATOR-PENDING', PURPLE},
-						['noV']  = {'LINE OPERATOR-PENDING', PURPLE},
-						['no'] = {'BLOCK OPERATOR-PENDING', PURPLE},
+						['no']   = { 'OPERATOR-PENDING', PURPLE },
+						['nov']  = { 'CHAR OPERATOR-PENDING', PURPLE },
+						['noV']  = { 'LINE OPERATOR-PENDING', PURPLE },
+						['no'] = { 'BLOCK OPERATOR-PENDING', PURPLE },
 
-						['R']  = {'REPLACE', PINK},
-						['Rv'] = {'VIRT-REPLACE', PINK_LIGHT},
+						['R']  = { 'REPLACE', PINK },
+						['Rv'] = { 'VIRT-REPLACE', PINK_LIGHT },
 
-						['r']   = {'HIT-ENTER', CYAN},
-						['rm']  = {'--MORE', CYAN},
-						['r?']  = {':CONFIRM', CYAN},
+						['r']   = { 'HIT-ENTER', CYAN },
+						['rm']  = { '--MORE', CYAN },
+						['r?']  = { ':CONFIRM', CYAN },
 
-						['s']   = {'SELECT', TURQOISE},
-						['S']   = {'SELECT LINE', TURQOISE},
-						['']  = {'SELECT', TURQOISE},
+						['s']   = { 'SELECT', TURQOISE },
+						['S']   = { 'SELECT LINE', TURQOISE },
+						['']  = { 'SELECT', TURQOISE },
 
-						['v']   = {'VISUAL', BLUE},
-						['vs']  = {'SEL-VISUAL', BLUE},
-						['V']   = {'VISUAL LINE', BLUE},
-						['Vs']  = {'SEL-VISUAL LINE', BLUE},
-						['']  = {'VISUAL BLOCK', BLUE},
-						['s'] = {'VISUAL BLOCK', BLUE},
+						['v']   = { 'VISUAL', BLUE },
+						['vs']  = { 'SEL-VISUAL', BLUE },
+						['V']   = { 'VISUAL LINE', BLUE },
+						['Vs']  = { 'SEL-VISUAL LINE', BLUE },
+						['']  = { 'VISUAL BLOCK', BLUE },
+						['s'] = { 'VISUAL BLOCK', BLUE },
 
-						['t']   = {'TERMINAL', ORANGE},
-						['!']   = {'SHELL', YELLOW},
+						['t']   = { 'TERMINAL', ORANGE },
+						['!']   = { 'SHELL', YELLOW },
 
 						-- libmodal
 						['BUFFERS'] = TEAL,
@@ -158,17 +158,17 @@ return {{ 'rebelot/heirline.nvim',
 						['TABS']    = TAN,
 					}
 				}, -- }}}
-				update = {'ModeChanged', callback = redrawstatus, pattern = '*:*'},
+				update = { 'ModeChanged', callback = redrawstatus, pattern = '*:*' },
 			}, -- }}}
 
 			{ -- File Icon {{{
-				hl = function(self) return {bg = SIDEBAR, fg = self.file.color} end,
+				hl = function(self) return { bg = SIDEBAR, fg = self.file.color } end,
 				init = function(self) self.file = filetype_info() end,
 				update = 'BufEnter',
 
 				LEFT_SEPARATOR,
 				{
-					hl = function(self) return {bg = self.file.color, fg = SIDEBAR} end,
+					hl = function(self) return { bg = self.file.color, fg = SIDEBAR } end,
 					provider = function(self) return ' ' .. self.file.icon .. ' %Y ' end,
 				},
 
@@ -181,9 +181,9 @@ return {{ 'rebelot/heirline.nvim',
 				-- File name
 				{provider = ' %t '},
 				{ -- Readonly {{{
-					condition = function() return vim.api.nvim_get_option_value('readonly', {buf = 0}) end,
+					condition = function() return vim.api.nvim_get_option_value('readonly', { buf = 0 }) end,
 					provider = ' ',
-					update = {'OptionSet', pattern = 'readonly'},
+					update = { 'OptionSet', pattern = 'readonly' },
 				}, -- }}}
 
 				{ -- Modified {{{
@@ -194,7 +194,7 @@ return {{ 'rebelot/heirline.nvim',
 
 				{ -- File size {{{
 					init = function(self) self.stat = vim.loop.fs_stat(vim.api.nvim_buf_get_name(0)) end,
-					update = {'BufEnter', 'BufWritePost'},
+					update = { 'BufEnter', 'BufWritePost' },
 
 					{
 						condition = function(self) return self.stat end,
@@ -209,42 +209,42 @@ return {{ 'rebelot/heirline.nvim',
 
 							return ('%.2f%sb '):format(size, self.units[i])
 						end,
-						static = {conversion = 1024, units = {'', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y'}},
+						static = { conversion = 1024, units = { '', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y' } },
 					},
 				}, -- }}}
 
-				{hl = {fg = MIDBAR}, LEFT_SEPARATOR},
+				{ hl = { fg = MIDBAR }, LEFT_SEPARATOR },
 			}, -- }}}
 			-- }}}
 
 			-- MIDDLE {{{
-			{hl = {bg = MIDBAR}, ALIGN},
+			{ hl = { bg = MIDBAR }, ALIGN },
 
 			{ -- Diagnostics {{{
-				hl = {bg = MIDBAR, fg = SIDEBAR},
+				hl = { bg = MIDBAR, fg = SIDEBAR },
 				init = function(self)
 					local diagnostics = vim.diagnostic.get(0) --- @type lsp.Diagnostic
 
 					if #diagnostics < 1 then
 						self.diagnostics = nil
 					else
-						self.diagnostics = {0, 0, 0, 0}
+						self.diagnostics = { 0, 0, 0, 0 }
 						for _, diagnostic in ipairs(diagnostics) do
 							self.diagnostics[diagnostic.severity] = self.diagnostics[diagnostic.severity] + 1
 						end
 					end
 				end,
-				update = {'BufEnter', 'DiagnosticChanged'},
+				update = { 'BufEnter', 'DiagnosticChanged' },
 
 				{
 					condition = function(self) return self.diagnostics end,
 
 					LEFT_SEPARATOR,
 					{
-						hl = {bg = SIDEBAR},
+						hl = { bg = SIDEBAR },
 						static =
 						{ -- {{{
-							icons = {' ', ' ', ' ', ' '},
+							icons = { ' ', ' ', ' ', ' ' },
 
 							--- @param severity 1|2|3|4
 							--- @return nil|string
@@ -264,10 +264,10 @@ return {{ 'rebelot/heirline.nvim',
 							end,
 						}, -- }}}
 
-						{hl = {fg = RED}, provider = function(self) return self:provide(vim.diagnostic.severity.ERROR) end},
-						{hl = {fg = ORANGE}, provider = function(self) return self:provide(vim.diagnostic.severity.WARN) end},
-						{hl = {fg = PINK_LIGHT}, provider = function(self) return self:provide(vim.diagnostic.severity.INFO) end},
-						{hl = {fg = MAGENTA}, provider = function(self) return self:provide(vim.diagnostic.severity.HINT) end},
+						{ hl = { fg = RED }, provider = function(self) return self:provide(vim.diagnostic.severity.ERROR) end },
+						{ hl = { fg = ORANGE }, provider = function(self) return self:provide(vim.diagnostic.severity.WARN) end },
+						{ hl = { fg = PINK_LIGHT }, provider = function(self) return self:provide(vim.diagnostic.severity.INFO) end },
+						{ hl = { fg = MAGENTA }, provider = function(self) return self:provide(vim.diagnostic.severity.HINT) end },
 					},
 
 					RIGHT_SEPARATOR,
@@ -276,14 +276,14 @@ return {{ 'rebelot/heirline.nvim',
 			-- }}}
 
 			-- RIGHT {{{
-			{hl = {bg = MIDBAR}, ALIGN},
+			{ hl = { bg = MIDBAR }, ALIGN },
 
 			{ -- Git {{{
 				init = function(self) self.status = vim.b.gitsigns_status_dict end,
-				update = {'User', callback = redrawstatus, pattern = 'BufEnterOrGitSignsUpdate'},
+				update = { 'User', callback = redrawstatus, pattern = 'BufEnterOrGitSignsUpdate' },
 
 				{ -- Diff {{{
-					hl = {bg = MIDBAR},
+					hl = { bg = MIDBAR },
 
 					{
 						condition = function(self) return self.status end,
@@ -298,36 +298,36 @@ return {{ 'rebelot/heirline.nvim',
 							end,
 						},
 
-						{hl = {fg = GREEN}, provider = function(self) return self:provide('+', 'added') end},
-						{hl = {fg = ORANGE_LIGHT}, provider = function(self) return self:provide('~', 'changed') end},
-						{hl = {fg = RED_LIGHT}, provider = function(self) return self:provide('-', 'removed') end},
-						{provider = ' '},
+						{ hl = { fg = GREEN }, provider = function(self) return self:provide('+', 'added') end },
+						{ hl = { fg = ORANGE_LIGHT }, provider = function(self) return self:provide('~', 'changed') end },
+						{ hl = { fg = RED_LIGHT }, provider = function(self) return self:provide('-', 'removed') end },
+						{ provider = ' ' },
 					},
 				}, -- }}}
 
 				{ -- Branch {{{
-					hl = {bg = GREEN_DARK},
+					hl = { bg = GREEN_DARK },
 
-					{hl = {fg = MIDBAR}, RIGHT_SEPARATOR},
-					{provider = ' '},
+					{ hl = { fg = MIDBAR }, RIGHT_SEPARATOR },
+					{ provider = ' ' },
 					{
 						condition = function(self) return self.status end,
-						hl = {fg = SIDEBAR, bold = true},
+						hl = { fg = SIDEBAR, bold = true },
 						provider = function(self) return ' ' .. self.status.head .. ' ' end,
 					},
 
-					{hl = {fg = SIDEBAR}, LEFT_SEPARATOR},
+					{ hl = { fg = SIDEBAR }, LEFT_SEPARATOR },
 				}, -- }}}
 			}, -- }}}
 
 			-- Column Number
-			{hl = {fg = TEXT, bg = SIDEBAR}, provider = '  %v '},
+			{ hl = { fg = TEXT, bg = SIDEBAR }, provider = '  %v ' },
 
 			{ -- Line Percentage {{{
-				hl = {bg = MAGENTA_DARK},
+				hl = { bg = MAGENTA_DARK },
 
-				{hl = {fg = SIDEBAR}, RIGHT_SEPARATOR},
-				{hl = {fg = WHITE}, provider = ' %p%% '},
+				{ hl = { fg = SIDEBAR }, RIGHT_SEPARATOR },
+				{ hl = { fg = WHITE }, provider = ' %p%% ' },
 			}, -- }}}
 
 			-- }}}
