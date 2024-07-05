@@ -78,8 +78,9 @@ vim.api.nvim_set_keymap('n', '<Leader><C-v>', '', {callback = toggle 'paste'})
 vim.api.nvim_set_keymap('', '<Leader>rk', 'kJi<C-m><Esc>', noremap)
 
 -- Copy to clipboard
-vim.keymap.set({'x', 'n'}, '<Leader>y', '"+y')
+vim.api.nvim_set_keymap('n', '<Leader>%', '<Cmd>%y+<CR>', noremap)
 vim.api.nvim_set_keymap('n', '<Leader>Y', '"+y$', noremap)
+vim.keymap.set({ 'x', 'n' }, '<Leader>y', '"+y')
 
 -- Paste from clipboard
 vim.api.nvim_set_keymap('n', '<Leader>p', 'a<C-r>+<Esc>', noremap)
