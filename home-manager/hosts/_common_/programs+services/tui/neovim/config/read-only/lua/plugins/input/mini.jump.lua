@@ -1,7 +1,7 @@
 --- mode for mapping
 local nvo = { 'n', 'v', 'o' }
 
-return {{ 'echasnovski/mini.jump', opts = {
+return {{ 'echasnovski/mini.jump',
 	keys = {
 		{ 'F', mode = nvo, desc = 'jump backward' },
 		{ 'f', mode = nvo, desc = 'jump forward' },
@@ -24,4 +24,4 @@ return {{ 'echasnovski/mini.jump', opts = {
 			group = 'config',
 		})
 	end,
-}}}
+}}

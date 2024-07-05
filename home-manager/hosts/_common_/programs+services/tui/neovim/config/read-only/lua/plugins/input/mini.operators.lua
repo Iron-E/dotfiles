@@ -1,7 +1,7 @@
 --- mode for mapping
 local nx = { 'n', 'x' }
 
-return {{ 'echasnovski/mini.operators', opts = {
+return {{ 'echasnovski/mini.operators',
 	keys = {
 		{ 'g=', mode = nx, desc = 'Evalute motion' },
 		{ 'g==', mode = nx, desc = 'Evalute line' },
@@ -21,4 +21,4 @@ return {{ 'echasnovski/mini.operators', opts = {
 		o.replace = { prefix = 'gp' }
 		o.sort = { prefix = 'go' }
 	end,
-}}}
+}}
