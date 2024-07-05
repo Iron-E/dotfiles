@@ -17,7 +17,7 @@ return {{ 'stevearc/conform.nvim',
 			rust = { 'rustfmt' },
 			sh = { 'shellcheck' },
 			terraform = { 'terraform_fmt' },
-			yaml = { 'yamlfmt' },
+			yaml = { 'prettierd' },
 		}
 
 		o.formatters_by_ft.less = o.formatters_by_ft.css
