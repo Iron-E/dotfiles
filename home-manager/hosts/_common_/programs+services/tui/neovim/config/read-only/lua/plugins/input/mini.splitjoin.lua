@@ -1,5 +1,4 @@
 return {{ 'echasnovski/mini.splitjoin',
-	keys = {{ 'gS', mode = nx, desc = 'Split/join line' }},
 	config = function()
 		local split_join = require 'mini.splitjoin'
 		local gen_hook = split_join.gen_hook
