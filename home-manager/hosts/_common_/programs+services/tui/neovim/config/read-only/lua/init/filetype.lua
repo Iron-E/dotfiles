@@ -23,5 +23,6 @@ vim.filetype.add {
 	extension = {
 		conf = 'dosini',
 		tf = 'terraform',
+		tmpl = 'gotmpl',
 	},
 }
