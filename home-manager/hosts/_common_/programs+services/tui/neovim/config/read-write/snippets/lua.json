@@ -67,8 +67,8 @@
   "slog": {
     "body": [
       "vim.notify(",
-      "  vim.inspect({msg = '${1:message}', $0}),",
-      "  vim.log.levels.${2:LEVEL}",
+      "\tvim.inspect({msg = '${1:message}', $0}),",
+      "\tvim.log.levels.${2:LEVEL}",
       ")"
     ],
     "prefix": "slog"
