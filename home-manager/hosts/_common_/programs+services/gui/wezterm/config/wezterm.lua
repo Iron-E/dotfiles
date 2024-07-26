@@ -1,4 +1,5 @@
 local ON_UNIX = package.config:sub(1, 1) == '/'
+local HOME = ON_UNIX and os.getenv('HOME') or os.getenv('userprofile')
 
 --- @class config
 local config = wezterm.config_builder and wezterm.config_builder() or {}
@@ -6,14 +7,13 @@ local config = wezterm.config_builder and wezterm.config_builder() or {}
 --[[ appearance ]]
 config.color_scheme = 'highlite'
 
-config.font = wezterm.font_with_fallback {'JetBrains Mono', {family = 'Symbols Nerd Font Mono', scale = 0.8}}
-config.font_rules =
-{
-	{intensity = 'Bold', italic = false, font = wezterm.font('JetBrains Mono', {weight = 'ExtraBold'})},
-	{intensity = 'Bold', italic = true, font = wezterm.font('JetBrains Mono', {style = 'Italic', weight = 'ExtraBold'})},
-}
 config.font_size = 14
-config.harfbuzz_features = {'zero'}
+config.harfbuzz_features = { 'zero' }
+config.font = wezterm.font_with_fallback { 'JetBrains Mono', { family = 'Symbols Nerd Font Mono', scale = 0.8 } }
+config.font_rules = {
+	{intensity = 'Bold', italic = false, font = wezterm.font('JetBrains Mono', { weight = 'ExtraBold' })},
+	{intensity = 'Bold', italic = true, font = wezterm.font('JetBrains Mono', { style = 'Italic', weight = 'ExtraBold' })},
+}
 
 config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false -- TODO: set to `true`; see wez/wezterm#2615
@@ -21,6 +21,12 @@ config.use_fancy_tab_bar = false -- TODO: set to `true`; see wez/wezterm#2615
 config.window_background_opacity = 1.0
 config.window_padding = {bottom = 0, left = 0, right = 0, top = 0}
 config.xcursor_theme = 'Bibata-Modern-Classic'
+
+config.set_environment_variables = {
+	TERMINFO_DIRS = HOME .. '/.nix-profile/share/terminfo',
+	WSLENV = 'TERMINFO_DIRS',
+}
+config.term = 'wezterm'
 
 --[[ clicks ]]
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
@@ -35,8 +41,7 @@ do
 	--- punctuation that may surround a github shortcut
 	local punctuation = '[\'"`<\\[\\(\\{\\}\\)\\]>]?'
 
-	table.insert(config.hyperlink_rules,
-	{
+	table.insert(config.hyperlink_rules, {
 		format = github_link .. '/issues/$3',
 		regex = punctuation .. github_shortcut .. [[#(\d+)]] .. punctuation
 	})
@@ -49,8 +54,7 @@ do
 	local close_current_tab = action.CloseCurrentTab { confirm = true }
 
 	--[[ keybindings ]]
-	config.keys =
-	{
+	config.keys = {
 		{ mods = 'ALT', key = 'Space', action = action.ShowLauncherArgs { flags = 'LAUNCH_MENU_ITEMS' } },
 
 		{ mods = 'CTRL|ALT', key = 'h', action = action.ActivatePaneDirection 'Left' },
@@ -72,10 +76,8 @@ do
 	end
 
 	--[[ modes ]]
-	config.key_tables =
-	{
-		split =
-		{
+	config.key_tables = {
+		split = {
 			{ key = 'h', action = action.ActivatePaneDirection 'Left' },
 			{ key = 'j', action = action.ActivatePaneDirection 'Down' },
 			{ key = 'k', action = action.ActivatePaneDirection 'Up' },
@@ -109,8 +111,8 @@ do
 end
 
 do
-	local config_dir = (ON_UNIX and os.getenv('HOME') or os.getenv('userprofile')) .. '/Documents/nix/home'
-	local nvim = { 'env', 'TERM=wezterm', 'nvim', '-c', 'Telescope find_files' }
+	local config_dir = HOME .. '/Documents/nix/home'
+	local nvim = {  'nvim', '-c', 'Telescope find_files' }
 
 	--- @param program string
 	--- @param path string
@@ -125,8 +127,7 @@ do
 	end
 
 	--[[ misc. features ]]
-	config.launch_menu =
-	{
+	config.launch_menu = {
 		-- other options are `set_environment_variables`
 		edit_config('home-manager', '.'),
 		{ label = 'List Processes by CPU', args = { 'procs', '--sortd', 'cpu' } },

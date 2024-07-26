@@ -8,22 +8,9 @@ in {
 		neovim.enable = true;
 
 		git.extraConfig = {
-			core.editor =
-			let
-				env = (
-					lib.findFirst
-					(v: config.${v.scope}.${v.name}.enable)
-					{ cmd = ""; }
-					[{ cmd = "env TERM=wezterm "; name = "wezterm"; scope = "programs"; }]
-				).cmd;
-			in
-				"${env}${lib.getExe config.programs.neovim.finalPackage}"
-			;
-
+			core.editor = lib.getExe config.programs.neovim.finalPackage;
 			diff.tool = "nvim";
-
 			merge.tool = "nvimdiff";
-
 			mergetool =
 			let nvimdiff.layout = "LOCAL,REMOTE / MERGED";
 			in {
