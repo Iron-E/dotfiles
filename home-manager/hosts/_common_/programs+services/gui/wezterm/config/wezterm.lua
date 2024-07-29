@@ -19,11 +19,16 @@ config.window_background_opacity = 1.0
 config.window_padding = {bottom = 0, left = 0, right = 0, top = 0}
 config.xcursor_theme = 'Bibata-Modern-Classic'
 
-config.set_environment_variables = {
-	TERMINFO_DIRS = wezterm.home_dir .. '/.nix-profile/share/terminfo',
-	WSLENV = 'TERMINFO_DIRS',
-}
-config.term = 'wezterm'
+do -- determine if nix has wezterm files installed
+	local terminfo_dirs = wezterm.home_dir .. '/.nix-profile/share/terminfo'
+	if pcall(wezterm.read_dir, terminfo_dirs .. '/w') then -- terminfo may not be installed
+		config.set_environment_variables = {
+			TERMINFO_DIRS = terminfo_dirs,
+			WSLENV = 'TERMINFO_DIRS',
+		}
+		config.term = 'wezterm'
+	end
+end
 
 --[[ clicks ]]
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
