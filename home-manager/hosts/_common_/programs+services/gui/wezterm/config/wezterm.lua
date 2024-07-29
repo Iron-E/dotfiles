@@ -1,6 +1,3 @@
-local ON_UNIX = package.config:sub(1, 1) == '/'
-local HOME = ON_UNIX and os.getenv('HOME') or os.getenv('userprofile')
-
 --- @class config
 local config = wezterm.config_builder and wezterm.config_builder() or {}
 
@@ -23,7 +20,7 @@ config.window_padding = {bottom = 0, left = 0, right = 0, top = 0}
 config.xcursor_theme = 'Bibata-Modern-Classic'
 
 config.set_environment_variables = {
-	TERMINFO_DIRS = HOME .. '/.nix-profile/share/terminfo',
+	TERMINFO_DIRS = wezterm.home_dir .. '/.nix-profile/share/terminfo',
 	WSLENV = 'TERMINFO_DIRS',
 }
 config.term = 'wezterm'
@@ -111,7 +108,7 @@ do
 end
 
 do
-	local config_dir = HOME .. '/Documents/nix/home'
+	local config_dir = wezterm.home_dir .. '/Documents/nix/home'
 	local nvim = {  'nvim', '-c', 'Telescope find_files' }
 
 	--- @param program string
