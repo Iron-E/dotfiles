@@ -72,5 +72,9 @@
       ")"
     ],
     "prefix": "slog"
+  },
+  "try": {
+    "body": "local ok, result = pcall(${1:fn}, ${2:args})",
+    "prefix": "try"
   }
 }
