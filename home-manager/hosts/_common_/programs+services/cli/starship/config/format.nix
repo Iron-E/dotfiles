@@ -24,6 +24,7 @@ in {
 			"\${status}"
 			"\${cmd_duration}"
 			"\${jobs}"
+			"\${direnv}"
 			"\${nix_shell}"
 			"\${env_var.NNN}"
 			"\${env_var.VIM}"
