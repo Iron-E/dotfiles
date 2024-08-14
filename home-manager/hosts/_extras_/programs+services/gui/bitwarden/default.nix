@@ -5,5 +5,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [_1password];
+	home.packages = with pkgs; [ bitwarden-desktop ];
 }
