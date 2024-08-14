@@ -6,7 +6,8 @@ in {
 	imports = (util.fs.readSubmodules ./.) ++ [
 		../../_common_/programs+services/ctl/docker
 		../../_common_/programs+services/gui/wezterm
-		../../_extras_/programs+services/cli
+		../../_extras_/programs+services/cli/_1password
+		../../_extras_/programs+services/cli/aws
 		../../_extras_/programs+services/ctl
 	] ++ (util.fs.filterSubmodules ../../_common_ [
 		../../_common_/home
