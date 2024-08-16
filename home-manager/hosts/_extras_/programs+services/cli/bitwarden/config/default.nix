@@ -6,7 +6,7 @@ in {
 	imports = util.fs.readSubmodules ./.;
 
 	programs.rbw.settings = {
-		email = "<redacted>";
+		email = builtins.getEnv "BW_EMAIL";
 		pinentry = config.lib.pinentry.package;
 	};
 }

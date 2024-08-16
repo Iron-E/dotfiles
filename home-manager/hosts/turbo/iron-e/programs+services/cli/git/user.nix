@@ -5,7 +5,7 @@ in {
 	imports = [];
 
 	programs.git = {
-		userEmail = "<redacted>";
-		userName = "<redacted>";
+		userEmail = builtins.getEnv "GIT_USER_EMAIL";
+		userName = builtins.getEnv "GIT_USER_NAME";
 	};
 }
