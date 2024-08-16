@@ -5,6 +5,5 @@ let
 in {
 	imports = [];
 
-	# NOTE: requires services.dbus.packages = [ pkgs.gcr ];
-	services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
+	services.gpg-agent.pinentryPackage = config.lib.pinentry.package;
 }

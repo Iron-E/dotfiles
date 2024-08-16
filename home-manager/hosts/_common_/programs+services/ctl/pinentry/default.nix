@@ -5,5 +5,6 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	programs.rbw.enable = true;
+	# NOTE: requires services.dbus.packages = [ pkgs.gcr ];
+	lib.pinentry.package = pkgs.pinentry-gnome3;
 }

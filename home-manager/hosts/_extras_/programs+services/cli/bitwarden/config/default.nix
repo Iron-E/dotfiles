@@ -5,5 +5,8 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	programs.rbw.enable = true;
+	programs.rbw.settings = {
+		email = "<redacted>";
+		pinentry = config.lib.pinentry.package;
+	};
 }
