@@ -6,7 +6,7 @@ in {
 
 	gtk.font = {
 		name = "Ubuntu";
-		package = pkgs.ubuntu_font_family;
+		package = pkgs.ubuntu-sans;
 		size = 10;
 	};
 }
