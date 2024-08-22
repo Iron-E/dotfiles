@@ -2,5 +2,29 @@
   "checkbox": {
     "body": "- [ ] $0",
     "prefix": "checkbox"
+  },
+  "pull-request": {
+    "body": [
+      "# Summary",
+      "",
+      "${1:description}",
+      "",
+      "## Checklist",
+      "",
+      "- [ ] ${2:}",
+      "",
+      "## Items for Discussion",
+      "",
+      "- [ ] ${3:Is it foo}?",
+      "",
+      "## Related",
+      "",
+      "- #${4:1}",
+      "",
+      "## Future Work",
+      "",
+      "- ${5:n/a}"
+    ],
+    "prefix": "pull-request"
   }
 }
