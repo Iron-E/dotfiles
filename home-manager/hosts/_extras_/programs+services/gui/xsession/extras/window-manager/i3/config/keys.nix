@@ -10,6 +10,9 @@ let
 in {
 	imports = [];
 
+	# NOTE: required for i3-menu-desktop
+	home.packages = with pkgs; [dmenu];
+
 	xsession.windowManager.i3.config = {
 		modifier = mod;
 		keybindings =
