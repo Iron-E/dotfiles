@@ -1,6 +1,9 @@
 --- @class config
 local config = wezterm.config_builder and wezterm.config_builder() or {}
 
+-- FIXME: https://github.com/wez/wezterm/issues/5990
+config.front_end = "WebGpu"
+
 --[[ appearance ]]
 config.color_scheme = 'highlite'
 
