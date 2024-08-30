@@ -19,16 +19,17 @@ in {
 
 				if [ -n "$_flag_help" ] || [ -z "$argv[1]" ]
 					echo  "
-				Usage: switch.fish [OPTIONS] [USER]@[HOSTNAME] [-- [HOME-MANAGER OPTIONS]]
+				Usage: kubectl-proxy-endpoint [FLAGS] [PODS]
 
-				Example: switch.fish --dry-run iron-e@origin --show-trace
+				Example: kubectl-proxy-endpoint -n default -o localhost -p 8080
 
 				Options:
 				  -h, --help       Print help
 				  -n, --namespace  The pod's namespace
 				  -o, --host       The proxy host
 				  -p, --port       The pod's endpoint port
-				" return
+				"
+					return
 				end
 
 				if [ -n "$_flag_host" ]
