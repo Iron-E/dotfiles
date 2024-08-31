@@ -5,7 +5,39 @@ let
 in {
 	imports = [];
 
-	programs.fish.functions = lib.optionalAttrs (builtins.elem pkgs.kubectl config.home.packages) {
+	programs.fish.functions = {
+		ktl-new = {
+			description = "Generate boilerplate for a kubernetes resource";
+			wraps = "kubectl";
+			body = multiline /* fish */ ''
+				# the name of the file should also be in the third
+				set -l dest "$argv[3].yaml"
+				echo "---" >> $dest
+
+				set -l strip "  creationTimestamp"
+				kubectl $argv --dry-run=client --output=yaml | while read --line l
+					set -l stripped false # WARN: stripping is not recursive! it could be but I am lazy
+					for field in $strip
+						if string match -q -r "^$field:" $l
+							set stripped true
+							break
+						end
+					end
+
+					if $stripped
+						continue
+					end
+
+					# do not store status
+					if string match -q -r '^status:' $l
+						break
+					end
+
+					echo $l >> $dest
+				end
+			'';
+		};
+
 		kubectl-proxy-endpoint = {
 			description = "Get the url of a kubectl proxy endpoint";
 			wraps = "kubectl get pods";
