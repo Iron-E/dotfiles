@@ -30,14 +30,14 @@ return {{ 'echasnovski/mini.files',
 			local go_in_opts = { close_on_file = close }
 			local split_opts = { mods = { split = 'belowright', vertical = vertical } }
 			return function()
-				local winnr = MiniFiles.get_target_window()
-				if winnr == nil then
+				local state = MiniFiles.get_explorer_state() --- @type Explorer?
+				if state == nil then
 					return vim.notify('Attempted to open file without mini.files open', vim.log.levels.WARN)
 				end
 
 				local entry = MiniFiles.get_fs_entry() --- @type fs_entry|nil
 				if (entry and entry.fs_type == 'file') then
-					vim.api.nvim_win_call(winnr, function()
+					vim.api.nvim_win_call(state.target_window, function()
 						vim.cmd.split(split_opts)
 						MiniFiles.set_target_window(vim.api.nvim_get_current_win())
 					end)
