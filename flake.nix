@@ -25,7 +25,7 @@
 
 		i3blocks-contrib = { flake = false; url = "github:vivien/i3blocks-contrib"; };
 		i3switch = { flake = false; url = "github:lokeshlkr/i3switch"; };
-		yazi-relative-motions = { flake = false; url = "github:dedukun/relative-motions.yazi?rev=a5465c042b9fdffce1096dd553107ab9fc28f6d9"; };
+		yazi-relative-motions = { flake = false; url = "github:dedukun/relative-motions.yazi"; };
 	};
 
 	outputs = inputs @ { self, nixpkgs, home-manager, ... }:
