@@ -202,7 +202,7 @@ return {{ 'neovim/nvim-lspconfig',
 			filetypes = { 'terraform', 'terraform-vars', 'tf' },
 		})
 
-		setup('tsserver', {
+		setup('ts_ls', {
 			init_options =
 			{
 				preferences =
