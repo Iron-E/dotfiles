@@ -55,6 +55,6 @@ in {
 		""
 		(generator attrs)
 		""
-		"! vim: ft\=xmodmap"
+		("! vim" + ": ft\=xmodmap") # NOTE: must split up string or Vim uses it for THIS file
 	];
 }
