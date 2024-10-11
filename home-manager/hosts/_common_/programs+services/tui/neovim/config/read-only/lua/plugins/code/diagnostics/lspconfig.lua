@@ -55,6 +55,7 @@ return {{ 'neovim/nvim-lspconfig',
 		setup 'csharp_ls'
 		setup 'docker_compose_language_service'
 		setup 'dockerls'
+		setup 'gleam'
 		setup 'graphql'
 		setup 'html'
 		setup 'tailwindcss'

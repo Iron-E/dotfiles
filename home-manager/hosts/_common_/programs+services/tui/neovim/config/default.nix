@@ -64,6 +64,7 @@ in {
 				docker-compose-language-service
 				dockerfile-language-server-nodejs
 				emmet-ls
+				gleam
 				gopls
 				jdt-language-server
 				lua-language-server
