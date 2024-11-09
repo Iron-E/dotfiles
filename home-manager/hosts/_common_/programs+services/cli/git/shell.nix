@@ -39,6 +39,8 @@ in {
 		gf = "g fetch";
 		gfa = "gf --all";
 
+		gg = "g grep";
+
 		gh = "g show";
 		ghe = "gh HEAD";
 
