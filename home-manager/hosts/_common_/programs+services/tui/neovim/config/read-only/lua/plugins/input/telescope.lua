@@ -1,6 +1,12 @@
+local cursor_layout_config = { height = 0.5, width = 0.9 }
+
+--- @return table theme
+local function get_cursor()
+	return require('telescope.themes').get_cursor { layout_config = cursor_layout_config }
+end
+
 return {
-	{
-		'nvim-telescope/telescope.nvim',
+	{ 'nvim-telescope/telescope.nvim',
 		cmd = 'Telescope',
 		config = function(_, o)
 			local telescope = require 'telescope'
@@ -9,8 +15,7 @@ return {
 		end,
 		dependencies = { {
 			'nvim-telescope/telescope-fzf-native.nvim',
-			build =
-			'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+			build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
 		} },
 		init = function()
 			vim.api.nvim_create_autocmd('LspAttach', {
@@ -39,9 +44,7 @@ return {
 		},
 		opts = function(_, o)
 			local previewers = require 'telescope.previewers'
-			local cursor_theme = require('telescope.themes').get_cursor {
-				layout_config = { height = 0.5, width = 0.9 },
-			}
+			local cursor_theme = get_cursor()
 
 			local cursor_theme_no_jump = vim.deepcopy(cursor_theme)
 			cursor_theme_no_jump.jump_type = 'never'
@@ -56,7 +59,7 @@ return {
 				layout_config =
 				{
 					center = { prompt_position = 'bottom' },
-					cursor = { height = 0.5, width = 0.9 },
+					cursor = cursor_layout_config,
 					horizontal = { height = 0.95, width = 0.9 },
 					vertical = { height = 0.95, width = 0.9 },
 				},
@@ -70,7 +73,6 @@ return {
 			o.extensions =
 			{
 				fzf = { fuzzy = true, override_file_sorter = true, override_generic_sorter = true },
-				["ui-select"] = { cursor_theme },
 			}
 
 			o.pickers =
@@ -87,8 +89,7 @@ return {
 		end,
 	},
 
-	{
-		'dimaportenko/telescope-simulators.nvim',
+	{ 'dimaportenko/telescope-simulators.nvim',
 		dependencies = 'telescope.nvim',
 		lazy = true,
 		main = 'simulators',
@@ -98,24 +99,27 @@ return {
 		end,
 	},
 
-	{
-		'debugloop/telescope-undo.nvim',
+	{ 'debugloop/telescope-undo.nvim',
 		config = function() require('telescope').load_extension 'undo' end,
 		dependencies = 'telescope.nvim',
 		keys = { { '<A-w>u', '<Cmd>Telescope undo<CR>', desc = 'Telescope undo', mode = 'n' } },
 	},
 
-	{
-		'nvim-telescope/telescope-ui-select.nvim',
-		dependencies = 'telescope.nvim',
+	{ 'stevearc/dressing.nvim',
 		lazy = true,
-		init = function()
-			--- Lazy loads telescope on first run
-			--- @diagnostic disable-next-line:duplicate-set-field
-			function vim.ui.select(...)
-				require('telescope').load_extension 'ui-select'
-				vim.ui.select(...)
+		dependencies = 'telescope.nvim',
+		init = function(dressing)
+			for _, name in pairs { 'input', 'select' } do
+				--- Lazy loads telescope on first run
+				--- @diagnostic disable-next-line:duplicate-set-field
+				vim.ui[name] = function(...)
+					require('lazy.core.loader').load(dressing, { cmd = 'Lazy load' })
+					vim.ui[name](...)
+				end
 			end
+		end,
+		opts = function(_, o)
+			o.select = { telescope = get_cursor() }
 		end,
 	},
 }
