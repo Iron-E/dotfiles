@@ -2,10 +2,11 @@ return {{ 'hrsh7th/nvim-cmp',
 	event = 'InsertEnter',
 	dependencies =
 	{
-		'hrsh7th/cmp-path',
+		'echasnovski/mini.icons',
 		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-nvim-lsp',
 		'hrsh7th/cmp-nvim-lua',
+		'hrsh7th/cmp-path',
 		'kdheepak/cmp-latex-symbols',
 		{'kristijanhusak/vim-dadbod-completion', dependencies = 'tpope/vim-dadbod'},
 		{'saadparwaiz1/cmp_luasnip',
@@ -38,10 +39,18 @@ return {{ 'hrsh7th/nvim-cmp',
 			['vim-dadbod-completion'] = '',
 		}
 
-		o.formatting = { format = function(entry, vim_item)
-			vim_item.menu = SOURCES[entry.source.name]
-			return vim_item
-		end }
+		o.formatting = {
+			--- @param entry cmp.Entry
+			--- @param vim_item vim.CompletedItem
+			--- @return vim.CompletedItem
+			format = function(entry, vim_item)
+				local icon, hl = MiniIcons.get('lsp', vim_item.kind)
+				vim_item.kind = icon .. ' ' .. vim_item.kind
+				vim_item.kind_hl_group = hl
+				vim_item.menu = SOURCES[entry.source.name]
+				return vim_item
+			end,
+		}
 
 		o.window =
 		{

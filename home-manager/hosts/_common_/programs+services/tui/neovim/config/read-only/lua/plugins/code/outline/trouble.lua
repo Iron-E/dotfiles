@@ -1,5 +1,5 @@
 return {{ 'folke/trouble.nvim',
-	dependencies = 'nvim-web-devicons',
+	dependencies = 'echasnovski/mini.icons',
 	cond = vim.g.man ~= true,
 	keys =
 	{

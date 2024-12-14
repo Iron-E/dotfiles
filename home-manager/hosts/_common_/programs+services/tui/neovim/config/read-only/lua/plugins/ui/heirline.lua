@@ -1,5 +1,5 @@
 return {{ 'rebelot/heirline.nvim',
-	dependencies = { 'gitsigns.nvim', 'nvim-web-devicons' },
+	dependencies = { 'gitsigns.nvim', 'echasnovski/mini.icons' },
 	opts = function(_, o)
 		--[[
 		 _          _      _ _                         _
@@ -8,8 +8,6 @@ return {{ 'rebelot/heirline.nvim',
 		| | | |  __/ | |  | | | | | |  __/_| | | \ V /| | | | | | |
 		|_| |_|\___|_|_|  |_|_|_| |_|\___(_)_| |_|\_/ |_|_| |_| |_|
 		--]]
-
-		local devicons = require 'nvim-web-devicons'
 
 		--[[/* CONSTANTS */]]
 
@@ -55,7 +53,7 @@ return {{ 'rebelot/heirline.nvim',
 		--- Set buffer variables for file icon and color.
 		--- @return {color: string, icon: string}
 		local function buf_init_devicons()
-			local icon, color = devicons.get_icon(vim.fn.expand '%:t', vim.fn.expand '%:e', { default = true })
+			local icon, color, _ = MiniIcons.get('file', vim.api.nvim_buf_get_name(0))
 			local dev_icons = { color = vim.api.nvim_get_hl(0, { link = false, name = color }).fg, icon = icon }
 
 			vim.b.dev_icons = dev_icons
@@ -193,7 +191,7 @@ return {{ 'rebelot/heirline.nvim',
 				}, -- }}}
 
 				{ -- File size {{{
-					init = function(self) self.stat = vim.loop.fs_stat(vim.api.nvim_buf_get_name(0)) end,
+					init = function(self) self.stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(0)) end,
 					update = { 'BufEnter', 'BufWritePost' },
 
 					{

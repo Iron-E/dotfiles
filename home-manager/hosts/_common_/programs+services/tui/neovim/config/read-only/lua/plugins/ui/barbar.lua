@@ -1,6 +1,6 @@
 return {{ 'romgrk/barbar.nvim',
 	cond = vim.g.man ~= true,
-	dependencies = { 'gitsigns.nvim', 'nvim-web-devicons' },
+	dependencies = { 'gitsigns.nvim', 'echasnovski/mini.icons' },
 	dev = true,
 	lazy = false,
 	init = function(barbar)

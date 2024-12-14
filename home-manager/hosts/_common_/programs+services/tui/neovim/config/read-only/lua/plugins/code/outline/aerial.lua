@@ -1,5 +1,5 @@
 return {{ 'stevearc/aerial.nvim',
-	dependencies = { 'nvim-treesitter', 'nvim-web-devicons' },
+	dependencies = { 'nvim-treesitter', 'echasnovski/mini.icons' },
 	keys = {{ 'gO', '<Cmd>AerialToggle<CR>', desc = 'Toggle aerial.nvim', mode = 'n' }},
 	opts = function(_, o)
 		o.backends = { 'lsp', 'treesitter', 'man', 'markdown' }
