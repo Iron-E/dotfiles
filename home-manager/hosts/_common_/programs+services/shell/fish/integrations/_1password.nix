@@ -7,7 +7,7 @@ in {
 
 	programs.fish.functions =
 	let inherit (config) home;
-	in lib.optionalAttrs (builtins.elem pkgs._1password home.packages) {
+	in lib.optionalAttrs (builtins.elem pkgs._1password-cli home.packages) {
 		opr = {
 			description = "run program with 1password injection";
 			wraps = "op run -- ";
