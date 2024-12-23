@@ -60,7 +60,6 @@ in {
 
 			inherit (pkgs)
 				ansible-language-server
-				csharp-ls
 				docker-compose-language-service
 				dockerfile-language-server-nodejs
 				emmet-ls
@@ -70,6 +69,7 @@ in {
 				lua-language-server
 				nil
 				pyright
+				roslyn-ls
 				rust-analyzer
 				sqls
 				tailwindcss-language-server
