@@ -74,6 +74,11 @@ vim.api.nvim_create_autocmd({'BufWinEnter', 'BufWritePost', 'InsertLeave'},
 	group = augroup,
 })
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+	callback = function() vim.lsp.codelens.refresh({ bufnr = 0 }) end,
+	group = augroup,
+})
+
 --- Sync syntax when not editing text
 vim.api.nvim_create_autocmd('CursorHold',
 {
