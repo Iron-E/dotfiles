@@ -1,6 +1,6 @@
-local CAPABILITIES --- nvim-cmp capabilities
-local FLOAT_CONFIG --- Configuration for `nvim_open_win`
-local HANDLERS --- Event handlers
+--- Event handlers
+--- @type { [string]?: lsp.Handler }
+local HANDLERS
 
 return {
 	{ 'neovim/nvim-lspconfig',
@@ -12,7 +12,7 @@ return {
 			--[[/* UI */]]
 
 			--- Configuration for `nvim_open_win`
-			FLOAT_CONFIG = { border = 'rounded' }
+			local FLOAT_CONFIG = { border = 'rounded' }
 
 			--- Event handlers
 			HANDLERS = {
@@ -255,9 +255,7 @@ return {
 		ft = 'cs',
 		opts = function(_, o)
 			o.exe = 'Microsoft.CodeAnalysis.LanguageServer'
-			o.filewatching = false
 			o.config = {
-				capabilities = CAPABILITIES,
 				handlers = HANDLERS,
 				settings = {
 					['csharp|background_analysis'] = {
