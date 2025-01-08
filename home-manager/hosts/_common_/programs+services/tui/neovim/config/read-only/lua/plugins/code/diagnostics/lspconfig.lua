@@ -65,13 +65,14 @@ return {
 				filetypes = { 'sh', 'zsh' },
 			})
 
-			setup('emmet_ls', {
+			setup('emmet_language_server', {
 				filetypes = {
 					'astro',
 					'cs',
 					'css',
 					'eruby',
 					'html',
+					'htmlangular',
 					'htmldjango',
 					'javascriptreact',
 					'less',
