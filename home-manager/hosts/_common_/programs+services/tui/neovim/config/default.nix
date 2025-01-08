@@ -48,6 +48,7 @@ in {
 			##############
 
 			inherit (pkgs)
+				csharpier
 				gci
 				prettierd
 				rustfmt

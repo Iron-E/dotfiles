@@ -9,6 +9,7 @@ return {{ 'stevearc/conform.nvim',
 	}},
 	opts = function(_, o)
 		o.formatters_by_ft = {
+			cs = { 'csharpier' },
 			css = { 'prettierd' },
 			gleam = { 'gleam' },
 			go = { 'gci', 'gofmt' },
