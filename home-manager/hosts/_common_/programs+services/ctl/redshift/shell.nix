@@ -5,7 +5,6 @@ let
 in {
 	imports = [];
 
-
 	home.packages = lib.toList (
 	let
 		name = "rift";
@@ -28,7 +27,19 @@ in {
 					TEMPERATURE=1300
 					;;
 				""|"-h")
-					echo "rift (blue|yellow|orange|red|<INT>) [<OPACITY>]]"
+					cat << EOF
+Conveniently overwite the current redshift settings.
+
+Usage: rift (blue|yellow|orange|red|INT) [OPACITY]
+
+Arguments:
+	blue       set the screen temperature to 5500
+	yellow     set the screen temperature to 3750
+	orange     set the screen temperature to 2000
+	red        set the screen temperature to 1300
+	INT        an integer value representing the desired screen temperature
+	[OPACITY]  a number in the range 0..=1.0 which represents the desired screen opacity / brightness
+EOF
 					exit 0
 					;;
 				*)
