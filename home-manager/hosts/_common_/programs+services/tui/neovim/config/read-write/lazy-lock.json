@@ -52,6 +52,7 @@
   "octo.nvim": { "branch": "master", "commit": "ec0d2b50e7405b786b3ea84040a177a07a1f458d" },
   "plantuml-syntax": { "branch": "master", "commit": "9d4900aa16674bf5bb8296a72b975317d573b547" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
+  "quicker.nvim": { "branch": "master", "commit": "e4fb0b1862284757561d1d51091cdee907585948" },
   "registers.nvim": { "branch": "main", "commit": "c217f8f369e0886776cda6c94eab839b30a8940d" },
   "roslyn.nvim": { "branch": "main", "commit": "85aca5d48ddf8ada4e010ee9fa4d43c77ebf68c9" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "dae2eac9d91464448b584c7949a31df8faefec56" },

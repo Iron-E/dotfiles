@@ -125,6 +125,7 @@ vim.api.nvim_set_keymap('n', '[d', '', { callback = vim.diagnostic.goto_prev })
 vim.api.nvim_set_keymap('n', ']d', '', { callback = vim.diagnostic.goto_next })
 vim.api.nvim_set_keymap('n', 'gC', '', { callback = function() vim.diagnostic.reset(nil, 0) end })
 vim.api.nvim_set_keymap('n', 'gK', '', { callback = vim.diagnostic.open_float })
+vim.api.nvim_set_keymap('n', '<A-w>d', '', { callback = vim.diagnostic.setqflist })
 
 --[[
        _         __

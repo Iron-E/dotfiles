@@ -2,12 +2,13 @@ return {{ 'folke/todo-comments.nvim',
 	cond = vim.g.man ~= true,
 	dependencies = 'nvim-lua/plenary.nvim',
 	event = vim.g.lazy_event_file_read,
-	opts =
-	{
+	keys = {
+		{ '<A-w>T', '<Cmd>TodoQuickFix<CR>', desc = 'View todos in the quickfix window', mode = 'n' },
+	},
+	opts = {
 		highlight = { comments_only = false, keyword = 'bg' },
 		merge_keywords = true,
-		keywords =
-		{
+		keywords = {
 			FIX = { icon = '' },
 			NOTE = { icon = '', alt = { 'INFO', 'SEE' } },
 			PERF = { icon = '󰓅' },
