@@ -5,5 +5,5 @@ let
 in {
 	imports = [];
 
-	home.shellAliases.cat = "bat --style=plain";
+	home.shellAliases.cat = "bat -pp";
 }
