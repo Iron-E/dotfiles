@@ -32,7 +32,7 @@ return {
 			-- Do not log the LSP
 			vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 
-			CAPABILITIES = require('cmp_nvim_lsp').default_capabilities()
+			local CAPABILITIES = require('cmp_nvim_lsp').default_capabilities()
 
 			--- @param lsp string
 			--- @param config? table
