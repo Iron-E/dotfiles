@@ -67,7 +67,6 @@ return {
 
 			setup('emmet_language_server', {
 				filetypes = {
-					'astro',
 					'cs',
 					'css',
 					'eruby',
@@ -79,9 +78,15 @@ return {
 					'pug',
 					'sass',
 					'scss',
-					'svelte',
 					'typescriptreact',
-					'vue',
+					'xml',
+				},
+				init_options = {
+					includeLanugages = { cs = 'xml' },
+					showAbbreviationSuggestions = true,
+					showExpandedAbbreviation = true,
+					showSuggestionsAsSnippets = true,
+					syntaxProfiles = { html = 'xhtml' },
 				},
 			})
 
