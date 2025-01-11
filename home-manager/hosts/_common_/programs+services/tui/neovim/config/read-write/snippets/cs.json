@@ -1,6 +1,124 @@
 {
-  "writeline": {
-    "body": "Console.WriteLine($0);",
-    "prefix": "writeline"
-  }
+	"exception": {
+		"body": [
+			"<exception cref=\"${1:ident}\">",
+			"///\t${2:lorem}",
+			"/// </exception>${0:}"
+		],
+		"prefix": "exception"
+	},
+	"inheritdoc": {
+		"body": "<inheritdoc cref=\"${1:ident}\" />${0:}",
+		"prefix": "inheritdoc"
+	},
+	"inheritdocpath": {
+		"body": "<inheritdoc cref=\"${1:ident}\" path=\"${2:/summary}\" />${0:}",
+		"prefix": "inheritdocpath"
+	},
+	"list": {
+		"body": [
+			"<list type=\"${1|number,bullet,table|}\">",
+			"///\t\t${2:}",
+			"///\t</list>${0:}"
+		],
+		"prefix": "list"
+	},
+	"listheader": {
+		"body": [
+			"<listheader>",
+			"///\t\t<title>${1:lorem}</title>",
+			"///\t\t<description>${2:ipsum}</description>",
+			"///\t</listheader>${0:}"
+		],
+		"prefix": "listheader"
+	},
+	"listitem": {
+		"body": [
+			"<item>",
+			"///\t\t<title>${1:lorem}</title>",
+			"///\t\t<description>${2:ipsum}</description>",
+			"///\t</item>${0:}"
+		],
+		"prefix": "listitem"
+	},
+	"para": {
+		"body": [
+			"<para>",
+			"///\t\t${1:lorem}",
+			"///\t</para>${0:}"
+		],
+		"prefix": "para"
+	},
+	"param": {
+		"body": [
+			"<param name=\"${1:ident}\">",
+			"///\t${2:lorem}",
+			"/// </param>${0:}"
+		],
+		"prefix": "param"
+	},
+	"paramref": {
+		"body": "<paramref name=\"${1:ident}\" />${0:}",
+		"prefix": "paramref"
+	},
+	"remarks": {
+		"body": [
+			"<remarks>",
+			"/// \t${1:lorem}",
+			"/// </remarks>${0:}"
+		],
+		"prefix": "remarks"
+	},
+	"returns": {
+		"body": [
+			"<returns>",
+			"/// \tlorem",
+			"/// </returns>${0:}"
+		],
+		"prefix": "returns"
+	},
+	"see": {
+		"body": "<see${3|,also|} ${2:cref}=\"${1:ident}\" />${0:}",
+		"prefix": "see"
+	},
+	"seeas": {
+		"body": [
+			"<see${3|,also|} ${2:cref}=\"${1:ident}\">",
+			"///\t\t${4:lorem}",
+			"///\t</see${3|,also|}>${0:}"
+		],
+		"prefix": "seeas"
+	},
+	"summary": {
+		"body": [
+			"<summary>",
+			"/// \t${1:lorem}",
+			"/// </summary>${0:}"
+		],
+		"prefix": "summary"
+	},
+	"typeparam": {
+		"body": [
+			"<typeparam name=\"${1:ident}\">",
+			"///\t${2:lorem}",
+			"/// </typeparam>${0:}"
+		],
+		"prefix": "typeparam"
+	},
+	"typeparamref": {
+		"body": "<typeparamref name=\"${1:ident}\" />${0:}",
+		"prefix": "typeparamref"
+	},
+	"value": {
+		"body": [
+			"<value>",
+			"///\t${1:lorem}",
+			"/// </value>${0:}"
+		],
+		"prefix": "value"
+	},
+	"writeline": {
+		"body": "Console.WriteLine(${1:});${0:}",
+		"prefix": "writeline"
+	}
 }
