@@ -161,8 +161,4 @@ The `overlays.additions` output is additional packages defined in this repositor
 
 `overlays.modifications` which are customized existing nix packages.
 
-###### nerdfonts-symbols
-
-The `nerdfonts` nix package, with only symbols included.
-
 [switch script]: ./switch.fish

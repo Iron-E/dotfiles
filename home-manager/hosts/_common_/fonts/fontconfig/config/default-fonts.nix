@@ -5,9 +5,9 @@ let
 in {
 	imports = [];
 
-	home.packages = with pkgs; [
-		nerdfonts-jetbrains-mono # monospace font
-		nerdfonts-open-dyslexic # (sans) serif font
+	home.packages = with pkgs.nerd-fonts; [
+		jetbrains-mono # monospace font
+		open-dyslexic # (sans) serif font
 	];
 
 	fonts.fontconfig.defaultFonts = {

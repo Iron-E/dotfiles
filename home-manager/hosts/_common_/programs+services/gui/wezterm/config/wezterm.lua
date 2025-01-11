@@ -7,7 +7,7 @@ config.front_end = "WebGpu"
 --[[ appearance ]]
 config.color_scheme = 'highlite'
 
-config.font_size = 14
+config.font_size = 18
 config.harfbuzz_features = { 'zero' }
 config.font = wezterm.font_with_fallback { 'JetBrains Mono', { family = 'Symbols Nerd Font Mono', scale = 0.8 } }
 config.font_rules = {
