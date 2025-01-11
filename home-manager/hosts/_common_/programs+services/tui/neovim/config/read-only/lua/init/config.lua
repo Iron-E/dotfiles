@@ -55,6 +55,23 @@ vim.g.loaded_perl_provider = 0 -- disable Perl
 vim.g.loaded_python3_provider = 0 -- disable Python 3
 vim.g.loaded_ruby_provider = 0 -- disable Ruby
 
+do
+	--- @type vim.diagnostic.Opts.Signs
+	local signs = { text = { ' ', ' ', ' ', ' ' } }
+	vim.diagnostic.config {
+		float = { border = 'rounded' },
+		severity_sort = true,
+		signs = signs,
+		virtual_text = { --- @type vim.diagnostic.Opts.VirtualText
+			prefix = function (diagnostic) --- @param diagnostic vim.Diagnostic
+				return signs.text[diagnostic.severity]
+			end,
+			source = 'if_many',
+			spacing = 1,
+		},
+	}
+end
+
 --[[
    ___       __                                         __
   / _ |__ __/ /____  _______  __ _  __ _  ___ ____  ___/ /__

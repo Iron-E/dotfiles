@@ -11,23 +11,16 @@ return {
 
 			--[[/* UI */]]
 
-			--- Configuration for `nvim_open_win`
-			local FLOAT_CONFIG = { border = 'rounded' }
+			--- @type vim.diagnostic.Opts.Float
+			local float_config = vim.diagnostic.config().float
 
 			--- Event handlers
 			HANDLERS = {
-				[vim.lsp.protocol.Methods.textDocument_hover] = vim.lsp.with(vim.lsp.handlers.hover, FLOAT_CONFIG),
-				[vim.lsp.protocol.Methods.textDocument_signatureHelp] = vim.lsp.with(vim.lsp.handlers.signature_help, FLOAT_CONFIG),
+				[vim.lsp.protocol.Methods.textDocument_hover] = vim.lsp.with(vim.lsp.handlers.hover, float_config),
+				[vim.lsp.protocol.Methods.textDocument_signatureHelp] = vim.lsp.with(vim.lsp.handlers.signature_help, float_config),
 			}
 
-			vim.diagnostic.config {
-				float = FLOAT_CONFIG,
-				severity_sort = true,
-				signs = { text = { ' ', ' ', ' ', ' ' } },
-				virtual_text = { prefix = ' ', source = 'if_many', spacing = 1 },
-			}
-
-			require('lspconfig.ui.windows').default_options = FLOAT_CONFIG
+			require('lspconfig.ui.windows').default_options = float_config
 
 			--[[/* Config */]]
 
@@ -128,13 +121,6 @@ return {
 
 					for _, path in ipairs(vim.api.nvim_get_runtime_file('', true)) do
 						lua_ls_workspace_library[path] = true
-					end
-
-					local lazy_path = vim.fs.find('lazy', {path = vim.fn.stdpath 'data', type = 'directory'})[1] .. '/'
-					for path, path_type in vim.fs.dir(lazy_path) do
-						if path_type == 'directory' then
-							lua_ls_workspace_library[lazy_path .. path] = true
-						end
 					end
 
 					config.settings.Lua.workspace = {library = lua_ls_workspace_library}
