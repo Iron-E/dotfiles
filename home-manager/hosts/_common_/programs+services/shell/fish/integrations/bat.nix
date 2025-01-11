@@ -10,12 +10,11 @@ in {
 		flagSuffix: # `String` the suffix of the help flag, e.g. `h` for `-h`, or `-help` for `--help`.
 		let flag = "-${flagSuffix}";
 		in lib.nameValuePair flag {
-			expansion = "${flag} | bat -l help -pp";
+			expansion = "${flag} 2>&1 | bat -l help -pp";
 			position = "anywhere";
 		};
-
-		abbreviations = map mkHelpAbbr ["h" "help" "-help"];
-	in
-		builtins.listToAttrs abbreviations
-	);
+	in lib.pipe ["h" "help" "-help"] [
+		(map mkHelpAbbr)
+		builtins.listToAttrs
+	]);
 }
