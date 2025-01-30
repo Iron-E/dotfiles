@@ -7,7 +7,7 @@ in {
 
 	home.packages = with pkgs.nerd-fonts; [open-dyslexic];
 	xsession.windowManager.i3.config.fonts = {
-		names = ["OpenDyslexicNerdFont"];
+		names = ["OpenDyslexic Nerd Font"];
 		style = "Regular";
 		size = 11.0;
 	};
