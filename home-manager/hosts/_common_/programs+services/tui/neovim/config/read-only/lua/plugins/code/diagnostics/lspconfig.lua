@@ -53,6 +53,7 @@ return {
 			setup 'graphql'
 			setup 'html'
 			setup 'tailwindcss'
+			setup 'tinymist'
 
 			setup('bashls', {
 				filetypes = { 'sh', 'zsh' },

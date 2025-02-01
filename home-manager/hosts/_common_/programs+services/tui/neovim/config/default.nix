@@ -78,7 +78,7 @@ in {
 				sqls
 				tailwindcss-language-server
 				terraform-ls
-				typst-lsp
+				tinymist
 				vscode-langservers-extracted
 				yaml-language-server
 			;
