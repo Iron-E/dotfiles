@@ -51,6 +51,7 @@ return {
 			setup 'dockerls'
 			setup 'gleam'
 			setup 'graphql'
+			setup 'harper_ls'
 			setup 'html'
 			setup 'tailwindcss'
 			setup 'tinymist'

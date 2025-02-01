@@ -21,16 +21,13 @@ return { {
 		o.javascriptreact = o.javascript
 		o.json = { 'jq' }
 		o.less = o.css
-		o.markdown = { 'vale' }
-		o.nix = { 'deadnix' }
-		o.nix = { 'nix' }
+		o.nix = { 'deadnix', 'nix' }
 		o.python = { 'ruff' }
 		o.sass = o.scss
 		o.scss = o.css
 		o.sh = { 'shellcheck' }
 		o.sql = { 'sqlfluff' }
 		o.terraform = { 'tflint', 'tfsec' }
-		o.text = { 'vale' }
 		o.typescript = o.javascript
 		o.typescriptreact = o.javascriptreact
 	end,
