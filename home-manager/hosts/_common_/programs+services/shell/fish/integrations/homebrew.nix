@@ -7,7 +7,6 @@ in {
 
 	programs.fish.shellInit = lib.optionalString pkgs.stdenv.isDarwin
 	(let
-		inherit (config) home;
 		homebrewPath = "/opt/homebrew";
 	in multiline /* fish */ ''
 		if test -d ${homebrewPath} # homebrew is installed

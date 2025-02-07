@@ -13,7 +13,7 @@ in {
 			'';
 		};
 
-		completions = map mkCompletion ["crictl" "crane" "dagger" "docker" "nerdctl"];
+		completions = map mkCompletion ["colima" "crane" "crictl" "dagger" "docker" "nerdctl"];
 	in
 		builtins.listToAttrs
 		completions

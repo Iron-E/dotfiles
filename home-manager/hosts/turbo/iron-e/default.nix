@@ -4,6 +4,7 @@ let
 	inherit (util.strings) multiline;
 in {
 	imports = (util.fs.readSubmodules ./.) ++ [
+		../../_common_/programs+services/ctl/colima
 		../../_common_/programs+services/ctl/docker
 		../../_common_/programs+services/gui/wezterm
 		../../_extras_/programs+services/cli/_1password
