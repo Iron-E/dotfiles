@@ -5,5 +5,5 @@ let
 in {
 	imports = [];
 
-	home.shellAliases.ktl = "kubectl";
+	home.shellAliases.k = "kubectl";
 }
