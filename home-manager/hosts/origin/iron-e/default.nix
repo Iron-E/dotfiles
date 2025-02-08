@@ -6,7 +6,6 @@ let
 in {
 	imports = (util.fs.readSubmodules ./.) ++ [
 		../../_common_
-		../../_extras_/programs+services/cli/bitwarden
 		../../_extras_/programs+services/cli/cryfs
 		../../_extras_/programs+services/cli/nextdns
 		../../_extras_/programs+services/ctl/kubectl
