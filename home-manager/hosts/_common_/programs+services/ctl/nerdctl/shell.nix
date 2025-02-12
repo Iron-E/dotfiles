@@ -12,7 +12,7 @@ in {
 		nin = "nerdctl image inspect";
 		nir = "nerdctl image rm";
 		np = "nerdctl pull";
-		nr = "nerdctl run --rm -it";
+		nr = "nerdctl run --rm";
 		nx = "nerdctl buildx build";
 	};
 }

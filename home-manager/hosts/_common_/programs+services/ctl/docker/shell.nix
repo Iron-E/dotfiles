@@ -12,7 +12,7 @@ in {
 		din = "docker image inspect";
 		dir = "docker image rm";
 		dp = "docker pull";
-		dr = "docker run --rm -it";
+		dr = "docker run --rm";
 		dx = "docker buildx build";
 	};
 }
