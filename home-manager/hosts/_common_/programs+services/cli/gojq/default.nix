@@ -5,5 +5,8 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	programs.jq.enable = true;
+	programs.jq = {
+		enable = true;
+		package = pkgs.gojq;
+	};
 }
