@@ -6,35 +6,28 @@ in {
 	imports = [];
 
 	programs.fish.functions = {
-		ktl-new = {
+		kubectl-new =
+		let gojq = lib.getExe pkgs.gojq;
+		in {
 			description = "Generate boilerplate for a kubernetes resource";
 			wraps = "kubectl";
 			body = multiline /* fish */ ''
 				# the name of the file should also be in the third
-				set -l dest "$argv[3].yaml"
-				echo "---" >> $dest
-
-				set -l strip "  creationTimestamp"
-				kubectl $argv --dry-run=client --output=yaml | while read --line l
-					set -l stripped false # WARN: stripping is not recursive! it could be but I am lazy
-					for field in $strip
-						if string match -q -r "^$field:" $l
-							set stripped true
-							break
-						end
-					end
-
-					if $stripped
-						continue
-					end
-
-					# do not store status
-					if string match -q -r '^status:' $l
-						break
-					end
-
-					echo $l >> $dest
+				switch "$argv[1]|$argv[2]"
+					case "run|*"
+						set -f name_idx 2
+					case "create|secret" "create|service"
+						set -f name_idx 4
+					case "create|*"
+						set -f name_idx 3
 				end
+
+				set -f dest "$argv[$name_idx]".yml
+
+				set -l output "$(kubectl $argv --dry-run=client --output=json \
+					| ${gojq} --yaml-output 'del(.status) | walk(if type == "object" and .metadata != null then .metadata |= ({annotations, labels, name, namespace} | map_values(select(.))) else . end)')"
+
+				echo ---\n$output >> $dest
 			'';
 		};
 
