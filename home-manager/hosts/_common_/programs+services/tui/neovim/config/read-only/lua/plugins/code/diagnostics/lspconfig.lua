@@ -220,7 +220,7 @@ return {
 				settings = {
 					yaml = {
 						schemas = { -- SEE: https://www.schemastore.org/json/
-							kubernetes = '*.yaml',
+							kubernetes = '*.{yml,yaml}',
 							['http://json.schemastore.org/ansible-playbook'] = '*play*.{yml,yaml}',
 							['http://json.schemastore.org/ansible-stable-2.9'] = 'roles/tasks/*.{yml,yaml}',
 							['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
