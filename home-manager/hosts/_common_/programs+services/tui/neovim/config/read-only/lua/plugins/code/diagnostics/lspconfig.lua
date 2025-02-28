@@ -50,7 +50,6 @@ return {
 			setup 'docker_compose_language_service'
 			setup 'dockerls'
 			setup 'gleam'
-			setup 'graphql'
 			setup 'harper_ls'
 			setup 'html'
 			setup 'tailwindcss'

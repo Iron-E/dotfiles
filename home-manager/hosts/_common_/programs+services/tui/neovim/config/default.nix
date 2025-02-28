@@ -84,7 +84,6 @@ in {
 
 			inherit (pkgs.nodePackages_latest)
 				bash-language-server
-				graphql-language-service-cli
 				typescript-language-server
 				vscode-json-languageserver
 			;

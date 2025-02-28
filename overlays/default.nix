@@ -9,7 +9,7 @@
 	modifications = final: prev:
 	let
 		vimix-icon = variant: prev.vimix-icon-theme.override { colorVariants = [variant]; };
-		vimix-theme = variant: prev.vimix-gtk-themes.override { themeVariants = [variant]; };
+		vimix-theme = variant: prev.vimix-gtk-themes.override { colorVariants = ["dark"]; themeVariants = [variant]; };
 	in {
 		vimix-gtk-theme-beryl = vimix-theme "beryl";
 		vimix-icon-theme-beryl = vimix-icon "Beryl";
