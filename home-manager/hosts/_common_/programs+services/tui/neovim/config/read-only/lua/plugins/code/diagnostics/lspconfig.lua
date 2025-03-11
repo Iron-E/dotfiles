@@ -13,25 +13,9 @@ return {
 
 			--- @type vim.diagnostic.Opts.Float
 			local float_config = vim.diagnostic.config().float
-
-			--- Event handlers
-			HANDLERS = {
-				[vim.lsp.protocol.Methods.textDocument_hover] = vim.lsp.with(vim.lsp.handlers.hover, float_config),
-				[vim.lsp.protocol.Methods.textDocument_signatureHelp] = vim.lsp.with(vim.lsp.handlers.signature_help, float_config),
-			}
-
 			require('lspconfig.ui.windows').default_options = float_config
 
 			--[[/* Config */]]
-
-			do -- disable lsp watcher. Too slow on linux
-				local watchfiles = require 'vim.lsp._watchfiles'
-				watchfiles._watchfunc = function() return function() end end
-			end
-
-			-- Do not log the LSP
-			vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
-
 			local CAPABILITIES = require('cmp_nvim_lsp').default_capabilities()
 
 			--- @param lsp string

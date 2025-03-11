@@ -50,27 +50,72 @@ vim.api.nvim_set_option_value('wildignorecase', true, {})    -- Ignore case for 
 vim.opt.wildmode = {'longest:full', 'full'}                  -- Command completion mode
 
 -- WARN: Providers (MUST be `0`, not `false`)
-vim.g.loaded_node_provider = 0 -- disable javascript
+vim.g.loaded_node_provider = 0 -- disable JavaScript
 vim.g.loaded_perl_provider = 0 -- disable Perl
 vim.g.loaded_python3_provider = 0 -- disable Python 3
 vim.g.loaded_ruby_provider = 0 -- disable Ruby
 
+
+--[[
+    __   _____ ____        __
+   / /  / ___// __ \     _/_/
+  / /   \__ \/ /_/ /   _/_/
+ / /______/ / ____/  _/_/
+/_____/____/_/      /_/
+
+    ____  _                              __  _
+   / __ \(_)___ _____ _____  ____  _____/ /_(_)_________
+  / / / / / __ `/ __ `/ __ \/ __ \/ ___/ __/ / ___/ ___/
+ / /_/ / / /_/ / /_/ / / / / /_/ (__  ) /_/ / /__(__  )
+/_____/_/\__,_/\__, /_/ /_/\____/____/\__/_/\___/____/
+              /____/
+--]]
 do
-	--- @type vim.diagnostic.Opts.Signs
-	local signs = { text = { ' ', ' ', ' ', ' ' } }
-	vim.diagnostic.config {
-		float = { border = 'rounded' },
-		severity_sort = true,
-		signs = signs,
-		virtual_text = { --- @type vim.diagnostic.Opts.VirtualText
-			prefix = function (diagnostic) --- @param diagnostic vim.Diagnostic
-				return signs.text[diagnostic.severity]
-			end,
-			source = 'if_many',
-			spacing = 1,
-		},
-	}
+	--- @type vim.diagnostic.Opts.Float
+	local float = { border = 'rounded' }
+
+	do
+		--- @type vim.diagnostic.Opts.Signs
+		local signs = { text = { ' ', ' ', ' ', ' ' } }
+
+		--- @type vim.diagnostic.Opts
+		local diagnostic_config = {
+			float = float,
+			severity_sort = true,
+			signs = signs,
+			virtual_text = {
+				prefix = function(diagnostic)
+					return signs.text[diagnostic.severity]
+				end,
+				source = 'if_many',
+				spacing = 1,
+			},
+		}
+
+		vim.diagnostic.config(diagnostic_config)
+	end
+
+	local open_floating_preview = vim.lsp.util.open_floating_preview
+	vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
+		if opts == nil then
+			opts = {}
+		end
+
+		for k, v in pairs(float) do
+			opts[k] = v
+		end
+
+		return open_floating_preview(contents, syntax, opts, ...)
+	end
 end
+
+do -- HACK: disable LSP watcher. Too slow on Linux
+	local watchfiles = require 'vim.lsp._watchfiles'
+	watchfiles._watchfunc = function() return function() end end
+end
+
+-- Do not log the LSP
+vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 
 --[[
    ___       __                                         __
@@ -246,7 +291,7 @@ vim.api.nvim_create_user_command('Xa', 'xa', {})
 
 --- Benchmark some `fn`, printing the average time it takes to run given the number of `loops`.
 --- @param fn fun(i: integer) the code to benchmark
---- @param loops? integer the number of times to run the code. Higher number = more accurate averate
+--- @param loops? integer the number of times to run the code. Higher number = more accurate average
 function Bench(fn, loops)
 	loops = loops or 100000
 
