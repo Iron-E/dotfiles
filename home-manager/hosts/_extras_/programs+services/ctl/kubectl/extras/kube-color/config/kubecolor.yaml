@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://github.com/kubecolor/kubecolor/raw/main/config-schema.json
+
+kubectl: kubectl # path to kubectl executable
+preset: dark # color theme preset
+objFreshThreshold: 10m # ages below this uses theme.data.durationfresh coloring
+paging: never # whether to pipe supported subcommands to a pager ("auto" or "never")
+
+# Color theme options
+theme:
+   base:
+      info: fg=#c0c0c0 # (color) general color for when things are informational
+      primary: fg=#cf55f0 # (color) general color for when things are focus
+      secondary: fg=#95c5ff # (color) general color for when things are secondary focus
+      success: fg=#22ff22 # (color) general color for when things are good
+      warning: fg=#ff8900 # (color) general color for when things are wrong
+      danger: fg=#ee4a59 # (color) general color for when things are bad
+      muted: fg=#808080:italic # (color) general color for when things are less relevant
+      key: fg=#ffa6ff # (color[]) general color for keys (fallback to [theme.base.secondary])
+   default: fg=#95c5ff # (color) default when no specific mapping is found for the command
+   shell:
+      command: fg=#22ff22:bold # (color) used on commands, e.g `kubectl` or `echo` (fallback to theme.base.success)
+      flag: fg=#c0c0c0:italic # (color) used on flags, e.g `--watch` in `kubectl get pods --watch` (fallback to theme.base.secondary)
+   data:
+      key: fg=#c0c0c0 # (color[]) used for the key (fallback to theme.base.key)
+      string: fg=#70d533 # (color) used when value is a string (fallback to theme.base.info)
+      "true": fg=#f0df33 # (color) used when value is true (fallback to theme.base.success)
+      "false": fg=#f0df33 # (color) used when value is false (fallback to theme.base.danger)
+      number: fg=#ffb7b7 # (color) used when the value is a number (fallback to theme.base.primary)
+      "null": fg=#df50b0:bold # (color) used when the value is null, nil, or none (fallback to theme.base.muted)
+      duration: fg=#ffb7b7 # (color) used when the value is a duration, e.g "12m" or "1d12h"
+      ratio:
+         zero: gray:italic # (color) used for "0/0" (fallback to theme.base.muted)
+         equal: fg=#22ff22 # (color) used for "n/n", e.g "1/1"
+         unequal: fg=#ff8900 # (color) used for "n/m", e.g "0/1" (fallback to theme.base.warning)
+   table:
+      header: fg=#c0c0c0:bold # (color) used on table headers (fallback to theme.base.info)
+   stderr:
+      noneFound: fg=#808080:italic # (color) used on table output like "No resources found" (fallback to theme.data.null)
+      noneFoundNamespace: fg=#95c5ff:bold # (color) used on the namespace name of "No resources found in my-ns namespace" (fallback to theme.data.string)
+   options:
+      flag: fg=#c0c0c0:italic # (color) e.g "--kubeconfig" (fallback to theme.base.secondary)
+   help:
+      flag: fg=#c0c0c0:italic # (color) e.g "--kubeconfig" (fallback to theme.base.secondary)
+      url: fg=#2bff99:underline # (color) e.g `[https://example.com]` (fallback to theme.base.secondary)
+   logs:
+      date: fg=#ffb7b7 # (color) (fallback to theme.base.muted)
+      sourceRef: fg=#99ff99 # (color) (fallback to theme.base.muted)
+      guid: fg=#f0af00 # (color) (fallback to theme.base.muted)
