@@ -5,14 +5,14 @@ let
 in {
 	imports = [];
 
-	home.packages = with pkgs.nerd-fonts; [
-		jetbrains-mono # monospace font
+	home.packages = with pkgs; [
+		nerd-fonts.jetbrains-mono # monospace font
 		open-dyslexic # (sans) serif font
 	];
 
 	fonts.fontconfig.defaultFonts = {
 		monospace = ["JetBrainsMono Nerd Font Mono"];
-		serif = ["OpenDyslexic Nerd Font"];
+		serif = ["OpenDyslexic"];
 		sansSerif = config.fonts.fontconfig.defaultFonts.serif;
 	};
 }
