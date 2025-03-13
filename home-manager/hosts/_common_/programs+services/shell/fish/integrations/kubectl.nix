@@ -5,13 +5,25 @@ let
 in {
 	imports = [];
 
-	programs.fish.functions = {
-		kubectl-new =
-		let gojq = lib.getExe pkgs.gojq;
-		in {
+	programs.fish.functions =
+	let
+		clean-resource = multiline /* jq */ ''
+			del(.status)
+			| walk(
+				if type == "object" and .metadata != null then
+					.metadata |= ({annotations, labels, name, namespace} | map_values(select(.)))
+				else
+					.
+				end
+			)
+		'';
+	in {
+		kubectl-new = {
 			description = "Generate boilerplate for a kubernetes resource";
 			wraps = "kubectl";
-			body = multiline /* fish */ ''
+			body =
+			let gojq = lib.getExe pkgs.gojq;
+			in multiline /* fish */ ''
 				# the name of the file should also be in the third
 				switch "$argv[1]|$argv[2]"
 					case "run|*"
@@ -25,9 +37,21 @@ in {
 				set -f dest "$argv[$name_idx]".yml
 
 				set -l output "$(kubectl $argv --dry-run=client --output=json \
-					| ${gojq} --yaml-output 'del(.status) | walk(if type == "object" and .metadata != null then .metadata |= ({annotations, labels, name, namespace} | map_values(select(.))) else . end)')"
+					| ${gojq} --yaml-output '${clean-resource}')"
 
 				echo ---\n$output >> $dest
+			'';
+		};
+
+		kx = {
+			description = "Export an existing Kubernetes resource as YAML";
+			wraps = "kubectl get";
+			body =
+			let gojq = lib.getExe pkgs.gojq;
+			in multiline /* fish */ ''
+				k get $argv -o json \
+					| ${gojq} --yaml-output '${clean-resource}' \
+					> $argv[-1].yml
 			'';
 		};
 
