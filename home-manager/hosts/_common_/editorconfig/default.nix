@@ -67,6 +67,7 @@ in {
 
 			"*.{rpy,yaml,yml}" = {
 				indent_style = "space";
+				tab_width = 2;
 			};
 
 			"doc/*.txt" = {
