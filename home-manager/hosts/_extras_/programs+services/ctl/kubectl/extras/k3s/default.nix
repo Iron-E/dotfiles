@@ -5,5 +5,8 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = lib.optionals pkgs.stdenv.isLinux (with pkgs; [k3s]);
+	home.packages = lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+		k3s
+		vcluster
+	]);
 }
