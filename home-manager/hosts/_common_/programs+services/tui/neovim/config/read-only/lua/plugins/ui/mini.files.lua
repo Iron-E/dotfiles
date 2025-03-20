@@ -100,7 +100,9 @@ return {{ 'echasnovski/mini.files',
 
 		vim.api.nvim_create_autocmd('User', {
 			pattern = 'MiniFilesWindowOpen',
-			callback = function(args) vim.api.nvim_win_set_config(args.data.win_id, { border = 'rounded' }) end,
+			callback = function(args)
+				vim.api.nvim_win_set_config(args.data.win_id, { border = 'rounded' })
+			end,
 		})
 	end,
 }}
