@@ -35,6 +35,7 @@ return {
 			setup 'dockerls'
 			setup 'gleam'
 			setup 'html'
+			setup 'jsonnet_ls'
 			setup 'tailwindcss'
 			setup 'tinymist'
 

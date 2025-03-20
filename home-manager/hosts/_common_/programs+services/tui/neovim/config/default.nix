@@ -51,6 +51,7 @@ in {
 			inherit (pkgs)
 				csharpier
 				gci
+				go-jsonnet
 				prettierd
 				rustfmt
 				rustywind
@@ -69,6 +70,7 @@ in {
 				gopls
 				harper
 				jdt-language-server
+				jsonnet-language-server
 				lua-language-server
 				nil
 				pyright
