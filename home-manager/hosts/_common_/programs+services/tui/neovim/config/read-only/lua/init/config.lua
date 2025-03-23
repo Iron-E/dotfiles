@@ -21,7 +21,6 @@ vim.api.nvim_set_option_value('foldlevelstart', 2, {})       -- starting fold le
 vim.api.nvim_set_option_value('foldmethod', 'expr', {})      -- Set folding to occur from a marker
 vim.api.nvim_set_option_value('foldtext', 'v:lua.NeatFoldText()', {}) -- Set text of folds
 vim.api.nvim_set_option_value('grepprg', 'rg --vimgrep', {}) -- Use ripgrep instead of grep.
-vim.api.nvim_set_option_value('guicursor', '', {})           -- Remove vertical cursor from insert mode
 vim.api.nvim_set_option_value('ignorecase', true, {})        -- Case insensitive search by default
 vim.api.nvim_set_option_value('inccommand', 'split', {})     -- Show regular expression previews in a split
 vim.api.nvim_set_option_value('laststatus', 3, {})           -- Only show a statusline at the bottom of the screen
@@ -48,6 +47,7 @@ vim.api.nvim_set_option_value('visualbell', true, {})        -- Disable beeping
 vim.opt.wildignore = {'*.bak', '*.cache', '*/.git/**/*', '*.min.*', '*/node_modules/**/*', '*.pyc', '*.swp'}
 vim.api.nvim_set_option_value('wildignorecase', true, {})    -- Ignore case for command completions
 vim.opt.wildmode = {'longest:full', 'full'}                  -- Command completion mode
+vim.api.nvim_set_option_value('winborder', 'rounded', {})    -- Use rounded borders
 
 -- WARN: Providers (MUST be `0`, not `false`)
 vim.g.loaded_node_provider = 0 -- disable JavaScript
@@ -71,42 +71,23 @@ vim.g.loaded_ruby_provider = 0 -- disable Ruby
               /____/
 --]]
 do
-	--- @type vim.diagnostic.Opts.Float
-	local float = { border = 'rounded' }
+	--- @type vim.diagnostic.Opts.Signs
+	local signs = { text = { ' ', ' ', ' ', ' ' } }
 
-	do
-		--- @type vim.diagnostic.Opts.Signs
-		local signs = { text = { ' ', ' ', ' ', ' ' } }
+	--- @type vim.diagnostic.Opts
+	local diagnostic_config = {
+		severity_sort = true,
+		signs = signs,
+		virtual_text = {
+			prefix = function(diagnostic)
+				return signs.text[diagnostic.severity]
+			end,
+			source = 'if_many',
+			spacing = 1,
+		},
+	}
 
-		--- @type vim.diagnostic.Opts
-		local diagnostic_config = {
-			float = float,
-			severity_sort = true,
-			signs = signs,
-			virtual_text = {
-				prefix = function(diagnostic)
-					return signs.text[diagnostic.severity]
-				end,
-				source = 'if_many',
-				spacing = 1,
-			},
-		}
-
-		vim.diagnostic.config(diagnostic_config)
-	end
-
-	local open_floating_preview = vim.lsp.util.open_floating_preview
-	vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
-		if opts == nil then
-			opts = {}
-		end
-
-		for k, v in pairs(float) do
-			opts[k] = v
-		end
-
-		return open_floating_preview(contents, syntax, opts, ...)
-	end
+	vim.diagnostic.config(diagnostic_config)
 end
 
 do -- HACK: disable LSP watcher. Too slow on Linux

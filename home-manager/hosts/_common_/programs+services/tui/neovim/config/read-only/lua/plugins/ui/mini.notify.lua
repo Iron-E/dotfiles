@@ -1,6 +1,7 @@
 return {{ 'echasnovski/mini.notify', config = function()
 	local notify = require 'mini.notify'
-	notify.setup { window = { config = { border = 'rounded' } } }
+	notify.setup()
+
 	vim.notify = notify.make_notify {
 		DEBUG = { hl_group = 'DiagnosticFloatingHint' },
 		ERROR = { hl_group = 'DiagnosticFloatingError' },
