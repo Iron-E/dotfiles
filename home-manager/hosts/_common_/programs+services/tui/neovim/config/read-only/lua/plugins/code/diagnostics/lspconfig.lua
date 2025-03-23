@@ -33,9 +33,9 @@ return {
 			setup 'ansiblels'
 			setup 'docker_compose_language_service'
 			setup 'dockerls'
-			setup 'gleam'
 			setup 'html'
 			setup 'jsonnet_ls'
+			setup 'nixd'
 			setup 'tailwindcss'
 			setup 'tinymist'
 
@@ -115,7 +115,7 @@ return {
 				},
 			})
 
-			setup('jsonls', {cmd = {'vscode-json-languageserver', '--stdio'}})
+			setup('jsonls', { cmd = { 'vscode-json-languageserver', '--stdio' } })
 
 			setup('lua_ls', {
 				before_init = function(_, config)
@@ -140,18 +140,6 @@ return {
 					},
 					telemetry = {enable = false},
 				}},
-			})
-
-			setup('nil_ls', {
-				settings = {
-					['nil'] = {
-						nix = {
-							flake = {
-								autoArchive = true,
-							},
-						},
-					},
-				},
 			})
 
 			setup('pyright', {

@@ -66,13 +66,12 @@ in {
 				docker-compose-language-service
 				dockerfile-language-server-nodejs
 				emmet-language-server
-				gleam
 				gopls
 				harper
 				jdt-language-server
 				jsonnet-language-server
 				lua-language-server
-				nil
+				nixd
 				pyright
 				roslyn-ls
 				rust-analyzer
