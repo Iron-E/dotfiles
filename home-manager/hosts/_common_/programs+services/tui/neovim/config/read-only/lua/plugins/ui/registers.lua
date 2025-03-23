@@ -5,6 +5,6 @@ return {{ 'tversteeg/registers.nvim',
 		{ '<C-r>', desc = 'View the registers', mode = 'i' },
 	},
 	opts = function(_, o)
-		o.window = { border = 'rounded' }
+		o.window = { border = vim.o.winborder }
 	end,
 }}

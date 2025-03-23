@@ -52,10 +52,11 @@ return {{ 'hrsh7th/nvim-cmp',
 			end,
 		}
 
+		local border = vim.o.winborder
 		o.window =
 		{
-			completion = { border = 'rounded', winhighlight = 'CursorLine:PmenuSel,Search:None' },
-			documentation = { border = 'rounded', winhighlight = '' },
+			completion = { border = border, winhighlight = 'CursorLine:PmenuSel,Search:None' },
+			documentation = { border = border, winhighlight = '' },
 		}
 	end,
 	config = function(_, o)

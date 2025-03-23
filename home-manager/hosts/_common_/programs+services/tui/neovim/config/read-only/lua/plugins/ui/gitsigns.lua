@@ -10,7 +10,7 @@ return {{ 'lewis6991/gitsigns.nvim',
 		{ '<Leader>hu', '<Cmd>Gitsigns undo_stage_hunk<CR>', desc = 'Unstage hunk', mode = 'n' },
 	},
 	opts = function(_, o)
-		o.preview_config = {border = 'rounded'}
+		o.preview_config = { border = vim.o.winborder }
 		o.trouble = false
 	end,
 }}

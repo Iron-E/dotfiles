@@ -34,5 +34,5 @@ require('lazy').setup('plugins', {
 		'tutor',
 		'zipPlugin',
 	}}},
-	ui = { border = 'rounded' },
+	ui = { border = vim.o.winborder },
 })
