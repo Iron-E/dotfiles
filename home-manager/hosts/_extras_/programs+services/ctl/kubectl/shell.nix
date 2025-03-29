@@ -37,6 +37,12 @@ in {
 
 		kl = "k logs";
 
+		ko = "k rollout";
+		koh = "ko history";
+		kor = "ko restart";
+		kos = "ko status";
+		kou = "ko undo";
+
 		kr = "k run";
 
 		kt = "k top";
