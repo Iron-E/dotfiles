@@ -5,7 +5,7 @@ local HANDLERS
 return {
 	{ 'neovim/nvim-lspconfig',
 		cond = vim.g.man ~= true,
-		dependencies = 'cmp-nvim-lsp',
+		dependencies = 'blink.cmp',
 		config = function()
 			local lspconfig  = require 'lspconfig'
 
@@ -16,7 +16,8 @@ return {
 			require('lspconfig.ui.windows').default_options = float_config
 
 			--[[/* Config */]]
-			local CAPABILITIES = require('cmp_nvim_lsp').default_capabilities()
+			local DEFAULT_CAPABILITIES = vim.lsp.protocol.make_client_capabilities()
+			local BLINK_CAPABILITIES = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 			--- @param lsp string
 			--- @param config? table
@@ -25,7 +26,7 @@ return {
 					config = {}
 				end
 
-				config.capabilities = CAPABILITIES
+				config.capabilities = BLINK_CAPABILITIES
 				config.handlers = HANDLERS
 				lspconfig[lsp].setup(config)
 			end
@@ -118,28 +119,19 @@ return {
 			setup('jsonls', { cmd = { 'vscode-json-languageserver', '--stdio' } })
 
 			setup('lua_ls', {
-				before_init = function(_, config)
-					local lua_ls_workspace_library = {}
-
-					for _, path in ipairs(vim.api.nvim_get_runtime_file('', true)) do
-						lua_ls_workspace_library[path] = true
-					end
-
-					config.settings.Lua.workspace = {library = lua_ls_workspace_library}
-				end,
-				cmd = {'lua-language-server', '-E', '-W'},
-				settings = {Lua =
-				{
-					diagnostics = {globals = { 'vim' }},
-					hint = {enable = true},
-					runtime =
-					{
-						path = vim.split(package.path, ';', {plain = true, trimempty = true}),
-						pathStrict = true,
-						version = 'LuaJIT',
+				cmd = { 'lua-language-server', '-E', '-W' },
+				settings = {
+					Lua = {
+						diagnostics = { globals = { 'vim' } },
+						hint = { enable = true },
+						runtime = {
+							path = vim.split(package.path, ';', { plain = true, trimempty = true }),
+							pathStrict = true,
+							version = 'LuaJIT',
+						},
+						telemetry = { enable = false },
 					},
-					telemetry = {enable = false},
-				}},
+				},
 			})
 
 			setup('pyright', {

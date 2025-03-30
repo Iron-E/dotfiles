@@ -9,7 +9,7 @@ return {{ 'chrisgrieser/nvim-scissors',
 		require('scissors.config').config.telescope.opts.layout_config.preview_width = nil
 	end,
 	opts = function(_, o)
-		o.jsonFormatter = { 'jq', '--monochrome-output', '--sort-keys', '--tab' }
+		o.jsonFormatter = { 'gojq', '--monochrome-output', '--tab' }
 		o.editSnippetPopup = {
 			height = 0.85, -- relative to the window, number between 0 and 1
 			width = 0.8,

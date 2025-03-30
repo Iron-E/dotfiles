@@ -52,6 +52,7 @@ in {
 				csharpier
 				gci
 				go-jsonnet
+				gojq
 				prettierd
 				rustfmt
 				rustywind
