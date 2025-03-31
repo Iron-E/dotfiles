@@ -11,9 +11,12 @@ in {
 				description = "vi keybindings with autosuggestion acceptance";
 				body = multiline /* fish */ ''
 					fish_vi_key_bindings
+
+					bind -M insert alt-j down-or-search
+					bind -M insert alt-k up-or-search
 					for mode in default insert visual
 						bind -M $mode -k nul forward-char
-						bind -M $mode \cf forward-word
+						bind -M $mode ctrl-f forward-word
 					end
 				'';
 			};
