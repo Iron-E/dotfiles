@@ -1,6 +1,12 @@
 return {{ 'stevearc/aerial.nvim',
 	dependencies = { 'nvim-treesitter', 'echasnovski/mini.icons' },
-	keys = {{ 'gO', '<Cmd>AerialToggle<CR>', desc = 'Toggle aerial.nvim', mode = 'n' }},
+	keys = {
+		{ 'gO', '<Cmd>AerialToggle<CR>', desc = 'Toggle aerial.nvim', mode = 'n' },
+
+		-- HACK: neovim provides gO as a builtin on markdown files, so we must override it.
+		--       nvim_buf_del_keymap works but throws an error.
+		{ 'gO', '<Cmd>AerialToggle<CR>', desc = 'Toggle aerial.nvim', mode = 'n', ft = 'markdown' },
+	},
 	opts = function(_, o)
 		o.backends = { 'lsp', 'treesitter', 'man', 'markdown' }
 		o.filter_kind = false
