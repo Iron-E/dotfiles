@@ -1,3 +1,5 @@
+--- @module 'blink.cmp'
+
 return {{ 'Saghen/blink.cmp',
 	version = '1.*',
 	event = 'InsertEnter',
@@ -125,6 +127,10 @@ return {{ 'Saghen/blink.cmp',
 			['<S-Tab>'] = { 'select_prev', show_if_on_cursor, 'fallback' },
 		}
 
+		o.snippets = {
+			score_offset = -2,
+		}
+
 		o.sources = {
 			default = {
 				'lazydev',
@@ -177,6 +183,7 @@ return {{ 'Saghen/blink.cmp',
 				snippets = {
 					name = '',
 					max_items = 10,
+					score_offset = 0,
 					opts = {
 						search_paths = {
 							vim.fn.stdpath('config') .. '/snippets',
