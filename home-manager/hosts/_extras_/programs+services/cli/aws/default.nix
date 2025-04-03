@@ -5,5 +5,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [awscli2];
+	home.packages = with pkgs; [ awscli2 ];
 }
