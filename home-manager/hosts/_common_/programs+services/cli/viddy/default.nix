@@ -5,5 +5,5 @@ let
 in {
 	imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [ hwatch ];
+	home.packages = with pkgs; [ viddy ];
 }
