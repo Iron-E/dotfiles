@@ -53,6 +53,7 @@ in {
 				gci
 				go-jsonnet
 				gojq
+				nixfmt-rfc-style
 				prettierd
 				rustfmt
 				rustywind

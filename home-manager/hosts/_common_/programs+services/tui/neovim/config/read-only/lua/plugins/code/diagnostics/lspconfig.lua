@@ -36,7 +36,6 @@ return {
 			setup 'dockerls'
 			setup 'html'
 			setup 'jsonnet_ls'
-			setup 'nixd'
 			setup 'tailwindcss'
 			setup 'tinymist'
 
@@ -130,6 +129,24 @@ return {
 							version = 'LuaJIT',
 						},
 						telemetry = { enable = false },
+					},
+				},
+			})
+
+			setup('nixd', {
+				settings = {
+					nixd = {
+						nixpkgs = {
+							expr = 'import <nixpkgs> { }',
+						},
+						formatting = {
+							command = { 'nixfmt' },
+						},
+						options = {
+							home_manager = {
+								expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."iron-e@origin".options',
+							},
+						},
 					},
 				},
 			})
