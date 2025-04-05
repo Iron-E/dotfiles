@@ -1,8 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	home.sessionVariables.PAGER = "bat";
+  home.sessionVariables.PAGER = "bat";
 }

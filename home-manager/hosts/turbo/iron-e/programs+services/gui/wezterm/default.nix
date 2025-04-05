@@ -1,10 +1,15 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  outputs,
+  ...
+}:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	# HACK: nixgl doesn't work on macos, but we still want to install the config
-	programs.wezterm.package = lib.mkForce pkgs.emptyDirectory;
+  # HACK: nixgl doesn't work on macos, but we still want to install the config
+  programs.wezterm.package = lib.mkForce pkgs.emptyDirectory;
 }

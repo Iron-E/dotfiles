@@ -1,21 +1,19 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	home.shellAliases = {
-		# some terminals don't clear history correctly
-		clr = "clear && clear";
+  home.shellAliases = {
+    # some terminals don't clear history correctly
+    clr = "clear && clear";
 
-		# iproute2
-		ip = "ip --color";
+    # iproute2
+    ip = "ip --color";
 
-		# ls
-		l = "ls -l";
-		la = "l -A";
+    # ls
+    l = "ls -l";
+    la = "l -A";
 
-		# mkdir
-		mkdir = "mkdir -p";
-	};
+    # mkdir
+    mkdir = "mkdir -p";
+  };
 }

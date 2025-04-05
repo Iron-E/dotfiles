@@ -1,9 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, ... }:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	programs.direnv.enable = true;
+  programs.direnv.enable = true;
 }

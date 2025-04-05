@@ -1,10 +1,10 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ config, outputs, ... }:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	home.packages = with config.services.redshift; [package];
-	# services.redshift.enable = true; # NOTE: can't enable, wants to manage temperature automatically (I want manual control)
+  home.packages = with config.services.redshift; [ package ];
+  # services.redshift.enable = true; # NOTE: can't enable, wants to manage temperature automatically (I want manual control)
 }

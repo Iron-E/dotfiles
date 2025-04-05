@@ -1,11 +1,17 @@
-{ inputs, outputs, lib, config, pkgs, targetPlatform, ... }:
+{
+  pkgs,
+  config,
+  outputs,
+  ...
+}:
 let
-	util = outputs.lib;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	programs.zathura = {
-		enable = true;
-		package = config.lib.nixgl.wrap pkgs.zathura;
-	};
+  programs.zathura = {
+    enable = true;
+    package = config.lib.nixgl.wrap pkgs.zathura;
+  };
 }

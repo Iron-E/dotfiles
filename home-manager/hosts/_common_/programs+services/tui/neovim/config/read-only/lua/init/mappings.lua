@@ -121,8 +121,8 @@ vim.api.nvim_set_keymap('n', '<Leader>m', '', {
 |___/_/_/_/_(_)_,_/_/\_,_/\_, /_//_/\___/___/\__/_/\__/
                          /___/
 --]]
-vim.api.nvim_set_keymap('n', '[d', '', { callback = vim.diagnostic.goto_prev })
-vim.api.nvim_set_keymap('n', ']d', '', { callback = vim.diagnostic.goto_next })
+vim.api.nvim_set_keymap('n', '[d', '', { callback = function() vim.diagnostic.jump({ count = -1, float = true }) end })
+vim.api.nvim_set_keymap('n', ']d', '', { callback = function() vim.diagnostic.jump({ count = 1, float = true }) end })
 vim.api.nvim_set_keymap('n', 'gC', '', { callback = function() vim.diagnostic.reset(nil, 0) end })
 vim.api.nvim_set_keymap('n', 'gK', '', { callback = vim.diagnostic.open_float })
 vim.api.nvim_set_keymap('n', '<A-w>d', '', { callback = vim.diagnostic.setqflist })

@@ -1,11 +1,8 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ lib, ... }:
+{
+  imports = [ ];
 
-	programs.librewolf.settings = lib.mapAttrs' (n: lib.nameValuePair "widget.${n}") {
-		"content.allow-gtk-dark-theme" = true;
-	};
+  programs.librewolf.settings = lib.mapAttrs' (n: lib.nameValuePair "widget.${n}") {
+    "content.allow-gtk-dark-theme" = true;
+  };
 }

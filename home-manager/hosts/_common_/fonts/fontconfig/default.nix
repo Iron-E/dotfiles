@@ -1,8 +1,6 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 }

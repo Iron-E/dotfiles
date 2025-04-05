@@ -1,9 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, inputs, ... }:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	xdg.configFile."yazi/plugins/relative-motions.yazi".source = "${inputs.yazi-relative-motions}";
+  xdg.configFile."yazi/plugins/relative-motions.yazi".source = "${inputs.yazi-relative-motions}";
 }

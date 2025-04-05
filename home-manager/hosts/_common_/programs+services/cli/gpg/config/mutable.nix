@@ -1,12 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	programs.gpg = {
-		mutableKeys = true;
-		mutableTrust = true;
-	};
+  programs.gpg = {
+    mutableKeys = true;
+    mutableTrust = true;
+  };
 }

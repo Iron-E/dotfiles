@@ -1,12 +1,10 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ pkgs, ... }:
+{
+  imports = [ ];
 
-	gtk.font = {
-		name = "Ubuntu";
-		package = pkgs.ubuntu-sans;
-		size = 10;
-	};
+  gtk.font = {
+    name = "Ubuntu";
+    package = pkgs.ubuntu-sans;
+    size = 10;
+  };
 }

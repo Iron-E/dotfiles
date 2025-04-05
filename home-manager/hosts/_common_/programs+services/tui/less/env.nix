@@ -1,8 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	home.sessionVariables.LESSHISTFILE = "-";
+  home.sessionVariables.LESSHISTFILE = "-";
 }

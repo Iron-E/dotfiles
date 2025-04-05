@@ -1,10 +1,8 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	programs.git.extraConfig.pull = {
-		rebase = true;
-	};
+  programs.git.extraConfig.pull = {
+    rebase = true;
+  };
 }

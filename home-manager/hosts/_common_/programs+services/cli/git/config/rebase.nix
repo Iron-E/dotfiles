@@ -1,12 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	programs.git.extraConfig.rebase = {
-		autosquash = true;
-		updateRefs = true;
-	};
+  programs.git.extraConfig.rebase = {
+    autosquash = true;
+    updateRefs = true;
+  };
 }

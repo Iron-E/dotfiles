@@ -1,13 +1,8 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ lib, ... }:
+{
+  imports = [ ];
 
-	programs.git.extraConfig =
-		lib.genAttrs
-		["fetch" "receive" "transfer"]
-		(lib.const { fsckobjects = true; })
-	;
+  programs.git.extraConfig = lib.genAttrs [ "fetch" "receive" "transfer" ] (
+    lib.const { fsckobjects = true; }
+  );
 }

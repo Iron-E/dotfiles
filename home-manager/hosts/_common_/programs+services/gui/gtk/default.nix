@@ -1,8 +1,9 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
+{ outputs, ... }:
 let
-	util = outputs.lib;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	gtk.enable = true;
+  gtk.enable = true;
 }

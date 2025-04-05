@@ -1,9 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ pkgs, lib, ... }:
+{
+  imports = [ ];
 
-	home.sessionVariables.DELTA_PAGER = "${lib.getExe pkgs.less} -R";
+  home.sessionVariables.DELTA_PAGER = "${lib.getExe pkgs.less} -R";
 }

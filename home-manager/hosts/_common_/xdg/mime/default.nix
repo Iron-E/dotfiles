@@ -1,8 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, ... }:
 let
-	util = outputs.lib;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	# `xdg.mime.enable = true;` already set on linux platforms
+  # `xdg.mime.enable = true;` already set on linux platforms
 }

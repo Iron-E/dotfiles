@@ -1,17 +1,19 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ inputs, outputs, ... }:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	nixpkgs =
-		outputs.lib.config.nixpkgs
-		(with inputs; [
-			# neovim-nightly-overlay
-			nixgl
-		])
-		(with outputs.overlays; [additions modifications])
-		{ }
-	;
+  nixpkgs =
+    outputs.lib.config.nixpkgs
+      (with inputs; [
+        # neovim-nightly-overlay
+        nixgl
+      ])
+      (with outputs.overlays; [
+        additions
+        modifications
+      ])
+      { };
 }

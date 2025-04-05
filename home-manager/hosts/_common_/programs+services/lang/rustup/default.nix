@@ -1,8 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, pkgs, ...}:
 let
-	util = outputs.lib;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [ rustup ];
+  home.packages = with pkgs; [ rustup ];
 }

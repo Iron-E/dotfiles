@@ -1,10 +1,8 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	programs.git.extraConfig.core = {
-		fsmonitor = true;
-	};
+  programs.git.extraConfig.core = {
+    fsmonitor = true;
+  };
 }

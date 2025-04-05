@@ -1,13 +1,11 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	home.shellAliases = {
-		"ls" = "lsd";
+  home.shellAliases = {
+    "ls" = "lsd";
 
-		"t" = "lsd --tree";
-		"ta" = "t -A";
-	};
+    "t" = "lsd --tree";
+    "ta" = "t -A";
+  };
 }

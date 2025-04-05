@@ -1,9 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	home.shellAliases.y = "yazi";
+  home.shellAliases.y = "yazi";
 }

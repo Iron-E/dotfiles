@@ -1,17 +1,16 @@
-args @ { inputs, outputs, config, lib, pkgs, ... }:
+args@{ ... }:
 let
-	util = outputs.lib;
+  inherit (import ./lib/colors.nix args) auto presets;
+  focusedInactive = auto presets.inactive;
+in
+{
+  imports = [ ];
 
-	inherit (import ./lib/colors.nix args) auto presets;
-	focusedInactive = auto presets.inactive;
-in {
-	imports = [];
+  xsession.windowManager.i3.config.colors = {
+    inherit focusedInactive;
+    unfocused = focusedInactive;
 
-	xsession.windowManager.i3.config.colors = {
-		inherit focusedInactive;
-		unfocused = focusedInactive;
-
-		focused = auto {};
-		urgent = auto presets.urgent;
-	};
+    focused = auto { };
+    urgent = auto presets.urgent;
+  };
 }

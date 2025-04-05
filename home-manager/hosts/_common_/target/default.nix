@@ -1,9 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, targetPlatform, ... }:
+{ outputs, pkgs, ...}:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	targets.genericLinux.enable = pkgs.stdenv.isLinux;
+  targets.genericLinux.enable = pkgs.stdenv.isLinux;
 }

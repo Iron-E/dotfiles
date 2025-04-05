@@ -1,11 +1,9 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	programs.git.extraConfig.commit = {
-		template = "${./message.txt}";
-		verbose = true;
-	};
+  programs.git.extraConfig.commit = {
+    template = "${./message.txt}";
+    verbose = true;
+  };
 }

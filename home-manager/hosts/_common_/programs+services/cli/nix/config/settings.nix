@@ -1,21 +1,21 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ inputs, ... }:
+{
+  imports = [ ];
 
-	nix = {
-		gc = {
-			automatic = true;
-			frequency = "weekly";
-		};
+  nix = {
+    gc = {
+      automatic = true;
+      frequency = "weekly";
+    };
 
-		nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-		settings = {
-			auto-optimise-store = true;
-			experimental-features = ["nix-command" "flakes"];
-		};
-	};
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+  };
 }

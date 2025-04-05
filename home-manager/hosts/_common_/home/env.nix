@@ -1,14 +1,13 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ config, ... }:
+{
+  imports = [ ];
 
-	home =
-	let
-		inherit (config.home) homeDirectory;
-	in {
-		sessionPath = ["${homeDirectory}/bin"];
-		sessionVariables.DO_NOT_TRACK = 1;
-	};
+  home =
+    let
+      inherit (config.home) homeDirectory;
+    in
+    {
+      sessionPath = [ "${homeDirectory}/bin" ];
+      sessionVariables.DO_NOT_TRACK = 1;
+    };
 }

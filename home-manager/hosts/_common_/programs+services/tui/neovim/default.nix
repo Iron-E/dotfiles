@@ -1,11 +1,12 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, pkgs, ...}:
 let
-	util = outputs.lib;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	programs.neovim = {
-		enable = true;
-		# package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-	};
+  programs.neovim = {
+    enable = true;
+    # package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+  };
 }

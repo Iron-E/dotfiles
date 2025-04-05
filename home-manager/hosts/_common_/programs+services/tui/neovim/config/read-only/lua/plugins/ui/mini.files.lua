@@ -1,3 +1,5 @@
+--- @module 'mini.files'
+
 return {{ 'echasnovski/mini.files',
 	keys = {
 		{ '<A-w>e', desc = 'Focus current file in file explorer', function()
@@ -84,7 +86,7 @@ return {{ 'echasnovski/mini.files',
 				})
 
 				vim.api.nvim_buf_set_keymap(buf, 'n', 'gf', '', {
-					callback = set_dir_to_entry(function(dir) vim.loop.chdir(dir) end),
+					callback = set_dir_to_entry(function(dir) vim.uv.chdir(dir) end),
 					desc = 'Set current directory',
 				})
 

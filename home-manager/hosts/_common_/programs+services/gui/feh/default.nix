@@ -1,12 +1,17 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{
+  pkgs,
+  config,
+  outputs,
+  ...
+}:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	programs.feh = {
-		enable = true;
-		package = config.lib.nixgl.wrap pkgs.feh;
-	};
+  programs.feh = {
+    enable = true;
+    package = config.lib.nixgl.wrap pkgs.feh;
+  };
 }

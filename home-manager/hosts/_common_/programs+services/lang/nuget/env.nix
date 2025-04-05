@@ -1,13 +1,10 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ config, ... }:
+{
+  imports = [ ];
 
-	home.sessionVariables.NUGET_PACKAGES =
-	let
-		inherit (config) xdg;
-	in
-		"${xdg.cacheHome}/NuGetPackages"
-	;
+  home.sessionVariables.NUGET_PACKAGES =
+    let
+      inherit (config) xdg;
+    in
+    "${xdg.cacheHome}/NuGetPackages";
 }

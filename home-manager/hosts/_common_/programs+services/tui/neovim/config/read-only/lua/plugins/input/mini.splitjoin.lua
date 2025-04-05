@@ -24,7 +24,7 @@ return {{ 'echasnovski/mini.splitjoin',
 				vim.api.nvim_buf_set_var(ev.buf, bvar, { split = { hooks_post = { gen_hook.add_trailing_separator(all) } } })
 			end,
 			group = 'config',
-			pattern = { 'gleam', 'go', 'rust', 'typescript', 'typescriptreact', 'typst' },
+			pattern = { 'gleam', 'go', 'jsonnet', 'rust', 'typescript', 'typescriptreact', 'typst' },
 		})
 
 		vim.api.nvim_create_autocmd('FileType', {

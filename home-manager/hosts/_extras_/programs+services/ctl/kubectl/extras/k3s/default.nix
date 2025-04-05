@@ -1,12 +1,20 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  outputs,
+  ...
+}:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	home.packages = lib.optionals pkgs.stdenv.isLinux (with pkgs; [
-		k3s
-		vcluster
-	]);
+  home.packages = lib.optionals pkgs.stdenv.isLinux (
+    with pkgs;
+    [
+      k3s
+      vcluster
+    ]
+  );
 }

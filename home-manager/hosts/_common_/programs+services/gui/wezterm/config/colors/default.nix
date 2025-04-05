@@ -1,13 +1,19 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
+{ lib, ... }:
 let
-	inherit (builtins) fromTOML readFile getAttr;
-	util = outputs.lib;
+  inherit (builtins) fromTOML readFile getAttr;
 
-	getColorsFromTOML = lib.flip lib.pipe [fromTOML (getAttr "colors")];
-in {
-	imports = [];
+  getColorsFromTOML = lib.flip lib.pipe [
+    fromTOML
+    (getAttr "colors")
+  ];
+in
+{
+  imports = [ ];
 
-	programs.wezterm.colorSchemes = {
-		highlite = lib.pipe ./highlite.toml [readFile getColorsFromTOML];
-	};
+  programs.wezterm.colorSchemes = {
+    highlite = lib.pipe ./highlite.toml [
+      readFile
+      getColorsFromTOML
+    ];
+  };
 }

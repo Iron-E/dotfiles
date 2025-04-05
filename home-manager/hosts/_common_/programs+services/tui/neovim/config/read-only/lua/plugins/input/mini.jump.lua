@@ -1,3 +1,5 @@
+--- @module 'mini.jump'
+
 --- mode for mapping
 local nvo = { 'n', 'v', 'o' }
 

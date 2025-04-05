@@ -1,9 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, pkgs, ...}:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	home.packages = with pkgs; [xclip];
+  home.packages = with pkgs; [ xclip ];
 }

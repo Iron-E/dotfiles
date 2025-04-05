@@ -1,9 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ lib, outputs, ... }:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	services.gpg-agent.enable = lib.mkForce false;
+  services.gpg-agent.enable = lib.mkForce false;
 }

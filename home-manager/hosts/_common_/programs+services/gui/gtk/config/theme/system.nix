@@ -1,11 +1,9 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ pkgs, ... }:
+{
+  imports = [ ];
 
-	gtk.theme = {
-		name = "vimix-dark-beryl";
-		package = pkgs.vimix-gtk-theme-beryl;
-	};
+  gtk.theme = {
+    name = "vimix-dark-beryl";
+    package = pkgs.vimix-gtk-theme-beryl;
+  };
 }

@@ -1,8 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, ... }:
 let
-	util = outputs.lib;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	programs.gpg.enable = true;
+  programs.gpg.enable = true;
 }

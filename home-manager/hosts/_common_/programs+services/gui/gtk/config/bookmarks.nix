@@ -1,11 +1,8 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	gtk.gtk3.bookmarks = [
-		"file:///tmp"
-	];
+  gtk.gtk3.bookmarks = [
+    "file:///tmp"
+  ];
 }

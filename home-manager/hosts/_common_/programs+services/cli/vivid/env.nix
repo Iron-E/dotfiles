@@ -1,8 +1,6 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ pkgs, lib, ... }:
+{
+  imports = [ ];
 
-	home.sessionVariables.LS_COLORS = "$(${lib.getExe pkgs.vivid} generate ${./highlite.yaml})";
+  home.sessionVariables.LS_COLORS = "$(${lib.getExe pkgs.vivid} generate ${./highlite.yaml})";
 }

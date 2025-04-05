@@ -1,8 +1,6 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ pkgs, ... }:
+{
+  imports = [ ];
 
-	home.packages = [pkgs.git-absorb];
+  home.packages = [ pkgs.git-absorb ];
 }

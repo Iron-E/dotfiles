@@ -1,9 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	home.sessionVariables.MPLBACKEND = "module://matplotlib-backend-wezterm";
+  home.sessionVariables.MPLBACKEND = "module://matplotlib-backend-wezterm";
 }

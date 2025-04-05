@@ -1,9 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ pkgs, lib, ... }:
+{
+  imports = [ ];
 
-	home.sessionSearchVariables.PATH = lib.optional pkgs.stdenv.isDarwin "/opt/homebrew/bin";
+  home.sessionSearchVariables.PATH = lib.optional pkgs.stdenv.isDarwin "/opt/homebrew/bin";
 }

@@ -1,16 +1,17 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, ... }:
 let
-	util = outputs.lib;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	programs.i3blocks = {
-		enable = true;
+  programs.i3blocks = {
+    enable = true;
 
-		# HACK: have to define bars manually, as home-manager does not support
-		#       the global attributes.
-		#       however, this option must be explicitly set or else an error
-		#       occurs.
-		bars = {};
-	};
+    # HACK: have to define bars manually, as home-manager does not support
+    #       the global attributes.
+    #       however, this option must be explicitly set or else an error
+    #       occurs.
+    bars = { };
+  };
 }

@@ -1,8 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ outputs, ... }:
 let
-	util = outputs.lib;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	xsession.enable = true;
+  xsession.enable = true;
 }

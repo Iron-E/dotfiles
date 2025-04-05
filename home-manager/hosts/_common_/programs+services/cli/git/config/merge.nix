@@ -1,11 +1,9 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	programs.git.extraConfig = {
-		merge.conflictstyle = "zdiff3";
-		rerere.enabled = true;
-	};
+  programs.git.extraConfig = {
+    merge.conflictstyle = "zdiff3";
+    rerere.enabled = true;
+  };
 }

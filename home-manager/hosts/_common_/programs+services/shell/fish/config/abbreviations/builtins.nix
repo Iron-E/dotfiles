@@ -1,13 +1,10 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	programs.fish.shellAbbrs = {
-		cmd = "command";
-		fn = "functions";
-		std = "builtins";
-	};
+  programs.fish.shellAbbrs = {
+    cmd = "command";
+    fn = "functions";
+    std = "builtins";
+  };
 }

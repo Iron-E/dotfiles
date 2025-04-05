@@ -17,8 +17,8 @@ return {{ 'echasnovski/mini.ai', opts = function(_, o)
 			goto_right = ']g',
 		}
 
+		--- @type { [string]: mini.ai.custom_textobject }
 		o.custom_textobjects = {
-			--- @type mini.ai.custom_textobject
 			g = function(ai_type)
 				local from_line =  1
 				local to_line = vim.api.nvim_buf_line_count(0)

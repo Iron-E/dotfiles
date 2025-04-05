@@ -1,50 +1,47 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ config, ... }:
+{
+  imports = [ ];
 
-	home.shellAliases = {
-		k = "kubectl";
+  home.shellAliases = {
+    k = "kubectl";
 
-		ka = "k apply";
-		kaf = "k apply -f";
+    ka = "k apply";
+    kaf = "k apply -f";
 
-		kat = "k attach";
+    kat = "k attach";
 
-		kau = "k auth";
-		kani = "kau can-i";
+    kau = "k auth";
+    kani = "kau can-i";
 
-		konf = "k config";
+    konf = "k config";
 
-		kcp = "k cp";
+    kcp = "k cp";
 
-		kb = "k debug";
+    kb = "k debug";
 
-		krm = "k delete";
-		krmf = "k delete -f";
+    krm = "k delete";
+    krmf = "k delete -f";
 
-		kd = "k diff";
+    kd = "k diff";
 
-		ki = "k describe";
+    ki = "k describe";
 
-		kv = "k events";
+    kv = "k events";
 
-		kh = "k explain";
+    kh = "k explain";
 
-		kg = "k get";
+    kg = "k get";
 
-		kl = "k logs";
+    kl = "k logs";
 
-		ko = "k rollout";
-		koh = "ko history";
-		kor = "ko restart";
-		kos = "ko status";
-		kou = "ko undo";
+    ko = "k rollout";
+    koh = "ko history";
+    kor = "ko restart";
+    kos = "ko status";
+    kou = "ko undo";
 
-		kr = "k run";
+    kr = "k run";
 
-		kt = "k top";
-	};
+    kt = "k top";
+  };
 }

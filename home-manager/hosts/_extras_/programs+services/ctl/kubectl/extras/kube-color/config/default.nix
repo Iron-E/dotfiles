@@ -1,10 +1,10 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ config, outputs, ... }:
 let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = util.fs.readSubmodules ./.;
+  util = outputs.lib;
+in
+{
+  imports = util.fs.readSubmodules ./.;
 
-	home.sessionVariables.KUBECOLOR_CONFIG = "${config.xdg.configHome}/kubecolor.yml";
-	xdg.configFile.${config.home.sessionVariables.KUBECOLOR_CONFIG}.source = ./kubecolor.yaml;
+  home.sessionVariables.KUBECOLOR_CONFIG = "${config.xdg.configHome}/kubecolor.yml";
+  xdg.configFile.${config.home.sessionVariables.KUBECOLOR_CONFIG}.source = ./kubecolor.yaml;
 }

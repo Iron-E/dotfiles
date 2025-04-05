@@ -1,9 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ pkgs, lib, ... }:
+{
+  imports = [ ];
 
-	home.shellAliases.fx = "${lib.getExe pkgs.watchexec}";
+  home.shellAliases.fx = "${lib.getExe pkgs.watchexec}";
 }

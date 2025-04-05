@@ -1,9 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ pkgs, ... }:
+{
+  imports = [ ];
 
-	home.packages = with pkgs; [ pre-commit ];
+  home.packages = with pkgs; [ pre-commit ];
 }

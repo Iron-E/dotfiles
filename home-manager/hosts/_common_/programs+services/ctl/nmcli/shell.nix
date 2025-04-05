@@ -1,8 +1,6 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	home.shellAliases.nc = "nmcli -p";
+  home.shellAliases.nc = "nmcli -p";
 }

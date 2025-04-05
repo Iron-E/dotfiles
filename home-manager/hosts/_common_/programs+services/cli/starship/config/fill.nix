@@ -1,11 +1,9 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-	util = outputs.lib;
-in {
-	imports = [];
+{ ... }:
+{
+  imports = [ ];
 
-	programs.starship.settings.fill = {
-		symbol = "·";
-		style = "gray";
-	};
+  programs.starship.settings.fill = {
+    symbol = "·";
+    style = "gray";
+  };
 }

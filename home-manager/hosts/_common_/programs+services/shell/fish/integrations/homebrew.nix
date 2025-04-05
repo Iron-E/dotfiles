@@ -1,14 +1,12 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
-let
-	util = outputs.lib;
-	inherit (util.strings) multiline;
-in {
-	imports = [];
+{ pkgs, lib, ... }:
+{
+  imports = [ ];
 
-	programs.fish.shellInit = lib.optionalString pkgs.stdenv.isDarwin
-	(multiline /* fish */ ''
-		if command -qs brew # homebrew is installed
-			brew shellenv | source
-		end
-	'');
+  programs.fish.shellInit =
+    lib.optionalString pkgs.stdenv.isDarwin # fish
+      ''
+        if command -qs brew # homebrew is installed
+          brew shellenv | source
+        end
+      '';
 }
