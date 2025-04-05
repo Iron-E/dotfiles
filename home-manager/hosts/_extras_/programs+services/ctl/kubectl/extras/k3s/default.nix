@@ -13,7 +13,7 @@ in
   home.packages = lib.optionals pkgs.stdenv.isLinux (
     with pkgs;
     [
-      k3s
+      (lib.hiPrio k3s)
       vcluster
     ]
   );
