@@ -147,19 +147,17 @@ return {{ 'Saghen/blink.cmp',
 				dadbod = {
 					name = "",
 					module = 'vim_dadbod_completion.blink',
-					enabled = function()
-						return vim.api.nvim_get_option_value('filetype', { buf = 0 }) == 'sql'
-					end,
+					fallbacks = { 'buffer' },
 				},
 				lazydev = {
 					name = '󰢱',
 					module = 'lazydev.integrations.blink',
+					fallbacks = { 'buffer' },
 					score_offset = 100,
 				},
 				lsp = {
 					name = '',
 					async = true,
-					fallbacks = {},
 					score_offset = 2,
 					transform_items = function(_, items)
 						local new_items = {}
