@@ -31,8 +31,8 @@ return {{ 'Saghen/blink.cmp',
 			},
 			list = {
 				selection = {
-					preselect = false,
-					auto_insert = true,
+					preselect = true,
+					auto_insert = false,
 				},
 			},
 			menu = {
@@ -97,9 +97,9 @@ return {{ 'Saghen/blink.cmp',
 
 		--- @param cmp blink.cmp.API
 		--- @return boolean|nil
-		local function show_if_on_cursor(cmp)
+		local function show_if_cursor_on_word(cmp)
 			if cursor_on_word() then
-				return cmp.show()
+				return cmp.show_and_insert()
 			end
 		end
 
@@ -117,14 +117,14 @@ return {{ 'Saghen/blink.cmp',
 			['<C-b>'] = { scroll_docs 'up', 'fallback' },
 			['<C-f>'] = { scroll_docs 'down', 'fallback' },
 
-			['<C-c>'] = { 'show', 'fallback' },
+			['<C-c>'] = { 'show_and_insert', 'fallback' },
 			['<C-Space>'] = { 'accept', 'fallback' },
 
 			['<C-n>'] = { 'snippet_forward', 'fallback' },
 			['<C-p>'] = { 'snippet_backward', 'fallback' },
 
-			['<Tab>'] = { 'select_next', show_if_on_cursor, 'fallback' },
-			['<S-Tab>'] = { 'select_prev', show_if_on_cursor, 'fallback' },
+			['<Tab>'] = { 'select_next', show_if_cursor_on_word, 'fallback' },
+			['<S-Tab>'] = { 'select_prev', show_if_cursor_on_word, 'fallback' },
 		}
 
 		o.snippets = {
