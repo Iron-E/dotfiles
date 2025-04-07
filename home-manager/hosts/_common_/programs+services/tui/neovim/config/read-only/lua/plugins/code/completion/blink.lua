@@ -21,6 +21,41 @@ return {{ 'Saghen/blink.cmp',
 			enabled = false,
 		}
 
+		--- @param ctx blink.cmp.Context
+		--- @return boolean
+		local function should_preselect(ctx)
+			local length = ctx.bounds.length
+			if length == 0 then -- there is no 'word' yet
+				return true
+			end
+
+			local column = ctx.cursor[2]
+			local offset = 1 -- the initial bounds length is 1, which would offset the start_col too far
+			return column == ctx.bounds.start_col + length - offset -- at the end of the match
+		end
+
+		--- The cached result of a call to `should_preselect`
+		local should_preselect_cache = {
+			id = nil,
+			result = nil,
+		}
+
+		--- Wraps should_preselect to prevent repetitive calculation for one popup.
+		--- @param ctx blink.cmp.Context
+		--- @return boolean
+		local function get_preselect(ctx)
+			if ctx.id == should_preselect_cache.id then
+				return should_preselect_cache.result
+			end
+
+			local result = should_preselect(ctx)
+
+			should_preselect_cache.id = ctx.id
+			should_preselect_cache.result = result
+
+			return result
+		end
+
 		o.completion = {
 			documentation = {
 				auto_show = true,
@@ -31,8 +66,10 @@ return {{ 'Saghen/blink.cmp',
 			},
 			list = {
 				selection = {
-					preselect = true,
-					auto_insert = false,
+					preselect = get_preselect,
+					auto_insert = function(ctx)
+						return not get_preselect(ctx)
+					end,
 				},
 			},
 			menu = {
@@ -89,25 +126,27 @@ return {{ 'Saghen/blink.cmp',
 			},
 		}
 
-		--- @return boolean # `true` if the cursor is on a word
-		local function cursor_on_word()
-			local col = vim.api.nvim_win_get_cursor(0)[2]
-			return col ~= 0 and vim.api.nvim_get_current_line():sub(col, col):find '%s' == nil
-		end
-
-		--- @param cmp blink.cmp.API
-		--- @return boolean|nil
-		local function show_if_cursor_on_word(cmp)
-			if cursor_on_word() then
-				return cmp.show_and_insert()
-			end
-		end
-
 		--- @param direction 'up'|'down'
 		--- @return fun(cmp: blink.cmp.API): boolean|nil
 		local function scroll_docs(direction)
 			return function(cmp)
 				return cmp['scroll_documentation_' .. direction](20)
+			end
+		end
+
+		--- @param cmp blink.cmp.API
+		--- @return boolean|nil
+		local function show_if_cursor_on_word(cmp)
+			local column = vim.api.nvim_win_get_cursor(0)[2]
+			if column < 1 then
+				return
+			end
+
+			local line = vim.api.nvim_get_current_line()
+			local char = line:sub(column, column)
+
+			if char:find('%s') == nil then
+				return cmp.show()
 			end
 		end
 
@@ -117,7 +156,7 @@ return {{ 'Saghen/blink.cmp',
 			['<C-b>'] = { scroll_docs 'up', 'fallback' },
 			['<C-f>'] = { scroll_docs 'down', 'fallback' },
 
-			['<C-c>'] = { 'show_and_insert', 'fallback' },
+			['<C-c>'] = { 'show', 'fallback' },
 			['<C-Space>'] = { 'accept', 'fallback' },
 
 			['<C-n>'] = { 'snippet_forward', 'fallback' },
