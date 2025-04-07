@@ -157,8 +157,6 @@ return {{ 'Saghen/blink.cmp',
 				},
 				lsp = {
 					name = '',
-					async = true,
-					score_offset = 2,
 					transform_items = function(_, items)
 						local new_items = {}
 						for _, item in ipairs(items) do
