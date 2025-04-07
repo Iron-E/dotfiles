@@ -11,13 +11,8 @@ return {
 
 			--[[/* UI */]]
 
-			--- @type vim.diagnostic.Opts.Float
-			local float_config = vim.diagnostic.config().float
-			require('lspconfig.ui.windows').default_options = float_config
-
 			--[[/* Config */]]
-			local DEFAULT_CAPABILITIES = vim.lsp.protocol.make_client_capabilities()
-			local BLINK_CAPABILITIES = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+			local BLINK_CAPABILITIES = require('blink.cmp').get_lsp_capabilities()
 
 			--- @param lsp string
 			--- @param config? table
