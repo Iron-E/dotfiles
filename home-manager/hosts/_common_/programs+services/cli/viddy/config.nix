@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [ ];
 
@@ -40,5 +45,9 @@
       scroll_bottom_of_page = "Shift-g";
       scroll_top_of_page = "g g";
     };
+  };
+
+  home.file = lib.optionalAttrs pkgs.stdenv.isDarwin {
+    "Library/Application Support/viddy.toml".source = config.xdg.configFile."viddy.toml".source;
   };
 }
