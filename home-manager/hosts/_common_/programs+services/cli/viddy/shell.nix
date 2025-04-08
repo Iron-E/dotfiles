@@ -2,5 +2,9 @@
 {
   imports = [ ];
 
-  home.shellAliases.watch = "${lib.getExe pkgs.viddy} --differences --deletion-differences --skip-empty-diffs";
+  home.shellAliases.watch = builtins.concatStringsSep " " [
+    (lib.getExe pkgs.viddy)
+    "--differences"
+    "--skip-empty-diffs"
+  ];
 }
