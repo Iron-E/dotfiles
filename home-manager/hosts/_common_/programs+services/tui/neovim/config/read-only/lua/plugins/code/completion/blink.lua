@@ -34,28 +34,6 @@ return {{ 'Saghen/blink.cmp',
 			return column == ctx.bounds.start_col + length - offset -- at the end of the match
 		end
 
-		--- The cached result of a call to `should_preselect`
-		local should_preselect_cache = {
-			id = nil,
-			result = nil,
-		}
-
-		--- Wraps should_preselect to prevent repetitive calculation for one popup.
-		--- @param ctx blink.cmp.Context
-		--- @return boolean
-		local function get_preselect(ctx)
-			if ctx.id == should_preselect_cache.id then
-				return should_preselect_cache.result
-			end
-
-			local result = should_preselect(ctx)
-
-			should_preselect_cache.id = ctx.id
-			should_preselect_cache.result = result
-
-			return result
-		end
-
 		o.completion = {
 			documentation = {
 				auto_show = true,
@@ -66,9 +44,9 @@ return {{ 'Saghen/blink.cmp',
 			},
 			list = {
 				selection = {
-					preselect = get_preselect,
+					preselect = should_preselect,
 					auto_insert = function(ctx)
-						return not get_preselect(ctx)
+						return not should_preselect(ctx)
 					end,
 				},
 			},
