@@ -18,7 +18,7 @@
               bind -M $mode ctrl-f forward-word
             end
 
-            if command -qs watch
+            if command -q watch || functions -q watch
               for mode in default insert
                 bind -M $mode alt-w 'fish_commandline_prepend watch'
               end
