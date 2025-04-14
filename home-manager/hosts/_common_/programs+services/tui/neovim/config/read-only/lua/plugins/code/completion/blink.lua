@@ -2,7 +2,7 @@
 
 return {{ 'Saghen/blink.cmp',
 	version = '1.*',
-	event = 'InsertEnter',
+	-- event = 'InsertEnter', WARN: cannot lazy load, or else language servers will not have the correct capabilities set
 	build = 'nix run .#build-plugin',
 	dependencies = {
 		'echasnovski/mini.icons',

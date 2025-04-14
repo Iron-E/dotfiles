@@ -13,6 +13,14 @@ require 'init/filetype'
 
 -- Config
 require 'init/config'
+
+require 'init/diagnostics'
+require 'init/lsp'
+
+require 'init/autocmds'
+require 'init/commands'
+require 'init/functions'
+
 require 'init/mappings'
 
 -- Plugins
