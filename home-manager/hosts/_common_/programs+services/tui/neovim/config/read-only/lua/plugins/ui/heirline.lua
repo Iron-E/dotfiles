@@ -1,3 +1,6 @@
+--- @module 'mini.icons'
+--- @module 'gitsigns'
+
 return {{ 'rebelot/heirline.nvim',
 	dependencies = { 'gitsigns.nvim', 'echasnovski/mini.icons' },
 	opts = function(_, o)
