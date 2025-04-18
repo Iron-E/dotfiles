@@ -1,3 +1,5 @@
+--- @module 'mini.icons'
+
 return {{ 'stevearc/aerial.nvim',
 	dependencies = { 'nvim-treesitter', 'echasnovski/mini.icons' },
 	keys = {
@@ -11,60 +13,33 @@ return {{ 'stevearc/aerial.nvim',
 		o.backends = { 'lsp', 'treesitter', 'man', 'markdown' }
 		o.filter_kind = false
 		o.icons =
-		{
-			Array         = '󱡠',
-			Boolean       = '󰨙',
-			Class         = '󰆧',
-			Constant      = '󰏿',
-			Constructor   = '',
-			Enum          = '',
-			EnumMember    = '',
-			Event         = '',
-			Field         = '',
-			File          = '󰈙',
-			Function      = '󰊕',
-			Interface     = '',
-			Key           = '󰌋',
-			Method        = '󰊕',
-			Module        = '',
-			Namespace     = '󰦮',
-			Null          = '󰟢',
-			Number        = '󰎠',
-			Object        = '',
-			Operator      = '󰆕',
-			Package       = '',
-			Property      = '',
-			String        = '',
-			Struct        = '󰆼',
-			TypeParameter = '󰗴',
-			Variable      = '󰀫',
-			ArrayCollapsed         = '󱡠 ',
-			BooleanCollapsed       = '󰨙',
-			ClassCollapsed         = '󰆧 ',
-			ConstantCollapsed      = '󰏿',
-			ConstructorCollapsed   = ' ',
-			EnumCollapsed          = ' ',
-			EnumMemberCollapsed    = ' ',
-			EventCollapsed         = ' ',
-			FieldCollapsed         = ' ',
-			FileCollapsed          = '󰈙 ',
-			FunctionCollapsed      = '󰊕 ',
-			InterfaceCollapsed     = ' ',
-			KeyCollapsed           = '󰌋 ',
-			MethodCollapsed        = '󰊕 ',
-			ModuleCollapsed        = ' ',
-			NamespaceCollapsed     = '󰦮 ',
-			NullCollapsed          = '󰟢',
-			NumberCollapsed        = '󰎠',
-			ObjectCollapsed        = ' ',
-			OperatorCollapsed      = '󰆕 ',
-			PackageCollapsed       = ' ',
-			PropertyCollapsed      = ' ',
-			StringCollapsed        = '',
-			StructCollapsed        = '󰆼 ',
-			TypeParameterCollapsed = '󰗴',
-			VariableCollapsed      = '󰀫',
-		}
+			vim.iter(ipairs {
+				'Array',
+				'Class',
+				'Constructor',
+				'Enum',
+				'EnumMember',
+				'Event',
+				'Field',
+				'File',
+				'Function',
+				'Interface',
+				'Key',
+				'Method',
+				'Module',
+				'Namespace',
+				'Object',
+				'Operator',
+				'Package',
+				'Property',
+				'Struct',
+			})
+			:fold({}, function(acc, _, v)
+				local icon = MiniIcons.get('lsp', v)
+				acc[v..'Collapsed'] = icon .. ' '
+				return acc
+			end)
+
 		o.layout =
 		{
 			default_direction = 'right',
