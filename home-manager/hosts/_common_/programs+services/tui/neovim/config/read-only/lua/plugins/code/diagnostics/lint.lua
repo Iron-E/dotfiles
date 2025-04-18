@@ -22,6 +22,7 @@ return { {
 		o.json = { 'jq' }
 		o.less = o.css
 		o.nix = { 'deadnix', 'nix' }
+		o.proto = { 'buf_lint' }
 		o.python = { 'ruff' }
 		o.sass = o.scss
 		o.scss = o.css

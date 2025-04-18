@@ -102,6 +102,7 @@ in
 
         inherit (pkgs)
           ansible-lint
+          buf
           deadnix
           dotenv-linter
           eslint_d

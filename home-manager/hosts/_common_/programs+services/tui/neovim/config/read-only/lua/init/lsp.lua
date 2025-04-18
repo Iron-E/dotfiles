@@ -10,6 +10,7 @@ vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 vim.lsp.enable {
 	'ansiblels',
 	'bashls',
+	'buf_ls',
 	'docker_compose_language_service',
 	'dockerls',
 	'emmet_language_server',
