@@ -14,6 +14,7 @@
         };
 
       completions = map mkCompletion [
+        "buf"
         "colima"
         "crane"
         "crictl"
