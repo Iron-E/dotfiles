@@ -38,9 +38,6 @@ end
 /_/  /_/_/___/\__/
 --]]
 
--- Open link under cursor
-vim.api.nvim_set_keymap('', 'gX', 'gx', noremap)
-
 -- Highlighting inspect
 vim.api.nvim_set_keymap('n', '<F10>', '<Cmd>Inspect<CR>', no_opts)
 
@@ -56,6 +53,9 @@ vim.api.nvim_set_keymap('n', '<F11>', '', { callback = function()
 	vim.api.nvim_win_set_cursor(winnr, cursor)
 	vim.api.nvim_set_current_win(inspect_winnr)
 end })
+
+-- Do not jump snippets on tab
+vim.api.nvim_set_keymap('s', '<Tab>', '<Tab>', noremap)
 
 -- Make `p` in visual mode not overwrite the unnamed register by default. `P` now does that.
 vim.api.nvim_set_keymap('x', 'p', 'P', noremap)
@@ -134,6 +134,14 @@ vim.api.nvim_set_keymap('n', '<A-w>d', '', { callback = vim.diagnostic.setqflist
 |___/_/_/_/_(_)_/___/ .__/
                    /_/
 --]]
+
+-- get rid of default LSP keymaps
+vim.api.nvim_del_keymap('n', 'gri')
+vim.api.nvim_del_keymap('n', 'grr')
+vim.api.nvim_del_keymap('x', 'gra')
+vim.api.nvim_del_keymap('n', 'gra')
+vim.api.nvim_del_keymap('n', 'grn')
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(event)
 		local bufnr = event.buf
@@ -153,7 +161,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		do
 			local modes = { 'n', 'x' }
 			-- vim.keymap.set(modes, 'gq', vim.lsp.buf.format, opts)
-			vim.keymap.set(modes, 'gx', vim.lsp.buf.code_action, opts)
+			vim.keymap.set(modes, 'gX', vim.lsp.buf.code_action, opts)
 		end
 
 		if vim.lsp.get_client_by_id(event.data.client_id).server_capabilities.inlayHintProvider then
