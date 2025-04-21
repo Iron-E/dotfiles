@@ -7,9 +7,9 @@ return {{ 'nvim-neotest/neotest',
 		'nvim-treesitter/nvim-treesitter',
 
 		-- adapters
+		'fredrikaverpil/neotest-golang',
 		'Issafalcon/neotest-dotnet',
 		'marilari88/neotest-vitest',
-		'nvim-neotest/neotest-go',
 	},
 	cmd = 'Neotest',
 	keys = {{ '<A-w>t', '<Cmd>Neotest summary<CR>', desc = 'Open test panel', mode = 'n' }},
@@ -17,7 +17,7 @@ return {{ 'nvim-neotest/neotest',
 		o.loglevel = vim.log.levels.OFF
 		o.adapters = {
 			require 'neotest-dotnet',
-			require 'neotest-go',
+			require 'neotest-golang',
 			require 'neotest-vitest',
 		}
 	end,
