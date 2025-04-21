@@ -35,6 +35,13 @@ return {{ 'Saghen/blink.cmp',
 		end
 
 		o.completion = {
+			accept = {
+				auto_brackets = {
+					-- completing for existing function calls bugs out
+					-- e.g. foo|(bar) turns into foo()(bar)
+					enabled = false,
+				},
+			},
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 500,
