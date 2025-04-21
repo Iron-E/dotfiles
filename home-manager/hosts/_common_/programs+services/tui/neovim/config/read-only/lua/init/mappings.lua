@@ -149,6 +149,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gA', '', { callback = vim.lsp.buf.rename })
 		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '', { callback = vim.lsp.buf.declaration })
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gL', '', { callback = vim.lsp.codelens.run })
 		vim.keymap.set({ 'i', 'n' }, '<C-h>', vim.lsp.buf.signature_help, opts)
 
 		-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '', { callback = vim.lsp.buf.definition })
