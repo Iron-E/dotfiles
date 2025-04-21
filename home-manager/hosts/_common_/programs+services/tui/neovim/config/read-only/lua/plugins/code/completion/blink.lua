@@ -42,6 +42,9 @@ return {{ 'Saghen/blink.cmp',
 					winhighlight = '',
 				},
 			},
+			keyword = {
+				range = 'full',
+			},
 			list = {
 				selection = {
 					preselect = should_preselect,
