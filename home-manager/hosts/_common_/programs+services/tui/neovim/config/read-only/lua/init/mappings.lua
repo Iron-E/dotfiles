@@ -57,6 +57,7 @@ end })
 -- Do not jump snippets on tab
 vim.api.nvim_set_keymap('s', '<Tab>', '<Tab>', noremap)
 
+
 -- Make `p` in visual mode not overwrite the unnamed register by default. `P` now does that.
 vim.api.nvim_set_keymap('x', 'p', 'P', noremap)
 vim.api.nvim_set_keymap('x', 'P', 'p', noremap)
@@ -89,6 +90,19 @@ vim.api.nvim_set_keymap('n', '<Leader>P', 'A<C-r>+<Esc>', noremap)
 -- Move lines visually rather than logically
 vim.api.nvim_set_keymap('', '<C-j>', 'gj', noremap)
 vim.api.nvim_set_keymap('', '<C-k>', 'gk', noremap)
+
+-- insert with space before
+vim.api.nvim_set_keymap('n', '<A-S-i>', '', {
+	callback = function()
+		vim.api.nvim_input('I<Space><Left>')
+	end,
+})
+
+vim.api.nvim_set_keymap('n', '<A-i>', '', {
+	callback = function()
+		vim.api.nvim_input('i<Space><Left>')
+	end,
+})
 
 -- Toggle concealing
 local toggle_conceal = toggle('conceallevel', true, function(v) return v < 2 and 2 or 0 end)
