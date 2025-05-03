@@ -111,6 +111,16 @@ return {{ 'Saghen/blink.cmp',
 				end,
 
 				'exact',
+
+				--- Sort keywords lower than other completion kinds
+				function(lhs, rhs)
+					if lhs.kind == rhs.kind then
+						return
+					end
+
+					return rhs.kind == completion_item_kind.Keyword
+				end,
+
 				'score',
 
 
