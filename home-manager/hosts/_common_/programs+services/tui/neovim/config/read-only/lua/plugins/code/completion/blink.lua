@@ -12,6 +12,7 @@ return {{ 'Saghen/blink.cmp',
 	--- @param o blink.cmp.Config
 	opts = function(_, o)
 		local icons = require 'mini.icons'
+		local completion_item_kind = vim.lsp.protocol.CompletionItemKind
 
 		o.appearance = {
 			use_nvim_cmp_as_default = true,
@@ -108,8 +109,22 @@ return {{ 'Saghen/blink.cmp',
 
 					return rhs.client_name == 'emmet_ls'
 				end,
+
 				'exact',
 				'score',
+
+
+				--- Show LSP snippets before snippets
+				function(lhs, rhs)
+					-- if the kinds are not the same, we are not comparing snippets
+					-- if the source providers are the same, then we are comparing snippets from the same source
+					if lhs.kind ~= rhs.kind or lhs.source_id == rhs.source_id then
+						return
+					end
+
+					return rhs.kind == completion_item_kind.Snippet and rhs.source_id == 'snippets'
+				end,
+
 				'sort_text',
 			},
 		}
@@ -180,7 +195,7 @@ return {{ 'Saghen/blink.cmp',
 					transform_items = function(_, items)
 						local new_items = {}
 						for _, item in ipairs(items) do
-							if item.kind ~= vim.lsp.protocol.CompletionItemKind.Text then
+							if item.kind ~= completion_item_kind.Text then
 								table.insert(new_items, item)
 							end
 						end
