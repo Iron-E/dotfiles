@@ -1,6 +1,9 @@
-{ ... }:
+{ outputs, ... }:
+let
+  util = outputs.lib;
+in
 {
-  imports = [ ];
+  imports = util.fs.readSubmodules ./.;
 
   fonts.fontconfig.enable = true;
 }
