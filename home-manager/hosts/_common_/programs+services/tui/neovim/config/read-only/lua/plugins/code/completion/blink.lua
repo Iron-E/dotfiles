@@ -159,14 +159,7 @@ return {{ 'Saghen/blink.cmp',
 		}
 
 		o.sources = {
-			default = {
-				'lazydev',
-				'lsp',
-				'omni',
-				'path',
-				'snippets',
-				'buffer',
-			},
+			default = { 'lsp', 'omni', 'path', 'snippets', 'buffer' },
 			providers = {
 				buffer = {
 					name = '',
@@ -218,8 +211,9 @@ return {{ 'Saghen/blink.cmp',
 
 		--- @diagnostic disable param-type-mismatch
 		o.sources.per_filetype = {
-			sql = vim.list_extend({ 'dadbod' }, o.sources.default),
-			latex = vim.list_extend(vim.deepcopy(o.sources.default), { 'latex_symbols' }),
+			latex = { inherit_defaults = true, 'latex_symbols' },
+			lua = { inherit_defaults = true, 'lazydev' },
+			sql = { inherit_defaults = true, 'dadbod' },
 		}
 		--- @diagnostic enable
 
