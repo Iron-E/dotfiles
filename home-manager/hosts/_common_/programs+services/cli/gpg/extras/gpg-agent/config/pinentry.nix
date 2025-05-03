@@ -2,5 +2,5 @@
 {
   imports = [ ];
 
-  services.gpg-agent.pinentryPackage = config.lib.pinentry.package;
+  services.gpg-agent.pinentry = config.lib.pinentry;
 }
