@@ -96,45 +96,64 @@ return {{ 'Saghen/blink.cmp',
 			highlight = o.completion.menu.draw.components.kind_icon.highlight,
 		}
 
+		--- create a sorting function to deprioritize the given lsp
+		---@param lsp string
+		---@return blink.cmp.SortFunction
+		local function deprioritize_lsp(lsp)
+			return function(lhs, rhs)
+				if -- one of the clients is the given lsp
+					(lhs.client_name == lsp or rhs.client_name == lsp)
+					-- but not both
+					and lhs.client_name ~= rhs.client_name
+				then
+					return rhs.client_name == lsp
+				end
+			end
+		end
+
+		--- create a sorting function to deprioritize the given completion kind
+		---@param kind lsp.CompletionItemKind
+		---@return blink.cmp.SortFunction
+		local function deprioritize_kind(kind)
+			return function(lhs, rhs)
+				if -- either the lhs or rhs is a keyword
+					(lhs.kind == kind or rhs.kind == kind)
+					-- and one is not a keyword
+					and lhs.kind ~= rhs.kind
+				then
+					return rhs.kind == kind
+				end
+			end
+		end
+
+		--- create a sorting function to deprioritize the given completion kind
+		---@param kind lsp.CompletionItemKind
+		---@param source_id string
+		---@return blink.cmp.SortFunction
+		local function deprioritize_kind_from(source_id, kind)
+			return function(lhs, rhs)
+				if -- both the lhs and rhs are snippets
+					(lhs.kind == rhs.kind and rhs.kind == kind)
+					-- one of the sources is "snippets"
+					and (lhs.source_id == source_id or rhs.source_id == source_id)
+					-- but the sources are not the same
+					and lhs.source_id ~= rhs.source_id
+				then
+					return rhs.source_id == source_id
+				end
+			end
+		end
+
 		o.fuzzy = {
 			prebuilt_binaries = {
 				download = false,
 			},
 			sorts = {
-				--- Deprioritize emmet
-				function(lhs, rhs)
-					if lhs.client_name == nil or rhs.client_name == nil or lhs.client_name == rhs.client_name then
-						return
-					end
-
-					return rhs.client_name == 'emmet_ls'
-				end,
-
+				deprioritize_lsp('emmet_ls'),
 				'exact',
-
-				--- Sort keywords lower than other completion kinds
-				function(lhs, rhs)
-					if lhs.kind == rhs.kind then
-						return
-					end
-
-					return rhs.kind == completion_item_kind.Keyword
-				end,
-
+				deprioritize_kind(completion_item_kind.Keyword),
 				'score',
-
-
-				--- Show LSP snippets before snippets
-				function(lhs, rhs)
-					-- if the kinds are not the same, we are not comparing snippets
-					-- if the source providers are the same, then we are comparing snippets from the same source
-					if lhs.kind ~= rhs.kind or lhs.source_id == rhs.source_id then
-						return
-					end
-
-					return rhs.kind == completion_item_kind.Snippet and rhs.source_id == 'snippets'
-				end,
-
+				deprioritize_kind_from('snippets', completion_item_kind.Snippet),
 				'sort_text',
 			},
 		}
