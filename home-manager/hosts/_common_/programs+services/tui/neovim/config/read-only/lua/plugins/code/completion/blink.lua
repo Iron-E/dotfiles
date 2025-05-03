@@ -193,6 +193,9 @@ return {{ 'Saghen/blink.cmp',
 					module = 'blink.compat.source',
 					max_items = 10,
 				},
+				omni = {
+					name = '󰊕',
+				},
 				path = {
 					name = '',
 				},
