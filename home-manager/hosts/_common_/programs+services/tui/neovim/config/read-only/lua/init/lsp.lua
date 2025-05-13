@@ -19,13 +19,13 @@ vim.lsp.enable {
 	'html',
 	'jdtls',
 	'jsonls',
-	-- 'jsonnet_ls', TODO: enable after lspconfig migrates it
+	'jsonnet_ls',
 	'lua_ls',
 	'nixd',
 	'pyright',
 	'rust_analyzer',
 	'sqlls',
-	-- 'tailwindcss', TODO: enable after lspconfig migrates it
+	'tailwindcss',
 	'terraformls',
 	'tinymist',
 	'ts_ls',
