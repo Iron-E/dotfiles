@@ -9,7 +9,7 @@
         argparse (fish_opt -s a -l all) -- $argv
 
         # Update nameservers using /etc/resolvconf.conf
-        sudo resolvconf -u
+        # sudo resolvconf -u
 
         # Power settings
         sudo powertop --auto-tune
