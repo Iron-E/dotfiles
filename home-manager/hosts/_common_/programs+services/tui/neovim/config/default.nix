@@ -73,6 +73,7 @@ in
           docker-compose-language-service
           dockerfile-language-server-nodejs
           emmet-language-server
+          go # required for nvim-lspconfig's gopls support
           gopls
           harper
           jdt-language-server
