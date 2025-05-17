@@ -13,6 +13,7 @@ return { {
 	event = vim.g.lazy_event_file_read,
 	opts = function(_, o)
 		o.ansible = { 'ansible_lint' }
+		o.dockerfile = { 'hadolint' }
 		o.env = { 'dotenv_linter' }
 		o.fish = { 'fish' }
 		o.go = { 'golangcilint' }

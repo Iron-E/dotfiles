@@ -109,6 +109,7 @@ in
           eslint_d
           fish
           golangci-lint
+          hadolint
           htmlhint
           nix
           ruff
