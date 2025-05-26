@@ -15,10 +15,9 @@ vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}    -- Completion visua
 vim.api.nvim_set_option_value('concealcursor', 'nc', {})     -- Don't unconceal in normal or command mode
 vim.api.nvim_set_option_value('cursorline', true, {})        -- Highlight current line
 vim.opt.diffopt:append { 'algorithm:histogram', 'linematch:60' } -- Highlight inline diffs
-vim.opt.fillchars = {fold = ' ', msgsep = '▔'}               -- Set folds to not trail dots
-vim.api.nvim_set_option_value('foldexpr', 'v:lua.vim.treesitter.foldexpr()', {}) -- Use treesitter for folds
+vim.opt.fillchars = { fold = ' ', msgsep = '▔' }             -- Set folds to not trail dots
 vim.api.nvim_set_option_value('foldlevelstart', 2, {})       -- starting fold level
-vim.api.nvim_set_option_value('foldmethod', 'expr', {})      -- Set folding to occur from a marker
+vim.api.nvim_set_option_value('foldmethod', 'indent', {})      -- Set folding to occur from a marker
 vim.api.nvim_set_option_value('foldtext', 'v:lua.NeatFoldText()', {}) -- Set text of folds
 vim.api.nvim_set_option_value('grepprg', 'rg --vimgrep', {}) -- Use ripgrep instead of grep.
 vim.api.nvim_set_option_value('ignorecase', true, {})        -- Case insensitive search by default

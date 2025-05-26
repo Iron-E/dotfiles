@@ -86,3 +86,45 @@ vim.api.nvim_create_user_command('Wq', 'wq', {})
 vim.api.nvim_create_user_command('Wqa', 'wqa', {})
 vim.api.nvim_create_user_command('X', 'x', {})
 vim.api.nvim_create_user_command('Xa', 'xa', {})
+
+--------------
+-- toggling --
+--------------
+
+local no_opts = {}
+
+--- @param option string the name of the option
+--- @param setlocal? boolean the `nvim_set_option_value` options
+--- @param map? (fun(value: unknown): unknown) the `nvim_set_option_value` options
+--- @return fun(): nil
+local function toggle(option, setlocal, map)
+	return function()
+		local old_value = vim.api.nvim_get_option_value(option, no_opts)
+		local new_value
+		if map then
+			new_value = map(old_value)
+		else
+			new_value = not old_value
+		end
+
+		vim.api.nvim_set_option_value(option, new_value, setlocal and { scope = 'local' } or no_opts)
+	end
+end
+
+vim.api.nvim_create_user_command('TogglePaste', toggle 'paste', {})
+vim.api.nvim_create_user_command('ToggleWinWrap', toggle('wrap', true), {})
+vim.api.nvim_create_user_command('ToggleWinSpell', toggle('spell', true), {})
+
+vim.api.nvim_create_user_command(
+	'ToggleWinConcealLevel',
+	toggle('conceallevel', true, function(v) return v < 2 and 2 or 0 end),
+	{}
+)
+
+vim.api.nvim_create_user_command(
+	'ToggleMouse',
+	toggle('mouse', false, function(v)
+		return v == '' and 'nvi' or ''
+	end),
+	{}
+)

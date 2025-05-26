@@ -1,7 +1,8 @@
 return {{ 'nvim-treesitter/nvim-treesitter',
+	branch = 'main',
 	build = ':TSUpdate',
 	cond = vim.g.man ~= true,
-	event = vim.g.lazy_read_file_event,
+	event = vim.g.lazy_event_file_read,
 	main = 'nvim-treesitter.configs',
 	init = function()
 		local ts_utils = require 'ts_utils' --- @type config.TSUtils
@@ -17,11 +18,37 @@ return {{ 'nvim-treesitter/nvim-treesitter',
 			end,
 			{ complete = 'filetype', desc = 'Show $2 TS node in float with $1 file extension ', nargs = '+' }
 		);
+
+		vim.api.nvim_create_autocmd('FileType', {
+			desc = 'Auto-install parsers for each buffer',
+			group = 'config',
+			callback = function(ev)
+				local ft = ev.match
+				local installed = false
+
+				local parsers = require('nvim-treesitter.config').installed_parsers()
+				for _, value in ipairs(parsers) do
+					if value == ft then
+						installed = true
+						break
+					end
+				end
+
+				if installed then
+					return
+				end
+
+				require('nvim-treesitter').install({ ft }):await(function()
+					vim.api.nvim_command 'TSBufEnable'
+				end)
+			end,
+		})
 	end,
-	opts = function(_, o)
-		o.auto_install = true
-		o.ensure_installed = {
+	setup = function()
+		local ts = require 'nvim-treesitter'
+		ts.install {
 			-- won't get auto installed
+			'diff',
 			'http',
 			'markdown_inline',
 			'printf',
@@ -32,40 +59,41 @@ return {{ 'nvim-treesitter/nvim-treesitter',
 			'c',
 			'c_sharp',
 			'css',
+			'devicetree',
 			'dockerfile',
 			'fish',
 			'git_config',
-			'git_rebase',
 			'gitignore',
+			'git_rebase',
 			'gleam',
 			'go',
 			'gomod',
+			'gotmpl',
 			'html',
 			'ini',
 			'java',
 			'javascript',
 			'jq',
+			'jsonnet',
 			'lua',
 			'markdown',
-			'markdown_inline',
+			'mermaid',
 			'nix',
+			'proto',
 			'python',
 			'query',
-			'regex',
 			'rust',
 			'sql',
+			'terraform',
 			'toml',
+			'tsx',
 			'typescript',
 			'typst',
 			'ungrammar',
 			'vim',
 			'vimdoc',
+			'xml',
 			'yaml',
 		}
-		o.highlight = { additional_vim_regex_highlighting = false, enable = true }
-		o.indent = { enable = false }
-
-		vim.treesitter.language.register('bash', { 'env', 'zsh' })
-		vim.treesitter.language.register('gitignore', 'dockerignore')
 	end,
 }}

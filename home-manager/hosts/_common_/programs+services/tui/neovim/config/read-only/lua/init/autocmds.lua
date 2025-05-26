@@ -1,24 +1,78 @@
 local augroup = vim.api.nvim_create_augroup('config', {clear = false})
 
---- Reset my indent guide settings
+--- Call nvim_set_option_value on another option based on how OptionSet was triggered (e.g. setlocal vs. setglobal)
+--- @param option string
+--- @param value any
+local function propagate_optionset(option, value)
+	local oldlocal = vim.v.option_oldlocal
+	local oldglobal = vim.v.option_oldglobal
+
+	local opts = {} --- @type vim.api.keyset.option
+	if oldlocal and not oldglobal then -- :setlocal
+		opts.scope = 'local'
+	elseif not oldlocal and oldglobal then -- :setglobal
+		opts.scope = 'global'
+	end
+
+	vim.api.nvim_set_option_value(option, value, opts)
+end
+
+vim.api.nvim_create_autocmd('OptionSet', {
+	desc = 'Set foldmethod when expr filled',
+	group = augroup,
+	pattern = 'foldexpr',
+	callback = function()
+		local foldmethod --- @type string
+		if vim.v.option_new == '0' then -- default value
+			foldmethod = 'indent'
+		else
+			foldmethod = 'expr'
+		end
+
+		propagate_optionset('foldmethod', foldmethod)
+	end,
+})
+
 vim.api.nvim_create_autocmd({'BufWinEnter', 'BufWritePost', 'InsertLeave'},
 {
+	desc = 'Reset indent guide settings',
+	group = augroup,
 	callback = function()
 		vim.api.nvim_set_option_value('list', true, {})
-		vim.opt.listchars = {nbsp = '␣', tab = '│ ', trail = '•'}
+		vim.opt.listchars = { nbsp = '␣', tab = '│ ', trail = '•' }
 		vim.api.nvim_set_option_value('showbreak', '└ ', {})
 	end,
-	group = augroup,
 })
 
-vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-	callback = function() vim.lsp.codelens.refresh({ bufnr = 0 }) end,
+vim.api.nvim_create_autocmd('BufWinEnter', {
+	desc = 'Populate colorcolumn based on tw',
 	group = augroup,
+	callback = function()
+		local opts = { scope = 'local' }
+		local colorcolumn = vim.api.nvim_get_option_value('colorcolumn', opts)
+		if colorcolumn ~= '' then -- don't clobber non-default value
+			return
+		end
+
+		local tw = vim.api.nvim_get_option_value('textwidth', opts)
+		vim.api.nvim_set_option_value('colorcolumn', tostring(tw), opts)
+	end,
 })
 
---- Sync syntax when not editing text
+vim.api.nvim_create_autocmd('OptionSet', {
+	desc = 'Set colorcolumn when textwidth changes',
+	group = augroup,
+	pattern = 'textwidth',
+	callback = function()
+		local tw = tostring(vim.v.option_new)
+		propagate_optionset('colorcolumn', tw)
+	end,
+})
+
 vim.api.nvim_create_autocmd('CursorHold',
 {
+	desc = 'Sync syntax when not editing text',
+	group = augroup,
 	callback = function(event)
 		if vim.api.nvim_get_option_value('syntax', { buf = event.buf }) ~= '' then
 			vim.api.nvim_command 'syntax sync fromstart'
@@ -28,36 +82,28 @@ vim.api.nvim_create_autocmd('CursorHold',
 			vim.lsp.semantic_tokens.force_refresh(event.buf)
 		end
 	end,
-	group = augroup,
 })
 
-vim.api.nvim_create_autocmd('BufWinEnter', {
-	callback = function(event)
-		local buf = event.buf == 0 and vim.api.nvim_get_current_buf() or event.buf
-		local win = vim.api.nvim_get_current_win()
-		vim.defer_fn(function() -- because editorconfigs can change this setting
-			if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_win_is_valid(win) then
-				local textwidth = vim.api.nvim_get_option_value('textwidth', { buf = buf })
-				vim.api.nvim_set_option_value('colorcolumn', tostring(textwidth), { win = win })
-			end
-		end, 100)
-	end,
+vim.api.nvim_create_autocmd({ 'FocusGained', 'VimResume' }, {
+	desc = 'Check for external changes to file',
 	group = augroup,
+	command = 'checktime',
 })
 
-vim.api.nvim_create_autocmd({'FocusGained', 'VimResume'}, {command = 'checktime', group = augroup})
-
---- Highlight yanks
 vim.api.nvim_create_autocmd('TextYankPost',
 {
-	callback = function() vim.highlight.on_yank() end,
+	desc = 'highlight yanks',
 	group = augroup,
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 if vim.fn.has 'wsl' == 1 then
 	vim.api.nvim_create_autocmd('TextYankPost',
 	{
-		command = [[call system('clip.exe ',@")]],
+		desc = 'Set system clipboard',
 		group = augroup,
+		command = [[call system('clip.exe ',@")]],
 	})
 end

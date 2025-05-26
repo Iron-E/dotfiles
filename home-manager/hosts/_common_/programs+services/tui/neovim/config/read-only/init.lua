@@ -14,14 +14,14 @@ require 'init/filetype'
 -- Config
 require 'init/config'
 
-require 'init/diagnostics'
-require 'init/lsp'
-
 require 'init/autocmds'
 require 'init/commands'
 require 'init/functions'
-
 require 'init/mappings'
+
+require 'init/diagnostics'
+require 'init/lsp'
+require 'init/treesitter'
 
 -- Plugins
 require 'init/lazy'
