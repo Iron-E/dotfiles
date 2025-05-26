@@ -1,3 +1,25 @@
+--- the known-installed parsers
+--- @type { [string]: true|async.Task }
+local installed_parsers = {}
+
+--- @param parsers string[]
+--- @return async.Task
+local function install_parsers(parsers)
+	--- @type async.Task
+	local task = require('nvim-treesitter').install(parsers)
+	for _, parser in ipairs(parsers) do
+		installed_parsers[parser] = task
+	end
+
+	task:await(function()
+		for _, parser in ipairs(parsers) do
+			installed_parsers[parser] = true
+		end
+	end)
+
+	return task
+end
+
 return {{ 'nvim-treesitter/nvim-treesitter',
 	branch = 'main',
 	build = ':TSUpdate',
@@ -24,76 +46,90 @@ return {{ 'nvim-treesitter/nvim-treesitter',
 			group = 'config',
 			callback = function(ev)
 				local ft = ev.match
-				local installed = false
+				local installed = installed_parsers[ft]
 
-				local parsers = require('nvim-treesitter.config').installed_parsers()
-				for _, value in ipairs(parsers) do
-					if value == ft then
-						installed = true
-						break
-					end
-				end
-
-				if installed then
+				if installed == true then -- already installed
 					return
 				end
 
-				require('nvim-treesitter').install({ ft }):await(function()
-					vim.api.nvim_command 'TSBufEnable'
+				local task = installed
+				if task == nil then
+					task = install_parsers({ ft })
+				end
+
+				local win = vim.api.nvim_get_current_win()
+				task:await(function()
+					vim.api.nvim_command('TSBufEnable ' .. ev.buf .. ' ' .. win)
 				end)
 			end,
 		})
 	end,
-	setup = function()
-		local ts = require 'nvim-treesitter'
-		ts.install {
+	config = function()
+		local ensure_installed = {
 			-- won't get auto installed
-			'diff',
-			'http',
-			'markdown_inline',
-			'printf',
-			'regex',
+			diff = true,
+			http = true,
+			markdown_inline = true,
+			printf = true,
+			regex = true,
 
 			-- I maintain queries for these languages
-			'bash',
-			'c',
-			'c_sharp',
-			'css',
-			'devicetree',
-			'dockerfile',
-			'fish',
-			'git_config',
-			'gitignore',
-			'git_rebase',
-			'gleam',
-			'go',
-			'gomod',
-			'gotmpl',
-			'html',
-			'ini',
-			'java',
-			'javascript',
-			'jq',
-			'jsonnet',
-			'lua',
-			'markdown',
-			'mermaid',
-			'nix',
-			'proto',
-			'python',
-			'query',
-			'rust',
-			'sql',
-			'terraform',
-			'toml',
-			'tsx',
-			'typescript',
-			'typst',
-			'ungrammar',
-			'vim',
-			'vimdoc',
-			'xml',
-			'yaml',
+			bash = true,
+			c = true,
+			c_sharp = true,
+			css = true,
+			devicetree = true,
+			dockerfile = true,
+			fish = true,
+			git_config = true,
+			gitignore = true,
+			git_rebase = true,
+			gleam = true,
+			go = true,
+			gomod = true,
+			gotmpl = true,
+			html = true,
+			ini = true,
+			java = true,
+			javascript = true,
+			jq = true,
+			jsonnet = true,
+			lua = true,
+			markdown = true,
+			mermaid = true,
+			nix = true,
+			proto = true,
+			python = true,
+			query = true,
+			rust = true,
+			sql = true,
+			terraform = true,
+			toml = true,
+			tsx = true,
+			typescript = true,
+			typst = true,
+			ungrammar = true,
+			vim = true,
+			vimdoc = true,
+			xml = true,
+			yaml = true,
 		}
+
+		local installed = require('nvim-treesitter.config').installed_parsers()
+		for _, parser in ipairs(installed) do
+			installed_parsers[parser] = true
+			ensure_installed[parser] = nil
+		end
+
+		if vim.tbl_isempty(ensure_installed) then -- no parsers to install
+			return
+		end
+
+		local install = {}
+		for parser, _ in pairs(ensure_installed) do
+			table.insert(install, parser)
+		end
+
+		install_parsers(install)
 	end,
 }}

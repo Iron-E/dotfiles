@@ -71,11 +71,11 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
 	'TabsToSpaces',
 	function(tbl)
-		vim.api.nvim_set_option_value('expandtab', true, {scope = 'local'})
-		local previous_tabstop = vim.api.nvim_get_option_value('tabstop', {scope = 'local'})
-		vim.api.nvim_set_option_value('tabstop', tonumber(tbl.args), {scope = 'local'})
+		vim.api.nvim_set_option_value('expandtab', true, { scope = 'local' })
+		local previous_tabstop = vim.api.nvim_get_option_value('tabstop', { scope = 'local' })
+		vim.api.nvim_set_option_value('tabstop', tonumber(tbl.args), { scope = 'local' })
 		vim.api.nvim_command 'retab'
-		vim.api.nvim_set_option_value('tabstop', previous_tabstop, {scope = 'local'})
+		vim.api.nvim_set_option_value('tabstop', previous_tabstop, { scope = 'local' })
 	end,
 	{force = true, nargs = 1}
 )
