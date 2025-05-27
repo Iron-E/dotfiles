@@ -1,8 +1,13 @@
+--- @type vim.api.keyset.option
+local scope_local = { scope = 'local' }
+
+local no_opts = {}
+
 do -- Brightness
 	--- @param count number
 	local function cmd(count)
 		local opts = {'brightnessctl', 'set', math.abs(count * 5) .. '%' .. (count > -1 and '+' or '-')}
-		vim.system(opts, {}, vim.schedule_wrap(function(shell)
+		vim.system(opts, no_opts, vim.schedule_wrap(function(shell)
 			local output = vim.split(shell.stdout, '\n', { trimpempty = true })
 			local trimmed_output = vim.trim(output[3])
 			vim.notify(trimmed_output)
@@ -32,7 +37,7 @@ vim.api.nvim_create_user_command('Win',
 )
 
 do -- Redshift
-	local REDSHIFT_COLORS = {b = 5500, o = 2000, r = 1300, y = 3750}
+	local REDSHIFT_COLORS = { b = 5500, o = 2000, r = 1300, y = 3750 }
 
 	--- @param color string
 	local function cmd(color)
@@ -51,11 +56,11 @@ end
 vim.api.nvim_create_user_command(
 	'SpacesToTabs',
 	function(tbl)
-		vim.api.nvim_set_option_value('expandtab', false, {scope = 'local'})
-		local previous_tabstop = vim.api.nvim_get_option_value('tabstop', {})
-		vim.api.nvim_set_option_value('tabstop', tonumber(tbl.args), {scope = 'local'})
+		vim.api.nvim_set_option_value('expandtab', false, scope_local)
+		local previous_tabstop = vim.api.nvim_get_option_value('tabstop', no_opts)
+		vim.api.nvim_set_option_value('tabstop', tonumber(tbl.args), scope_local)
 		vim.api.nvim_command 'retab!'
-		vim.api.nvim_set_option_value('tabstop', previous_tabstop, {scope = 'local'})
+		vim.api.nvim_set_option_value('tabstop', previous_tabstop, scope_local)
 	end,
 	{force = true, nargs = 1}
 )
@@ -71,27 +76,25 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
 	'TabsToSpaces',
 	function(tbl)
-		vim.api.nvim_set_option_value('expandtab', true, { scope = 'local' })
-		local previous_tabstop = vim.api.nvim_get_option_value('tabstop', { scope = 'local' })
-		vim.api.nvim_set_option_value('tabstop', tonumber(tbl.args), { scope = 'local' })
+		vim.api.nvim_set_option_value('expandtab', true, scope_local)
+		local previous_tabstop = vim.api.nvim_get_option_value('tabstop', scope_local)
+		vim.api.nvim_set_option_value('tabstop', tonumber(tbl.args), scope_local)
 		vim.api.nvim_command 'retab'
-		vim.api.nvim_set_option_value('tabstop', previous_tabstop, { scope = 'local' })
+		vim.api.nvim_set_option_value('tabstop', previous_tabstop, scope_local)
 	end,
 	{force = true, nargs = 1}
 )
 
 -- Fat fingering
-vim.api.nvim_create_user_command('W', 'w', {})
-vim.api.nvim_create_user_command('Wq', 'wq', {})
-vim.api.nvim_create_user_command('Wqa', 'wqa', {})
-vim.api.nvim_create_user_command('X', 'x', {})
-vim.api.nvim_create_user_command('Xa', 'xa', {})
+vim.api.nvim_create_user_command('W', 'w', no_opts)
+vim.api.nvim_create_user_command('Wq', 'wq', no_opts)
+vim.api.nvim_create_user_command('Wqa', 'wqa', no_opts)
+vim.api.nvim_create_user_command('X', 'x', no_opts)
+vim.api.nvim_create_user_command('Xa', 'xa', no_opts)
 
 --------------
 -- toggling --
 --------------
-
-local no_opts = {}
 
 --- @param option string the name of the option
 --- @param setlocal? boolean the `nvim_set_option_value` options
@@ -107,18 +110,23 @@ local function toggle(option, setlocal, map)
 			new_value = not old_value
 		end
 
-		vim.api.nvim_set_option_value(option, new_value, setlocal and { scope = 'local' } or no_opts)
+		local opts = no_opts
+		if setlocal then
+			opts = scope_local
+		end
+
+		vim.api.nvim_set_option_value(option, new_value, opts)
 	end
 end
 
-vim.api.nvim_create_user_command('TogglePaste', toggle 'paste', {})
-vim.api.nvim_create_user_command('ToggleWinWrap', toggle('wrap', true), {})
-vim.api.nvim_create_user_command('ToggleWinSpell', toggle('spell', true), {})
+vim.api.nvim_create_user_command('TogglePaste', toggle 'paste', no_opts)
+vim.api.nvim_create_user_command('ToggleWinWrap', toggle('wrap', true), no_opts)
+vim.api.nvim_create_user_command('ToggleWinSpell', toggle('spell', true), no_opts)
 
 vim.api.nvim_create_user_command(
 	'ToggleWinConcealLevel',
 	toggle('conceallevel', true, function(v) return v < 2 and 2 or 0 end),
-	{}
+	no_opts
 )
 
 vim.api.nvim_create_user_command(
@@ -126,5 +134,5 @@ vim.api.nvim_create_user_command(
 	toggle('mouse', false, function(v)
 		return v == '' and 'nvi' or ''
 	end),
-	{}
+	no_opts
 )
