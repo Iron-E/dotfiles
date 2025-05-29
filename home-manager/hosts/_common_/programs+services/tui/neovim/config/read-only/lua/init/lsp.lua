@@ -88,6 +88,7 @@ vim.lsp.enable {
 	'emmet_language_server',
 	'gopls',
 	'harper_ls',
+	'helm_ls',
 	'html',
 	'jdtls',
 	'jsonls',
