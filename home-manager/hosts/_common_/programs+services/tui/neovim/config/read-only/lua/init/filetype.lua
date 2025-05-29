@@ -25,4 +25,8 @@ vim.filetype.add {
 		tf = 'terraform',
 		tmpl = 'gotmpl',
 	},
+
+	pattern = {
+		['.*/charts/.*/templates/.*%.ya?ml'] = 'helm',
+	},
 }
