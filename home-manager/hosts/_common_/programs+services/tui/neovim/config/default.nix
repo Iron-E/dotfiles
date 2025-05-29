@@ -76,6 +76,7 @@ in
           go # required for nvim-lspconfig's gopls support
           gopls
           harper
+          helm-ls
           jdt-language-server
           jsonnet-language-server
           lua-language-server
