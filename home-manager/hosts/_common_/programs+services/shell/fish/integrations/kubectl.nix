@@ -45,7 +45,7 @@
           '';
       };
 
-      kx = {
+      kex = {
         description = "Export an existing Kubernetes resource as YAML";
         wraps = "kubectl get";
         body =
