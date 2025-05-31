@@ -14,6 +14,8 @@
     kani = "kau can-i";
 
     konf = "k config";
+    kns = "konf set-context --current --namespace";
+    ktx = "konf use-context";
 
     kcp = "k cp";
 
@@ -25,6 +27,8 @@
     kd = "k diff";
 
     ki = "k describe";
+
+    kx = "k exec";
 
     kv = "k events";
 
