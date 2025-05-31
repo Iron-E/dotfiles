@@ -67,9 +67,10 @@ return {{ 'nvim-treesitter/nvim-treesitter',
 					task = install_parsers(ts.install, { ft })
 				end
 
+				-- re-trigger filetype detection to attach highlighting
 				local win = vim.api.nvim_get_current_win()
 				task:await(function()
-					vim.api.nvim_command('TSBufEnable ' .. ev.buf .. ' ' .. win)
+					vim.api.nvim_command('TSBufEnable ' .. ev.buf .. ' ' .. ft .. ' ' .. win)
 				end)
 			end,
 		})
