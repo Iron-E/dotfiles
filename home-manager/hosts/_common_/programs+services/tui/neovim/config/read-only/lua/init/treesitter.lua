@@ -31,15 +31,14 @@ end })
 
 --- Enable treesitter for the current buffer.
 ---@param bufnr integer
+---@param ft string
 ---@param winid integer
-local function ts_buf_enable(bufnr, winid)
-	local ok = pcall(vim.treesitter.start, bufnr)
-	if not ok then -- failed to start
+local function ts_buf_enable(bufnr, ft, winid)
+	if not vim.treesitter.language.add(ft) then
 		return
 	end
 
-	-- disable legacy syntax highlighting
-	vim.api.nvim_set_option_value('syntax', 'OFF', { buf = bufnr })
+	vim.treesitter.start(bufnr, ft)
 
 	-- use treesitter for folds
 	vim.api.nvim_set_option_value('foldexpr', 'v:lua.vim.treesitter.foldexpr()', { win = winid })
@@ -48,23 +47,15 @@ end
 vim.api.nvim_create_user_command(
 	'TSBufEnable',
 	function(args)
-		local fargs = args.fargs
+		local ft = args.fargs[2]
+		local bufnr = tonumber(args.fargs[1])
+		local winid = tonumber(args.fargs[3])
 
-		local bufnr = 0
-		local winid = 0
-		if #fargs > 0 then
-			bufnr = tonumber(fargs[1])
-
-			if #fargs > 1 then
-				winid = tonumber(fargs[2])
-			end
-		end
-
-		ts_buf_enable(bufnr, winid)
+		ts_buf_enable(bufnr, ft, winid)
 	end,
 	{
 		desc = 'Try to enable treesitter highlighting for a buffer.',
-		nargs = '*',
+		nargs = '+',
 	}
 )
 
@@ -72,7 +63,6 @@ vim.api.nvim_create_autocmd('FileType', {
 	desc = 'Start treesitter for buffer',
 	group = 'config',
 	callback = function(ev)
-		local win = vim.api.nvim_get_current_win()
-		ts_buf_enable(ev.buf, win)
+		ts_buf_enable(ev.buf, ev.match, vim.api.nvim_get_current_win())
 	end,
 })
