@@ -2,11 +2,11 @@
 --- @type { [string]: true|async.Task }
 local installed_parsers = {}
 
+--- @param install fun(parsers: string[]): async.Task
 --- @param parsers string[]
 --- @return async.Task
-local function install_parsers(parsers)
-	--- @type async.Task
-	local task = require('nvim-treesitter').install(parsers)
+local function install_parsers(install, parsers)
+	local task = install(parsers)
 	for _, parser in ipairs(parsers) do
 		installed_parsers[parser] = task
 	end
@@ -23,9 +23,18 @@ end
 return {{ 'nvim-treesitter/nvim-treesitter',
 	branch = 'main',
 	build = ':TSUpdate',
+
 	cond = vim.g.man ~= true,
 	event = vim.g.lazy_event_file_read,
-	main = 'nvim-treesitter.configs',
+
+	cmd = {
+		'TSInstall',
+		'TSInstallFromGrammar',
+		'TSLog',
+		'TSUninstall',
+		'TSUpdate',
+	},
+
 	init = function()
 		local ts_utils = require 'ts_utils' --- @type config.TSUtils
 		vim.api.nvim_create_user_command('ShowAs',
@@ -54,7 +63,8 @@ return {{ 'nvim-treesitter/nvim-treesitter',
 
 				local task = installed
 				if task == nil then
-					task = install_parsers({ ft })
+					local ts = require 'nvim-treesitter'
+					task = install_parsers(ts.install, { ft })
 				end
 
 				local win = vim.api.nvim_get_current_win()
@@ -64,8 +74,28 @@ return {{ 'nvim-treesitter/nvim-treesitter',
 			end,
 		})
 	end,
-	config = function()
-		local ensure_installed = {
+	config = function(_, o)
+		local ts = require 'nvim-treesitter'
+
+		local installed = ts.get_installed('parsers')
+		for _, parser in ipairs(installed) do
+			installed_parsers[parser] = true
+			o.ensure_installed[parser] = nil
+		end
+
+		if vim.tbl_isempty(o.ensure_installed) then -- no parsers to install
+			return
+		end
+
+		local to_install = {}
+		for parser, _ in pairs(o.ensure_installed) do
+			table.insert(to_install, parser)
+		end
+
+		install_parsers(ts.install, to_install)
+	end,
+	opts = function(_, o)
+		o.ensure_installed = {
 			-- won't get auto installed
 			diff = true,
 			http = true,
@@ -114,22 +144,5 @@ return {{ 'nvim-treesitter/nvim-treesitter',
 			xml = true,
 			yaml = true,
 		}
-
-		local installed = require('nvim-treesitter.config').installed_parsers()
-		for _, parser in ipairs(installed) do
-			installed_parsers[parser] = true
-			ensure_installed[parser] = nil
-		end
-
-		if vim.tbl_isempty(ensure_installed) then -- no parsers to install
-			return
-		end
-
-		local install = {}
-		for parser, _ in pairs(ensure_installed) do
-			table.insert(install, parser)
-		end
-
-		install_parsers(install)
 	end,
 }}
