@@ -1,10 +1,17 @@
 {
-  "arg": {
-    "body": "ARG ${1:name}=${2:value}",
-    "prefix": "arg"
-  },
-  "env": {
-    "body": "ENV ${1:name}=${2:value}",
-    "prefix": "env"
-  }
+	"labels": {
+		"body": [
+			"LABEL org.opencontainers.image.title=\"$1\"",
+			"LABEL org.opencontainers.image.description=\"${2:$1} docker image\"",
+			"LABEL org.opencontainers.image.authors=\"$3\"",
+			"LABEL org.opencontainers.image.vendor=\"${4:$3}\"",
+			"LABEL org.opencontainers.image.documentation=\"$5\"",
+			"LABEL org.opencontainers.image.source=\"${6:$5}\"",
+			"LABEL org.opencontainers.image.url=\"${7:$5}\"",
+			"LABEL org.opencontainers.image.license=\"${8:unfree}\"",
+			"LABEL org.opencontainers.image.version=\"${9:1.0.0}\"",
+			"$0"
+		],
+		"prefix": "labels"
+	}
 }
