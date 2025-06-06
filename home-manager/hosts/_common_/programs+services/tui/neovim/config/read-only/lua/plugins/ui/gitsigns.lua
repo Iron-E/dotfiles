@@ -8,6 +8,8 @@ return {{ 'lewis6991/gitsigns.nvim',
 		{ ']c', '<Cmd>Gitsigns next_hunk<CR>', desc = 'Next hunk', mode = 'n' },
 		{ '<Leader>hs', '<Cmd>Gitsigns stage_hunk<CR>', desc = 'Stage hunk', mode = 'n' },
 		{ '<Leader>hu', '<Cmd>Gitsigns undo_stage_hunk<CR>', desc = 'Unstage hunk', mode = 'n' },
+		{ '<A-w>b', '<Cmd>Gitsigns blame<CR>', desc = 'Toggle git blame in split', mode = 'n' },
+		{ '<A-w>B', '<Cmd>Gitsigns blame_line<CR>', desc = 'Toggle git blame as virtual text', mode = 'n' },
 	},
 	opts = function(_, o)
 		o.preview_config = { border = vim.o.winborder }
