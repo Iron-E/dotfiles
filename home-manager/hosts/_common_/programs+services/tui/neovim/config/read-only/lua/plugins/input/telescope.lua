@@ -51,6 +51,7 @@ return {
 
 			o.defaults =
 			{
+				border = false,
 				file_previewer = previewers.cat.new,
 				grep_previewer = previewers.vimgrep.new,
 				history = false,
