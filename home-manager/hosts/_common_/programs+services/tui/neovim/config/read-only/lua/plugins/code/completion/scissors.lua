@@ -1,12 +1,20 @@
 return {{ 'chrisgrieser/nvim-scissors',
 	dependencies = 'nvim-telescope/telescope.nvim',
 	keys = {
-		{'<A-w>s', function() require('scissors').addNewSnippet() end, desc = 'Add snippet with scissors', mode = {'n', 'x'}},
-		{'<A-w>S', function() require('scissors').editSnippet() end, desc = 'Edit snippet with scissors', mode = 'n'},
+		{ '<A-w>s',
+			function() require('scissors').addNewSnippet() end,
+			desc = 'Add snippet with scissors',
+			mode = { 'n', 'x' },
+		},
+		{ '<A-w>S',
+			function() require('scissors').editSnippet() end,
+			desc = 'Edit snippet with scissors',
+			mode = 'n',
+		},
 	},
 	config = function(_, o)
 		require('scissors').setup(o)
-		require('scissors.config').config.telescope.opts.layout_config.preview_width = nil
+		require('scissors.config').config.snippetSelection.telescope.opts.layout_config.preview_width = nil
 	end,
 	opts = function(_, o)
 		o.jsonFormatter = { 'gojq', '--monochrome-output', '--tab' }
