@@ -11,11 +11,11 @@
     gac = "gaa && gc";
     gacb = "gaa && gcb";
     gacbr = "gacb --and-rebase";
+    gai = "ga --interactive";
     gap = "ga --patch";
 
     gb = "g rebase";
     gbi = "gb -i";
-    gbia = "gbi --autosquash";
     gbis = "gb --exec 'g commit --amend --no-edit -n -S' -i rebase -i";
 
     gc = "g commit";
@@ -47,10 +47,13 @@
     gn = "g branch";
 
     gp = "g push";
+    gpf = "gp --force";
     gpl = "g pull";
     gpt = "gp --tags";
+    gptf = "gpt --force";
 
     gr = "g reset";
+    grh = "gr --hard";
 
     gs = "g status";
 
