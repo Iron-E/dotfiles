@@ -14,13 +14,19 @@
             bind -M insert alt-j down-or-search
             bind -M insert alt-k up-or-search
             for mode in default insert visual
-              bind -M $mode -k nul forward-char
+              bind -M $mode ctrl-space forward-char
               bind -M $mode ctrl-f forward-word
             end
 
             if command -q watch || functions -q watch
               for mode in default insert
                 bind -M $mode alt-w 'fish_commandline_prepend watch'
+              end
+            end
+
+            if command -q bat || functions -q bat
+              for mode in default insert
+                bind -M $mode alt-b 'fish_commandline_append " | bat"'
               end
             end
           '';
