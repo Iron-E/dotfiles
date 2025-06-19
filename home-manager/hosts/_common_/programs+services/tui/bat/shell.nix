@@ -2,5 +2,9 @@
 {
   imports = [ ];
 
-  home.shellAliases.cat = "bat -pp";
+  home.shellAliases = {
+    batl = "bat -l";
+    cat = "bat -pp";
+    catl = "bat -pp -l";
+  };
 }
