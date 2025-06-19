@@ -29,5 +29,7 @@ vim.filetype.add {
 
 	pattern = {
 		['.*/charts/.*/templates/.*%.ya?ml'] = 'helm',
+		['.*/charts/.*/values%.ya?ml'] = 'yaml.helm-values',
+		['.*/[^/]*%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
 	},
 }
