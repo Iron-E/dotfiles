@@ -26,33 +26,21 @@ return {{ 'stevearc/aerial.nvim',
 	opts = function(_, o)
 		o.backends = { 'lsp', 'treesitter', 'man', 'markdown' }
 		o.filter_kind = false
-		o.icons =
-			vim.iter(ipairs {
-				'Array',
-				'Class',
-				'Constructor',
-				'Enum',
-				'EnumMember',
-				'Event',
-				'Field',
-				'File',
-				'Function',
-				'Interface',
-				'Key',
-				'Method',
-				'Module',
-				'Namespace',
-				'Object',
-				'Operator',
-				'Package',
-				'Property',
-				'Struct',
-			})
-			:fold({}, function(acc, _, v)
+		o.icons = {}
+
+		do
+			local icons = {
+				'Array',    'Class',   'Constructor', 'Enum',      'EnumMember',
+				'Event',    'Field',   'File',        'Function',  'Interface',
+				'Key',      'Method',  'Module',      'Namespace', 'Object',
+				'Operator', 'Package', 'Property',    'Struct',
+			}
+
+			for _, v in ipairs(icons) do
 				local icon = MiniIcons.get('lsp', v)
-				acc[v..'Collapsed'] = icon .. ' '
-				return acc
-			end)
+				o.icons[v..'Collapsed'] = icon .. ' '
+			end
+		end
 
 		o.layout =
 		{
