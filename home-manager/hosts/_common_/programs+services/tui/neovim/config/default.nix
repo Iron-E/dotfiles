@@ -96,7 +96,6 @@ in
         inherit (pkgs.nodePackages_latest)
           bash-language-server
           typescript-language-server
-          vscode-json-languageserver
           ;
 
         ###########

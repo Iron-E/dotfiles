@@ -1,5 +1,5 @@
---- @type vim.lsp.Config
-return {
+-- HACK: see https://github.com/neovim/neovim/issues/33577
+vim.lsp.config('emmet_language_server', {
 	filetypes = {
 		'cs',
 		'css',
@@ -15,6 +15,10 @@ return {
 		'typescriptreact',
 		'xml',
 	},
+})
+
+--- @type vim.lsp.Config
+return {
 	init_options = {
 		includeLanugages = { cs = 'xml' },
 		showAbbreviationSuggestions = true,

@@ -98,7 +98,7 @@ vim.lsp.enable {
 	'nixd',
 	'pyright',
 	'rust_analyzer',
-	'sqlls',
+	'sqls',
 	'tailwindcss',
 	'terraformls',
 	'tinymist',
