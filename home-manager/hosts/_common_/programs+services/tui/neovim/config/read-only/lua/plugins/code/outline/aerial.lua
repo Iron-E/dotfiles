@@ -9,6 +9,16 @@ return {{ 'stevearc/aerial.nvim',
 		--       nvim_buf_del_keymap works but throws an error.
 		{ 'gO', '<Cmd>AerialToggle<CR>', desc = 'Toggle aerial.nvim', mode = 'n', ft = 'markdown' },
 	},
+
+	init = function()
+		vim.api.nvim_create_autocmd('FileType', {
+			desc = 'Fix folds in aerial',
+			group = 'config',
+			pattern = 'aerial',
+			command = 'set foldmethod=manual',
+		})
+	end,
+
 	opts = function(_, o)
 		o.backends = { 'lsp', 'treesitter', 'man', 'markdown' }
 		o.filter_kind = false
