@@ -1,12 +1,21 @@
 return {{ 'stevearc/conform.nvim',
 	cmd = 'ConformInfo',
 	event = 'BufWritePre',
-	keys = {{
-		'gq',
-		function() require('conform').format { async = true, lsp_fallback = true } end,
-		mode = '',
-		desc = 'Format buffer',
-	}},
+	keys = {
+		{ 'gq',
+			function() require('conform').format { async = true, lsp_fallback = true } end,
+			mode = '',
+			desc = 'Format buffer',
+		},
+		{ '<Leader>gq',
+			function()
+				require('conform').setup()
+				vim.notify('conform.nvim disabled', vim.log.levels.INFO)
+			end,
+			mode = 'n',
+			desc = 'Disable conform',
+		},
+	},
 	opts = function(_, o)
 		o.formatters_by_ft = {
 			cs = { 'csharpier' },
