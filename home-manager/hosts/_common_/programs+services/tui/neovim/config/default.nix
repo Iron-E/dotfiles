@@ -70,6 +70,7 @@ in
 
         inherit (pkgs)
           ansible-language-server
+          deno
           docker-compose-language-service
           dockerfile-language-server-nodejs
           emmet-language-server
