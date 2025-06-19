@@ -1,6 +1,5 @@
 --- @type vim.lsp.Config
 return {
-	cmd = { 'lua-language-server', '-E', '-W' },
 	settings = {
 		Lua = {
 			diagnostics = {

@@ -1,8 +1,5 @@
 --- @type vim.lsp.Config
 return {
-	filetypes = {
-		'yaml',
-	},
 	settings = {
 		yaml = {
 			schemas = { -- SEE: https://www.schemastore.org/json/

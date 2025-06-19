@@ -1,13 +1,9 @@
 --- @type vim.lsp.Config
 return {
-	settings =
-	{
-		python =
-		{
-			analysis =
-			{
-				diagnosticSeverityOverrides =
-				{
+	settings = {
+		python = {
+			analysis = {
+				diagnosticSeverityOverrides = {
 					reportInvalidTypeVarUse = 'none',
 					reportMissingTypeStubs = 'none',
 					reportUnknownArgumentType = 'none',
