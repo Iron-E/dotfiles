@@ -1,7 +1,11 @@
 --- @module 'mini.icons'
 
 return {{ 'stevearc/aerial.nvim',
-	dependencies = { 'nvim-treesitter', 'echasnovski/mini.icons' },
+	dependencies = {
+		'nvim-treesitter',
+		'echasnovski/mini.icons',
+	},
+
 	keys = {
 		{ 'gO', '<Cmd>AerialToggle<CR>', desc = 'Toggle aerial.nvim', mode = 'n' },
 
@@ -55,6 +59,7 @@ return {{ 'stevearc/aerial.nvim',
 			default_direction = 'right',
 			max_width = {40, 0.25}
 		}
+
 		o.guides =
 		{
 			last_item = '└─ ',
@@ -62,6 +67,7 @@ return {{ 'stevearc/aerial.nvim',
 			nested_top = '│  ',
 			whitespace = '   ',
 		}
+
 		o.keymaps =
 		{
 			['?'] = false,
@@ -70,6 +76,7 @@ return {{ 'stevearc/aerial.nvim',
 			[']['] = 'actions.next_up',
 			[']]'] = 'actions.next',
 		}
+
 		o.show_guides = true
 	end,
 }}
