@@ -23,6 +23,8 @@ local noremap = {noremap = true}
 -- Do not jump snippets on tab
 vim.api.nvim_set_keymap('s', '<Tab>', '<Tab>', noremap)
 
+vim.api.nvim_set_keymap('i', '<C-S-i>', '<Cmd>!zcw fzu<CR>', noremap)
+
 
 -- Make `p` in visual mode not overwrite the unnamed register by default. `P` now does that.
 vim.api.nvim_set_keymap('x', 'p', 'P', noremap)
