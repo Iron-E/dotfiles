@@ -36,5 +36,7 @@
     "super+ctrl+shift+plus=unbind" # equalize_splits
     "super+ctrl+shift+right=unbind" # resize_split:right,10
     "super+ctrl+shift+up=unbind" # resize_split:up,10
+    "ctrl+shift+i=unbind" # inspector:toggle
+    "ctrl+alt+shift+i=inspector:toggle"
   ];
 }
