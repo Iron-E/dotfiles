@@ -12,6 +12,6 @@ in
 
   programs.wezterm = {
     enable = true;
-    package = config.lib.nixgl.wrap pkgs.wezterm;
+    package = if pkgs.stdenv.isDarwin then null else config.lib.nixgl.wrap pkgs.wezterm;
   };
 }
