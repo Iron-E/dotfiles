@@ -24,6 +24,8 @@ keybinds clear-defaults=true {
 
 		bind "Ctrl Alt i" { MoveTab "right"; }
 		bind "Ctrl Alt o" { MoveTab "left"; }
+		bind "Ctrl Shift PageDown" { MoveTab "right"; }
+		bind "Ctrl Shift PageUp" { MoveTab "left"; }
 
 		bind "Ctrl Shift t" { NewTab; }
 		bind "Ctrl Alt n" { NewPane; }
@@ -193,6 +195,8 @@ keybinds clear-defaults=true {
 		bind "Alt l" { MoveFocusOrTab "right"; }
 		bind "Alt n" { NewPane; }
 		bind "Alt o" { MoveTab "right"; }
+		bind "Shift PageDown" { MoveTab "right"; }
+		bind "Shift PageUp" { MoveTab "right"; }
 	}
 
 	shared_except "locked" "renametab" "renamepane" {
