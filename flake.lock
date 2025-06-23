@@ -67,6 +67,22 @@
         "type": "github"
       }
     },
+    "nix": {
+      "locked": {
+        "lastModified": 1742422364,
+        "narHash": "sha256-mNqIplmEohk5jRkqYqG19GA8MbQ/D4gQSK0Mu4LvfRQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a84ebe20c6bc2ecbcfb000a50776219f48d134cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a84ebe20c6bc2ecbcfb000a50776219f48d134cc",
+        "type": "github"
+      }
+    },
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -109,6 +125,7 @@
         "home-manager": "home-manager",
         "i3blocks-contrib": "i3blocks-contrib",
         "i3switch": "i3switch",
+        "nix": "nix",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "yazi-relative-motions": "yazi-relative-motions"
