@@ -2,5 +2,8 @@
 {
   imports = [ ];
 
-  programs.ghostty.settings.window-decoration = "server";
+  programs.ghostty.settings = {
+    shell-integration-features = "no-cursor";
+    window-decoration = "server";
+  };
 }
