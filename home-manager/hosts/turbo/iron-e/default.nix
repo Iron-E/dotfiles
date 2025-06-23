@@ -30,6 +30,9 @@ in
     ++ (util.fs.filterSubmodules ../../_common_/programs+services/cli [
       ../../_common_/programs+services/cli/gpg
     ])
+    ++ [
+      ../../_common_/programs+services/gui/ghostty
+    ]
     ++ (util.fs.filterSubmodules ../../_common_/programs+services/lang [
       ../../_common_/programs+services/lang/cargo
       ../../_common_/programs+services/lang/rustup
