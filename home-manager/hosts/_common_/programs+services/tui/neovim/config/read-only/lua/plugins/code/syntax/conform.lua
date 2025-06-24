@@ -1,21 +1,51 @@
+--- @module 'lazy'
+
+--- @type LazySpec[]
 return {{ 'stevearc/conform.nvim',
-	cmd = 'ConformInfo',
+	cmd = {
+		'ConformInfo',
+		'ConformToggle',
+	},
+
 	event = 'BufWritePre',
+
 	keys = {
 		{ 'gq',
 			function() require('conform').format { async = true, lsp_fallback = true } end,
 			mode = '',
 			desc = 'Format buffer',
 		},
-		{ '<Leader>gq',
-			function()
-				require('conform').setup()
-				vim.notify('conform.nvim disabled', vim.log.levels.INFO)
-			end,
-			mode = 'n',
-			desc = 'Disable conform',
-		},
+		{ '<Leader>Gq', '<Cmd>ConformToggle<CR>', mode = 'n' },
 	},
+
+	config = function(_, opts)
+		local conform = require 'conform'
+		conform.setup(opts)
+
+		local enabled = true
+		vim.api.nvim_create_user_command(
+			'ConformToggle',
+			function()
+				local toggle_opts = opts
+				local log_msg = 'enabled'
+
+				if enabled then -- disable
+					toggle_opts = {}
+					log_msg = 'disabled'
+				end
+
+				enabled = not enabled
+				conform.setup(toggle_opts)
+				vim.notify('conform.nvim: ' .. log_msg, vim.log.levels.INFO)
+			end,
+			{
+				desc = 'Toggle conform.nvim for all buffers.',
+				nargs = 0,
+			}
+		)
+	end,
+
+	--- @param o conform.setupOpts
 	opts = function(_, o)
 		o.formatters_by_ft = {
 			cs = { 'csharpier' },
