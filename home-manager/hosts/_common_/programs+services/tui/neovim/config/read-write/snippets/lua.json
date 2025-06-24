@@ -1,61 +1,64 @@
 {
-  "barbar-minimal": {
-    "body": [
-      "--[[ minimal.lua ]]",
-      "local lazy = vim.fn.stdpath('data') .. '/lazy/'",
-      "vim.opt.rtp:prepend {",
-      "  lazy .. 'barbar.nvim',",
-      "  lazy .. 'nvim-web-devicons',",
-      "}",
-      "",
-      "vim.g.barbar_auto_setup = false",
-      "require('barbar').setup {",
-      "  -- additional options",
-      "}",
-      "",
-      "-- additional code",
-      "",
-      "vim.api.nvim_create_autocmd('VimEnter', {",
-      "  callback = vim.schedule_wrap(function()",
-      "    -- additional post-startup code",
-      "    vim.cmd [[",
-      "    ]]",
-      "  end),",
-      "})"
-    ],
-    "prefix": "barbar-minimal"
-  },
-  "kv": {
-    "body": "$1 = $1,",
-    "prefix": "kv"
-  },
-  "lazy-module": {
-    "body": [
-      "return {{ '${1:name}/${2:repo}',",
-      "\t$0",
-      "}}"
-    ],
-    "prefix": "lazy-module"
-  },
-  "lazy-opts": {
-    "body": [
-      "opts = function(_, o)",
-      "\t$1",
-      "end,$0"
-    ],
-    "prefix": "lazy-opts"
-  },
-  "slog": {
-    "body": [
-      "vim.notify(",
-      "\tvim.inspect({msg = '${1:message}', $0}),",
-      "\tvim.log.levels.${2:LEVEL}",
-      ")"
-    ],
-    "prefix": "slog"
-  },
-  "try": {
-    "body": "local ok, result = pcall(${1:fn}, ${2:args})",
-    "prefix": "try"
-  }
+	"barbar-minimal": {
+		"body": [
+			"--[[ minimal.lua ]]",
+			"local lazy = vim.fn.stdpath('data') .. '/lazy/'",
+			"vim.opt.rtp:prepend {",
+			"  lazy .. 'barbar.nvim',",
+			"  lazy .. 'nvim-web-devicons',",
+			"}",
+			"",
+			"vim.g.barbar_auto_setup = false",
+			"require('barbar').setup {",
+			"  -- additional options",
+			"}",
+			"",
+			"-- additional code",
+			"",
+			"vim.api.nvim_create_autocmd('VimEnter', {",
+			"  callback = vim.schedule_wrap(function()",
+			"    -- additional post-startup code",
+			"    vim.cmd [[",
+			"    ]]",
+			"  end),",
+			"})"
+		],
+		"prefix": "barbar-minimal"
+	},
+	"kv": {
+		"body": "$1 = $1,",
+		"prefix": "kv"
+	},
+	"lazy-module": {
+		"body": [
+			"--- @module 'lazy'",
+			"",
+			"--- @type LazySpec[]",
+			"return {{ '${1:name}/${2:repo}',",
+			"\t$0",
+			"}}"
+		],
+		"prefix": "lazy-module"
+	},
+	"lazy-opts": {
+		"body": [
+			"opts = function(_, o)",
+			"\t$1",
+			"end,$0"
+		],
+		"prefix": "lazy-opts"
+	},
+	"slog": {
+		"body": [
+			"vim.notify(",
+			"\tvim.inspect({msg = '${1:message}', $0}),",
+			"\tvim.log.levels.${2:LEVEL}",
+			")"
+		],
+		"prefix": "slog"
+	},
+	"try": {
+		"body": "local ok, result = pcall(${1:fn}, ${2:args})",
+		"prefix": "try"
+	}
 }
