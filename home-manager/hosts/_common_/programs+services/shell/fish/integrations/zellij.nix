@@ -6,6 +6,7 @@
     functions = {
       zc = {
         description = "Run a command in a floating zellij window and write its stdout";
+        wraps = "fish --command";
         body = # fish
           ''
             # setup
