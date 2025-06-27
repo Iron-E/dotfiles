@@ -36,10 +36,7 @@
         wraps = "zc";
         body = # fish
           ''
-            set -f output (zc $argv)
-            if [ -n $output ]
-              zellij action write-chars (zc $argv)
-            end
+            zellij action write-chars "$(zc $argv)"
           '';
       };
     };
