@@ -1,75 +1,62 @@
 --- @module 'mini.icons'
 --- @module 'gitsigns'
+--- @module 'heirline'
 
 return {{ 'rebelot/heirline.nvim',
 	dependencies = { 'gitsigns.nvim', 'echasnovski/mini.icons' },
-	opts = function(_, o)
-		--[[
-		 _          _      _ _                         _
-		| |__   ___(_)_ __| (_)_ __   ___   _ ____   _(_)_ __ ___
-		| '_ \ / _ \ | '__| | | '_ \ / _ \ | '_ \ \ / / | '_ ` _ \
-		| | | |  __/ | |  | | | | | |  __/_| | | \ V /| | | | | | |
-		|_| |_|\___|_|_|  |_|_|_| |_|\___(_)_| |_|\_/ |_|_| |_| |_|
-		--]]
+	config = function()
+		local heirline = require 'heirline'
+		local utils = require 'heirline.utils'
 
-		--[[/* CONSTANTS */]]
+		local function setup_colors()
+			local colors = {
+				-- Defined in https://github.com/Iron-E/nvim-highlite
+				black        = '#202020',
+				blue         = '#7766ff',
+				cyan         = '#33dbc3',
+				gray_dark    = '#353535',
+				gray_light   = '#c0c0c0',
+				green        = '#22ff22',
+				green_dark   = '#70d533',
+				green_light  = '#99ff99',
+				ice          = '#95c5ff',
+				magenta      = '#d5508f',
+				magenta_dark = '#bb0099',
+				orange       = '#ff8900',
+				orange_light = '#f0af00',
+				pink         = '#ffa6ff',
+				pink_light   = '#ffb7b7',
+				purple       = '#cf55f0',
+				purple_light = '#af60af',
+				red          = '#ee4a59',
+				red_dark     = '#a80000',
+				red_light    = '#ff4090',
+				tan          = '#f4c069',
+				teal         = '#60afff',
+				turqoise     = '#2bff99',
+				white        = '#ffffff',
+				yellow       = '#f0df33',
+			}
 
-		-- Defined in https://github.com/Iron-E/nvim-highlite
-		local BLACK        = '#202020'
-		local BLUE         = '#7766ff'
-		local CYAN         = '#33dbc3'
-		local GRAY_DARK    = '#353535'
-		local GRAY_LIGHT   = '#c0c0c0'
-		local GREEN        = '#22ff22'
-		local GREEN_DARK   = '#70d533'
-		local GREEN_LIGHT  = '#99ff99'
-		-- local ICE          = '#95c5ff'
-		local MAGENTA      = '#d5508f'
-		local MAGENTA_DARK = '#bb0099'
-		local ORANGE       = '#ff8900'
-		local ORANGE_LIGHT = '#f0af00'
-		local PINK         = '#ffa6ff'
-		local PINK_LIGHT   = '#ffb7b7'
-		local PURPLE       = '#cf55f0'
-		local PURPLE_LIGHT = '#af60af'
-		local RED          = '#ee4a59'
-		local RED_DARK     = '#a80000'
-		local RED_LIGHT    = '#ff4090'
-		local TAN          = '#f4c069'
-		local TEAL         = '#60afff'
-		local TURQOISE     = '#2bff99'
-		local WHITE        = '#ffffff'
-		local YELLOW       = '#f0df33'
+			colors.sidebar = colors.black
+			colors.midbar = colors.gray_dark
+			colors.text = colors.gray_light
 
-		local SIDEBAR = BLACK
-		local MIDBAR = GRAY_DARK
-		local TEXT = GRAY_LIGHT
-
-		--[[/* HELPERS */]]
-
-		do
-			local command = 'doautocmd User BufEnterOrGitSignsUpdate'
-			vim.api.nvim_create_autocmd('BufEnter', { command = command, group = 'config' })
-			vim.api.nvim_create_autocmd('User', { command = command, group = 'config', pattern = 'GitSignsUpdate' })
+			return colors
 		end
 
-		--- Set buffer variables for file icon and color.
-		--- @return {color: string, icon: string}
-		local function buf_init_devicons()
-			local icon, color, _ = MiniIcons.get('file', vim.api.nvim_buf_get_name(0))
-			local dev_icons = { color = vim.api.nvim_get_hl(0, { link = false, name = color }).fg, icon = icon }
-
-			vim.b.dev_icons = dev_icons
-			return dev_icons
-		end
-
-		--- @return {color: string, icon: string}
-		local function filetype_info()
-			return vim.b.dev_icons or buf_init_devicons()
-		end
+		vim.api.nvim_create_autocmd('ColorScheme', {
+			desc = 'Reset heirline colors',
+			group = 'config',
+			callback = function()
+				utils.on_colorscheme(setup_colors)
+			end,
+		})
 
 		--- Redraw the statusline
-		local redrawstatus = vim.schedule_wrap(function() vim.api.nvim_command 'redrawstatus' end)
+		local redrawstatus = vim.schedule_wrap(function()
+			vim.api.nvim_command 'redrawstatus'
+		end)
 
 		--[[/* HEIRLINE CONFIG */]]
 
@@ -82,256 +69,349 @@ return {{ 'rebelot/heirline.nvim',
 		--- A right separator.
 		local RIGHT_SEPARATOR = { provider = '' }
 
-		o.statusline =
-		{
-			-- LEFT {{{
-			{ -- ViMode {{{
+		local vi_mode = {
+			static = {
+				group = 'HeirlineViMode',
+				modes = {
+					['c']  = { 'COMMAND-LINE', 'red' },
+					['ce'] = { 'NORMAL EX', 'red_dark' },
+					['cv'] = { 'EX', 'red_light' },
+
+					['i'] = { 'INSERT', 'green' },
+
+					['ic']  = { 'INS-COMPLETE', 'green_light' },
+					['ix']  = { 'INS-COMPLETE', 'green_light' },
+					['Rc']  = { 'REP-COMPLETE', 'green_light' },
+					['Rvc'] = { 'VIRT-REP-COMPLETE', 'green_light' },
+					['Rvx'] = { 'VIRT-REP-COMPLETE', 'green_light' },
+					['Rx']  = { 'REP-COMPLETE', 'green_light' },
+
+					['n']   = { 'NORMAL', 'purple_light' },
+					['niI'] = { 'INS-NORMAL', 'purple_light' },
+					['niR'] = { 'REP-NORMAL', 'purple_light' },
+					['niV'] = { 'VIRT-REP-NORMAL', 'purple_light' },
+					['nt']  = { 'TERM-NORMAL', 'purple_light' },
+					['ntT'] = { 'TERM-NORMAL', 'purple_light' },
+
+					['no']   = { 'OPERATOR-PENDING', 'purple' },
+					['nov']  = { 'CHAR OPERATOR-PENDING', 'purple' },
+					['noV']  = { 'LINE OPERATOR-PENDING', 'purple' },
+					['no'] = { 'BLOCK OPERATOR-PENDING', 'purple' },
+
+					['R']  = { 'REPLACE', 'pink' },
+					['Rv'] = { 'VIRT-REPLACE', 'pink_light' },
+
+					['r']   = { 'HIT-ENTER', 'cyan' },
+					['rm']  = { '--MORE', 'cyan' },
+					['r?']  = { ':CONFIRM', 'cyan' },
+
+					['s']   = { 'SELECT', 'turqoise' },
+					['S']   = { 'SELECT LINE', 'turqoise' },
+					['']  = { 'SELECT', 'turqoise' },
+
+					['v']   = { 'VISUAL', 'blue' },
+					['vs']  = { 'SEL-VISUAL', 'blue' },
+					['V']   = { 'VISUAL LINE', 'blue' },
+					['Vs']  = { 'SEL-VISUAL LINE', 'blue' },
+					['']  = { 'VISUAL BLOCK', 'blue' },
+					['s'] = { 'VISUAL BLOCK', 'blue' },
+
+					['t']   = { 'TERMINAL', 'orange' },
+					['!']   = { 'SHELL', 'yellow' },
+
+					-- libmodal
+					['BUFFERS'] = 'teal',
+					['TABLES']  = 'orange_light',
+					['TABS']    = 'tan',
+				}
+			},
+
+			init = function(self)
+				if vim.g.libmodalActiveModeName then
+					self.name = vim.g.libmodalActiveModeName
+					self.color = self.modes[self.name]
+					return
+				end
+
+				local current_mode = self.modes[vim.api.nvim_get_mode().mode]
+
+				self.name = current_mode[1]
+				self.color = current_mode[2]
+			end,
+
+			update = {
+				'ModeChanged',
+				callback = redrawstatus,
+				pattern = '*:*',
+			},
+
+			hl = function(self)
+				return { bg = 'sidebar', fg = self.color, bold = true }
+			end,
+
+			provider = function(self)
+				return '▊ ' .. self.name .. ' '
+			end,
+		}
+
+		local file_icon = {
+			init = function(self)
+				local filename = vim.api.nvim_buf_get_name(0)
+				local icon, color, _ = MiniIcons.get('file', filename)
+
+				local hl = vim.api.nvim_get_hl(0, { link = false, name = color })
+				self.file = {
+					color = hl.fg,
+					icon = icon,
+				}
+			end,
+
+			update = { 'BufEnter' },
+
+			hl = function(self)
+				return { bg = 'sidebar', fg = self.file.color }
+			end,
+
+			LEFT_SEPARATOR,
+
+			{
 				hl = function(self)
-					vim.api.nvim_set_hl(0, self.group, { bg = SIDEBAR, fg = self.color, bold = true })
-					return self.group
+					return { bg = self.file.color, fg = 'sidebar' }
 				end,
+
+				provider = function(self)
+					return ' ' .. self.file.icon .. ' %Y '
+				end,
+			},
+
+			RIGHT_SEPARATOR,
+		}
+
+		local file_info = {
+			hl = { bg = 'sidebar', fg = 'text', bold = true },
+
+			-- File name
+			{ provider = ' %t ' },
+			{ -- Readonly
+				condition = function()
+					return vim.api.nvim_get_option_value('readonly', { buf = 0 })
+				end,
+
+				update = { 'OptionSet', pattern = 'readonly' },
+				provider = ' ',
+			},
+
+			{ -- Modified
+				condition = function()
+					return vim.api.nvim_get_option_value('modified', {})
+				end,
+
+				update = 'BufModifiedSet',
+				provider = ' ',
+			},
+
+			{ -- File size
 				init = function(self)
-					if vim.g.libmodalActiveModeName then
-						self.name = vim.g.libmodalActiveModeName
-						self.color = self.modes[self.name]
-					else
-						local current_mode = self.modes[vim.api.nvim_get_mode().mode]
-
-						self.name = current_mode[1]
-						self.color = current_mode[2]
-					end
+					self.stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(0))
 				end,
-				provider = function(self) return '▊ ' .. self.name .. ' ' end,
-				static =
-				{ -- {{{
-					group = 'HeirlineViMode',
-					modes =
-					{
-						['c']  = { 'COMMAND-LINE', RED },
-						['ce'] = { 'NORMAL EX', RED_DARK },
-						['cv'] = { 'EX', RED_LIGHT },
 
-						['i'] = { 'INSERT', GREEN },
+				update = { 'BufEnter', 'BufWritePost' },
 
-						['ic']  = { 'INS-COMPLETE', GREEN_LIGHT },
-						['ix']  = { 'INS-COMPLETE', GREEN_LIGHT },
-						['Rc']  = { 'REP-COMPLETE', GREEN_LIGHT },
-						['Rvc'] = { 'VIRT-REP-COMPLETE', GREEN_LIGHT },
-						['Rvx'] = { 'VIRT-REP-COMPLETE', GREEN_LIGHT },
-						['Rx']  = { 'REP-COMPLETE', GREEN_LIGHT },
+				{
+					static = {
+						conversion = 1024,
+						units = { '', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y' },
+					},
 
-						['n']   = { 'NORMAL', PURPLE_LIGHT },
-						['niI'] = { 'INS-NORMAL', PURPLE_LIGHT },
-						['niR'] = { 'REP-NORMAL', PURPLE_LIGHT },
-						['niV'] = { 'VIRT-REP-NORMAL', PURPLE_LIGHT },
-						['nt']  = { 'TERM-NORMAL', PURPLE_LIGHT },
-						['ntT'] = { 'TERM-NORMAL', PURPLE_LIGHT },
+					condition = function(self)
+						return self.stat
+					end,
 
-						['no']   = { 'OPERATOR-PENDING', PURPLE },
-						['nov']  = { 'CHAR OPERATOR-PENDING', PURPLE },
-						['noV']  = { 'LINE OPERATOR-PENDING', PURPLE },
-						['no'] = { 'BLOCK OPERATOR-PENDING', PURPLE },
+					provider = function(self)
+						local size = self.stat.size
 
-						['R']  = { 'REPLACE', PINK },
-						['Rv'] = { 'VIRT-REPLACE', PINK_LIGHT },
+						local i = 1
+						while size > self.conversion and i < #self.units do
+							size = size / self.conversion
+							i = i + 1
+						end
 
-						['r']   = { 'HIT-ENTER', CYAN },
-						['rm']  = { '--MORE', CYAN },
-						['r?']  = { ':CONFIRM', CYAN },
+						return ('%.2f%sb '):format(size, self.units[i])
+					end,
+				},
+			},
 
-						['s']   = { 'SELECT', TURQOISE },
-						['S']   = { 'SELECT LINE', TURQOISE },
-						['']  = { 'SELECT', TURQOISE },
+			{ hl = { fg = 'midbar' }, LEFT_SEPARATOR },
+		}
 
-						['v']   = { 'VISUAL', BLUE },
-						['vs']  = { 'SEL-VISUAL', BLUE },
-						['V']   = { 'VISUAL LINE', BLUE },
-						['Vs']  = { 'SEL-VISUAL LINE', BLUE },
-						['']  = { 'VISUAL BLOCK', BLUE },
-						['s'] = { 'VISUAL BLOCK', BLUE },
+		--- @param fg HeirlineColor
+		--- @param severity vim.diagnostic.Severity
+		--- @return table
+		local function severity_section(fg, severity)
+			return {
+				hl = { fg = fg },
+				provider = function(self)
+					return self:provide(severity)
+				end,
+			}
+		end
 
-						['t']   = { 'TERMINAL', ORANGE },
-						['!']   = { 'SHELL', YELLOW },
+		local diagnostics = {
+			init = function(self)
+				--- @type { [vim.diagnostic.Severity]: integer }
+				local diagnostics = vim.diagnostic.count(0)
 
-						-- libmodal
-						['BUFFERS'] = TEAL,
-						['TABLES']  = ORANGE_LIGHT,
-						['TABS']    = TAN,
-					}
-				}, -- }}}
-				update = { 'ModeChanged', callback = redrawstatus, pattern = '*:*' },
-			}, -- }}}
+				for _, _ in pairs(diagnostics) do
+					-- if this block is entered, it means there are diagnostics
+					self.diagnostics = diagnostics
+					return
+				end
 
-			{ -- File Icon {{{
-				hl = function(self) return { bg = SIDEBAR, fg = self.file.color } end,
-				init = function(self) self.file = filetype_info() end,
-				update = 'BufEnter',
+				-- otherwise, there are no diagnostics
+				self.diagnostics = nil
+			end,
+
+			update = { 'BufEnter', 'DiagnosticChanged' },
+
+			hl = { bg = 'midbar', fg = 'sidebar' },
+
+			{
+				condition = function(self) return self.diagnostics end,
 
 				LEFT_SEPARATOR,
+
 				{
-					hl = function(self) return { bg = self.file.color, fg = SIDEBAR } end,
-					provider = function(self) return ' ' .. self.file.icon .. ' %Y ' end,
+					static = {
+						icons = { ' ', ' ', ' ', ' ' },
+
+						--- @param severity 1|2|3|4
+						--- @return nil|string
+						provide = function(self, severity)
+							local count = self.diagnostics[severity]
+							if count == nil or count == 0 then
+								return
+							end
+
+							local str = self.icons[severity] .. count
+							for i = severity + 1, #vim.diagnostic.severity do
+								if self.diagnostics[i] then
+									str = str .. ' '
+									break
+								end
+							end
+
+							return str
+						end,
+					},
+
+					hl = { bg = 'sidebar' },
+
+					severity_section('red', vim.diagnostic.severity.ERROR),
+					severity_section('orange', vim.diagnostic.severity.WARN),
+					severity_section('pink_light', vim.diagnostic.severity.INFO),
+					severity_section('magenta', vim.diagnostic.severity.HINT),
 				},
 
 				RIGHT_SEPARATOR,
-			}, -- }}}
+			},
+		}
 
-			{ -- File Info {{{
-				hl = {bg = SIDEBAR, bold = true, fg = TEXT},
+		do
+			local command = 'doautocmd User BufEnterOrGitSignsUpdate'
+			vim.api.nvim_create_autocmd('BufEnter', { command = command, group = 'config' })
+			vim.api.nvim_create_autocmd('User', { command = command, group = 'config', pattern = 'GitSignsUpdate' })
+		end
 
-				-- File name
-				{provider = ' %t '},
-				{ -- Readonly {{{
-					condition = function() return vim.api.nvim_get_option_value('readonly', { buf = 0 }) end,
-					provider = ' ',
-					update = { 'OptionSet', pattern = 'readonly' },
-				}, -- }}}
-
-				{ -- Modified {{{
-					condition = function() return vim.api.nvim_get_option_value('modified', {}) end,
-					provider = ' ',
-					update = 'BufModifiedSet',
-				}, -- }}}
-
-				{ -- File size {{{
-					init = function(self) self.stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(0)) end,
-					update = { 'BufEnter', 'BufWritePost' },
-
-					{
-						condition = function(self) return self.stat end,
-						provider = function(self)
-							local size = self.stat.size
-
-							local i = 1
-							while size > self.conversion and i < #self.units do
-								size = size / self.conversion
-								i = i + 1
-							end
-
-							return ('%.2f%sb '):format(size, self.units[i])
-						end,
-						static = { conversion = 1024, units = { '', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y' } },
-					},
-				}, -- }}}
-
-				{ hl = { fg = MIDBAR }, LEFT_SEPARATOR },
-			}, -- }}}
-			-- }}}
-
-			-- MIDDLE {{{
-			{ hl = { bg = MIDBAR }, ALIGN },
-
-			{ -- Diagnostics {{{
-				hl = { bg = MIDBAR, fg = SIDEBAR },
-				init = function(self)
-					local diagnostics = vim.diagnostic.get(0) --- @type lsp.Diagnostic
-
-					if #diagnostics < 1 then
-						self.diagnostics = nil
-					else
-						self.diagnostics = { 0, 0, 0, 0 }
-						for _, diagnostic in ipairs(diagnostics) do
-							self.diagnostics[diagnostic.severity] = self.diagnostics[diagnostic.severity] + 1
-						end
-					end
+		--- @param fg HeirlineColor
+		--- @param sign string
+		--- @param change string
+		--- @return table
+		local function diff_section(fg, sign, change)
+			return {
+				hl = { fg = fg },
+				provider = function(self)
+					return self:provide('+', 'added')
 				end,
-				update = { 'BufEnter', 'DiagnosticChanged' },
+			}
+		end
+
+		local git = {
+			init = function(self) self.status = vim.b.gitsigns_status_dict end,
+			update = { 'User', pattern = 'BufEnterOrGitSignsUpdate', callback = redrawstatus },
+
+			{ -- Diff
+				hl = { bg = 'midbar' },
 
 				{
-					condition = function(self) return self.diagnostics end,
-
-					LEFT_SEPARATOR,
-					{
-						hl = { bg = SIDEBAR },
-						static =
-						{ -- {{{
-							icons = { ' ', ' ', ' ', ' ' },
-
-							--- @param severity 1|2|3|4
-							--- @return nil|string
-							provide = function(self, severity)
-								if self.diagnostics[severity] > 0 then
-									local str = self.icons[severity] .. self.diagnostics[severity]
-
-									for i = severity + 1, #self.diagnostics do
-										if self.diagnostics[i] > 0 then
-											str = str .. ' '
-											break
-										end
-									end
-
-									return str
-								end
-							end,
-						}, -- }}}
-
-						{ hl = { fg = RED }, provider = function(self) return self:provide(vim.diagnostic.severity.ERROR) end },
-						{ hl = { fg = ORANGE }, provider = function(self) return self:provide(vim.diagnostic.severity.WARN) end },
-						{ hl = { fg = PINK_LIGHT }, provider = function(self) return self:provide(vim.diagnostic.severity.INFO) end },
-						{ hl = { fg = MAGENTA }, provider = function(self) return self:provide(vim.diagnostic.severity.HINT) end },
+					static = {
+						--- @param sign string
+						--- @param change string
+						--- @return nil|string
+						provide = function(self, sign, change)
+							local count = self.status[change] or 0
+							if count > 0 then return sign .. count end
+						end,
 					},
 
-					RIGHT_SEPARATOR,
-				},
-			}, -- }}}
-			-- }}}
+					condition = function(self)
+						return self.status
+					end,
 
-			-- RIGHT {{{
-			{ hl = { bg = MIDBAR }, ALIGN },
-
-			{ -- Git {{{
-				init = function(self) self.status = vim.b.gitsigns_status_dict end,
-				update = { 'User', callback = redrawstatus, pattern = 'BufEnterOrGitSignsUpdate' },
-
-				{ -- Diff {{{
-					hl = { bg = MIDBAR },
-
-					{
-						condition = function(self) return self.status end,
-						static =
-						{
-							--- @param sign string
-							--- @param change string
-							--- @return nil|string
-							provide = function(self, sign, change)
-								local count = self.status[change] or 0
-								if count > 0 then return sign .. count end
-							end,
-						},
-
-						{ hl = { fg = GREEN }, provider = function(self) return self:provide('+', 'added') end },
-						{ hl = { fg = ORANGE_LIGHT }, provider = function(self) return self:provide('~', 'changed') end },
-						{ hl = { fg = RED_LIGHT }, provider = function(self) return self:provide('-', 'removed') end },
-						{ provider = ' ' },
-					},
-				}, -- }}}
-
-				{ -- Branch {{{
-					hl = { bg = GREEN_DARK },
-
-					{ hl = { fg = MIDBAR }, RIGHT_SEPARATOR },
+					diff_section('green', '+', 'added'),
+					diff_section('orange_light', '~', 'changed'),
+					diff_section('red_light', '-', 'removed'),
 					{ provider = ' ' },
-					{
-						condition = function(self) return self.status end,
-						hl = { fg = SIDEBAR, bold = true },
-						provider = function(self) return ' ' .. self.status.head .. ' ' end,
-					},
+				},
+			},
 
-					{ hl = { fg = SIDEBAR }, LEFT_SEPARATOR },
-				}, -- }}}
-			}, -- }}}
+			{ -- Branch
+				hl = { bg = 'green_dark' },
 
-			-- Column Number
-			{ hl = { fg = TEXT, bg = SIDEBAR }, provider = '  %v ' },
+				{ hl = { fg = 'midbar' }, RIGHT_SEPARATOR },
+				{ provider = ' ' },
+				{
+					condition = function(self) return self.status end,
+					hl = { fg = 'sidebar', bold = true },
+					provider = function(self) return ' ' .. self.status.head .. ' ' end,
+				},
 
-			{ -- Line Percentage {{{
-				hl = { bg = MAGENTA_DARK },
+				{ hl = { fg = 'sidebar' }, LEFT_SEPARATOR },
+			},
+		}
 
-				{ hl = { fg = SIDEBAR }, RIGHT_SEPARATOR },
-				{ hl = { fg = WHITE }, provider = ' %p%% ' },
-			}, -- }}}
+		local column_number = {
+			hl = { fg = 'text', bg = 'sidebar' },
+			provider = '  %v ',
+		}
 
-			-- }}}
+		local line_percent = {
+			hl = { bg = 'magenta_dark' },
+
+			{ hl = { fg = 'sidebar' }, RIGHT_SEPARATOR },
+			{ hl = { fg = 'white' }, provider = ' %p%% ' },
+		}
+
+		heirline.setup {
+			opts = {
+				colors = setup_colors,
+			},
+
+			--- @diagnostic disable-next-line missing-fields
+			statusline = {
+				vi_mode,
+				file_icon,
+				file_info,
+
+				{ hl = { bg = 'midbar' }, ALIGN },
+
+				diagnostics,
+
+				{ hl = { bg = 'midbar' }, ALIGN },
+
+				git,
+				column_number,
+				line_percent,
+			},
 		}
 	end,
 }}
