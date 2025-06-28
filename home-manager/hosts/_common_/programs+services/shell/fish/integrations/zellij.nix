@@ -17,9 +17,9 @@
             # script
             zellij run \
             	--floating \
-              --pinned=true \
+            	--pinned=true \
             	--close-on-exit \
-              --name $argv[1] \
+            	--name $argv[1] \
             	-- \
             	fish \
             	--command \
