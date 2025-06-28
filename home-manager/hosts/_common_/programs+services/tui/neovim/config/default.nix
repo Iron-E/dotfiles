@@ -40,7 +40,6 @@ in
 
         inherit (pkgs)
           bat # previewer
-          cmake # telescope-fzf-native build
           fd # fuzzy finder
           xclip # clipboard
           ;

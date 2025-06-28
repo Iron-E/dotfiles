@@ -117,7 +117,7 @@ end
 
 do
 	local config_dir = wezterm.home_dir .. '/Documents/nix/home'
-	local nvim = {  'nvim', '-c', 'Telescope find_files' }
+	local nvim = {  'nvim', '-c', 'FzfLua find_files' }
 
 	--- @param program string
 	--- @param path string

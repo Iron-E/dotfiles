@@ -1,5 +1,6 @@
 return {{ 'chrisgrieser/nvim-scissors',
-	dependencies = 'nvim-telescope/telescope.nvim',
+	dependencies = 'ibhagwan/fzf-lua',
+
 	keys = {
 		{ '<A-w>s',
 			function() require('scissors').addNewSnippet() end,
@@ -12,10 +13,7 @@ return {{ 'chrisgrieser/nvim-scissors',
 			mode = 'n',
 		},
 	},
-	config = function(_, o)
-		require('scissors').setup(o)
-		require('scissors.config').config.snippetSelection.telescope.opts.layout_config.preview_width = nil
-	end,
+
 	opts = function(_, o)
 		o.jsonFormatter = { 'gojq', '--monochrome-output', '--tab' }
 		o.editSnippetPopup = {
