@@ -3,6 +3,7 @@
 --- @type LazySpec[]
 return {{ 'stevearc/dressing.nvim',
 	lazy = true,
+	enabled = false,
 	init = function(dressing)
 		--- @diagnostic disable-next-line:duplicate-set-field
 		vim.ui.input = function(...)

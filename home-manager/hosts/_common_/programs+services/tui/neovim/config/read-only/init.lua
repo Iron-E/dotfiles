@@ -25,3 +25,5 @@ require 'init/treesitter'
 
 -- Plugins
 require 'init/lazy'
+
+require('stenvim'):register()
