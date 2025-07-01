@@ -20,6 +20,7 @@
 
     gc = "g commit";
     gca = "gc --amend";
+    gcf = "gc --fixup";
 
     gcb = "g absorb";
     gcbr = "gcb --and-rebase";
