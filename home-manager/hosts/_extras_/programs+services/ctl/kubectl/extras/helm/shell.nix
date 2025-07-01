@@ -18,6 +18,8 @@
 
     hc = "h create";
     hd = "h dependency";
+    hdb = "hd build";
+    hdu = "hd update";
     hk = "h package";
     hpl = "h pull";
     hp = "h push";
