@@ -33,16 +33,34 @@ vim.api.nvim_create_autocmd('OptionSet', {
 	end,
 })
 
-vim.api.nvim_create_autocmd({'BufWinEnter', 'BufWritePost', 'InsertLeave'},
-{
-	desc = 'Reset indent guide settings',
-	group = augroup,
-	callback = function()
+do
+	local function apply_indent_guide_settings()
+		local tabstop = vim.api.nvim_get_option_value('tabstop', {})
+
 		vim.api.nvim_set_option_value('list', true, {})
-		vim.opt.listchars = { nbsp = '␣', tab = '│ ', trail = '•' }
+		vim.opt.listchars = {
+			nbsp = '␣',
+			tab = '│ ',
+			trail = '•',
+			leadmultispace = '│' .. string.rep(' ', tabstop - 1),
+		}
+
 		vim.api.nvim_set_option_value('showbreak', '└ ', {})
-	end,
-})
+	end
+
+	vim.api.nvim_create_autocmd({ 'BufWinEnter', 'BufWritePost', 'InsertLeave' }, {
+		desc = 'Reset indent guide settings',
+		group = augroup,
+		callback = apply_indent_guide_settings,
+	})
+
+	vim.api.nvim_create_autocmd('OptionSet', {
+		desc = 'Reset indent guide settings',
+		group = augroup,
+		pattern = 'tabstop',
+		callback = apply_indent_guide_settings,
+	})
+end
 
 vim.api.nvim_create_autocmd('BufWinEnter', {
 	desc = 'Populate colorcolumn based on tw',
