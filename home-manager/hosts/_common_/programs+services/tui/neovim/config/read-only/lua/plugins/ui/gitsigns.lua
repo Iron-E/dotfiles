@@ -6,6 +6,8 @@ return {{ 'lewis6991/gitsigns.nvim',
 	{
 		{ '[c', '<Cmd>Gitsigns prev_hunk<CR>', desc = 'Previous hunk ', mode = 'n' },
 		{ ']c', '<Cmd>Gitsigns next_hunk<CR>', desc = 'Next hunk', mode = 'n' },
+		{ '<A-w>C', '<Cmd>Gitsigns setqflist<CR>', desc = 'Next hunk', mode = 'n' },
+		{ '<A-w><A-c>', '<Cmd>Gitsigns setloclist<CR>', desc = 'Next hunk', mode = 'n' },
 		{ '<Leader>hs', '<Cmd>Gitsigns stage_hunk<CR>', desc = 'Stage hunk', mode = 'n' },
 		{ '<Leader>hu', '<Cmd>Gitsigns undo_stage_hunk<CR>', desc = 'Unstage hunk', mode = 'n' },
 		{ '<A-w>b', '<Cmd>Gitsigns blame<CR>', desc = 'Toggle git blame in split', mode = 'n' },
