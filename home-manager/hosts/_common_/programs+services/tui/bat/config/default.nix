@@ -1,4 +1,4 @@
-{ outputs, pkgs, ...}:
+{ outputs, pkgs, ... }:
 let
   util = outputs.lib;
 in
@@ -8,7 +8,7 @@ in
   home.packages = with pkgs; [ less ];
   programs.bat.config = {
     italic-text = "always";
-    pager = "less -R";
+    pager = "less -R -S";
     style = "full";
   };
 }
