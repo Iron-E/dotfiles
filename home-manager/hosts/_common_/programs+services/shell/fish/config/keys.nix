@@ -28,6 +28,12 @@
               bind -M $mode alt-b 'fish_commandline_append " | bat"'
             end
           end
+
+          if command -q tspin || functions -q tspin
+            for mode in default insert
+              bind -M $mode alt-t 'fish_commandline_prepend "tspin -c \'fish -c \""' 'fish_commandline_append "\"\'"'
+            end
+          end
         '';
     };
 
