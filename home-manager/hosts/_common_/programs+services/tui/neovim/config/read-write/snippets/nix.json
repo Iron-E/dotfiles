@@ -123,7 +123,11 @@
 			"\t};",
 			"}$0"
 		],
-		"prefix": ["docker-image", "oci-image", "streamLayeredImage"]
+		"prefix": [
+			"docker-image",
+			"oci-image",
+			"streamLayeredImage"
+		]
 	},
 	"flake": {
 		"body": [
@@ -164,13 +168,12 @@
 	},
 	"home-manager-default": {
 		"body": [
-			"{ inputs, outputs, config, lib, pkgs, ... }:",
+			"{ outputs, ... }:",
 			"let",
-			"\tutil = outputs.lib;",
-			"in {",
-			"\timports = util.fs.readSubmodules ./.;",
-			"",
-			"\t${0:$TM_SELECTED_TEXT}",
+			"  util = outputs.lib;",
+			"in",
+			"{",
+			"  imports = util.fs.readSubmodules ./.;${0:$TM_SELECTED_TEXT}",
 			"}"
 		],
 		"prefix": "home-manager-default"
@@ -180,7 +183,11 @@
 		"prefix": "istrlang"
 	},
 	"let-util": {
-		"body": ["let", "\tutil = outputs.lib;", "in"],
+		"body": [
+			"let",
+			"\tutil = outputs.lib;",
+			"in"
+		],
 		"prefix": "let-util"
 	},
 	"mkFileset": {
@@ -218,11 +225,21 @@
 		"prefix": "mkShell"
 	},
 	"module": {
-		"body": ["{ ... }: {", "\timports = [];", "", "\t$0", "}"],
+		"body": [
+			"{ ... }: {",
+			"\timports = [];",
+			"",
+			"\t$0",
+			"}"
+		],
 		"prefix": "module"
 	},
 	"multiline": {
-		"body": ["/* ${1:lang} */ ''", "\t${0:body}", "'';"],
+		"body": [
+			"/* ${1:lang} */ ''",
+			"\t${0:body}",
+			"'';"
+		],
 		"prefix": "multiline"
 	},
 	"readSubmodules": {
