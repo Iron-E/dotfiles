@@ -21,3 +21,4 @@ vim.api.nvim_set_keymap('n', ']d', '', { callback = function() vim.diagnostic.ju
 vim.api.nvim_set_keymap('n', 'gC', '', { callback = function() vim.diagnostic.reset(nil, 0) end })
 vim.api.nvim_set_keymap('n', 'gK', '', { callback = vim.diagnostic.open_float })
 vim.api.nvim_set_keymap('n', '<A-w>d', '', { callback = vim.diagnostic.setqflist })
+vim.api.nvim_set_keymap('n', '<A-w><A-d>', '', { callback = vim.diagnostic.setloclist })
