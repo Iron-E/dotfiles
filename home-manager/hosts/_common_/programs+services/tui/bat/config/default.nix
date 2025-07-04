@@ -10,5 +10,6 @@ in
     italic-text = "always";
     pager = "less -R -S";
     style = "full";
+    wrap = "never";
   };
 }
