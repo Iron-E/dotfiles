@@ -1,9 +1,18 @@
-{ outputs, pkgs, ...}:
+{ outputs, pkgs, ... }:
 let
   util = outputs.lib;
 in
 {
   imports = util.fs.readSubmodules ./.;
 
-  home.packages = with pkgs; [ which ];
+  home.packages = [
+    pkgs.which
+    (pkgs.writeShellApplication {
+      name = "caw";
+      text = # sh
+        ''
+          cat "$(which "$@")"
+        '';
+    })
+  ];
 }
