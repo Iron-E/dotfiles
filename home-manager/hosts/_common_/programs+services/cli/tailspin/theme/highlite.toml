@@ -1,0 +1,215 @@
+[dates]
+date = { fg = "bright_red", italic = true }
+time = { fg = "bright_red", italic = true }
+zone = { fg = "bright_red", bold = true, faint = true }
+separator = { fg = "bright_white" }
+
+[[keywords]]
+style = { fg = "red", bold = true }
+words = [
+	'null',
+]
+
+[[keywords]]
+style = { fg = "bright_yellow" }
+words = [
+	'true',
+	'false',
+]
+
+[[keywords]]
+style = { fg = "black", bg = "white", bold = true }
+words = [
+	'trace',
+	'TRACE',
+]
+
+[[keywords]]
+style = { fg = "black", bg = "magenta", bold = true }
+words = [
+	'debug',
+	'Debug',
+	'DEBUG',
+]
+
+[[keywords]]
+style = { fg = "black", bg = "cyan", bold = true }
+words = [
+	'info',
+	'Info',
+	'INFO',
+	'note',
+	'Note',
+	'NOTE',
+]
+
+[[keywords]]
+style = { fg = "black", bg = "yellow", bold = true }
+words = [
+	'invalid',
+	'Invalid',
+	'INVALID',
+	'warn',
+	'Warn',
+	'WARN',
+	'warning',
+	'Warning',
+	'WARNING',
+]
+
+[[keywords]]
+style = { fg = "black", bg = "red", bold = true }
+words = [
+	'fail',
+	'Fail',
+	'FAIL',
+	'failed',
+	'Failed',
+	'FAILED',
+	'critical',
+	'Critical',
+	'CRITICAL',
+	'err',
+	'Err',
+	'ERR',
+	'error',
+	'Error',
+	'ERROR',
+	'suspicious',
+	'Suspicious',
+	'SUSPICIOUS',
+]
+
+[[keywords]]
+style = { fg = "black", bg = "green", bold = true }
+words = [
+	'completed',
+	'Completed',
+	'COMPLETED',
+	'succeeded',
+	'Succeeded',
+	'SUCCEEDED',
+	'success',
+	'Success',
+	'SUCCESS',
+	'successful',
+	'Successful',
+	'SUCCESSFUL',
+]
+
+[[keywords]]
+style = { fg = "bright_green", bold = true }
+words = [
+	'DELETE',
+	'GET',
+	'PATCH',
+	'POST',
+	'PUT',
+]
+
+[[keywords]]
+style = { fg = 'white', bold = true, italic = true, underline = true }
+words = [
+	'root',
+]
+
+[[keywords]]
+style = { italic = true }
+words = [
+	'Mon',
+	'Monday',
+	'Tue',
+	'Tues',
+	'Tuesday',
+	'Wed',
+	'Wednesday',
+	'Thu',
+	'Thur',
+	'Thursday',
+	'Fri',
+	'Friday',
+	'Sat',
+	'Saturday',
+	'Sun',
+	'Sunday',
+]
+
+[[keywords]]
+style = { italic = true }
+words = [
+	'Jan',
+	'January',
+	'Feb',
+	'February',
+	'Mar',
+	'March',
+	'Apr',
+	'April',
+	'May',
+	'Jun',
+	'June',
+	'Jul',
+	'July',
+	'Aug',
+	'August',
+	'Sep',
+	'September',
+	'Oct',
+	'October',
+	'Nov',
+	'November',
+	'Dec',
+	'December',
+]
+
+[urls]
+http = { fg = "blue", bold = true, italic = true }
+https = { fg = "blue", italic = true }
+host = { fg = "bright_blue", underline = true }
+path = { fg = "cyan" }
+query_params_key = { fg = "white" }
+query_params_value = { fg = "green" }
+symbols = { fg = "bright_white" }
+
+[numbers]
+style = { fg = "bright_yellow" }
+
+[ip_addresses]
+number = { fg = "bright_yellow", italic = true }
+letter = { fg = "bright_yellow", bold = true, faint = true }
+separator = { fg = "bright_white" }
+
+[quotes]
+token = '"'
+style = { fg = "green" }
+
+[paths]
+segment = { fg = "cyan", underline = true }
+separator = { fg = "bright_white" }
+
+[uuids]
+number = { fg = "yellow", italic = true }
+letter = { fg = "yellow", bold = true, faint = true }
+separator = { fg = "bright_white" }
+
+[pointers]
+number = { fg = "bright_cyan", italic = true }
+letter = { fg = "bright_cyan", bold = true, faint = true }
+separator = { fg = "bright_white" }
+
+[key_value_pairs]
+key = { fg = "white" }
+separator = { fg = "bright_green", bold = true }
+
+[processes]
+name = { fg = "magenta" }
+separator = { fg = "bright_white" }
+id = { fg = "bright_yellow" }
+
+[json]
+key = { fg = "green" }
+quote_token = { fg = "white", faint = true }
+curly_bracket = { fg = "bright_white" }
+square_bracket = { fg = "bright_white" }
+comma = { fg = "bright_white" }
+colon = { fg = "bright_white" }
