@@ -28,6 +28,8 @@
     gcbr = "gcb --and-rebase";
 
     gcp = "g cherry-pick";
+    gcpa = "gcp --abort";
+    gcpu = "gcp --continue";
 
     gd = "g diff";
     gdh = "gd HEAD";
