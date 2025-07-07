@@ -15,7 +15,9 @@
     gap = "ga --patch";
 
     gb = "g rebase";
-    gbi = "gb -i";
+    gba = "gb --abort";
+    gbu = "gb --continue";
+    gbi = "gb --interactive";
     gbis = "gb --exec 'g commit --amend --no-edit -n -S' -i rebase -i";
 
     gc = "g commit";
