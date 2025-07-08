@@ -12,8 +12,8 @@ return {{ 'wintermute-cell/gitignore.nvim',
 				prompt = "⟩ ",
 
 				winopts = {
-					width = 0.4,
-					height = 0.3,
+					width = 0.25,
+					height = 0.6,
 					title = 'gitignore',
 				},
 
@@ -39,5 +39,13 @@ return {{ 'wintermute-cell/gitignore.nvim',
 
 			FzfLua.fzf_exec(add_entries, picker_opts)
 		end
+
+		vim.api.nvim_create_user_command('Gitignore', gitignore.generate, {
+			force = true,
+			nargs = '?', -- 0 or 1 arguments
+			complete = 'file', -- complete with files
+			bang = true, -- allow the command to be run with a !
+		})
+
 	end,
 }}
