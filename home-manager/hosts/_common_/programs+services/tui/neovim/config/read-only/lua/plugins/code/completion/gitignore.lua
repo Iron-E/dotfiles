@@ -22,6 +22,10 @@ return {{ 'wintermute-cell/gitignore.nvim',
 						gitignore.createGitignoreBuffer(opts.args, selected)
 					end,
 				},
+
+				fzf_opts = {
+					['--multi'] = true,
+				},
 			}
 
 			local add_entries = function(add_entry)
