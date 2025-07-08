@@ -25,7 +25,7 @@ return {{ 'ibhagwan/fzf-lua',
 				vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<Cmd>FzfLua lsp_references<CR>', {})
 				vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gw', '<Cmd>FzfLua lsp_document_symbols<CR>', {})
 				vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gW', '<Cmd>FzfLua lsp_live_workspace_symbols<CR>', {})
-				vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<Cmd>FzfLua lsp_type_definitions<CR>', {})
+				vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<Cmd>FzfLua lsp_typedefs<CR>', {})
 			end,
 			group = 'config',
 		})
