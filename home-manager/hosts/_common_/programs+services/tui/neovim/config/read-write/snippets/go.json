@@ -1,32 +1,53 @@
 {
-  "fum_logger": {
-    "body": [
-      "func (${1:var} ${2:Type}) logger() *slog.Logger {",
-      "\treturn slog.Default().WithGroup(\"${3:namespace}\").With(\"${1:var}\", ${1:var})",
-      "}"
-    ],
-    "prefix": "fum_logger"
-  },
-  "fum_logvalue": {
-    "body": [
-      "func (${1:var} ${2:Type}) LogValue() slog.Value {",
-      "\treturn slog.GroupValue(",
-      "\t\t$0",
-      "\t)",
-      "}"
-    ],
-    "prefix": "fum_logvalue"
-  },
-  "main": {
-    "body": [
-      "package main",
-      "",
-      "${1:// etc}",
-      "",
-      "func main()  {",
-      "\t$0",
-      "}"
-    ],
-    "prefix": "main"
-  }
+	"erf": {
+		"body": "fmt.Errorf(\"${1:}: %w\", err)$0",
+		"prefix": "erf"
+	},
+	"fum_logger": {
+		"body": [
+			"func (${1:var} ${2:Type}) logger() *slog.Logger {",
+			"\treturn slog.Default().WithGroup(\"${3:namespace}\").With(\"${1:var}\", ${1:var})",
+			"}"
+		],
+		"prefix": "fum_logger"
+	},
+	"fum_logvalue": {
+		"body": [
+			"func (${1:var} ${2:Type}) LogValue() slog.Value {",
+			"\treturn slog.GroupValue(",
+			"\t\t$0",
+			"\t)",
+			"}"
+		],
+		"prefix": "fum_logvalue"
+	},
+	"ifok": {
+		"body": [
+			"if ${1:_}, ok := ${2:fn()}; ${3:!}ok {",
+			"\t${4:// do something}",
+			"}$0"
+		],
+		"prefix": "ifok"
+	},
+	"main": {
+		"body": [
+			"package main",
+			"",
+			"${1:// etc}",
+			"",
+			"func main()  {",
+			"\t$0",
+			"}"
+		],
+		"prefix": "main"
+	},
+	"varifok": {
+		"body": [
+			"${1:_}, ok := ${2:fn()}",
+			"if ${3:!}ok {",
+			"\t${4:// do something}",
+			"}$0"
+		],
+		"prefix": "varifok"
+	}
 }
