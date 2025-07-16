@@ -73,9 +73,8 @@ return {{ 'ibhagwan/fzf-lua',
 
 				fzf = {
 					["ctrl-z"] = "abort",
-					["ctrl-c"] = "unix-line-discard",
-					["ctrl-d"] = "half-page-down",
-					["ctrl-u"] = "half-page-up",
+					["ctrl-u"] = "unix-line-discard",
+					["ctrl-w"] = "unix-word-rubout",
 					["ctrl-a"] = "beginning-of-line",
 					["ctrl-f"] = "end-of-line",
 					["alt-a"]  = "toggle-all",
