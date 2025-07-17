@@ -77,7 +77,7 @@ return {{ 'ibhagwan/fzf-lua',
 					["ctrl-w"] = "unix-word-rubout",
 					["ctrl-a"] = "beginning-of-line",
 					["ctrl-f"] = "end-of-line",
-					["alt-a"]  = "toggle-all",
+					["ctrl-v"]  = "toggle-all",
 					["alt-g"]  = "first",
 					["alt-G"]  = "last",
 					-- Only valid with fzf previewers (bat/cat/git/etc)

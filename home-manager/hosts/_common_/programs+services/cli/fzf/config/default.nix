@@ -18,7 +18,7 @@ in
           --bind='ctrl-w:unix-word-rubout'
           --bind='ctrl-a:beginning-of-line'
           --bind='ctrl-f:end-of-line'
-          --bind='alt-a:toggle-all'
+          --bind='ctrl-v:toggle-all'
           --bind='alt-g:first'
           --bind='alt-G:last'
           --bind='f3:toggle-preview-wrap'
