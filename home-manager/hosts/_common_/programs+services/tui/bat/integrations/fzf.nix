@@ -1,9 +1,13 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [ ];
 
-  programs.fzf.fileWidgetOptions = [
-    "--preview='bat -pp --color=always {}'"
-    "--preview-border=none"
-  ];
+  programs.fzf.fileWidgetOptions =
+    let
+      ls = if config.programs.lsd.enable then "lsd" else "ls";
+    in
+    [
+      "--preview='[ -f {} ] && bat -pp --color=always {} || ${ls} -l --color=always {}'"
+      "--preview-border=none"
+    ];
 }
