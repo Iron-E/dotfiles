@@ -19,6 +19,7 @@ in
           --bind='ctrl-a:beginning-of-line'
           --bind='ctrl-f:end-of-line'
           --bind='ctrl-v:toggle-all'
+          --bind='ctrl-space:jump'
           --bind='alt-g:first'
           --bind='alt-G:last'
           --bind='f3:toggle-preview-wrap'
