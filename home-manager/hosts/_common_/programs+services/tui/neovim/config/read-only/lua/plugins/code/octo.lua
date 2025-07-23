@@ -17,6 +17,7 @@ return {{ 'pwntester/octo.nvim',
 	opts = function(_, o)
 		o.default_merge_method = 'squash'
 		o.enable_builtin = true
+		o.picker = 'fzf-lua'
 		o.use_local_fs = true
 
 		vim.treesitter.language.register('markdown', 'octo')
