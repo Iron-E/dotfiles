@@ -2,5 +2,5 @@
 {
   imports = [ ];
 
-  home.shellAliases.nc = "nmcli -p";
+  home.shellAliases.nm = "nmcli -p";
 }
