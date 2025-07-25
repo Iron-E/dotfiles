@@ -12,6 +12,6 @@ in
 
   programs.librewolf = {
     enable = true;
-    package = config.lib.nixgl.wrap pkgs.librewolf;
+    package = config.lib.nixGL.wrap pkgs.librewolf;
   };
 }

@@ -9,6 +9,6 @@
 
   services.picom = {
     enable = true;
-    package = config.lib.nixgl.wrap pkgs.picom;
+    package = config.lib.nixGL.wrap pkgs.picom;
   };
 }

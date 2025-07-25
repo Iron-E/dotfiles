@@ -1,5 +1,5 @@
 {
-  lib,
+  inputs,
   pkgs,
   targetPlatform,
   outputs,
@@ -11,7 +11,6 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  nixgl.prefix = lib.optionalString (!targetPlatform.isNixOS) (
-    lib.getExe' pkgs.nixgl.auto.nixGLDefault "nixGL"
-  );
+  nixGL.packages =
+    if (pkgs.stdenv.isLinux && !targetPlatform.isNixOS) then inputs.nixgl.packages else null;
 }

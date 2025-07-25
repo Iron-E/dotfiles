@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   config,
   outputs,
@@ -11,8 +10,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  home.packages = lib.pipe pkgs.lxde.lxrandr [
-    config.lib.nixgl.wrap
-    lib.toList
-  ];
+  home.packages = [ (config.lib.nixGL.wrap pkgs.lxde.lxrandr) ];
 }

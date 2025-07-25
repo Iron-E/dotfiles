@@ -3,5 +3,4 @@
 {
   # List your module files here
   fish = import ./fish;
-  nixgl = import ./nixgl;
 }

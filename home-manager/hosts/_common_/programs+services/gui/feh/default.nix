@@ -12,6 +12,6 @@ in
 
   programs.feh = {
     enable = true;
-    package = config.lib.nixgl.wrap pkgs.feh;
+    package = config.lib.nixGL.wrap pkgs.feh;
   };
 }

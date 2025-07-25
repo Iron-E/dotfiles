@@ -12,6 +12,6 @@ in
 
   programs.zathura = {
     enable = true;
-    package = config.lib.nixgl.wrap pkgs.zathura;
+    package = config.lib.nixGL.wrap pkgs.zathura;
   };
 }
