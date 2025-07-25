@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -34,7 +33,6 @@ let
   );
 in
 {
-  # SEE: https://github.com/nix-community/nixGL/issues/114#issuecomment-1585323281
   options.programs.fish = {
     theme = mkOption {
       type = themeModule;
