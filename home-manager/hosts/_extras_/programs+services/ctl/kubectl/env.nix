@@ -8,6 +8,6 @@
     in
     {
       KUBECACHEDIR = "${xdg.cacheHome}/kube";
-      KUBECONFIG = "${xdg.configHome}/kube";
+      KUBECONFIG = "${xdg.configHome}/kube/config.yml";
     };
 }
