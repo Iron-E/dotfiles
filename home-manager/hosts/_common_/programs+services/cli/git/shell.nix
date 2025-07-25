@@ -56,6 +56,7 @@
     gpl = "g pull";
     gpt = "gp --tags";
     gptf = "gpt --force";
+    gpu = "gp -u";
 
     gr = "g reset";
     grh = "gr --hard";
