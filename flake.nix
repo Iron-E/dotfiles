@@ -16,6 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    kzf.url = "github:Iron-E/kzf";
+
     # overlays
 
     # neovim-nightly-overlay = {
