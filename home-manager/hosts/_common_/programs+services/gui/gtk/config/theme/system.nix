@@ -3,7 +3,7 @@
   imports = [ ];
 
   gtk.theme = {
-    name = "vimix-dark-beryl";
+    name = "Vimix-dark-beryl";
     package = pkgs.vimix-gtk-theme-beryl;
   };
 }

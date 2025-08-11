@@ -16,7 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kzf.url = "github:Iron-E/kzf";
+    kzf = {
+      url = "github:Iron-E/kzf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # overlays
 
