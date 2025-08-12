@@ -54,7 +54,7 @@ keybinds clear-defaults=true {
 		bind "s" { NewPane "down"; SwitchToMode "locked"; }
 		bind "v" { NewPane "right"; SwitchToMode "locked"; }
 		bind "w" { ToggleFloatingPanes; SwitchToMode "locked"; }
-		bind "x" { CloseFocus; SwitchToMode "locked"; }
+		bind "x" { NewPane "stacked"; SwitchToMode "locked"; }
 		bind "z" { TogglePaneFrames; SwitchToMode "locked"; }
 		bind "tab" { SwitchFocus; }
 	}
@@ -168,6 +168,13 @@ keybinds clear-defaults=true {
 			}
 			SwitchToMode "locked"
 		}
+		bind "s" {
+			LaunchOrFocusPlugin "zellij:share" {
+				floating true
+				move_to_focused_tab true
+			}
+			SwitchToMode "locked"
+		}
 		bind "w" {
 			LaunchOrFocusPlugin "session-manager" {
 				floating true
@@ -224,7 +231,7 @@ keybinds clear-defaults=true {
 		bind "t" { SwitchToMode "tab"; }
 	}
 
-	shared_except "locked" "tab" "scroll" "entersearch" "renametab" "renamepane" {
+	shared_except "entersearch" "locked" "renamepane" "renametab" "scroll" "session" "tab" {
 		bind "s" { SwitchToMode "scroll"; }
 	}
 
