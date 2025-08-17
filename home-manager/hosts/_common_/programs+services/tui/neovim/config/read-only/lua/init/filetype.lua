@@ -18,6 +18,8 @@ vim.filetype.add {
 		['docker-compose.yml'] = 'yaml.docker-compose',
 		['fish_history'] = 'yaml',
 		['librewolf.overrides.cfg'] = 'javascript',
+		['values.yaml'] = 'yaml.helm-values',
+		['values.yml'] = 'yaml.helm-values',
 	},
 
 	extension = {
@@ -28,8 +30,7 @@ vim.filetype.add {
 	},
 
 	pattern = {
-		['.*/charts/.*/templates/.*%.ya?ml'] = 'helm',
-		['.*/charts/.*/values%.ya?ml'] = 'yaml.helm-values',
+		['.*/templates/.*%.ya?ml'] = 'helm',
 		['.*/[^/]*%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
 	},
 }
