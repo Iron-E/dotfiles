@@ -75,5 +75,15 @@
     gw = "g switch";
     gwc = "gw -c";
     gwd = "gw -d";
+
+    gk = "g worktree";
+    gka = "gk add";
+    gkl = "gk list";
+    gko = "gk lock";
+    gkm = "gk move";
+    gkp = "gk prune";
+    gkr = "gk remove";
+    gke = "gk repair";
+    gku = "gk unlock";
   };
 }
