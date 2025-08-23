@@ -3,7 +3,7 @@
 ------------
 
 vim.treesitter.language.register('bash', { 'env', 'zsh' })
-vim.treesitter.language.register('gitignore', 'dockerignore')
+vim.treesitter.language.register('gitignore', { 'dockerignore', 'helmignore' })
 
 --------------
 -- mappings --

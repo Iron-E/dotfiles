@@ -26,6 +26,7 @@ vim.filetype.add {
 	extension = {
 		conf = 'dosini',
 		dockerignore = 'dockerignore',
+		helmignore = 'helmignore',
 		env = 'env',
 		envrc = 'sh',
 		tf = 'terraform',
