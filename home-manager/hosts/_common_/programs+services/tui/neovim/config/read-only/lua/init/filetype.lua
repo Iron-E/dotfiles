@@ -7,6 +7,12 @@
                     |___/|_|
 --]]
 
+--- @param path string the path which may be in a helm chart
+--- @return boolean
+local function in_helm_chart(path)
+	return vim.fs.root(path, 'Chart.yaml') ~= nil
+end
+
 vim.filetype.add {
 	filename = {
 		['.dockerignore'] = 'dockerignore',
@@ -18,8 +24,6 @@ vim.filetype.add {
 		['docker-compose.yml'] = 'yaml.docker-compose',
 		['fish_history'] = 'yaml',
 		['librewolf.overrides.cfg'] = 'javascript',
-		['values.yaml'] = 'yaml.helm-values',
-		['values.yml'] = 'yaml.helm-values',
 	},
 
 	extension = {
@@ -30,7 +34,27 @@ vim.filetype.add {
 	},
 
 	pattern = {
-		['.*/templates/.*%.ya?ml'] = 'helm',
 		['.*/[^/]*%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
+
+		['.*/values.ya?ml'] = function(path)
+			if in_helm_chart(path) then
+				return 'yaml.helm-values'
+			end
+
+			return 'yaml'
+		end,
+
+		['.*/templates/.*%.ya?ml'] = {
+			function(path)
+				if in_helm_chart(path) then
+					return 'helm'
+				end
+
+				return 'yaml'
+			end,
+
+			-- takes priority over values.yaml resolution
+			{ priority = 1, },
+		}
 	},
 }
