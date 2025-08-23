@@ -47,7 +47,6 @@
     ghe = "gh HEAD";
 
     gl = "g log";
-    glg = "gl --graph --pretty=format:'%C(#ffb7b7)%h%C(reset bold) %an%C(reset) %s %C(#ff4090)(%cr)%C(bold #ffa6ff)%d%C(reset)' --abbrev-commit --date=relative";
 
     gn = "g branch";
 
