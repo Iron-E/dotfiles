@@ -15,9 +15,6 @@ end
 
 vim.filetype.add {
 	filename = {
-		['.dockerignore'] = 'dockerignore',
-		['.env'] = 'env',
-		['.envrc'] = 'sh',
 		['compose.yaml'] = 'yaml.docker-compose',
 		['compose.yml'] = 'yaml.docker-compose',
 		['docker-compose.yaml'] = 'yaml.docker-compose',
@@ -28,6 +25,9 @@ vim.filetype.add {
 
 	extension = {
 		conf = 'dosini',
+		dockerignore = 'dockerignore',
+		env = 'env',
+		envrc = 'sh',
 		tf = 'terraform',
 		tmpl = 'gotmpl',
 		tpl = 'gotmpl',
