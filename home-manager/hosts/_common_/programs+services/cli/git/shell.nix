@@ -49,6 +49,8 @@
     gl = "g log";
 
     gn = "g branch";
+    gnd = "gn -d";
+    gnD = "gn -D";
 
     gp = "g push";
     gpf = "gp --force";
