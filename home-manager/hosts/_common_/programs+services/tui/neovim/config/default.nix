@@ -70,8 +70,7 @@ in
         inherit (pkgs)
           ansible-language-server
           deno
-          docker-compose-language-service
-          dockerfile-language-server-nodejs
+          docker-language-server
           emmet-language-server
           go # required for nvim-lspconfig's gopls support
           gopls
