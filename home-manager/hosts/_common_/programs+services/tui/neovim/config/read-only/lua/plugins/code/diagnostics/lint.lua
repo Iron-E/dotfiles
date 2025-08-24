@@ -5,7 +5,7 @@ return { {
 		lint.linters.jq.cmd = 'gojq'
 		lint.linters_by_ft = o
 
-		vim.api.nvim_create_autocmd('BufWritePost', {
+		vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
 			callback = function() lint.try_lint() end,
 			group = 'config',
 		})
