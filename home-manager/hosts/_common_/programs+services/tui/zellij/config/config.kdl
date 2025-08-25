@@ -3,10 +3,10 @@ keybinds clear-defaults=true {
 		bind "Alt ," { SwitchToMode "normal"; }
 		bind "Ctrl Shift w" { SwitchToMode "pane"; }
 
-		bind "Ctrl Alt left" { MoveFocusOrTab "left"; }
+		bind "Ctrl Alt left" { MoveFocus "left"; }
 		bind "Ctrl Alt down" { MoveFocus "down"; }
 		bind "Ctrl Alt up" { MoveFocus "up"; }
-		bind "Ctrl Alt right" { MoveFocusOrTab "right"; }
+		bind "Ctrl Alt right" { MoveFocus "right"; }
 
 		bind "Ctrl Alt +" { Resize "Increase"; }
 		bind "Ctrl Alt -" { Resize "Decrease"; }
@@ -17,10 +17,10 @@ keybinds clear-defaults=true {
 
 		bind "Ctrl Alt f" { ToggleFloatingPanes; }
 
-		bind "Ctrl Alt h" { MoveFocusOrTab "left"; }
+		bind "Ctrl Alt h" { MoveFocus "left"; }
 		bind "Ctrl Alt j" { MoveFocus "down"; }
 		bind "Ctrl Alt k" { MoveFocus "up"; }
-		bind "Ctrl Alt l" { MoveFocusOrTab "right"; }
+		bind "Ctrl Alt l" { MoveFocus "right"; }
 
 		bind "Ctrl Alt i" { MoveTab "left"; }
 		bind "Ctrl Alt o" { MoveTab "right"; }
@@ -123,16 +123,16 @@ keybinds clear-defaults=true {
 	}
 
 	scroll {
-		bind "Alt left" { MoveFocusOrTab "left"; SwitchToMode "locked"; }
+		bind "Alt left" { MoveFocus "left"; SwitchToMode "locked"; }
 		bind "Alt down" { MoveFocus "down"; SwitchToMode "locked"; }
 		bind "Alt up" { MoveFocus "up"; SwitchToMode "locked"; }
-		bind "Alt right" { MoveFocusOrTab "right"; SwitchToMode "locked"; }
+		bind "Alt right" { MoveFocus "right"; SwitchToMode "locked"; }
 		bind "e" { EditScrollback; SwitchToMode "locked"; }
 		bind "f" { SwitchToMode "entersearch"; SearchInput 0; }
-		bind "Alt h" { MoveFocusOrTab "left"; SwitchToMode "locked"; }
+		bind "Alt h" { MoveFocus "left"; SwitchToMode "locked"; }
 		bind "Alt j" { MoveFocus "down"; SwitchToMode "locked"; }
 		bind "Alt k" { MoveFocus "up"; SwitchToMode "locked"; }
-		bind "Alt l" { MoveFocusOrTab "right"; SwitchToMode "locked"; }
+		bind "Alt l" { MoveFocus "right"; SwitchToMode "locked"; }
 		bind "s" { SwitchToMode "normal"; }
 	}
 
@@ -185,21 +185,21 @@ keybinds clear-defaults=true {
 	}
 
 	normal {
-		bind "Alt left" { MoveFocusOrTab "left"; }
+		bind "Alt left" { MoveFocus "left"; }
 		bind "Alt down" { MoveFocus "down"; }
 		bind "Alt up" { MoveFocus "up"; }
-		bind "Alt right" { MoveFocusOrTab "right"; }
+		bind "Alt right" { MoveFocus "right"; }
 		bind "Alt +" { Resize "Increase"; }
 		bind "Alt -" { Resize "Decrease"; }
 		bind "Alt =" { Resize "Increase"; }
 		bind "Alt [" { PreviousSwapLayout; }
 		bind "Alt ]" { NextSwapLayout; }
 		bind "Alt f" { ToggleFloatingPanes; }
-		bind "Alt h" { MoveFocusOrTab "left"; }
+		bind "Alt h" { MoveFocus "left"; }
 		bind "Alt i" { MoveTab "left"; }
 		bind "Alt j" { MoveFocus "down"; }
 		bind "Alt k" { MoveFocus "up"; }
-		bind "Alt l" { MoveFocusOrTab "right"; }
+		bind "Alt l" { MoveFocus "right"; }
 		bind "Alt n" { NewPane; }
 		bind "Alt o" { MoveTab "right"; }
 		bind "Shift PageDown" { MoveTab "right"; }
