@@ -116,11 +116,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1755829857,
-        "narHash": "sha256-iL/3f6bGLawepnvv1lMpNISPG8RICzDO17vjWICU2kA=",
+        "lastModified": 1756243277,
+        "narHash": "sha256-yGrRWJmSefMambofdja4yAXRMTpTPmNPJLMACxjiZXU=",
         "owner": "Iron-E",
         "repo": "kzf",
-        "rev": "3b40774f5662bd72033adf75830825e1ab3e980f",
+        "rev": "814f98cd125c4fcd57e17f96bf3b56e86e8ab1d8",
         "type": "github"
       },
       "original": {
