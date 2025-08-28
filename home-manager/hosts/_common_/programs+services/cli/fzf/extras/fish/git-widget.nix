@@ -24,14 +24,13 @@
           || return $status
 
           cd -- (git pwd)/$dir
-          commandline -f repaint
         '';
     };
 
     functions.vi_bindings.body = # fish
       ''
         for mode in default insert
-          bind -M $mode alt-g fzf-cdg-widget
+          bind -M $mode alt-g fzf-cdg-widget repaint
         end
       '';
   };
