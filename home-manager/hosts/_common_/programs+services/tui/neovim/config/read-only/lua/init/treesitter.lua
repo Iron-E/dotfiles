@@ -68,7 +68,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_autocmd('FileType', {
 	desc = 'Start treesitter for buffer',
 	group = 'config',
-	callback = function(ev)
+	callback = vim.schedule_wrap(function(ev)
 		ts_win_enable(vim.api.nvim_get_current_win(), ev.buf)
-	end,
+	end),
 })
