@@ -11,7 +11,7 @@ return {{ 'stevearc/conform.nvim',
 
 	keys = {
 		{ 'gq',
-			function() require('conform').format { async = true, lsp_fallback = true } end,
+			function() require('conform').format { async = true } end,
 			mode = '',
 			desc = 'Format buffer',
 		},
@@ -77,7 +77,8 @@ return {{ 'stevearc/conform.nvim',
 				return { timeout_ms = 1000 }
 			end
 
-			return { lsp_fallback = true, timeout_ms = 500 }
+			--- @type conform.FormatOpts
+			return { timeout_ms = 500 }
 		end
 
 		o.formatters = {
