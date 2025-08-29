@@ -71,21 +71,8 @@ return {{ 'ibhagwan/fzf-lua',
 					["<A-k>"] = "preview-up",
 				},
 
-				fzf = {
-					["ctrl-z"] = "abort",
-					["ctrl-u"] = "unix-line-discard",
-					["ctrl-w"] = "unix-word-rubout",
-					["ctrl-a"] = "beginning-of-line",
-					["ctrl-f"] = "end-of-line",
-					["ctrl-v"]  = "toggle-all",
-					["alt-g"]  = "first",
-					["alt-G"]  = "last",
-					-- Only valid with fzf previewers (bat/cat/git/etc)
-					["f3"]     = "toggle-preview-wrap",
-					["f4"]     = "toggle-preview",
-					["alt-d"]  = "preview-page-down",
-					["alt-u"]  = "preview-page-up",
-				},
+				-- Use FZF_DEFAULT_OPTS_FILE
+				fzf = {},
 			}
 
 			opts.actions = {
