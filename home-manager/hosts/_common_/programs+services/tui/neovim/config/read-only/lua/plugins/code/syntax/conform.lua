@@ -70,8 +70,11 @@ return {{ 'stevearc/conform.nvim',
 		o.formatters_by_ft.typescriptreact = o.formatters_by_ft.javascriptreact
 
 		o.format_on_save = function(bufnr)
-			if vim.api.nvim_get_option_value('filetype', { buf = bufnr }) == 'lua' then
+			local filetype = vim.api.nvim_get_option_value('filetype', { buf = bufnr })
+			if filetype == 'lua' then
 				return nil
+			elseif filetype == 'sh' then -- shellcheck can take a while
+				return { timeout_ms = 1000 }
 			end
 
 			return { lsp_fallback = true, timeout_ms = 500 }
