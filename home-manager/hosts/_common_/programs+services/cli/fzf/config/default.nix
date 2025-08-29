@@ -14,8 +14,8 @@ in
       file."${FZF_DEFAULT_OPTS_FILE}".text = # conf
         ''
           --bind='ctrl-z:abort'
-          --bind='ctrl-u:unix-line-discard+first'
-          --bind='ctrl-w:unix-word-rubout+first'
+          --bind='ctrl-u:unix-line-discard'
+          --bind='ctrl-w:unix-word-rubout'
           --bind='ctrl-a:beginning-of-line'
           --bind='ctrl-f:end-of-line'
           --bind='ctrl-v:toggle-all'
@@ -26,6 +26,7 @@ in
           --bind='f4:toggle-preview'
           --bind='alt-d:preview-page-down'
           --bind='alt-u:preview-page-up'
+          --bind='change:+first'
           --tabstop=3
         '';
     };
