@@ -26,6 +26,7 @@ in
           --bind='f4:toggle-preview'
           --bind='alt-d:preview-page-down'
           --bind='alt-u:preview-page-up'
+          --tabstop=3
         '';
     };
 }
