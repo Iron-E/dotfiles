@@ -22,12 +22,6 @@
               bind -M $mode alt-w 'fish_commandline_prepend watch'
             end
           end
-
-          if command -q bat || functions -q bat
-            for mode in default insert
-              bind -M $mode alt-b 'fish_commandline_append " | bat"'
-            end
-          end
         '';
     };
 
