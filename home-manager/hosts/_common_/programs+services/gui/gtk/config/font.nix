@@ -3,8 +3,8 @@
   imports = [ ];
 
   gtk.font = {
-    name = "Ubuntu";
-    package = pkgs.ubuntu-sans;
+    name = "Atkinson Hyperlegible Next";
+    package = pkgs.atkinson-hyperlegible-next;
     size = 10;
   };
 }

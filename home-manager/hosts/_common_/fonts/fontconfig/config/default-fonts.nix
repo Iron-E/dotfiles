@@ -2,14 +2,14 @@
 {
   imports = [ ];
 
-  home.packages = with pkgs.nerd-fonts; [
-    jetbrains-mono # monospace font
-    open-dyslexic # (sans) serif font
+  home.packages = with pkgs; [
+    jetbrains-mono
+    nerd-fonts.symbols-only
   ];
 
   fonts.fontconfig.defaultFonts = {
-    monospace = [ "JetBrainsMono Nerd Font Mono" ];
-    serif = [ "OpenDyslexic Nerd Font" ];
+    monospace = [ "JetBrains Mono" "Symbols Nerd Font Mono" ];
+    serif = [ config.gtk.font.name "Symbols Nerd Font Mono" ];
     sansSerif = config.fonts.fontconfig.defaultFonts.serif;
   };
 }

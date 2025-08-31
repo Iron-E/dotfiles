@@ -1,11 +1,10 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 {
   imports = [ ];
 
-  home.packages = with pkgs.nerd-fonts; [ open-dyslexic ];
   xsession.windowManager.i3.config.fonts = {
-    names = [ "OpenDyslexic Nerd Font" ];
+    names = config.fonts.fontconfig.defaultFonts.serif;
     style = "Regular";
-    size = 11.0;
+    size = 12.0;
   };
 }

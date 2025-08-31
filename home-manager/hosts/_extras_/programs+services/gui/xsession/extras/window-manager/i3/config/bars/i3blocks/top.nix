@@ -36,7 +36,7 @@ in
     };
 
     fonts = config.xsession.windowManager.i3.config.fonts // {
-      size = 12.0;
+      size = 13.0;
     };
     position = "top";
     statusCommand =
