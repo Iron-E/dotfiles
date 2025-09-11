@@ -1,6 +1,9 @@
+--- @module 'lazy'
+
 --- mode for mapping
 local nx = { 'n', 'x' }
 
+--- @type LazySpec[]
 return {{ 'echasnovski/mini.surround',
 	keys = {
 		{ 'sa', mode = nx, desc = 'Surround add' },
@@ -9,7 +12,6 @@ return {{ 'echasnovski/mini.surround',
 		{ 'sf', mode = nx, desc = 'Surround find right' },
 		{ 'sF', mode = nx, desc = 'Surround find left' },
 		{ 'sh', mode = nx, desc = 'Surround highlight' },
-		{ 'sn', mode = nx, desc = 'Surround config num_lines' },
 	},
 	opts = function(_, o)
 		o.n_lines = 1000
