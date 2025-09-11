@@ -12,6 +12,11 @@
 
           bind -M insert alt-j down-or-search
           bind -M insert alt-k up-or-search
+
+          # move ctrl-x to ctrl-c
+          bind --erase -M visual ctrl-x
+          bind -M visual ctrl-c fish_clipboard_copy
+
           for mode in default insert visual
             bind -M $mode ctrl-space forward-char
             bind -M $mode ctrl-f forward-word
