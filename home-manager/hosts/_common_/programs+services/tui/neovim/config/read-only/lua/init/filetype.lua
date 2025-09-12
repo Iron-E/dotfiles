@@ -26,23 +26,29 @@ vim.filetype.add {
 	extension = {
 		conf = 'dosini',
 		dockerignore = 'dockerignore',
-		helmignore = 'helmignore',
 		env = 'env',
 		envrc = 'sh',
+		helmignore = 'helmignore',
 		tf = 'terraform',
 		tmpl = 'gotmpl',
 		tpl = 'gotmpl',
+		yaml = 'yaml',
+		yml = 'yaml',
 	},
 
 	pattern = {
 		['.*/[^/]*%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
 
-		['.*/values.ya?ml'] = function(path)
+		['.*/templates/_.*%.tm?pl'] = function(path)
+			if in_helm_chart(path) then
+				return 'helm'
+			end
+		end,
+
+		['.*/[^/]*values.ya?ml'] = function(path)
 			if in_helm_chart(path) then
 				return 'yaml.helm-values'
 			end
-
-			return 'yaml'
 		end,
 
 		['.*/templates/.*%.ya?ml'] = {
@@ -50,8 +56,6 @@ vim.filetype.add {
 				if in_helm_chart(path) then
 					return 'helm'
 				end
-
-				return 'yaml'
 			end,
 
 			-- takes priority over values.yaml resolution
