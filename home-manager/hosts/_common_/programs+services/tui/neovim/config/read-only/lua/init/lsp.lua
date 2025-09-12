@@ -93,7 +93,6 @@ vim.lsp.enable {
 	'jdtls',
 	'jsonls',
 	'jsonnet_ls',
-	'just',
 	'lua_ls',
 	'nixd',
 	'pyright',
