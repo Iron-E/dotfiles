@@ -78,6 +78,7 @@ in
           helm-ls
           jdt-language-server
           jsonnet-language-server
+          just-lsp
           lua-language-server
           nixd
           pyright
