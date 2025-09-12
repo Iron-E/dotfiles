@@ -39,6 +39,8 @@ vim.filetype.add {
 	pattern = {
 		['.*/[^/]*%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
 
+		['.*/[Tt]askfile[^/]*%.ya?ml'] = 'yaml.taskfile',
+
 		['.*/templates/_.*%.tm?pl'] = function(path)
 			if in_helm_chart(path) then
 				return 'helm'

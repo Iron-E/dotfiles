@@ -1,5 +1,12 @@
 --- @type vim.lsp.Config
 return {
+	filetypes = {
+		"yaml",
+		"yaml.docker-compose",
+		"yaml.gitlab",
+		"yaml.helm-values",
+		"yaml.taskfile",
+	},
 	settings = {
 		yaml = {
 			schemas = { -- SEE: https://www.schemastore.org/json/
