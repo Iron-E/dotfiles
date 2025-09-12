@@ -1,14 +1,36 @@
 return {{ 'echasnovski/mini.icons',
 	lazy = true,
-	config = function(_, opts)
+
+	config = function (_, o)
 		local icons = require 'mini.icons'
-		icons.setup(opts)
+
+		-- aliases
+		do
+			do
+				local glyph, hl, _ = icons.get('file', '.gitlab-ci.yml')
+				o.filetype['yaml.gitlab'] = { glyph = glyph, hl = hl }
+			end
+
+			do
+				local glyph, hl = icons.get('filetype', 'helm')
+				o.filetype['yaml.helm-values'] = { glyph = glyph, hl = hl }
+			end
+		end
+
+		icons.setup(o)
 		icons.mock_nvim_web_devicons()
 	end,
+
 	opts = function(_, o)
 		o.default = {
 			lsp = { hl = '@markup.raw' },
 		}
+
+		-- NOTE: these tables are empty so that aliases can be in `config`
+		o.directory = {}
+		o.file = {}
+		o.filetype = {}
+		o.os = {}
 
 		o.lsp = {
 			array = { hl = '@punctuation.bracket' },
