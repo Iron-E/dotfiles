@@ -1,5 +1,5 @@
---- @type vim.lsp.Config
-return {
+-- HACK: see https://github.com/neovim/neovim/issues/33577
+vim.lsp.config('yamlls', {
 	filetypes = {
 		"yaml",
 		"yaml.docker-compose",
@@ -7,6 +7,10 @@ return {
 		"yaml.helm-values",
 		"yaml.taskfile",
 	},
+})
+
+--- @type vim.lsp.Config
+return {
 	settings = {
 		yaml = {
 			schemas = { -- SEE: https://www.schemastore.org/json/
