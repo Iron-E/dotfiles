@@ -17,6 +17,10 @@
           bind --erase -M visual ctrl-x
           bind -M visual ctrl-c fish_clipboard_copy
 
+          # rebind ctrl-c to keep the previous commandline
+          bind -M insert ctrl-c cancel-commandline
+          bind -M default -m insert ctrl-c cancel-commandline repaint-mode
+
           for mode in default insert visual
             bind -M $mode ctrl-space forward-char
             bind -M $mode ctrl-f forward-word
