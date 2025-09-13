@@ -252,15 +252,18 @@ return {{ 'Saghen/blink.cmp',
 							vim.fn.stdpath('config') .. '/snippets',
 						},
 					},
+					should_show_items = function(ctx)
+						return ctx.trigger.initial_kind ~= 'trigger_character'
+					end,
 				},
 			},
 		}
 
 		--- @diagnostic disable param-type-mismatch
 		o.sources.per_filetype = {
-			latex = { inherit_defaults = true, 'latex_symbols' },
-			lua = { inherit_defaults = true, 'lazydev' },
-			sql = { inherit_defaults = true, 'dadbod' },
+			latex = { 'latex_symbols', inherit_defaults = true },
+			lua = { 'lazydev', inherit_defaults = true },
+			sql = { 'dadbod', inherit_defaults = true },
 		}
 		--- @diagnostic enable
 
