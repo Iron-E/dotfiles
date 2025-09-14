@@ -54,8 +54,8 @@ in
 
         inherit (pkgs)
           csharpier
-          gci
           go-jsonnet
+          gotools # for goimports
           gojq
           nixfmt-rfc-style
           prettierd

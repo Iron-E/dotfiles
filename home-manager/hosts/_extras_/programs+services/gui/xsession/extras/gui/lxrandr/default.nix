@@ -10,5 +10,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  home.packages = [ (config.lib.nixGL.wrap pkgs.lxde.lxrandr) ];
+  home.packages = [ (config.lib.nixGL.wrap pkgs.lxrandr) ];
 }

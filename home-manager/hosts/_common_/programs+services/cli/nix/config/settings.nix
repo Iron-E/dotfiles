@@ -3,11 +3,6 @@
   imports = [ ];
 
   nix = {
-    gc = {
-      automatic = true;
-      frequency = "weekly";
-    };
-
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     settings = {
