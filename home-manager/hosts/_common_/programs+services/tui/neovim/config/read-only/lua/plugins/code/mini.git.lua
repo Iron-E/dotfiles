@@ -5,7 +5,7 @@ return {{ 'echasnovski/mini-git',
 	keys = {{
 		'<Leader>K',
 		'<Cmd>lua MiniGit.show_at_cursor()<CR>',
-		mode = { 'n', 'v' },
+		mode = { 'n', 'x' },
 		desc = 'Show Git info at cursor',
 	}},
 
