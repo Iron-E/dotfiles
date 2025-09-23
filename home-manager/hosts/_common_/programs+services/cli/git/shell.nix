@@ -4,7 +4,6 @@
 
   home.shellAliases = {
     cdg = ''cd "$(git pwd)"'';
-    zg = ''z "$(git pwd)"'';
 
     g = "git";
 
