@@ -2,8 +2,11 @@
 {
   imports = [ ];
 
-  home = {
-    sessionVariables.GOJQ_COLORS = "1;30:0;37:0;37:0;37:0;32:1;37:1;37:1;34";
-    shellAliases.jq = "gojq";
+  home.shellAliases = rec {
+    jq = "gojq";
+    jqy = "${jq} --yaml-output";
+
+    yqj = "gojq --yaml-input";
+    yq = "${yqj} --yaml-output";
   };
 }
