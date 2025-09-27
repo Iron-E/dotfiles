@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [ ];
 
@@ -6,7 +6,7 @@
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     settings = {
-      auto-optimise-store = true;
+      auto-optimise-store = !pkgs.stdenv.isDarwin;
       experimental-features = [
         "nix-command"
         "flakes"
