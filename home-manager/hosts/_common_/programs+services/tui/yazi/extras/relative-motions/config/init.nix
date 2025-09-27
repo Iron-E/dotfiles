@@ -2,11 +2,11 @@
 {
   imports = [ ];
 
-  xdg.configFile."yazi/init.lua".text = # lua
+  programs.yazi.initLua = # lua
     ''
-      	require('relative-motions'):setup {
-      		show_motion = true,
-      		show_numbers = 'relative_absolute',
-      	};
+      require('relative-motions'):setup {
+        show_motion = true,
+        show_numbers = 'relative_absolute',
+      };
     '';
 }

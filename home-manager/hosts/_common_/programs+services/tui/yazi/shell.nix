@@ -2,5 +2,5 @@
 {
   imports = [ ];
 
-  home.shellAliases.y = "yazi";
+  programs.yazi.shellWrapperName = "y";
 }

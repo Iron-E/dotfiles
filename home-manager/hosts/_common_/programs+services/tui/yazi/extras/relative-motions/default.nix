@@ -5,5 +5,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  xdg.configFile."yazi/plugins/relative-motions.yazi".source = "${inputs.yazi-relative-motions}";
+  programs.yazi.plugins.relative-motions = inputs.yazi-relative-motions;
 }
