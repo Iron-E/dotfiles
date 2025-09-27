@@ -21,6 +21,7 @@ local noremap = {noremap = true}
 --]]
 
 -- Do not jump snippets on tab
+vim.api.nvim_set_keymap('i', '<Tab>', '<Tab>', noremap)
 vim.api.nvim_set_keymap('s', '<Tab>', '<Tab>', noremap)
 
 vim.api.nvim_set_keymap('i', '<C-S-i>', '<Cmd>!zcw fzu<CR>', noremap)
