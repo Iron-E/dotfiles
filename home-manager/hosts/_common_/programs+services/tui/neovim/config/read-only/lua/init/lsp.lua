@@ -87,7 +87,6 @@ vim.lsp.enable {
 	'docker_language_server',
 	'emmet_language_server',
 	'gopls',
-	'harper_ls',
 	'helm_ls',
 	'html',
 	'jdtls',
