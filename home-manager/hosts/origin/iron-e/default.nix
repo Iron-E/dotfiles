@@ -10,6 +10,7 @@ in
     ../../_extras_/programs+services/cli/aws
     ../../_extras_/programs+services/cli/cryfs
     ../../_extras_/programs+services/cli/nextdns
+    ../../_extras_/programs+services/ctl/autorandr
     ../../_extras_/programs+services/ctl/kubectl
     ../../_extras_/programs+services/gui/bitwarden
     ../../_extras_/programs+services/gui/xsession
