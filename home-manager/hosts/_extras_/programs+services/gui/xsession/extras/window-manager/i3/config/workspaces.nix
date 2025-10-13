@@ -5,8 +5,9 @@ args@{
 }:
 let
   inherit (builtins)
-    length
+    concatStringsSep
     genList
+    length
     listToAttrs
     toString
     ;
@@ -97,6 +98,36 @@ in
           ${lhsMod tab} = "workspace next";
           ${lhsModShift tab} = "workspace prev";
         }
+      ];
+
+    workspaceOutputAssign =
+      let
+        laptop = [ "eDP" ];
+
+        lhsMonitor = [
+          "DisplayPort-3"
+          "DisplayPort-2"
+        ];
+
+        rhsMonitor = [
+          "DisplayPort-6"
+          "DisplayPort-4"
+        ];
+
+        output =
+          workspace: # string
+          outputs: # [string]
+          {
+            inherit workspace;
+            output = concatStringsSep " " (outputs ++ lhsMonitor ++ laptop);
+          };
+      in
+      [
+        (output (workspace 1) rhsMonitor)
+        (output (workspace 2) [ ])
+        (output (workspace 3) [ ])
+        (output (workspace 4) rhsMonitor)
+        (output (workspace 5) rhsMonitor)
       ];
   };
 }
