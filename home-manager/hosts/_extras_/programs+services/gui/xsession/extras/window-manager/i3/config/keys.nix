@@ -92,8 +92,11 @@ in
 
         ### Lock computer
         ${lhsModAlt "l"} =
-          # sh
-          exec ''				export XSECURELOCK_COMPOSITE_OBSCURER=0 && xsecurelock'';
+          exec
+            # sh
+            ''
+              export XSECURELOCK_COMPOSITE_OBSCURER=0 && xsecurelock
+            '';
 
         ### Media Control
         ${lhs "XF86AudioPlay"} = player "play";
