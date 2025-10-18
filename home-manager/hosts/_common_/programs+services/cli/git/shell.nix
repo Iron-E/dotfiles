@@ -55,7 +55,7 @@
     gnD = "gn -D";
 
     gp = "g push";
-    gpf = "gp --force";
+    gpf = "gp --force-with-lease --force-if-includes";
     gpl = "g pull";
     gpt = "gp --tags";
     gptf = "gpt --force";
