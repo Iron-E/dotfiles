@@ -80,7 +80,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 ------------
 
 vim.lsp.enable {
-	'ansiblels',
 	'bashls',
 	'buf_ls',
 	'denols',

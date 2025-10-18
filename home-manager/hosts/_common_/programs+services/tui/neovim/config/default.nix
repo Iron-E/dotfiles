@@ -68,7 +68,6 @@ in
         ####################
 
         inherit (pkgs)
-          ansible-language-server
           deno
           docker-language-server
           emmet-language-server
