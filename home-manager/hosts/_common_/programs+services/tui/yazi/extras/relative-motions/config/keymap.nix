@@ -7,7 +7,7 @@
     (map (s: {
       # convert to motion mapping
       on = [ s ];
-      run = "plugin relative-motions --args=${s}";
+      run = "plugin relative-motions ${s}";
       desc = "Move in ${s} relative steps";
     }))
   ];
