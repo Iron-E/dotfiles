@@ -8,7 +8,7 @@
   imports = outputs.lib.fs.readSubmodules ./.;
 
   services.picom = {
-    enable = true;
+    enable = false;
     package = config.lib.nixGL.wrap pkgs.picom;
   };
 }
