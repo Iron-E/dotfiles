@@ -12,7 +12,7 @@ in
 
   wayland.windowManager.sway.config =
     let
-      inherit (config.lib.iron-e.sway) key;
+      inherit (config.lib.iron-e.sway.key) lhs;
 
       workspaceCount = 10;
       workspaces = util.lists.reserveWith (i: toString (i + 1)) workspaceCount [
@@ -60,18 +60,19 @@ in
               baseRhs = ''workspace "${workspaceName}"'';
             in
             [
-              (lib.nameValuePair (key.lhsMod wrappedIdx) baseRhs)
-              (lib.nameValuePair (key.lhsModShift wrappedIdx) "move container to ${baseRhs}")
+              (lib.nameValuePair (lhs.withMod wrappedIdx) baseRhs)
+              (lib.nameValuePair (lhs.withModShift wrappedIdx) "move container to ${baseRhs}")
             ]
           ))
           lib.flatten
           builtins.listToAttrs
         ])
         // {
-          ${key.lhsMod key.greater} = "move workspace to output right";
-          ${key.lhsMod key.less} = "move workspace to output left";
-          ${key.lhsMod key.tab} = "workspace next";
-          ${key.lhsModShift key.tab} = "workspace prev";
+          ${lhs.withMod lhs.greater} = "move workspace to output right";
+          ${lhs.withMod lhs.greater} = "move workspace to output right";
+          ${lhs.withMod lhs.less} = "move workspace to output left";
+          ${lhs.withMod lhs.tab} = "workspace next";
+          ${lhs.withModShift lhs.tab} = "workspace prev";
         };
 
       workspaceOutputAssign =

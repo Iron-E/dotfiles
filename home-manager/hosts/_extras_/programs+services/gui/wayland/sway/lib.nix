@@ -52,37 +52,66 @@
       };
     };
 
-    key = rec {
-      alt = "Mod1";
-      mod = "Mod4";
-      shift = "Shift";
-      greater = "greater";
-      less = "less";
-      down = "Down";
-      left = "Left";
-      right = "Right";
-      up = "Up";
-      escape = "Escape";
-      return = "Return";
-      space = "space";
-      tab = "Tab";
+    key = {
+      lhs = rec {
+        alt = "Mod1";
+        mod = "Mod4";
+        shift = "Shift";
+        greater = "greater";
+        less = "less";
+        down = "Down";
+        left = "Left";
+        right = "Right";
+        up = "Up";
+        escape = "Escape";
+        return = "Return";
+        space = "space";
+        tab = "Tab";
 
-      lhs =
-        modifier: # string
-        key: # string
-        "${toString modifier}+${toString key}";
+        # convert arrow directions to vim directions
+        hjkl =
+          let
+            directions = {
+              ${down} = "j";
+              ${left} = "h";
+              ${right} = "l";
+              ${up} = "k";
+            };
+          in
+          direction: # string
+          directions.${direction};
 
-      # string -> string
-      lhsAlt = lhs alt;
+        with' =
+          modifier: # string
+          key: # string
+          "${toString modifier}+${toString key}";
 
-      # string -> string
-      lhsMod = lhs mod;
+        # string -> string
+        withAlt = with' alt;
 
-      # string -> string
-      lhsModAlt = lhs (lhsMod alt);
+        # string -> string
+        withMod = with' mod;
 
-      # string -> string
-      lhsModShift = lhs (lhsMod shift);
+        # string -> string
+        withModAlt = with' (withMod alt);
+
+        # string -> string
+        withModShift = with' (withMod shift);
+      };
+
+      rhs = rec {
+        enterMode =
+          name: # string
+          ''mode "${name}"'';
+
+        exec =
+          cmd: # string
+          "exec ${cmd}";
+
+        execInBg =
+          cmd: # string
+          exec "--no-startup-id ${cmd}";
+      };
     };
   };
 }
