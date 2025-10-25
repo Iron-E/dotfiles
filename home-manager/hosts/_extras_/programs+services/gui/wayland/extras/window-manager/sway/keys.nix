@@ -15,20 +15,6 @@
     {
       keybindings =
         let
-          changeKeyboardBrightness =
-            let
-              brightnessctl = lib.getExe pkgs.brightnessctl;
-            in
-            sign: rhs.execInBg ''${brightnessctl} -d "smc::kbd_backlight" set 10%${sign}'';
-
-          player =
-            let
-              playerctl = lib.getExe config.services.playerctld.package;
-            in
-            cmd: rhs.execInBg "${playerctl} ${cmd}";
-
-          screenshotRegion = rhs.exec "${lib.getExe pkgs.shotman} -c region";
-
           volume' =
             let
               inherit (config.wayland.windowManager.sway.config) bars;
@@ -61,20 +47,6 @@
 
           ### Lock computer
           ${lhs.withModAlt "l"} = rhs.exec "swaylock";
-
-          ### Media Control
-          ${lhs.audio.next} = player "next";
-          ${lhs.audio.pause} = player "pause";
-          ${lhs.audio.play} = player "play";
-          ${lhs.audio.prev} = player "previous";
-
-          # ### Screenshot
-          Print = screenshotRegion;
-          ${lhs.withMod "XF86Eject"} = screenshotRegion;
-
-          ### Turn keyboard brightness up and down
-          ${lhs.brightness.keyboard.down} = changeKeyboardBrightness "-";
-          ${lhs.brightness.keyboard.up} = changeKeyboardBrightness "+";
 
           ### Volume
           ${lhs.audio.up} = volume.set "+";

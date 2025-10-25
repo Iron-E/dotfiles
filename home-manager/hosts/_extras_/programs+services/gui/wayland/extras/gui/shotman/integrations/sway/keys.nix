@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [ ];
 
@@ -7,10 +12,12 @@
       (
         let
           inherit (config.lib.iron-e.sway.key) lhs rhs;
-          fuzzel = lib.getExe config.programs.fuzzel.package;
+          shotman = lib.getExe' pkgs.shotman "shotman";
+          screenshotRegion = rhs.exec "${shotman} -c region";
         in
         {
-          ${lhs.withMod lhs.space} = rhs.exec fuzzel;
+          Print = screenshotRegion;
+          ${lhs.withMod "XF86Eject"} = screenshotRegion;
         }
       );
 }
