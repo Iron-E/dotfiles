@@ -4,4 +4,9 @@ let
 in
 {
   imports = util.fs.readSubmodules ./.;
+
+  programs.swayr = {
+    enable = true;
+    systemd.enable = true;
+  };
 }

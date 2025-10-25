@@ -69,7 +69,6 @@ in
         ])
         // {
           ${lhs.withMod lhs.greater} = "move workspace to output right";
-          ${lhs.withMod lhs.greater} = "move workspace to output right";
           ${lhs.withMod lhs.less} = "move workspace to output left";
           ${lhs.withMod lhs.tab} = "workspace next";
           ${lhs.withModShift lhs.tab} = "workspace prev";

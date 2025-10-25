@@ -4,4 +4,9 @@ let
 in
 {
   imports = util.fs.readSubmodules ./.;
+
+  programs.swaylock = {
+    enable = true;
+    package = null;
+  };
 }

@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }:
 {
   imports = [ ];
 
@@ -55,18 +55,29 @@
     key = {
       lhs = rec {
         alt = "Mod1";
-        mod = "Mod4";
-        shift = "Shift";
-        greater = "greater";
-        less = "less";
+        audio.down = "XF86AudioLowerVolume";
+        audio.mute = "XF86AudioMute";
+        audio.next = "XF86AudioNext";
+        audio.pause = "XF86AudioPause";
+        audio.play = "XF86AudioPlay";
+        audio.prev = "XF86AudioPrev";
+        audio.up = "XF86AudioRaiseVolume";
+        brightness.keyboard.down = "XF86KbdBrightnessDown";
+        brightness.keyboard.up = "XF86KbdBrightnessUp";
+        brightness.monitor.down = "XF86MonBrightnessDown";
+        brightness.monitor.up = "XF86MonBrightnessUp";
         down = "Down";
-        left = "Left";
-        right = "Right";
-        up = "Up";
         escape = "Escape";
+        greater = "greater";
+        left = "Left";
+        less = "less";
+        mod = "Mod4";
         return = "Return";
+        right = "Right";
+        shift = "Shift";
         space = "space";
         tab = "Tab";
+        up = "Up";
 
         # convert arrow directions to vim directions
         hjkl =
@@ -113,5 +124,9 @@
           exec "--no-startup-id ${cmd}";
       };
     };
+
+    pkg = lib.genAttrs [ "sway" "swaybar" "swaymsg" "swaynag" ] (
+      lib.getExe' config.wayland.windowManager.sway.package
+    );
   };
 }
