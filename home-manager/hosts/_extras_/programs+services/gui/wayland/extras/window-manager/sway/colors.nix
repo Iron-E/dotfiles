@@ -1,10 +1,10 @@
 { config, ... }:
 {
-  imports = [ ];
+  imports = [ ./lib ];
 
   wayland.windowManager.sway.config.colors =
     let
-      inherit (config.lib.iron-e.sway) color;
+      color = config.lib.iron-e.swayColor;
       focusedInactive = color.clientPreset color.preset.inactive;
     in
     {

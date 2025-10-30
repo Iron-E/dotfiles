@@ -1,12 +1,12 @@
 { config, lib, ... }:
 {
-  imports = [ ];
+  imports = [ ../../../../window-manager/sway/lib ];
 
   wayland.windowManager.sway.config.keybindings =
     lib.optionalAttrs config.wayland.windowManager.sway.enable
       (
         let
-          inherit (config.lib.iron-e.sway.key) lhs rhs;
+          inherit (config.lib.iron-e.swayKey) lhs rhs;
 
           gammarelay =
             cmd: # string

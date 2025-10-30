@@ -5,12 +5,12 @@
   ...
 }:
 {
-  imports = [ ];
+  imports = [ ./lib ];
 
   wayland.windowManager.sway.config =
     let
-      sway' = config.lib.iron-e.sway;
-      inherit (sway'.key) lhs rhs;
+      inherit (config.lib.iron-e.swayKey) lhs rhs;
+      inherit (config.lib.iron-e) swayPkg;
     in
     {
       keybindings =
@@ -41,7 +41,7 @@
 
           ## Exit sway (logs you out of your X session)
           ${lhs.withModShift "q"} =
-            rhs.exec "${sway'.pkg.swaynag} -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' '${sway'.pkg.swaymsg} exit'";
+            rhs.exec "${swayPkg.swaynag} -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' '${swayPkg.swaymsg} exit'";
 
           ##-Keybinds-------------------------##
 

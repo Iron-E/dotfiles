@@ -8,11 +8,11 @@ let
   util = outputs.lib;
 in
 {
-  imports = [ ];
+  imports = [ ./lib ];
 
   wayland.windowManager.sway.config =
     let
-      inherit (config.lib.iron-e.sway.key) lhs;
+      inherit (config.lib.iron-e.swayKey) lhs;
 
       workspaceCount = 10;
       workspaces = util.lists.reserveWith (i: toString (i + 1)) workspaceCount [
