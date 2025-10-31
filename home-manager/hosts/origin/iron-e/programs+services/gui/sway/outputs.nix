@@ -24,17 +24,17 @@
         "LG Electronics LG HDR 4K 0x0004DF17" = {
           mode = "2560x1440@59.951Hz";
           transform = "270";
-          pos = "0 0";
+          position = "0 0";
         };
 
         "Dell Inc. DELL U2725QE 2B11H84" = {
           mode = "2560x1440@59.951Hz";
-          pos = "1440 572";
+          position = "1440 572";
         };
 
         ${laptop} = {
           mode = "1920x1080@60.049Hz";
-          pos = "4000 572";
+          position = "4000 572";
         };
       };
     };
