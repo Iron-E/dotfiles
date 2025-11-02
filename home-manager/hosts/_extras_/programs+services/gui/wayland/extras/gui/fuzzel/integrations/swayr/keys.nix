@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  imports = [ ../../../../lib ];
+  imports = [ ../../../../window-manager/sway/lib ];
 
   wayland.windowManager.sway.config.keybindings =
     lib.optionalAttrs (with config; programs.fuzzel.enable && wayland.windowManager.sway.enable)

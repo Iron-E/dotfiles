@@ -1,10 +1,10 @@
-{ ... }:
+{ config, lib, ... }:
 {
   imports = [ ];
 
   programs.swayr.settings = {
     menu = {
-      executable = "fuzzel";
+      executable = lib.getExe config.programs.fuzzel.package;
       args = [
         "--dmenu"
         "--prompt=Switch Window ❯ "
