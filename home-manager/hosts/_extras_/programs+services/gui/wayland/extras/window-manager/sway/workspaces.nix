@@ -1,62 +1,44 @@
-{
-  config,
-  outputs,
-  lib,
-  ...
-}:
-let
-  util = outputs.lib;
-in
+{ config, lib, ... }:
 {
   imports = [ ./lib ];
 
   wayland.windowManager.sway.config =
     let
+      inherit (config.lib.iron-e) swayPkg;
       inherit (config.lib.iron-e.swayKey) lhs;
-
-      workspaceCount = 10;
-      workspaces = util.lists.reserveWith (i: toString (i + 1)) workspaceCount [
-        "1 | Browsers"
-        "2 | Misc"
-        "3 | Editors"
-        "4 | Background"
-        "5 | Comms"
-      ];
-
-      workspace =
-        idx: # integer
-        builtins.elemAt workspaces (idx - 1);
+      wrksp = config.lib.iron-e.swayWorkspace;
     in
     {
-      defaultWorkspace = workspace 1;
+      defaultWorkspace = wrksp.default;
       workspaceAutoBackAndForth = true;
+      startup = [
+        { command = "${swayPkg.swaymsg} 'workspace ${wrksp.default}'"; }
+      ];
 
       assigns = {
-        "\"${workspace 1}\"" = [
-          { class = "Chromium"; }
-          { class = "librewolf"; }
-          { instance = "chromium"; }
-          { instance = "Navigator"; }
+        "\"${wrksp.get 1}\"" = [
+          { app_id = "librewolf"; }
+          { app_id = "chromium"; }
         ];
 
         ### Word Processors
-        "\"${workspace 3}\"" = [
-          { instance = "libreoffice"; }
+        "\"${wrksp.get 3}\"" = [
+          { app_id = "libreoffice"; }
         ];
 
         ### Chat Applications
-        "\"${workspace 5}\"" = [
-          { class = "Signal"; }
+        "\"${wrksp.get 5}\"" = [
+          { app_id = "signal"; }
         ];
       };
 
       keybindings =
-        (lib.pipe workspaces [
+        (lib.pipe wrksp.names [
           (lib.imap1 (
             idx: # integer
             workspaceName: # string
             let
-              wrappedIdx = lib.mod idx workspaceCount;
+              wrappedIdx = lib.mod idx wrksp.count;
               baseRhs = ''workspace "${workspaceName}"'';
             in
             [
@@ -73,34 +55,5 @@ in
           ${lhs.withMod lhs.tab} = "workspace next";
           ${lhs.withModShift lhs.tab} = "workspace prev";
         };
-
-      workspaceOutputAssign =
-        let
-          defaultOutputs = [
-            "DisplayPort-3"
-            "DisplayPort-2"
-            "eDP"
-          ];
-
-          rhsMonitor = [
-            "DisplayPort-6"
-            "DisplayPort-4"
-          ];
-
-          output =
-            workspace: # string
-            outputs: # [string]
-            {
-              inherit workspace;
-              output = outputs ++ defaultOutputs;
-            };
-        in
-        [
-          (output (workspace 1) rhsMonitor)
-          (output (workspace 2) [ ])
-          (output (workspace 3) [ ])
-          (output (workspace 4) rhsMonitor)
-          (output (workspace 5) rhsMonitor)
-        ];
     };
 }
