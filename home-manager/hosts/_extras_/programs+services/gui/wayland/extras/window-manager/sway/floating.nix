@@ -3,7 +3,8 @@
   imports = [ ];
 
   wayland.windowManager.sway.config.floating = {
-    inherit (config.wayland.windowManager.sway.config.window) border titlebar;
+    inherit (config.wayland.windowManager.sway.config.window) border;
+    titlebar = true;
     criteria = [
       { class = "Gcolor3"; }
       { class = "Gxmessage"; }
