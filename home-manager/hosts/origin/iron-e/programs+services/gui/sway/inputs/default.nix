@@ -20,6 +20,10 @@ in
         xkb_file "${./external.xkb}"
       }
 
+      input "0:6:Video_Bus" {
+        xkb_file "${./builtin.xkb}"
+      }
+
       input "1:1:AT_Translated_Set_2_keyboard" {
         xkb_file "${./builtin.xkb}"
       }
