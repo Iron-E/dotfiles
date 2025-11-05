@@ -1,0 +1,28 @@
+// See: https://www.reddit.com/r/swaywm/comments/156wsoe/comment/jt3id0x/
+xkb_keymap {
+	xkb_keycodes {
+		include "evdev"
+		include "aliases(qwerty)"
+	};
+
+	xkb_types {
+		include "complete"
+	};
+
+	xkb_compatibility {
+		include "complete"
+	};
+
+	xkb_symbols {
+		include "pc"
+		include "us"
+		include "inet(evdev)"
+		replace key <CAPS> { [ Escape    ] };
+		replace key <INS>  { [ Multi_key ] };
+    	replace key <ESC>  { [ Caps_Lock ] };
+	};
+
+	xkb_geometry {
+		include "thinkpad(us)"
+	};
+};

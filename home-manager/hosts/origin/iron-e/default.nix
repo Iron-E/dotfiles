@@ -13,7 +13,8 @@ in
     ../../_extras_/programs+services/ctl/autorandr
     ../../_extras_/programs+services/ctl/kubectl
     ../../_extras_/programs+services/gui/bitwarden
-    ../../_extras_/programs+services/gui/xsession
+    ../../_extras_/programs+services/gui/wayland
+    ../../_extras_/programs+services/gui/xsession/config
   ];
 
   home = {

@@ -32,6 +32,7 @@ vim.filetype.add {
 		tf = 'terraform',
 		tmpl = 'gotmpl',
 		tpl = 'gotmpl',
+		xkb = 'xkb',
 		yaml = 'yaml',
 		yml = 'yaml',
 	},

@@ -1,6 +1,9 @@
-{ ... }:
+{ outputs, ... }:
+let
+  util = outputs.lib;
+in
 {
-  imports = [ ];
+  imports = util.fs.readSubmodules ./.;
 
   qt.enable = true;
   qt.platformTheme.name = "gtk3"; # “gtk”, “gtk3”, “gnome”, “lxqt”, “qtct”, “kde”
