@@ -4,16 +4,12 @@
 
   wayland.windowManager.sway.config =
     let
-      inherit (config.lib.iron-e) swayPkg;
       inherit (config.lib.iron-e.swayKey) lhs;
       wrksp = config.lib.iron-e.swayWorkspace;
     in
     {
       defaultWorkspace = wrksp.default;
       workspaceAutoBackAndForth = true;
-      startup = [
-        { command = "--no-startup-id ${swayPkg.swaymsg} 'workspace ${wrksp.default}'"; }
-      ];
 
       assigns = {
         "\"${wrksp.get 1}\"" = [

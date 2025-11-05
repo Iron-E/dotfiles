@@ -2,7 +2,11 @@
 {
   imports = [ ];
 
-  wayland.windowManager.sway.config.startup = lib.mkAfter [
-    { command = config.wayland.windowManager.sway.config.terminal; } # start terminal
-  ];
+  wayland.windowManager.sway.config.startup =
+    let
+      inherit (config.wayland.windowManager.sway.config) defaultWorkspace terminal;
+    in
+    lib.mkAfter [
+      { command = "swaymsg 'workspace \"${defaultWorkspace}\"; exec ${terminal}'"; } # start terminal
+    ];
 }
