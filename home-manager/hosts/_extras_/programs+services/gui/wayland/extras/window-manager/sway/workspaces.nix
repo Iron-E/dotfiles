@@ -12,7 +12,7 @@
       defaultWorkspace = wrksp.default;
       workspaceAutoBackAndForth = true;
       startup = [
-        { command = "${swayPkg.swaymsg} 'workspace ${wrksp.default}'"; }
+        { command = "--no-startup-id ${swayPkg.swaymsg} 'workspace ${wrksp.default}'"; }
       ];
 
       assigns = {
