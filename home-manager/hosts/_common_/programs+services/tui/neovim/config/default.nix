@@ -128,6 +128,10 @@ in
           brightnessctl # mappings
           ;
 
+        inherit (pkgs.kdePackages)
+          qtdeclarative # for quickshell
+          ;
+
         redshift = (srv "redshift"); # `:Redshift` command
       })
     );

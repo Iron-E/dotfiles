@@ -94,6 +94,7 @@ vim.lsp.enable {
 	'lua_ls',
 	'nixd',
 	'pyright',
+	'qmlls',
 	'rust_analyzer',
 	'sqls',
 	'tailwindcss',
