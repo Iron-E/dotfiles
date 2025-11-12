@@ -15,6 +15,14 @@ return {{ 'echasnovski/mini.icons',
 				local glyph, hl = icons.get('filetype', 'helm')
 				o.filetype['yaml.helm-values'] = { glyph = glyph, hl = hl }
 			end
+
+			do
+				local glyph, hl = icons.get('filetype', 'terraform')
+				local icon = { glyph = glyph, hl = hl }
+				o.filetype.opentofu = icon
+				o.filetype['opentofu-vars'] = icon
+				o.filetype['terraform-vars'] = icon
+			end
 		end
 
 		icons.setup(o)

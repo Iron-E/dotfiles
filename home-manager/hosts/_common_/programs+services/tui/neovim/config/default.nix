@@ -41,7 +41,6 @@ in
         inherit (pkgs)
           bat # previewer
           fd # fuzzy finder
-          xclip # clipboard
           ;
 
         gh = prg "gh"; # octo.nvim
@@ -55,9 +54,10 @@ in
         inherit (pkgs)
           csharpier
           go-jsonnet
-          gotools # for goimports
           gojq
+          gotools # for goimports
           nixfmt-rfc-style
+          opentofu
           prettierd
           rustfmt
           rustywind
@@ -85,6 +85,7 @@ in
           tailwindcss-language-server
           terraform-ls
           tinymist
+          tofu-ls
           vscode-langservers-extracted
           yaml-language-server
           ;
@@ -113,7 +114,7 @@ in
           shellcheck
           sqlfluff
           tflint
-          tfsec
+          trivy
           ;
 
         ###############

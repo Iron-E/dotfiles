@@ -13,6 +13,14 @@ local function in_helm_chart(path)
 	return vim.fs.root(path, 'Chart.yaml') ~= nil
 end
 
+local function in_tofu(path)
+	local root = vim.fs.root(path, function(name, _)
+		return string.find(name, '%.tofu$') ~= nil
+	end)
+
+	return root ~= nil
+end
+
 vim.filetype.add {
 	filename = {
 		['compose.yaml'] = 'yaml.docker-compose',
@@ -31,10 +39,20 @@ vim.filetype.add {
 		helmignore = 'helmignore',
 		tf = 'terraform',
 		tmpl = 'gotmpl',
+		tofu = 'opentofu',
+		tofuvars = 'opentofu-vars',
 		tpl = 'gotmpl',
 		xkb = 'xkb',
 		yaml = 'yaml',
 		yml = 'yaml',
+
+		tfvars = function(path)
+			if in_tofu(path) then
+				return 'opentofu-vars'
+			end
+
+			return 'terraform-vars'
+		end,
 	},
 
 	pattern = {

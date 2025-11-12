@@ -99,6 +99,7 @@ vim.lsp.enable {
 	'tailwindcss',
 	'terraformls',
 	'tinymist',
+	'tofu_ls',
 	'ts_ls',
 	'yamlls',
 }

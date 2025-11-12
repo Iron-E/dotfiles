@@ -29,7 +29,9 @@ return { {
 		o.scss = o.css
 		o.sh = { 'shellcheck' }
 		o.sql = { 'sqlfluff' }
-		o.terraform = { 'tflint', 'tfsec' }
+		o.terraform = { 'terraform_validate', 'tflint', 'trivy' }
+		o['terraform-vars'] = o.terraform
+		o.opentofu = { 'tofu', 'tflint', 'trivy' }
 		o.typescript = o.javascript
 		o.typescriptreact = o.javascriptreact
 	end,

@@ -57,6 +57,7 @@ return {{ 'stevearc/conform.nvim',
 			json = { 'prettierd' },
 			jsonnet = { 'jsonnetfmt' },
 			nix = { 'nixfmt' },
+			opentofu = { 'tofu_fmt' },
 			proto = { 'buf' },
 			rust = { 'rustfmt' },
 			sh = { 'shellcheck' },
@@ -69,6 +70,8 @@ return {{ 'stevearc/conform.nvim',
 		o.formatters_by_ft.scss = o.formatters_by_ft.css
 		o.formatters_by_ft.typescript = o.formatters_by_ft.javascript
 		o.formatters_by_ft.typescriptreact = o.formatters_by_ft.javascriptreact
+		o.formatters_by_ft['opentofu-vars'] = o.formatters_by_ft.opentofu
+		o.formatters_by_ft['terraform-vars'] = o.formatters_by_ft.terraform
 
 		o.format_on_save = function(bufnr)
 			local filetype = vim.api.nvim_get_option_value('filetype', { buf = bufnr })
