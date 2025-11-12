@@ -2,8 +2,8 @@
 {
   imports = [ ];
 
-  programs.git = {
-    userEmail = builtins.getEnv "GIT_USER_EMAIL";
-    userName = builtins.getEnv "GIT_USER_NAME";
+  programs.git.settings.user = {
+    email = builtins.getEnv "GIT_USER_EMAIL";
+    name = builtins.getEnv "GIT_USER_NAME";
   };
 }

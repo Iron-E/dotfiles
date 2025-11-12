@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.git.extraConfig.help = {
+  programs.git.settings.help = {
     autocorrect = "prompt";
   };
 }

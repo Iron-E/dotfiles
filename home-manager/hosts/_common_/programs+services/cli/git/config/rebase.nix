@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.git.extraConfig.rebase = {
+  programs.git.settings.rebase = {
     autosquash = true;
     updateRefs = true;
   };

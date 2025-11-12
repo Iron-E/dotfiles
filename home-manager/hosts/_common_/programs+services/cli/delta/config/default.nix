@@ -10,7 +10,7 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  programs.git.delta.options = {
+  programs.delta.options = {
     navigate = true;
     line-numbers = true;
     syntax-theme = # try to get the bat theme, falling back to `DarkNeon`

@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.git.extraConfig = {
+  programs.git.settings = {
     merge.conflictstyle = "zdiff3";
     rerere.enabled = true;
   };

@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.git.extraConfig.diff = {
+  programs.git.settings.diff = {
     algorithm = "histogram";
     colorMoved = "default";
   };

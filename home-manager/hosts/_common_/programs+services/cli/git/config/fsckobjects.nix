@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.git.extraConfig = lib.genAttrs [ "fetch" "receive" "transfer" ] (
+  programs.git.settings = lib.genAttrs [ "fetch" "receive" "transfer" ] (
     lib.const { fsckobjects = true; }
   );
 }

@@ -1,9 +1,16 @@
-{ outputs, pkgs, ...}:
+{
+  lib,
+  outputs,
+  targetPlatform,
+  ...
+}:
 let
   util = outputs.lib;
 in
 {
-  imports = util.fs.readSubmodules ./.;
-
-  targets.genericLinux.enable = pkgs.stdenv.isLinux;
+  imports =
+    if targetPlatform.isNixOS || !(lib.hasSuffix "linux" targetPlatform.architecture) then
+      [ ]
+    else
+      util.fs.readSubmodules ./.;
 }

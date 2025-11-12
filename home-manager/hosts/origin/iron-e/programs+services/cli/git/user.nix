@@ -2,8 +2,8 @@
 {
   imports = [ ];
 
-  programs.git = {
-    userEmail = "code.iron.e@gmail.com";
-    userName = "Iron-E";
+  programs.git.settings.user = {
+    email = "code.iron.e@gmail.com";
+    name = "Iron-E";
   };
 }

@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.git.extraConfig.core = {
+  programs.git.settings.core = {
     fsmonitor = true;
   };
 }

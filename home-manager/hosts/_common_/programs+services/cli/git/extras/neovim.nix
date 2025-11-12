@@ -5,7 +5,7 @@
   programs = {
     neovim.enable = true;
 
-    git.extraConfig = {
+    git.settings = {
       core.editor = lib.getExe config.programs.neovim.finalPackage;
       diff.tool = "nvim";
       merge.tool = "nvimdiff";

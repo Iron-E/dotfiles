@@ -5,5 +5,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  programs.git.delta.enable = true;
+  programs.delta.enable = true;
 }

@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.git.extraConfig.commit = {
+  programs.git.settings.commit = {
     template = "${./message.txt}";
     verbose = true;
   };

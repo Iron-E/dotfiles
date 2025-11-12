@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.git.extraConfig.pull = {
+  programs.git.settings.pull = {
     rebase = true;
   };
 }
