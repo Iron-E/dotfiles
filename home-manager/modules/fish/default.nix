@@ -47,7 +47,7 @@ in
         lib.hm.dag.entryAfter [ "writeBoundary" ]
           # sh
           ''
-            run ${lib.getExe cfg.package} -c "fish_config theme choose ${cfg.theme.name} && fish_config theme save"
+            run ${lib.getExe cfg.package} -c "fish_config theme choose ${cfg.theme.name} && fish_config theme save; or true"
           '';
     }
 
