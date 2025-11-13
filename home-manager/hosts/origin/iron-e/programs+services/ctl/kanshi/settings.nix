@@ -46,7 +46,7 @@
       ])
 
       (profile "docked-rightMonitor" [
-        (output' "$right_monitor" { })
+        (output' "$right_monitor" { position = "0,0"; })
         (output' "$laptop" { position = "2560,572"; })
       ])
 
