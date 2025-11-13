@@ -7,20 +7,53 @@
 {
   imports = [ ../../../../lib ];
 
-  services.swayidle.timeouts =
+  services.swayidle =
     let
-      inherit (config.lib.iron-e) swayPkg;
-      pgrep = lib.getExe' pkgs.procps "pgrep";
+      swaylock = "/usr/bin/swaylock --daemonize";
     in
-    [
-      {
-        timeout = 300;
-        command = "/usr/bin/swaylock -f";
-      }
-      {
-        timeout = 5;
-        command = ''if ${pgrep} -x swaylock; then ${swayPkg.swaymsg} "output * power off"; fi'';
-        resumeCommand = ''if ${pgrep} -x swaylock; then ${swayPkg.swaymsg} "output * power on"; fi'';
-      }
-    ];
+    {
+      events = [
+        {
+          event = "before-sleep";
+          command = swaylock;
+        }
+      ];
+
+      timeouts =
+        let
+          inherit (config.lib.iron-e) swayPkg;
+          pgrep = lib.getExe' pkgs.procps "pgrep";
+
+          ifSwaylockRunning =
+            isTrue: # bool
+            then': # string
+            "if ${if isTrue then "" else "!"} ${pgrep} -x swaylock; then ${then'}; fi";
+
+          lockScreen = {
+            timeout = 300;
+            command = ifSwaylockRunning false swaylock;
+          };
+
+          setOutputPower = {
+            timeout = 5;
+            command = ifSwaylockRunning true setOutputPowerAfterScreenLock.command;
+            resumeCommand = ifSwaylockRunning true setOutputPowerAfterScreenLock.resumeCommand;
+          };
+
+          setOutputPowerAfterScreenLock =
+            let
+              outputPower = onOff: ''${swayPkg.swaymsg} "output * power ${onOff}"'';
+            in
+            {
+              timeout = builtins.add lockScreen.timeout setOutputPower.timeout;
+              command = outputPower "off";
+              resumeCommand = outputPower "on";
+            };
+        in
+        [
+          setOutputPower
+          lockScreen
+          setOutputPowerAfterScreenLock
+        ];
+    };
 }
