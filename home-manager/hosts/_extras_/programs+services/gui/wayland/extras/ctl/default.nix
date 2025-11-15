@@ -4,6 +4,4 @@ let
 in
 {
   imports = util.fs.readSubmodules ./.;
-
-  services.kanshi.enable = true;
 }
