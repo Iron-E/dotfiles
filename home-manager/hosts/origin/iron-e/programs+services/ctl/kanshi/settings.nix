@@ -37,11 +37,11 @@
       })
 
       (profile "undocked" [
-        (output' "$laptop" { })
+        (output' "$laptop" { position = "0,0"; })
       ])
 
       (profile "docked-leftMonitor" [
-        (output' "$left_monitor" { })
+        (output' "$left_monitor" { position = "0,0"; })
         (output' "$laptop" { position = "1440,0"; })
       ])
 
@@ -51,7 +51,7 @@
       ])
 
       (profile "docked" [
-        (output' "$left_monitor" { })
+        (output' "$left_monitor" { position = "0,0"; })
         (output' "$right_monitor" { position = "1440,572"; })
         (output' "$laptop" { position = "4000,572"; })
       ])
