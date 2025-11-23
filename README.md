@@ -48,6 +48,25 @@ On non-NixOS systems:
 
 * `wezterm-terminfo` (or else `wezterm` looks weird)
 
+#### wayland
+
+On all systems:
+
+- `qt5-wayland`
+- `qt6-wayland`
+
+##### sway
+
+On all systems:
+
+- `swaylock`
+- `pipewire-alsa`
+- `pipewire-jack`
+- `pipewire-libcamera`
+- `pipewire-pulse`
+- `pipewire`
+- `wireplumber`
+
 #### xorg
 
 On all systems:
