@@ -4,6 +4,7 @@
 
 vim.treesitter.language.register('bash', { 'env', 'zsh' })
 vim.treesitter.language.register('gitignore', { 'dockerignore', 'helmignore' })
+vim.treesitter.language.register('ini', { 'systemd' })
 vim.treesitter.language.register('terraform', {
 	'opentofu',
 	'opentofu-vars',
