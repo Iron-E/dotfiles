@@ -9,12 +9,22 @@
 
   services.swayidle =
     let
+      pgrep = lib.getExe' pkgs.procps "pgrep";
       swaylock = "/usr/bin/swaylock --daemonize";
+
+      ifSwaylockRunning =
+        isTrue: # bool
+        then': # string
+        "if ${if isTrue then "" else "!"} ${pgrep} -x swaylock; then ${then'}; fi";
     in
     {
       events = [
         {
           event = "before-sleep";
+          command = ifSwaylockRunning false swaylock;
+        }
+        {
+          event = "lock";
           command = swaylock;
         }
       ];
@@ -22,38 +32,32 @@
       timeouts =
         let
           inherit (config.lib.iron-e) swayPkg;
-          pgrep = lib.getExe' pkgs.procps "pgrep";
-
-          ifSwaylockRunning =
-            isTrue: # bool
-            then': # string
-            "if ${if isTrue then "" else "!"} ${pgrep} -x swaylock; then ${then'}; fi";
 
           lockScreen = {
             timeout = 300;
             command = ifSwaylockRunning false swaylock;
           };
 
-          setOutputPower = {
-            timeout = 5;
-            command = ifSwaylockRunning true setOutputPowerAfterScreenLock.command;
-            resumeCommand = ifSwaylockRunning true setOutputPowerAfterScreenLock.resumeCommand;
-          };
-
-          setOutputPowerAfterScreenLock =
+          setOutputPowerAfterLockScreenTimeout =
             let
               outputPower = onOff: ''${swayPkg.swaymsg} "output * power ${onOff}"'';
             in
             {
-              timeout = builtins.add lockScreen.timeout setOutputPower.timeout;
+              timeout = builtins.add lockScreen.timeout setOutputPowerAfterManuallyLockingScreen.timeout;
               command = outputPower "off";
               resumeCommand = outputPower "on";
             };
+
+          setOutputPowerAfterManuallyLockingScreen = {
+            timeout = 5;
+            command = ifSwaylockRunning true setOutputPowerAfterLockScreenTimeout.command;
+            resumeCommand = ifSwaylockRunning true setOutputPowerAfterLockScreenTimeout.resumeCommand;
+          };
         in
         [
-          setOutputPower
           lockScreen
-          setOutputPowerAfterScreenLock
+          setOutputPowerAfterLockScreenTimeout
+          setOutputPowerAfterManuallyLockingScreen
         ];
     };
 }

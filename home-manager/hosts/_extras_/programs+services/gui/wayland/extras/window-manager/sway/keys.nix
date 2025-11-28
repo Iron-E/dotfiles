@@ -81,7 +81,7 @@
             rhs.exec "${swayPkg.swaynag} -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' '${swayPkg.swaymsg} exit'";
 
           # Lock computer
-          ${lhs.withModAlt "l"} = rhs.exec "swaylock";
+          ${lhs.withModAlt "l"} = rhs.exec "loginctl lock-session";
 
           # Volume
           ${lhs.audio.up} = volume.set "+";
