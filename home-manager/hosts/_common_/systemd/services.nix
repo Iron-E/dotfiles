@@ -12,7 +12,11 @@
       ''
         if [ -d "${fromDir}" ]; then
           run find "${fromDir}" -type l -exec sh -c '
-            ln -sf {} "${toDir}/$(basename {})"
+            if [ -a {} ]; then
+              echo not overwriting "${toDir}/$(basename {})" with {}
+            else
+              ln -s {} "${toDir}/$(basename {})"
+            fi
           ' \;
         fi
       '';
