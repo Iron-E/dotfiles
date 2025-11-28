@@ -6,6 +6,7 @@
     nix.url = "github:nixos/nixpkgs/a84ebe20c6bc2ecbcfb000a50776219f48d134cc";
 
     home-manager = {
+      # Revert back to the following after nixos-unstable gets 26.05
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };

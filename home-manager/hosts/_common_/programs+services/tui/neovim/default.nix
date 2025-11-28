@@ -1,4 +1,4 @@
-{ outputs, pkgs, ...}:
+{ outputs, pkgs, ... }:
 let
   util = outputs.lib;
 in
@@ -7,6 +7,6 @@ in
 
   programs.neovim = {
     enable = true;
-    # package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    # package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 }
