@@ -80,22 +80,32 @@
 
       # Reusable home-manager modules you might want to export. Usually things you would upstream into home-manager
       homeManagerModules = import ./home-manager/modules;
-    }
-    // (lib.config.declare ./. home-manager {
-      origin = {
-        args = {
-          inherit inputs outputs;
-          architecture = "x86_64-linux";
-        };
-        iron-e = { }; # Available through 'home-manager --flake .#iron-e@origin'
-      };
 
-      turbo = {
-        args = {
-          inherit inputs outputs;
-          architecture = "aarch64-darwin";
-        };
-        iron-e = { }; # Available through 'home-manager --flake .#iron-e@turbo'
-      };
-    });
+      homeConfigurations =
+        builtins.mapAttrs
+          (
+            name: # string
+            value: # string
+            let
+              # foo@bar -> [ "foo" "bar" ]
+              nameParts = nixpkgs.lib.splitString "@" name;
+              # ./home-manager/hosts/bar/foo
+              hostModule = ./home-manager/hosts/${builtins.elemAt nameParts 1}/${builtins.elemAt nameParts 0};
+            in
+            home-manager.lib.homeManagerConfiguration {
+              pkgs = nixpkgs.legacyPackages.${value};
+
+              modules = [ hostModule ] ++ (builtins.attrValues outputs.homeManagerModules);
+
+              extraSpecialArgs = {
+                inherit inputs outputs;
+                isNixOS = false;
+              };
+            }
+          )
+          {
+            "iron-e@origin" = "x86_64-linux";
+            "iron-e@turbo" = "aarch64-darwin";
+          };
+    };
 }

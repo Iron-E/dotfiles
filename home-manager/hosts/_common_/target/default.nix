@@ -1,16 +1,19 @@
 {
   lib,
+  inputs,
   outputs,
-  targetPlatform,
+  pkgs,
+  isNixOS ? false,
   ...
 }:
 let
   util = outputs.lib;
 in
 {
-  imports =
-    if targetPlatform.isNixOS || !(lib.hasSuffix "linux" targetPlatform.architecture) then
-      [ ]
-    else
-      util.fs.readSubmodules ./.;
+  imports = util.fs.readSubmodules ./.;
+
+  targets.genericLinux = lib.optionalAttrs (pkgs.stdenv.isLinux && !isNixOS) {
+    enable = true;
+    nixGL.packages = inputs.nixgl.packages;
+  };
 }

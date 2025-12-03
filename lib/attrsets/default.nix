@@ -2,7 +2,6 @@ nixpkgs:
 let
   inherit (nixpkgs.lib)
     attrByPath
-    nameValuePair
     optionalAttrs
     recursiveUpdate
     ;
@@ -32,5 +31,7 @@ in
   pair = # converts a name value pair to an attribute
     name: # see listToAttrs
     value: # see listToAttrs
-    builtins.listToAttrs [ (nameValuePair name value) ];
+    {
+      ${name} = value;
+    };
 }
