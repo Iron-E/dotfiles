@@ -3,7 +3,7 @@
   imports = [ ];
 
   home.shellAliases = {
-    P = "wl-copy";
-    Y = "wl-paste";
+    P = "wl-paste";
+    Y = "wl-copy";
   };
 }
