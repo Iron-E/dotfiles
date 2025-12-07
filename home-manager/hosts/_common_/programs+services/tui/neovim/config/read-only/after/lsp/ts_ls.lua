@@ -12,5 +12,4 @@ return {
 			includeInlayVariableTypeHintsWhenTypeMatchesName = false,
 		},
 	},
-	workspace_required = true,
 }
