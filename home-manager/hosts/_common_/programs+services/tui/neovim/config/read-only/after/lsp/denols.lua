@@ -6,13 +6,10 @@ do
 	vim.api.nvim_set_var(var, fenced_languages)
 end
 
--- HACK: see https://github.com/neovim/neovim/issues/33577
-vim.lsp.config('denols', {
-	-- NOTE: used to prevent denols and ts_ls from spawning in same process
-	root_markers = { 'deno.json', 'deno.jsonc' },
-})
-
 --- @type vim.lsp.Config
 return {
+	-- NOTE: used to prevent denols and ts_ls from spawning in same process
+	root_markers = { 'deno.json', 'deno.jsonc' },
+
 	workspace_required = true,
 }

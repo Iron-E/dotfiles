@@ -86,7 +86,8 @@ in
           terraform-ls
           tinymist
           tofu-ls
-          vscode-langservers-extracted
+          vscode-css-languageserver
+          vscode-json-languageserver
           yaml-language-server
           ;
 
