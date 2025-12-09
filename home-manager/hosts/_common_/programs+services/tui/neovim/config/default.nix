@@ -77,6 +77,7 @@ in
           jdt-language-server
           jsonnet-language-server
           lua-language-server
+          marksman
           nixd
           pyright
           roslyn-ls

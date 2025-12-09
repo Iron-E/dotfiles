@@ -92,6 +92,7 @@ vim.lsp.enable {
 	'jsonls',
 	'jsonnet_ls',
 	'lua_ls',
+	'marksman',
 	'nixd',
 	'pyright',
 	'rust_analyzer',
