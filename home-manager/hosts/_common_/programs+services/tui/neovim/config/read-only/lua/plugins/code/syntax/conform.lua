@@ -47,29 +47,55 @@ return {{ 'stevearc/conform.nvim',
 
 	--- @param o conform.setupOpts
 	opts = function(_, o)
+		--- @param else_ string
+		--- @param formatter string
+		--- @param bufnr integer
+		--- @return string
+		local function available_or(else_, formatter, bufnr)
+			if require("conform").get_formatter_info(formatter, bufnr).available then
+				return formatter
+			end
+
+			return else_
+		end
+
 		o.formatters_by_ft = {
 			cs = { 'csharpier' },
-			css = { 'prettierd' },
+
+			css = function(bufnr)
+				local formatter = available_or("prettierd", "deno_fmt", bufnr)
+				return { formatter }
+			end,
+
 			gleam = { 'gleam' },
 			go = { 'goimports', 'gofmt' },
-			javascript = { 'prettierd' },
-			javascriptreact = { 'prettierd', 'rustywind' },
-			json = { 'prettierd' },
+
+			javascriptreact = function(bufnr)
+				local formatter = available_or("prettierd", "deno_fmt", bufnr)
+				return { formatter, "rustywind" }
+			end,
+
 			jsonnet = { 'jsonnetfmt' },
 			nix = { 'nixfmt' },
 			opentofu = { 'tofu_fmt' },
 			proto = { 'buf' },
 			rust = { 'rustfmt' },
 			sh = { 'shellcheck' },
+			sql = { 'deno_fmt' },
 			terraform = { 'terraform_fmt' },
-			yaml = { 'prettierd' },
 		}
 
+		o.formatters_by_ft.html = o.formatters_by_ft.css
+		o.formatters_by_ft.javascript = o.formatters_by_ft.css
+		o.formatters_by_ft.json = o.formatters_by_ft.javascript
+		o.formatters_by_ft.jsonc = o.formatters_by_ft.json
 		o.formatters_by_ft.less = o.formatters_by_ft.css
+		o.formatters_by_ft.markdown = o.formatters_by_ft.html
 		o.formatters_by_ft.sass = o.formatters_by_ft.scss
 		o.formatters_by_ft.scss = o.formatters_by_ft.css
 		o.formatters_by_ft.typescript = o.formatters_by_ft.javascript
 		o.formatters_by_ft.typescriptreact = o.formatters_by_ft.javascriptreact
+		o.formatters_by_ft.yaml = o.formatters_by_ft.json
 		o.formatters_by_ft['opentofu-vars'] = o.formatters_by_ft.opentofu
 		o.formatters_by_ft['terraform-vars'] = o.formatters_by_ft.terraform
 
