@@ -1,7 +1,7 @@
 --- @type vim.lsp.Config
 return {
 	settings = {
-		python = {
+		basedpyright = {
 			analysis = {
 				diagnosticSeverityOverrides = {
 					reportInvalidTypeVarUse = 'none',

@@ -80,6 +80,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 ------------
 
 vim.lsp.enable {
+	'basedpyright',
 	'bashls',
 	'buf_ls',
 	'denols',
@@ -94,7 +95,6 @@ vim.lsp.enable {
 	'lua_ls',
 	'marksman',
 	'nixd',
-	'pyright',
 	'rust_analyzer',
 	'sqls',
 	'tailwindcss',

@@ -68,6 +68,7 @@ in
         ####################
 
         inherit (pkgs)
+          basedpyright
           deno
           docker-language-server
           emmet-language-server
@@ -79,7 +80,6 @@ in
           lua-language-server
           marksman
           nixd
-          pyright
           roslyn-ls
           rust-analyzer
           sqls
