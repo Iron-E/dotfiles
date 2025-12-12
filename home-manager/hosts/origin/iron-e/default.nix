@@ -11,6 +11,7 @@ in
     ../../_extras_/programs+services/cli/cryfs
     ../../_extras_/programs+services/cli/hydra-check
     ../../_extras_/programs+services/cli/nextdns
+    ../../_extras_/programs+services/cli/nh
     ../../_extras_/programs+services/cli/nix-forecast
     ../../_extras_/programs+services/cli/rclone
     ../../_extras_/programs+services/ctl/autorandr
