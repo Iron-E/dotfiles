@@ -112,7 +112,15 @@ return {{ 'stevearc/conform.nvim',
 		end
 
 		o.formatters = {
-			yq = { args = { '-y' } },
+			deno_fmt = {
+				require_cwd = true,
+				cwd = function(_, ctx)
+					return vim.fs.root(ctx.filename, { 'deno.json', 'deno.lock' })
+				end,
+			},
+			yq = {
+				args = { '-y' },
+			},
 		}
 
 		o.log_level = vim.log.levels.OFF
