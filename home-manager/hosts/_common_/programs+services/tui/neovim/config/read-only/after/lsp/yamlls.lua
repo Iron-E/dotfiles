@@ -33,6 +33,7 @@ return {
 				['https://raw.githubusercontent.com/chainguard-dev/apko/main/pkg/build/types/schema.json'] = '*apko*.{yml,yaml}',
 				['https://raw.githubusercontent.com/chainguard-dev/melange/main/pkg/config/schema.json'] = '*melange*.{yml,yaml}',
 				['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = '*docker-compose*.{yml,yaml}',
+				['https://raw.githubusercontent.com/evilmartians/lefthook/master/schema.json'] = 'lefthook.{yml,yaml}',
 				['https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json'] = '{.,}hadolint.{yml,yaml}',
 				['https://raw.githubusercontent.com/OAI/OpenAPI-Specification/refs/heads/main/schemas/v3.1/schema.yaml'] = '*api*.{yml,yaml}',
 				['https://taskfile.dev/schema.json'] = '{T,t}askfile{.dist,}.y{a,}ml',
