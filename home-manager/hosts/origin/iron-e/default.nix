@@ -9,6 +9,7 @@ in
     ../../_common_
     ../../_extras_/programs+services/cli/aws
     ../../_extras_/programs+services/cli/cryfs
+    ../../_extras_/programs+services/cli/devbox
     ../../_extras_/programs+services/cli/hydra-check
     ../../_extras_/programs+services/cli/nextdns
     ../../_extras_/programs+services/cli/nh
