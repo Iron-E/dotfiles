@@ -18,8 +18,7 @@
         {
           ### Media Control
           ${lhs.audio.next} = player "next";
-          ${lhs.audio.pause} = player "pause";
-          ${lhs.audio.play} = player "play";
+          ${lhs.audio.play} = player "play-pause";
           ${lhs.audio.prev} = player "previous";
         }
       );

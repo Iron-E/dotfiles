@@ -8,7 +8,6 @@
       audio.down = "XF86AudioLowerVolume";
       audio.mute = "XF86AudioMute";
       audio.next = "XF86AudioNext";
-      audio.pause = "XF86AudioPause";
       audio.play = "XF86AudioPlay";
       audio.prev = "XF86AudioPrev";
       audio.up = "XF86AudioRaiseVolume";
