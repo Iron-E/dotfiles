@@ -1,3 +1,4 @@
+
 --- Set the fold options given the `expandtab` and `tabstop` params
 --- @param expandtab? boolean
 --- @param tabstop? integer
