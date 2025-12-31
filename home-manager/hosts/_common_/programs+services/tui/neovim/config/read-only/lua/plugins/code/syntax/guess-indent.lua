@@ -1,7 +1,7 @@
 return {{ 'NMAC427/guess-indent.nvim',
-	event = 'BufReadPre',
+	cmd = 'GuessIndent',
 	opts = function(_, o)
-		o.auto_cmd = true
-		o.override_editorconfig = false
+		o.auto_cmd = false
+		o.override_editorconfig = true
 	end,
 }}
