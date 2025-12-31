@@ -1,1 +1,1 @@
-require('indent-settings')()
+require("indent-settings")()

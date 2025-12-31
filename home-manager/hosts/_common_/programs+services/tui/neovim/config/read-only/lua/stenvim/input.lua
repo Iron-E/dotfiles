@@ -1,7 +1,7 @@
-local Events = require 'stenvim.events'
-local Func = require 'stenvim.func'
-local Highlight = require 'stenvim.highlight'
-local UI = require 'stenvim.ui'
+local Events = require("stenvim.events")
+local Func = require("stenvim.func")
+local Highlight = require("stenvim.highlight")
+local UI = require("stenvim.ui")
 
 --- @class stenvim.Input
 --- @field completefunc fun(findstart: 0|1, base: string): integer|string[]
@@ -11,11 +11,11 @@ local Input = {
 }
 
 function Input.enter_append_mode()
-	vim.api.nvim_input('A')
+	vim.api.nvim_input("A")
 end
 
 function Input.enter_normal_mode()
-	vim.api.nvim_input('<Esc>')
+	vim.api.nvim_input("<Esc>")
 end
 
 --- Sets the `Input.completefunc` for the given `completion` settings.
@@ -49,8 +49,8 @@ end
 --- @param on_confirm vim.ui.input.on_confirm
 --- @param highlight_fn? vim.ui.input.highlight
 function Input:setup_autocmds(bufnr, winid, on_confirm, highlight_fn)
-	vim.api.nvim_create_autocmd({ 'BufDelete', 'BufHidden', 'BufLeave', 'BufUnload', 'BufWipeout' }, {
-		desc = 'Cleanup vim.ui.input',
+	vim.api.nvim_create_autocmd({ "BufDelete", "BufHidden", "BufLeave", "BufUnload", "BufWipeout" }, {
+		desc = "Cleanup vim.ui.input",
 		group = Events.augroup,
 		buffer = bufnr,
 		once = true,
@@ -62,8 +62,8 @@ function Input:setup_autocmds(bufnr, winid, on_confirm, highlight_fn)
 		end),
 	})
 
-	vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
-		desc = 'Resize popup',
+	vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+		desc = "Resize popup",
 		group = Events.augroup,
 		buffer = bufnr,
 		callback = function()
@@ -82,8 +82,8 @@ function Input:setup_completion(bufnr)
 	--- @type vim.api.keyset.option
 	local opts = { buf = bufnr }
 
-	vim.api.nvim_set_option_value('completefunc', completefunc, opts)
-	vim.api.nvim_set_option_value('omnifunc', completefunc, opts)
+	vim.api.nvim_set_option_value("completefunc", completefunc, opts)
+	vim.api.nvim_set_option_value("omnifunc", completefunc, opts)
 end
 
 --- Create all buffer-local mappings which will be used for the input dialogue.
@@ -91,9 +91,9 @@ end
 --- @param winid integer
 --- @param on_confirm vim.ui.input.on_confirm
 function Input:setup_mappings(bufnr, winid, on_confirm)
-	for _, mode in ipairs { 'n', 'i' } do
-		vim.api.nvim_buf_set_keymap(bufnr, mode, '<Enter>', '', {
-			desc = 'Confirm input',
+	for _, mode in ipairs({ "n", "i" }) do
+		vim.api.nvim_buf_set_keymap(bufnr, mode, "<Enter>", "", {
+			desc = "Confirm input",
 			callback = function()
 				local text = UI.buf_text(bufnr)
 				on_confirm(text)
@@ -104,16 +104,16 @@ function Input:setup_mappings(bufnr, winid, on_confirm)
 
 	--- @type vim.keymap.set.Opts
 	local opts = {
-		desc = 'Cacnel vim.ui.input',
+		desc = "Cacnel vim.ui.input",
 		callback = function()
 			on_confirm()
 			UI.cleanup(bufnr, winid)
 		end,
 	}
 
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Esc>', '', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<Esc>", "", opts)
 	-- NOTE: should be <C-c>, but that clashes with my blink mappings
-	vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-d>', '', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-d>", "", opts)
 end
 
 --- @param opts vim.ui.input.opts
@@ -137,8 +137,8 @@ function Input:input(opts, on_confirm)
 	local win_width = UI:win_width(self.prompt_width, default_text_width)
 	local winid = vim.api.nvim_open_win(bufnr, true, {
 		title = opts.prompt,
-		style = 'minimal',
-		relative = 'cursor',
+		style = "minimal",
+		relative = "cursor",
 		row = 1,
 		col = -1,
 		height = 1,

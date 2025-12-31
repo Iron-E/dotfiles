@@ -46,9 +46,9 @@ function NeatFoldText()
 			local remove = math.ceil(bit.rshift(overflow, 1) + needed_width + 5)
 			local middle = bit.rshift(first_line_len, 1)
 
-			lines[1] = first_line:sub(1, middle - remove) .. ' […] ' .. first_line:sub(middle + remove)
+			lines[1] = first_line:sub(1, middle - remove) .. " […] " .. first_line:sub(middle + remove)
 		end
 	end
 
-	return ('   %-6d%s'):format(end_ - start + 1, table.concat(lines, ' … '))
+	return ("   %-6d%s"):format(end_ - start + 1, table.concat(lines, " … "))
 end

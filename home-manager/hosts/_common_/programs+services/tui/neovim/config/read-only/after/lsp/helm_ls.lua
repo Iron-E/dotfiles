@@ -1,7 +1,7 @@
 --- @type vim.lsp.Config
 return {
 	settings = {
-		['helm-ls'] = {
+		["helm-ls"] = {
 			yamlls = {
 				enabled = false,
 			},

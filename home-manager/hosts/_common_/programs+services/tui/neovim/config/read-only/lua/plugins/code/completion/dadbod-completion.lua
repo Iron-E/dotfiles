@@ -1,5 +1,7 @@
-return {{
-	'kristijanhusak/vim-dadbod-completion',
-	ft = { 'mysql', 'plsql', 'sql' },
-	dependencies = 'tpope/vim-dadbod',
-}}
+return {
+	{
+		"kristijanhusak/vim-dadbod-completion",
+		ft = { "mysql", "plsql", "sql" },
+		dependencies = "tpope/vim-dadbod",
+	},
+}

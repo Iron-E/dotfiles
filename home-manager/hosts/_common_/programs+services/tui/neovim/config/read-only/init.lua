@@ -9,21 +9,21 @@
 vim.loader.enable()
 
 -- Environment
-require 'init/filetype'
+require("init/filetype")
 
 -- Config
-require 'init/config'
+require("init/config")
 
-require 'init/autocmds'
-require 'init/commands'
-require 'init/functions'
-require 'init/mappings'
+require("init/autocmds")
+require("init/commands")
+require("init/functions")
+require("init/mappings")
 
-require 'init/diagnostics'
-require 'init/lsp'
-require 'init/treesitter'
+require("init/diagnostics")
+require("init/lsp")
+require("init/treesitter")
 
 -- Plugins
-require 'init/lazy'
+require("init/lazy")
 
-require('stenvim'):register()
+require("stenvim"):register()

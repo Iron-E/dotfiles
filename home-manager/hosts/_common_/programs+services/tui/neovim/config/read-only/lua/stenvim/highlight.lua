@@ -1,8 +1,8 @@
-local UI = require 'stenvim.ui'
+local UI = require("stenvim.ui")
 
 --- @class stenvim.Highlight
 local Highlight = {
-	ns = vim.api.nvim_create_namespace('stenvim'),
+	ns = vim.api.nvim_create_namespace("stenvim"),
 }
 
 --- Clears the highlights for a buffer.

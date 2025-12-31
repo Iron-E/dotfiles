@@ -1,1 +1,1 @@
-return {{ 'swaits/thethethe.nvim', config = true, event = 'InsertEnter' }}
+return { { "swaits/thethethe.nvim", config = true, event = "InsertEnter" } }

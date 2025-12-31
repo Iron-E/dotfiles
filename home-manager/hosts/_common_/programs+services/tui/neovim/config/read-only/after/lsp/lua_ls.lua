@@ -4,16 +4,16 @@ return {
 		Lua = {
 			diagnostics = {
 				globals = {
-					'vim',
+					"vim",
 				},
 			},
 			hint = {
 				enable = true,
 			},
 			runtime = {
-				path = vim.split(package.path, ';', { plain = true, trimempty = true }),
+				path = vim.split(package.path, ";", { plain = true, trimempty = true }),
 				pathStrict = true,
-				version = 'LuaJIT',
+				version = "LuaJIT",
 			},
 			telemetry = {
 				enable = false,

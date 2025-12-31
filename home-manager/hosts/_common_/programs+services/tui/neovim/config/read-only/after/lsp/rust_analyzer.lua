@@ -1,9 +1,7 @@
 --- @type vim.lsp.Config
 return {
-	settings =
-	{
-		['rust-analyzer'] =
-		{
+	settings = {
+		["rust-analyzer"] = {
 			checkOnSave = {
 				extraArgs = {
 					"--target-dir",
@@ -12,7 +10,7 @@ return {
 			},
 			diagnostics = {
 				disabled = {
-					'inactive-code',
+					"inactive-code",
 				},
 			},
 		},

@@ -1,7 +1,7 @@
 --- @type vim.lsp.Config
 return {
 	filetypes = {
-		'sh',
-		'zsh',
+		"sh",
+		"zsh",
 	},
 }

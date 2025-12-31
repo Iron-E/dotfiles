@@ -3,10 +3,10 @@ return {
 	settings = {
 		nixd = {
 			nixpkgs = {
-				expr = 'import <nixpkgs> { }',
+				expr = "import <nixpkgs> { }",
 			},
 			formatting = {
-				command = { 'nixfmt' },
+				command = { "nixfmt" },
 			},
 			options = {
 				home_manager = {

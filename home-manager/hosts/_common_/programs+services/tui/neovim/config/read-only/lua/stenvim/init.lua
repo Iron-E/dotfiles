@@ -8,7 +8,7 @@ function stenvim:register()
 	--- @param on_confirm vim.ui.input.on_confirm
 	--- @diagnostic disable-next-line duplicate-field
 	vim.ui.input = function(opts, on_confirm)
-		require('stenvim.input'):input(opts, on_confirm)
+		require("stenvim.input"):input(opts, on_confirm)
 	end
 end
 

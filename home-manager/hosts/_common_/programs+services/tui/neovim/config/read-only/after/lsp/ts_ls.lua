@@ -5,7 +5,7 @@ return {
 			includeInlayEnumMemberValueHints = true,
 			includeInlayFunctionLikeReturnTypeHints = true,
 			includeInlayFunctionParameterTypeHints = true,
-			includeInlayParameterNameHints = 'all',
+			includeInlayParameterNameHints = "all",
 			includeInlayParameterNameHintsWhenArgumentMatchesName = false,
 			includeInlayPropertyDeclarationTypeHints = true,
 			includeInlayVariableTypeHints = true,

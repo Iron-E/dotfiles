@@ -1,5 +1,5 @@
-local Events = require 'stenvim.events'
-local Math = require 'stenvim.math'
+local Events = require("stenvim.events")
+local Math = require("stenvim.math")
 
 --- @class stenvim.UI
 --- @field default_win_width integer
@@ -23,9 +23,9 @@ end
 
 --- Updates the `UI.screen_width` and `UI.default_win_width` values.
 function UI:refresh()
-	local screen_width = vim.api.nvim_get_option_value('columns', {})
+	local screen_width = vim.api.nvim_get_option_value("columns", {})
 	self.screen_width = screen_width
-	self.default_win_width = Math.round(screen_width * .10)
+	self.default_win_width = Math.round(screen_width * 0.10)
 end
 
 --- @param title_width integer
@@ -38,9 +38,9 @@ function UI:win_width(title_width, text_width)
 	return math.max(self.default_win_width, title_or_text_width)
 end
 
-vim.api.nvim_create_autocmd('OptionSet', {
+vim.api.nvim_create_autocmd("OptionSet", {
 	group = Events.augroup,
-	pattern = 'columns',
+	pattern = "columns",
 	callback = function()
 		UI:refresh()
 	end,

@@ -31,7 +31,7 @@ end
 function TSUtils.get_sibling(node, direction)
 	local parent = node:parent()
 	if parent == nil then
-		return vim.notify('Cannot get sibling because node has no parent', vim.log.levels.ERROR)
+		return vim.notify("Cannot get sibling because node has no parent", vim.log.levels.ERROR)
 	end
 
 	local found_current_section = false
@@ -54,9 +54,9 @@ function TSUtils.get_sibling(node, direction)
 		end
 	end
 
-	if next ~= nil and direction == 'next' then
+	if next ~= nil and direction == "next" then
 		return next
-	elseif previous ~= nil and direction == 'previous' then
+	elseif previous ~= nil and direction == "previous" then
 		return previous
 	end
 end
@@ -70,12 +70,12 @@ end
 function TSUtils.goto_sibling(type, direction, start_node)
 	local ancestor = TSUtils.get_next_ancestor(type, start_node)
 	if ancestor == nil then
-		return vim.notify('Cursor is not currently within a ' .. type, vim.log.levels.INFO)
+		return vim.notify("Cursor is not currently within a " .. type, vim.log.levels.INFO)
 	end
 
-	local sibling =  TSUtils.get_sibling(ancestor, direction)
+	local sibling = TSUtils.get_sibling(ancestor, direction)
 	if sibling == nil then
-		return vim.notify('No ' .. direction .. ' sibling ' .. type, vim.log.levels.INFO)
+		return vim.notify("No " .. direction .. " sibling " .. type, vim.log.levels.INFO)
 	end
 
 	TSUtils.set_cursor_on_node(sibling)
@@ -88,7 +88,7 @@ function TSUtils.in_floating_window(node, file_ext)
 	local lines
 	do
 		local text = vim.treesitter.get_node_text(node, 0)
-		lines = vim.split(text, '\n', {plain = false, trimempty = true})
+		lines = vim.split(text, "\n", { plain = false, trimempty = true })
 	end
 
 	-- stash original context
@@ -99,33 +99,35 @@ function TSUtils.in_floating_window(node, file_ext)
 	local buf = vim.api.nvim_create_buf(false, false)
 	local opts = { buf = buf }
 
-	vim.api.nvim_buf_set_name(buf, math.random() .. '.' .. file_ext)
+	vim.api.nvim_buf_set_name(buf, math.random() .. "." .. file_ext)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, true, lines)
 
 	local ft = vim.filetype.match(opts)
-	vim.api.nvim_set_option_value('bufhidden', 'hide', opts)
-	vim.api.nvim_set_option_value('buftype', 'nowrite', opts)
-	vim.api.nvim_set_option_value('filetype', ft, opts)
-	vim.api.nvim_set_option_value('swapfile', false, opts)
+	vim.api.nvim_set_option_value("bufhidden", "hide", opts)
+	vim.api.nvim_set_option_value("buftype", "nowrite", opts)
+	vim.api.nvim_set_option_value("filetype", ft, opts)
+	vim.api.nvim_set_option_value("swapfile", false, opts)
 
-	vim.api.nvim_create_autocmd('WinClosed', {
+	vim.api.nvim_create_autocmd("WinClosed", {
 		buffer = buf,
-		callback = function() vim.api.nvim_buf_delete(buf, {force = false, unload = false}) end,
+		callback = function()
+			vim.api.nvim_buf_delete(buf, { force = false, unload = false })
+		end,
 		once = true,
 	})
 
 	-- open window
 	local start_row, start_col, end_row, end_col = node:range(false)
 	local line_nr, col_nr = unpack(vim.api.nvim_win_get_cursor(orig_win))
-	local win do
-
+	local win
+	do
 		local start_col_nr = math.min(start_col, end_col)
 		local orig_wininfo = vim.fn.getwininfo(orig_win)[1]
 
 		win = vim.api.nvim_open_win(buf, true, {
-			border = 'none',
+			border = "none",
 
-			relative = 'win',
+			relative = "win",
 			win = orig_win,
 			zindex = 1,
 
@@ -138,27 +140,23 @@ function TSUtils.in_floating_window(node, file_ext)
 	end
 
 	do -- allow flushing to original buffer
+		vim.api.nvim_buf_create_user_command(buf, "W", function()
+			local replacement = vim.api.nvim_buf_get_lines(buf, 0, -1, true)
+			do -- HACK: workaround for bad captures
+				local original_text = vim.api.nvim_buf_get_text(orig_buf, start_row, start_col, end_row, end_col, {})
+				while original_text[#original_text]:find("^%s*$") do -- bad capture detected
+					table.remove(original_text)
 
-		vim.api.nvim_buf_create_user_command(buf, 'W',
-			function()
-				local replacement = vim.api.nvim_buf_get_lines(buf, 0, -1, true)
-				do -- HACK: workaround for bad captures
-					local original_text = vim.api.nvim_buf_get_text(orig_buf, start_row, start_col, end_row, end_col, {})
-					while original_text[#original_text]:find('^%s*$') do -- bad capture detected
-						table.remove(original_text)
-
-						local last_real_line = original_text[#original_text]
-						end_row = end_row - 1
-						end_col = vim.api.nvim_strwidth(last_real_line)
-					end
+					local last_real_line = original_text[#original_text]
+					end_row = end_row - 1
+					end_col = vim.api.nvim_strwidth(last_real_line)
 				end
+			end
 
-				vim.api.nvim_buf_set_text(orig_buf, start_row, start_col, end_row, end_col, replacement)
-				vim.api.nvim_win_close(win, true)
-				vim.schedule(vim.cmd.update)
-			end,
-			{ desc = "Write this float's text to the buffer and close" }
-		)
+			vim.api.nvim_buf_set_text(orig_buf, start_row, start_col, end_row, end_col, replacement)
+			vim.api.nvim_win_close(win, true)
+			vim.schedule(vim.cmd.update)
+		end, { desc = "Write this float's text to the buffer and close" })
 	end
 
 	-- make buffer viewable
@@ -171,7 +169,7 @@ end
 --- @param node TSNode
 function TSUtils.set_cursor_on_node(node)
 	local row, column = node:range()
-	vim.api.nvim_win_set_cursor(0, {row + 1, column})
+	vim.api.nvim_win_set_cursor(0, { row + 1, column })
 end
 
 return TSUtils

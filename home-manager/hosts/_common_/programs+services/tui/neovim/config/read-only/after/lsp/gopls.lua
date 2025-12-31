@@ -5,5 +5,5 @@ return {
 			semanticTokens = true,
 			usePlaceholders = true,
 		},
-	}
+	},
 }

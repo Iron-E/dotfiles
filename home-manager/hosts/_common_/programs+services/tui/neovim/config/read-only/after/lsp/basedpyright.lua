@@ -4,16 +4,16 @@ return {
 		basedpyright = {
 			analysis = {
 				diagnosticSeverityOverrides = {
-					reportInvalidTypeVarUse = 'none',
-					reportMissingTypeStubs = 'none',
-					reportUnknownArgumentType = 'none',
-					reportUnknownLambdaType = 'none',
-					reportUnknownMemberType = 'none',
-					reportUnknownParameterType = 'none',
-					reportUnknownVariableType = 'none',
+					reportInvalidTypeVarUse = "none",
+					reportMissingTypeStubs = "none",
+					reportUnknownArgumentType = "none",
+					reportUnknownLambdaType = "none",
+					reportUnknownMemberType = "none",
+					reportUnknownParameterType = "none",
+					reportUnknownVariableType = "none",
 				},
 
-				typeCheckingMode = 'strict',
+				typeCheckingMode = "strict",
 			},
 		},
 	},
