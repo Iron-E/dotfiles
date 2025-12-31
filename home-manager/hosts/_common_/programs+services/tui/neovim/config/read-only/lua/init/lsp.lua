@@ -63,6 +63,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.keymap.set(modes, "gX", vim.lsp.buf.code_action, opts)
 		end
 
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>gX', '', { callback = vim.lsp.codelens.run })
+
 		if vim.lsp.get_client_by_id(event.data.client_id).server_capabilities.inlayHintProvider then
 			local conceallevel = vim.api.nvim_get_option_value("conceallevel", { scope = "local" })
 
