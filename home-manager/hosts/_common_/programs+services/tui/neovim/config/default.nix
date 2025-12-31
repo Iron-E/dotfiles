@@ -61,6 +61,7 @@ in
           prettierd
           rustfmt
           rustywind
+          stylua
           ;
 
         ####################

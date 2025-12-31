@@ -77,6 +77,7 @@ return {
 				end,
 
 				jsonnet = { "jsonnetfmt" },
+				lua = { "stylua" },
 				nix = { "nixfmt" },
 				opentofu = { "tofu_fmt" },
 				proto = { "buf" },
