@@ -19,26 +19,6 @@ end, {
 	nargs = 1,
 })
 
-do -- Redshift
-	local REDSHIFT_COLORS = { b = 5500, o = 2000, r = 1300, y = 3750 }
-
-	--- @param color string
-	local function cmd(color)
-		local opts = { "redshift", "-PO", REDSHIFT_COLORS[color:sub(1, 1)] }
-		vim.system(opts)
-	end
-
-	vim.api.nvim_create_user_command("Redshift", function(tbl)
-		cmd(tbl.args)
-	end, {
-		complete = function()
-			return { "blue", "orange", "red", "yellow" }
-		end,
-		force = true,
-		nargs = 1,
-	})
-end
-
 -- Space-Tab Conversion
 vim.api.nvim_create_user_command("SpacesToTabs", function(tbl)
 	vim.api.nvim_set_option_value("expandtab", false, scope_local)
