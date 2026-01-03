@@ -1,1 +1,1 @@
-require("indent-settings")()
+vim.api.nvim_command('SetTabstop')

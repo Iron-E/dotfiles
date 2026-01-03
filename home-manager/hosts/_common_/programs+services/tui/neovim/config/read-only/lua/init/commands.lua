@@ -3,6 +3,28 @@ local scope_local = { scope = "local" }
 
 local no_opts = {}
 
+vim.api.nvim_create_user_command('SetTabstop', function(tbl)
+	local expandtab = tbl.bang
+	local tabstop = 3
+	if tbl.args ~= "" then
+		local input_num = tonumber(tbl.args)
+		if input_num == nil then
+			vim.notify("Argument to SetTabstop must be a number", vim.log.levels.ERROR)
+			return
+		end
+
+		tabstop = input_num
+	end
+
+	--- @type vim.api.keyset.option
+	local opts = { scope = "local" }
+
+	vim.api.nvim_set_option_value("expandtab", expandtab, opts)
+	vim.api.nvim_set_option_value("shiftwidth", 0, opts) -- Use tabstop
+	vim.api.nvim_set_option_value("softtabstop", -1, opts) -- Use shiftwidth
+	vim.api.nvim_set_option_value("tabstop", tabstop, opts) -- How many spaces a tab is worth
+end, { force = true, bang = true, nargs = "?" })
+
 -- Space-Tab Conversion
 vim.api.nvim_create_user_command("SpacesToTabs", function(tbl)
 	vim.api.nvim_set_option_value("expandtab", false, scope_local)
