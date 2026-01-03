@@ -46,10 +46,10 @@ do
 		end
 
 		local tabstop = vim.api.nvim_get_option_value("tabstop", { buf = buf })
-		local leadmultispace = "│" .. string.rep(" ", tabstop - 1)
+		local listchars = "nbsp:␣,tab:│ ,trail:•,leadmultispace:│" .. string.rep(" ", tabstop - 1)
 
 		vim.api.nvim_set_option_value("list", true, opts)
-		vim.api.nvim_set_option_value("listchars", "nbsp:␣,tab:│ ,trail:•,leadmultispace:" .. leadmultispace, opts)
+		vim.api.nvim_set_option_value("listchars", listchars, opts)
 
 		vim.api.nvim_set_option_value("showbreak", "└ ", opts)
 	end
