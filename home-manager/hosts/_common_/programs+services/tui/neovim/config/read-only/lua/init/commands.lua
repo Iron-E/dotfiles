@@ -3,22 +3,6 @@ local scope_local = { scope = "local" }
 
 local no_opts = {}
 
-vim.api.nvim_create_user_command("Win", function(tbl)
-	local bufwinnr = vim.fn.bufwinid(tbl.args)
-	vim.api.nvim_set_current_win(bufwinnr)
-end, {
-	complete = function()
-		return vim.iter(vim.api.nvim_list_bufs())
-			:filter(function(bufnr)
-				return vim.fn.bufwinid(bufnr) ~= -1
-			end)
-			:map(vim.fn.bufname)
-			:totable()
-	end,
-	desc = "Focus the given window",
-	nargs = 1,
-})
-
 -- Space-Tab Conversion
 vim.api.nvim_create_user_command("SpacesToTabs", function(tbl)
 	vim.api.nvim_set_option_value("expandtab", false, scope_local)
