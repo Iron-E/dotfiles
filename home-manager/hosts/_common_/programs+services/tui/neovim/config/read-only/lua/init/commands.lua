@@ -3,30 +3,6 @@ local scope_local = { scope = "local" }
 
 local no_opts = {}
 
-do -- Brightness
-	--- @param count number
-	local function cmd(count)
-		local opts = { "brightnessctl", "set", math.abs(count * 5) .. "%" .. (count > -1 and "+" or "-") }
-		vim.system(
-			opts,
-			no_opts,
-			vim.schedule_wrap(function(shell)
-				local output = vim.split(shell.stdout, "\n", { trimpempty = true })
-				local trimmed_output = vim.trim(output[3])
-				vim.notify(trimmed_output)
-			end)
-		)
-	end
-
-	local opts = { count = 1, force = true }
-	vim.api.nvim_create_user_command("BrightnessCtl", function(tbl)
-		cmd(tbl.count)
-	end, opts)
-	vim.api.nvim_create_user_command("DarknessCtl", function(tbl)
-		cmd(-tbl.count)
-	end, opts)
-end
-
 vim.api.nvim_create_user_command("Win", function(tbl)
 	local bufwinnr = vim.fn.bufwinid(tbl.args)
 	vim.api.nvim_set_current_win(bufwinnr)
