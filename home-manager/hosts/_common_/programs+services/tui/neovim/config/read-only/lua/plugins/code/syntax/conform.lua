@@ -78,6 +78,7 @@ return {
 
 				jsonnet = { "jsonnetfmt" },
 				lua = { "stylua" },
+				markdown = { "deno_fmt" },
 				nix = { "nixfmt" },
 				opentofu = { "tofu_fmt" },
 				proto = { "buf" },
@@ -92,7 +93,6 @@ return {
 			o.formatters_by_ft.json = o.formatters_by_ft.javascript
 			o.formatters_by_ft.jsonc = o.formatters_by_ft.json
 			o.formatters_by_ft.less = o.formatters_by_ft.css
-			o.formatters_by_ft.markdown = o.formatters_by_ft.html
 			o.formatters_by_ft.sass = o.formatters_by_ft.scss
 			o.formatters_by_ft.scss = o.formatters_by_ft.css
 			o.formatters_by_ft.typescript = o.formatters_by_ft.javascript
