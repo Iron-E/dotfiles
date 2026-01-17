@@ -15,7 +15,7 @@
         };
     in
     lib.pipe
-      [ "h" "help" "-help" ]
+      [ "help" "-help" ]
       [
         (map mkHelpAbbr)
         builtins.listToAttrs
