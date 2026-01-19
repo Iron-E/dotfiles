@@ -1,4 +1,13 @@
 {
+	"callout": {
+		"body": [
+			"> [!${1:type}]${2:}",
+			">",
+			"> ${3:body}",
+			"$0"
+		],
+		"prefix": "callout"
+	},
 	"checkbox": {
 		"body": "- [ ] $0",
 		"prefix": "checkbox"
@@ -12,6 +21,15 @@
 			"</details>$0"
 		],
 		"prefix": "details"
+	},
+	"obsidian-callout": {
+		"body": [
+			"> [!${1|info,todo,tip,hint,important,success,check,done,question,help,faq,warning,caution,attention,failure,fail,missing,danger,error,bug,example,quote,cite|}]${2:}",
+			">",
+			"> ${3:body}",
+			"$0"
+		],
+		"prefix": "obsidian-callout"
 	},
 	"pull-request": {
 		"body": [
