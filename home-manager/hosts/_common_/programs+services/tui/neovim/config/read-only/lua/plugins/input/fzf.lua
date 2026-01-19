@@ -23,11 +23,14 @@ return {
 				callback = function(event)
 					local bufnr = event.buf
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<Cmd>FzfLua lsp_definitions<CR>", {})
+					vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<Cmd>FzfLua lsp_declarations<CR>", {})
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gI", "<Cmd>FzfLua lsp_implementations<CR>", {})
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<Cmd>FzfLua lsp_references<CR>", {})
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gw", "<Cmd>FzfLua lsp_document_symbols<CR>", {})
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gW", "<Cmd>FzfLua lsp_live_workspace_symbols<CR>", {})
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gy", "<Cmd>FzfLua lsp_typedefs<CR>", {})
+					vim.api.nvim_buf_set_keymap(bufnr, "n", "g<C-i>", "<Cmd>FzfLua lsp_incoming_calls<CR>", {})
+					vim.api.nvim_buf_set_keymap(bufnr, "n", "g<C-o>", "<Cmd>FzfLua lsp_outgoing_calls<CR>", {})
 				end,
 				group = "config",
 			})

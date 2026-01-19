@@ -41,11 +41,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- keymaps --
 -------------
 
-vim.api.nvim_del_keymap("n", "gri")
-vim.api.nvim_del_keymap("n", "grr")
-vim.api.nvim_del_keymap("x", "gra")
 vim.api.nvim_del_keymap("n", "gra")
+vim.api.nvim_del_keymap("n", "gri")
 vim.api.nvim_del_keymap("n", "grn")
+vim.api.nvim_del_keymap("n", "grr")
+vim.api.nvim_del_keymap("n", "grt")
+vim.api.nvim_del_keymap("x", "gra")
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = "config",
@@ -54,7 +55,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = bufnr }
 
 		vim.api.nvim_buf_set_keymap(bufnr, "n", "gA", "", { callback = vim.lsp.buf.rename })
-		vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "", { callback = vim.lsp.buf.declaration })
 		vim.api.nvim_buf_set_keymap(bufnr, "n", "gL", "", { callback = vim.lsp.codelens.run })
 		vim.keymap.set({ "i", "n" }, "<C-h>", vim.lsp.buf.signature_help, opts)
 
