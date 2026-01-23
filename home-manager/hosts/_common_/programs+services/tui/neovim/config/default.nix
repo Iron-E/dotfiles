@@ -56,7 +56,7 @@ in
           go-jsonnet
           gojq
           gotools # for goimports
-          nixfmt-rfc-style
+          nixfmt
           opentofu
           prettierd
           rustfmt
