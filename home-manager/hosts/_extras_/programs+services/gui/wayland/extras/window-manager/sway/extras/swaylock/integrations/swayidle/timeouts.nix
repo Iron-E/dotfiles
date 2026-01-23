@@ -18,16 +18,10 @@
         "if ${if isTrue then "" else "!"} ${pgrep} -x swaylock; then ${then'}; fi";
     in
     {
-      events = [
-        {
-          event = "before-sleep";
-          command = ifSwaylockRunning false swaylock;
-        }
-        {
-          event = "lock";
-          command = swaylock;
-        }
-      ];
+      events = {
+        "before-sleep" = ifSwaylockRunning false swaylock;
+        "lock" = swaylock;
+      };
 
       timeouts =
         let
