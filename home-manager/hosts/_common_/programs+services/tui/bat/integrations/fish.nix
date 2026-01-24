@@ -10,7 +10,7 @@
           flag = "-${flagSuffix}";
         in
         lib.nameValuePair flag {
-          expansion = "${flag} 2>&1 | bat -l help -pp";
+          expansion = "${flag} &| bat -l help -pp";
           position = "anywhere";
         };
     in
