@@ -48,6 +48,15 @@ return {
 
 		--- @param o conform.setupOpts
 		opts = function(_, o)
+			o.formatters = {
+				deno_fmt = {
+					require_cwd = true,
+					cwd = function(_, ctx)
+						return vim.fs.root(ctx.filename, { "deno.json", "deno.lock" })
+					end,
+				},
+			}
+
 			--- @param else_ string
 			--- @param formatter string
 			--- @param bufnr integer
@@ -83,7 +92,7 @@ return {
 				opentofu = { "tofu_fmt" },
 				proto = { "buf" },
 				rust = { "rustfmt" },
-				sh = { "shellcheck" },
+				sh = { "shellcheck", timeout_ms = 1000 },
 				sql = { "deno_fmt" },
 				terraform = { "terraform_fmt" },
 			}
@@ -101,28 +110,12 @@ return {
 			o.formatters_by_ft["opentofu-vars"] = o.formatters_by_ft.opentofu
 			o.formatters_by_ft["terraform-vars"] = o.formatters_by_ft.terraform
 
-			o.format_on_save = function(bufnr)
-				local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
-				if filetype == "lua" then
-					return nil
-				elseif filetype == "sh" then -- shellcheck can take a while
-					return { timeout_ms = 1000 }
-				end
+			o.default_format_opts = {
+				lsp_format = "fallback",
+			}
 
-				--- @type conform.FormatOpts
-				return { timeout_ms = 500 }
-			end
-
-			o.formatters = {
-				deno_fmt = {
-					require_cwd = true,
-					cwd = function(_, ctx)
-						return vim.fs.root(ctx.filename, { "deno.json", "deno.lock" })
-					end,
-				},
-				yq = {
-					args = { "-y" },
-				},
+			o.format_on_save = {
+				timeout_ms = 500,
 			}
 
 			o.log_level = vim.log.levels.OFF
