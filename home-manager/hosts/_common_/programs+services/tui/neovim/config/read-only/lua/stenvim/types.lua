@@ -1,6 +1,6 @@
 --- @class vim.ui.input.opts
 --- @field prompt? string
---- @field _prompt_width integer (for internal use by stenvim)
+--- @field package _prompt_width? integer (for internal use by stenvim)
 --- @field default? string
 --- @field completion vim.ui.input.completion
 --- @field highlight vim.ui.input.highlight
