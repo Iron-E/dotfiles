@@ -63,5 +63,9 @@
 			"- ${5:n/a}"
 		],
 		"prefix": "pull-request"
+	},
+	"tag": {
+		"body": "[[${1:}|${2:$TM_SELECTED_TEXT}]]$0",
+		"prefix": "tag"
 	}
 }
