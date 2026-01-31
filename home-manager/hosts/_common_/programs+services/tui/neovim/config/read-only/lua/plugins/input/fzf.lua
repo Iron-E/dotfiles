@@ -19,6 +19,16 @@ return {
 		},
 
 		init = function()
+			vim.api.nvim_create_user_command("OCITags", function(args)
+				local oci = require("custom-fzf.oci")
+				if args.bang then
+					oci.tags()
+					return
+				end
+
+				oci.live_tags()
+			end, { force = true, bang = true })
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
 					local bufnr = event.buf
