@@ -22,6 +22,15 @@
 		],
 		"prefix": "details"
 	},
+	"mermaid": {
+		"body": [
+			"```mermaid",
+			"${1:flowchart TB}",
+			"\t${2:}",
+			"```$0"
+		],
+		"prefix": "mermaid"
+	},
 	"obsidian-callout": {
 		"body": [
 			"> [!${1|info,todo,tip,hint,important,success,check,done,question,help,faq,warning,caution,attention,failure,fail,missing,danger,error,bug,example,quote,cite|}]${2:}",
