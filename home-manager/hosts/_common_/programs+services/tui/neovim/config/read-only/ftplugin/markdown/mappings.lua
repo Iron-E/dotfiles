@@ -14,3 +14,7 @@ for _, mode in ipairs({ "n", "x" }) do
 	vim.api.nvim_buf_set_keymap(0, mode, "][", "", next_section)
 	vim.api.nvim_buf_set_keymap(0, mode, "[]", "", previous_section)
 end
+
+vim.api.nvim_buf_set_keymap(0, "n", "<Leader>n", "<Cmd>New<CR>", {
+	noremap = true,
+})
