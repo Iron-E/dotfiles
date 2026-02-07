@@ -99,6 +99,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"marksman",
 	"nixd",
+	"nushell",
 	"rust_analyzer",
 	"sqls",
 	"tailwindcss",
