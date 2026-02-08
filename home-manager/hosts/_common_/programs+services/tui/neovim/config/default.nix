@@ -81,7 +81,6 @@ in
           lua-language-server
           marksman
           nixd
-          nushell
           roslyn-ls
           rust-analyzer
           sqls
