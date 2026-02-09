@@ -42,7 +42,11 @@
 		"prefix": "listitem"
 	},
 	"para": {
-		"body": ["<para>", "/// \t\t${1:lorem}", "/// \t</para>${0:}"],
+		"body": [
+			"<para>",
+			"/// \t\t${1:lorem}",
+			"/// \t</para>${0:}"
+		],
 		"prefix": "para"
 	},
 	"param": {
@@ -58,11 +62,19 @@
 		"prefix": "paramref"
 	},
 	"remarks": {
-		"body": ["<remarks>", "/// \t${1:lorem}", "/// </remarks>${0:}"],
+		"body": [
+			"<remarks>",
+			"/// \t${1:lorem}",
+			"/// </remarks>${0:}"
+		],
 		"prefix": "remarks"
 	},
 	"returns": {
-		"body": ["<returns>", "/// \tlorem", "/// </returns>${0:}"],
+		"body": [
+			"<returns>",
+			"/// \tlorem",
+			"/// </returns>${0:}"
+		],
 		"prefix": "returns"
 	},
 	"see": {
@@ -78,7 +90,11 @@
 		"prefix": "seeas"
 	},
 	"summary": {
-		"body": ["<summary>", "/// \t${1:lorem}", "/// </summary>${0:}"],
+		"body": [
+			"<summary>",
+			"/// \t${1:lorem}",
+			"/// </summary>${0:}"
+		],
 		"prefix": "summary"
 	},
 	"typeparam": {
@@ -94,11 +110,19 @@
 		"prefix": "typeparamref"
 	},
 	"value": {
-		"body": ["<value>", "///\t${1:lorem}", "/// </value>${0:}"],
+		"body": [
+			"<value>",
+			"///\t${1:lorem}",
+			"/// </value>${0:}"
+		],
 		"prefix": "value"
 	},
 	"writeline": {
 		"body": "Console.WriteLine(${1:});${0:}",
 		"prefix": "writeline"
+	},
+	"yr": {
+		"body": "yield return ${1:};$0",
+		"prefix": "yr"
 	}
 }
