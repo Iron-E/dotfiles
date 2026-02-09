@@ -41,6 +41,10 @@
 		],
 		"prefix": "main"
 	},
+	"unimplemented": {
+		"body": "panic(\"unimplemented\")",
+		"prefix": "unimplemented"
+	},
 	"varifok": {
 		"body": [
 			"${1:_}, ok := ${2:fn()}",
