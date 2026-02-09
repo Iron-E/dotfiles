@@ -1,4 +1,16 @@
 {
+	"armg": {
+		"body": [
+			"ARG ${1:FOO}_IMG=${2:}",
+			"ARG ${1:FOO}_TAG=${3:}",
+			"ARG ${1:FOO}_DIGEST=${4:}"
+		],
+		"prefix": "armg"
+	},
+	"img": {
+		"body": "\\${${1:FOO}_IMG}_\\${${1:FOO}_IMG}\\${${1:FOO}_DIGEST}",
+		"prefix": "img"
+	},
 	"labels": {
 		"body": [
 			"LABEL org.opencontainers.image.title=\"$1\"",
@@ -13,5 +25,9 @@
 			"$0"
 		],
 		"prefix": "labels"
+	},
+	"platform": {
+		"body": "--platform=${1:\\${BUILDPLATFORM}}",
+		"prefix": "platform"
 	}
 }
