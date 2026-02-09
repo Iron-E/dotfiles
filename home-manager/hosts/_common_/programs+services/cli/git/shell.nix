@@ -20,6 +20,7 @@
     gba = "gb --abort";
     gbu = "gb --continue";
     gbi = "gb --interactive";
+    gbim = "gbi --rebase-merges";
     gbis = "gb --exec 'g commit --amend --no-edit -n -S' -i rebase -i";
 
     gc = "g commit";
@@ -49,6 +50,10 @@
     ghe = "gh HEAD";
 
     gl = "g log";
+
+    gm = "g merge";
+    gma = "g merge --abort";
+    gmu = "g merge --continue";
 
     gn = "g branch";
     gnd = "gn -d";
