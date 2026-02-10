@@ -103,17 +103,9 @@ vim.api.nvim_set_keymap("n", "<A-q>", "<Cmd>quit<CR>", no_opts)
 
 -- Location list
 vim.api.nvim_set_keymap("n", "<A-w>l", "<Cmd>lwindow<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "[l", "<Cmd>lprevious<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "]l", "<Cmd>lnext<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "[L", "<Cmd>lfirst<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "]L", "<Cmd>llast<CR>", no_opts)
 
 -- Quickfix Window
 vim.api.nvim_set_keymap("n", "<A-w>q", "<Cmd>cwindow<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "[q", "<Cmd>cprevious<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "]q", "<Cmd>cnext<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "[Q", "<Cmd>cfirst<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "]Q", "<Cmd>clast<CR>", no_opts)
 
 -- switch between windows, preserving size
 vim.api.nvim_set_keymap("n", "<A-h>", "<C-w><Left>", noremap)
