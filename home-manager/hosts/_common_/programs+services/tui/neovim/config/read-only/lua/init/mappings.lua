@@ -139,52 +139,15 @@ vim.api.nvim_set_keymap("n", "]t", "<Cmd>tabnext<CR>", no_opts)
 -- Conflict markers
 
 do
-	--- @param mode? 'forward'|'backward'|'first'|'last'
-	local function jump(mode)
-		local win = vim.api.nvim_get_current_win()
-		local old_curpos = vim.api.nvim_win_get_cursor(win)
+	local pattern = [[\v^[<|>]{7}\s.*$]]
 
-		local flags = "n"
+	local modes = { "n", "x", "o" }
 
-		if mode == nil or mode == "forward" then
-		elseif mode == "first" then
-			flags = flags .. "c"
-			vim.api.nvim_win_set_cursor(win, { 1, 0 })
-		elseif mode == "backward" then
-			flags = flags .. "b"
-		elseif mode == "last" then
-			flags = flags .. "bc"
-			local _, lnum, col, _ = unpack(vim.fn.getpos("$"))
-			vim.api.nvim_win_set_cursor(win, { lnum, col - 1 })
-		end
+	vim.keymap.set(modes, "[X", "<Cmd>Jfirst " .. pattern .. "<CR>")
+	vim.keymap.set(modes, "[x", "<Cmd>Jprevious " .. pattern .. "<CR>")
+	vim.keymap.set(modes, "]x", "<Cmd>Jnext " .. pattern .. "<CR>")
+	vim.keymap.set(modes, "]X", "<Cmd>Jlast " .. pattern .. "<CR>")
 
-		local lnum, col = unpack(vim.fn.searchpos("\\v^\\<{7}\\s", flags))
-
-		if lnum == 0 and col == 0 then
-			vim.api.nvim_win_set_cursor(0, old_curpos)
-			return
-		end
-
-		local buf = vim.api.nvim_win_get_buf(win)
-		vim.api.nvim_buf_set_mark(buf, "'", old_curpos[1], old_curpos[2], {})
-		vim.api.nvim_win_set_cursor(0, { lnum, col - 1 })
-	end
-
-	local modes = { "n", "x" }
-
-	vim.keymap.set(modes, "[X", function()
-		jump("first")
-	end)
-
-	vim.keymap.set(modes, "[x", function()
-		jump("backward")
-	end)
-
-	vim.keymap.set(modes, "]x", function()
-		jump("forward")
-	end)
-
-	vim.keymap.set(modes, "]X", function()
-		jump("last")
-	end)
+	vim.keymap.set(modes, "<A-w>x", "<Cmd>Jqflist " .. pattern .. "<CR>")
+	vim.keymap.set(modes, "<A-w><A-x>", "<Cmd>Jloclist " .. pattern .. "<CR>")
 end
