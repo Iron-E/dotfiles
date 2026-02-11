@@ -54,8 +54,9 @@ return {
 				group = "config",
 				callback = function(ev)
 					local ft = ev.match
-					local installed = installed_parsers[ft]
+					local lang = vim.treesitter.language.get_lang(ft)
 
+					local installed = installed_parsers[lang]
 					if installed == true then -- already installed
 						return
 					end
@@ -63,7 +64,7 @@ return {
 					local task = installed
 					if task == nil then
 						local ts = require("nvim-treesitter")
-						task = install_parsers(ts.install, { ft })
+						task = install_parsers(ts.install, { lang })
 					end
 
 					-- re-trigger filetype detection to attach highlighting
