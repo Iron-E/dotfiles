@@ -42,7 +42,7 @@ local actions = {
 	--- @type iron-e.fzf.Oci.Action
 	copy_digest = function(items, opts)
 		local tag = items[1]
-		local image = opts.last_query .. ":" .. tag
+		local image = (opts.image or opts.last_query) .. ":" .. tag
 		yank_cmd({ "crane", "digest", image })
 	end,
 
@@ -104,10 +104,10 @@ function M.tags(opts)
 
 	opts.header = "<ctrl-g> to Tag Search"
 	opts.winopts = opts.winopts or {}
-	opts.winopts.title = " Live Tags "
+	opts.winopts.title = " Image Tags "
 	opts.actions = vim.tbl_extend("keep", {
 		["ctrl-g"] = function(_, _)
-			M.live_tags({ image = opts.image, tags = items })
+			M.live_tags({ image = opts.image, tags = opts.tags })
 		end,
 	}, default_action_bindings)
 
@@ -144,16 +144,16 @@ function M.live_tags(opts)
 	end
 
 	if opts.query == nil then
-		opts.query = last_yanked()
+		opts.query = opts.image or last_yanked()
 	end
 
 	opts.header = "<ctrl-g> to Fuzzy Search"
 	opts.winopts = opts.winopts or {}
-	opts.winopts.title = " Live Tags "
+	opts.winopts.title = " Image Tags "
 	opts.exec_empty_query = false
 	opts.actions = vim.tbl_extend("keep", {
-		["ctrl-g"] = function(_, _)
-			M.tags({ image = opts.last_query, tags = opts.tags })
+		["ctrl-g"] = function(_, o)
+			M.tags({ image = o.last_query, tags = opts.tags })
 		end,
 	}, default_action_bindings)
 
