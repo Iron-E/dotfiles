@@ -1,11 +1,14 @@
+--- @module 'lazy'
 --- @module 'mini.jump'
 
 --- mode for mapping
 local nxo = { "n", "x", "o" }
 
+--- @type LazySpec[]
 return {
 	{
 		"echasnovski/mini.jump",
+		cond = false,
 		keys = {
 			{ "F", mode = nxo, desc = "jump backward" },
 			{ "f", mode = nxo, desc = "jump forward" },
