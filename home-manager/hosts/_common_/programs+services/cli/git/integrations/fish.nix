@@ -3,6 +3,24 @@
   imports = [ ];
 
   programs.fish.functions = lib.optionalAttrs config.programs.git.enable {
+    gkz = {
+      description = "Reads a stream of revisions from stdin and greps ";
+      body = # fish
+        ''
+          set -f result (
+            git worktree list \
+            | fzf \
+              --with-nth "{3}"\t"{1}" \
+              --nth "1" \
+              --accept-nth "1"
+          )
+
+          if [ -n "$result" ]
+            cd "$result"
+          end
+        '';
+    };
+
     git-grep-revs = {
       description = "Reads a stream of revisions from stdin and greps ";
       wraps = "git grep";
@@ -13,6 +31,7 @@
           end
         '';
     };
+
     git-diff-merge = {
       description = "Get the diff between (the current branch and its origin) and ((the main branch) and (the commit the current branch's origin branched from master))";
       body = # fish
