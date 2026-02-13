@@ -16,7 +16,7 @@ vim.api.nvim_set_option_value("concealcursor", "nc", {}) -- Don't unconceal in n
 vim.api.nvim_set_option_value("cursorline", true, {}) -- Highlight current line
 vim.opt.diffopt:append({ "algorithm:histogram", "linematch:60" }) -- Highlight inline diffs
 vim.opt.fillchars = { fold = " ", msgsep = "▔" } -- Set folds to not trail dots
-vim.api.nvim_set_option_value("foldlevelstart", 2, {}) -- starting fold level
+vim.api.nvim_set_option_value("foldlevelstart", 99, {}) -- starting fold level
 vim.api.nvim_set_option_value("foldmethod", "indent", {}) -- Set folding to occur from a marker
 vim.api.nvim_set_option_value("foldtext", "v:lua.NeatFoldText()", {}) -- Set text of folds
 vim.api.nvim_set_option_value("grepprg", "rg --vimgrep", {}) -- Use ripgrep instead of grep.
