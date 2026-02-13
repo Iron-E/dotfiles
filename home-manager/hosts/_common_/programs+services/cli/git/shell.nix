@@ -23,6 +23,8 @@
     gbim = "gbi --rebase-merges";
     gbis = "gb --exec 'g commit --amend --no-edit -n -S' -i rebase -i";
 
+    gcy = "g cherry";
+
     gc = "g commit";
     gca = "gc --amend";
     gcf = "gc --fixup";
@@ -36,6 +38,7 @@
 
     gd = "g diff";
     gdh = "gd HEAD";
+    gdr = "g range-diff";
     gds = "gd --stat";
     gdsh = "gds HEAD";
 
@@ -50,6 +53,9 @@
     ghe = "gh HEAD";
 
     gl = "g log";
+    glc = "g clog";
+    glt = "g tlog";
+    glg = "g graph";
 
     gm = "g merge";
     gma = "g merge --abort";

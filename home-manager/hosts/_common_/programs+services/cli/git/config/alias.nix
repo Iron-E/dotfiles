@@ -6,6 +6,10 @@
     graph = "log --graph --pretty=format:'%C(#ffb7b7)%h%C(reset bold) %an%C(reset) %s %C(#ff4090)(%cr)%C(bold #ffa6ff)%d%C(reset)' --abbrev-commit --date=relative";
     main = "symbolic-ref refs/remotes/origin/HEAD --short";
 
+    clog = "log --topo-order --oneline --cherry";
+
+    tlog = "log --topo-order";
+
     ls = "ls-files";
 
     # "list diff"
@@ -38,13 +42,23 @@
 
     lst = "ls-tree";
 
+    # print working directory
+    pwd = "rev-parse --show-toplevel";
+
     # "Print (Current) Branch"
     pb = "branch --show-current";
 
     # Print Origin Branch
-    opb = "rev-parse --abbrev-ref '@{upstream}'";
+    opb = "rev-parse --abbrev-ref '@{push}'";
 
-    pwd = "rev-parse --show-toplevel";
+    # Print Release Branch
+    rpb = "! git pb | sed 's/^staging/release/'";
+
+    # Print Staging Branch
+    spb = "! git pb | sed 's/^release/staging/'";
+
+    # Print Upstream Branch
+    upb = "rev-parse --abbrev-ref '@{upstream}'";
 
     up =
       lib.trim # sh
