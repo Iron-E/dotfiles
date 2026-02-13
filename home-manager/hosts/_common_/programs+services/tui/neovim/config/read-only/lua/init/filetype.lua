@@ -60,17 +60,22 @@ vim.filetype.add({
 
 		[".*/[Tt]askfile[^/]*%.ya?ml"] = "yaml.taskfile",
 
-		[".*/templates/_.*%.tm?pl"] = function(path)
+		[".*/templates/.*%.tm?pl"] = function(path)
 			if in_helm_chart(path) then
 				return "helm"
 			end
 		end,
 
-		[".*/[^/]*values.ya?ml"] = function(path)
-			if in_helm_chart(path) then
-				return "yaml.helm-values"
-			end
-		end,
+		[".*/[^/]*values.ya?ml"] = {
+			function(path)
+				if in_helm_chart(path) then
+					return "yaml.helm-values"
+				end
+			end,
+
+			-- takes priority over *.yaml resolution, but not over templates/*.yaml
+			{ priority = 1 },
+		},
 
 		[".*/templates/.*%.ya?ml"] = {
 			function(path)
@@ -80,7 +85,14 @@ vim.filetype.add({
 			end,
 
 			-- takes priority over values.yaml resolution
-			{ priority = 1 },
+			{ priority = 2 },
 		},
+
+		[".*/.*%.ya?ml"] = function(path)
+			local parent = vim.fs.dirname(vim.fs.dirname(path))
+			if in_helm_chart(parent) then
+				return "helm"
+			end
+		end,
 	},
 })
