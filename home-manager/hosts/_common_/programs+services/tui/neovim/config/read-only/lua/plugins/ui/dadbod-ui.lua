@@ -6,7 +6,7 @@ return {
 		ft = { "mysql", "plsql", "sql" },
 		config = function()
 			vim.api.nvim_set_var("db_ui_execute_on_save", false)
-			vim.api.nvim_set_var("db_ui_save_location", vim.stdpath("data") .. "/db_ui")
+			vim.api.nvim_set_var("db_ui_save_location", vim.fn.stdpath("data") .. "/db_ui")
 			vim.api.nvim_set_var("db_ui_show_database_icon", true)
 			vim.api.nvim_set_var("db_ui_use_nerd_fonts", true)
 
