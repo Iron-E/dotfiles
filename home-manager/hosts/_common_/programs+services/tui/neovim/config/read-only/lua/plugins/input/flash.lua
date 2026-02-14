@@ -69,6 +69,11 @@ return {
 				},
 
 				treesitter = {
+					actions = {
+						[";"] = "next",
+						[","] = "prev",
+					},
+
 					highlight = {
 						backdrop = true,
 					},
