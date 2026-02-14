@@ -20,7 +20,7 @@ return {
 				desc = "Flash",
 			},
 			{
-				"<S-Space>",
+				"<C-Space>",
 				mode = { "n", "x", "o" },
 				'<Cmd>lua require("flash").treesitter()<CR>',
 				desc = "Flash Treesitter",
