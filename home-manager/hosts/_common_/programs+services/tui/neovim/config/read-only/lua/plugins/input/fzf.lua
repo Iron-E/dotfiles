@@ -12,6 +12,8 @@ return {
 		keys = {
 			{ "<A-b>", "<Cmd>FzfLua buffers<CR>", mode = "n" },
 			{ "<A-f>", "<Cmd>FzfLua files<CR>", mode = "n" },
+			{ "<A-w>d", "<Cmd>FzfLua diagnostics_document<CR>", mode = "n" },
+			{ "<A-w><A-d>", "<Cmd>FzfLua diagnostics_workspace<CR>", mode = "n" },
 			{ "<Leader>F", "<Cmd>FzfLua resume<CR>", mode = "n" },
 			{ "<Leader>f", "<Cmd>FzfLua<CR>", mode = "n" },
 			{ "<Leader>g", "<Cmd>FzfLua live_grep<CR>", mode = "n" },
