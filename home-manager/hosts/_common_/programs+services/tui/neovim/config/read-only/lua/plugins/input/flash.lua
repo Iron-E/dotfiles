@@ -67,6 +67,12 @@ return {
 						}
 					end,
 				},
+
+				treesitter = {
+					highlight = {
+						backdrop = true,
+					},
+				},
 			}
 		end,
 	},
