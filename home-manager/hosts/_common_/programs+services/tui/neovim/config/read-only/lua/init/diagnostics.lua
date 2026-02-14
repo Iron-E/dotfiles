@@ -34,6 +34,5 @@ vim.api.nvim_set_keymap("n", "gC", "", {
 	end,
 })
 
-vim.api.nvim_set_keymap("n", "gK", "", { callback = vim.diagnostic.open_float })
 vim.api.nvim_set_keymap("n", "<A-w>d", "", { callback = vim.diagnostic.setqflist })
 vim.api.nvim_set_keymap("n", "<A-w><A-d>", "", { callback = vim.diagnostic.setloclist })
