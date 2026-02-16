@@ -19,7 +19,6 @@ vim.opt.fillchars = { fold = " ", msgsep = "▔" } -- Set folds to not trail dot
 vim.api.nvim_set_option_value("foldlevelstart", 99, {}) -- starting fold level
 vim.api.nvim_set_option_value("foldmethod", "indent", {}) -- Set folding to occur from a marker
 vim.api.nvim_set_option_value("foldtext", "v:lua.NeatFoldText()", {}) -- Set text of folds
-vim.api.nvim_set_option_value("grepprg", "rg --vimgrep", {}) -- Use ripgrep instead of grep.
 vim.api.nvim_set_option_value("ignorecase", true, {}) -- Case insensitive search by default
 vim.api.nvim_set_option_value("inccommand", "split", {}) -- Show regular expression previews in a split
 vim.api.nvim_set_option_value("laststatus", 3, {}) -- Only show a statusline at the bottom of the screen
