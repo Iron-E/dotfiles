@@ -15,6 +15,7 @@ vim.opt.completeopt = { "menuone", "noinsert", "noselect" } -- Completion visual
 vim.api.nvim_set_option_value("concealcursor", "nc", {}) -- Don't unconceal in normal or command mode
 vim.api.nvim_set_option_value("cursorline", true, {}) -- Highlight current line
 vim.opt.diffopt:append({ "algorithm:histogram", "linematch:60" }) -- Highlight inline diffs
+vim.api.nvim_set_option_value("exrc", true, {}) -- Allow project-local config
 vim.opt.fillchars = { fold = " ", msgsep = "▔" } -- Set folds to not trail dots
 vim.api.nvim_set_option_value("foldlevelstart", 99, {}) -- starting fold level
 vim.api.nvim_set_option_value("foldmethod", "indent", {}) -- Set folding to occur from a marker
