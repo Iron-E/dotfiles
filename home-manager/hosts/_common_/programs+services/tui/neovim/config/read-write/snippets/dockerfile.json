@@ -8,7 +8,7 @@
 		"prefix": "armg"
 	},
 	"img": {
-		"body": "\\${${1:FOO}_IMG}_\\${${1:FOO}_IMG}\\${${1:FOO}_DIGEST}",
+		"body": "\\${${1:FOO}_IMG}:\\${${1:FOO}_IMG}\\${${1:FOO}_DIGEST}",
 		"prefix": "img"
 	},
 	"labels": {
@@ -27,7 +27,7 @@
 		"prefix": "labels"
 	},
 	"platform": {
-		"body": "--platform=${1:\\${BUILDPLATFORM}}",
+		"body": "--platform=${1:\\${BUILDPLATFORM\\}}",
 		"prefix": "platform"
 	}
 }
