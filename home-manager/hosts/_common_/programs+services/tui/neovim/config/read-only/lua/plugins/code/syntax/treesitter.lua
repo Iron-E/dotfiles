@@ -1,3 +1,7 @@
+--- the known-available parsers
+--- @type { [string]: true }
+local available_parsers = {}
+
 --- the known-installed parsers
 --- @type { [string]: true|async.Task }
 local installed_parsers = {}
@@ -55,6 +59,9 @@ return {
 				callback = function(ev)
 					local ft = ev.match
 					local lang = vim.treesitter.language.get_lang(ft)
+					if available_parsers[lang] == nil then
+						return
+					end
 
 					local installed = installed_parsers[lang]
 					if installed == true then -- already installed
@@ -77,6 +84,11 @@ return {
 		end,
 		config = function(_, o)
 			local ts = require("nvim-treesitter")
+
+			local available = ts.get_available()
+			for _, parser in ipairs(available) do
+				available_parsers[parser] = true
+			end
 
 			local installed = ts.get_installed("parsers")
 			for _, parser in ipairs(installed) do
