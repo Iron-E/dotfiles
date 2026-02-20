@@ -23,6 +23,13 @@ return {
 				pattern = "aerial",
 				command = "set foldmethod=manual",
 			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				desc = "Fix shadowing gO",
+				group = "config",
+				pattern = "help",
+				command = "unmap <buffer> gO",
+			})
 		end,
 
 		opts = function(_, o)
