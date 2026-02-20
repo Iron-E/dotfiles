@@ -41,8 +41,15 @@ return {
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gw", "<Cmd>FzfLua lsp_document_symbols<CR>", {})
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gW", "<Cmd>FzfLua lsp_live_workspace_symbols<CR>", {})
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "gy", "<Cmd>FzfLua lsp_typedefs<CR>", {})
-					vim.api.nvim_buf_set_keymap(bufnr, "n", "g<C-i>", "<Cmd>FzfLua lsp_incoming_calls<CR>", {})
-					vim.api.nvim_buf_set_keymap(bufnr, "n", "g<C-o>", "<Cmd>FzfLua lsp_outgoing_calls<CR>", {})
+
+					-- this probably looks backwards, but it is more orthogonal to the tag/jump stack mappings
+					vim.api.nvim_buf_set_keymap(bufnr, "n", "g<C-o>", "<Cmd>FzfLua lsp_incoming_calls<CR>", {
+						desc = "Outer callstack",
+					})
+
+					vim.api.nvim_buf_set_keymap(bufnr, "n", "g<C-i>", "<Cmd>FzfLua lsp_outgoing_calls<CR>", {
+						desc = "Inner callstack",
+					})
 				end,
 				group = "config",
 			})
