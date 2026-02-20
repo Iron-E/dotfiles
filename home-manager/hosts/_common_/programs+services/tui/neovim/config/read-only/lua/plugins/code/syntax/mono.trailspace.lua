@@ -2,6 +2,7 @@
 
 return {
 	{
+		-- TODO: replace this with a short function of my own?
 		"echasnovski/mini.trailspace",
 		opts = function()
 			vim.api.nvim_create_autocmd("BufWritePre", {
