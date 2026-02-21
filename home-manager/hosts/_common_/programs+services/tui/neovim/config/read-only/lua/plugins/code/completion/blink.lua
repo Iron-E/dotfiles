@@ -168,15 +168,33 @@ return {
 				end
 			end
 
+			--- @type blink.cmp.Context
+			--- @diagnostic disable-next-line missing-required-fields
+			local default_ctx = {
+				get_cursor = function()
+					return vim.api.nvim_win_get_cursor(0)
+				end,
+
+				get_line = function(num)
+					return vim.api.nvim_buf_get_lines(0, num, num + 1, false)[1]
+				end,
+			}
+
 			--- @param cmp blink.cmp.API
 			--- @return boolean|nil
 			local function show_if_cursor_on_word(cmp)
-				local column = vim.api.nvim_win_get_cursor(0)[2]
+				local ctx = cmp.get_context() or default_ctx
+				if ctx.mode == "cmdline" then
+					return cmp.show()
+				end
+
+				local cursor = ctx.get_cursor()
+				local column = cursor[2]
 				if column < 1 then
 					return
 				end
 
-				local line = vim.api.nvim_get_current_line()
+				local line = ctx.get_line(cursor[1] - 1)
 				local char = line:sub(column, column)
 
 				if char:find("%s") == nil then
@@ -209,6 +227,9 @@ return {
 				providers = {
 					buffer = {
 						name = "",
+					},
+					cmdline = {
+						name = "",
 					},
 					dadbod = {
 						name = "",
