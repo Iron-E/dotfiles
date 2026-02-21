@@ -13,6 +13,45 @@ end
 vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 
 --------------
+-- commands --
+--------------
+
+vim.api.nvim_create_user_command("LspDetach", function(args)
+	local buf = vim.api.nvim_get_current_buf()
+	local clients = vim.lsp.get_clients({ buf = buf })
+
+	local margs
+	if #args.fargs == 0 then
+		margs = setmetatable({}, {
+			__index = function()
+				return true
+			end,
+		})
+	else
+		margs = vim.iter(ipairs(args.fargs)):fold({}, function(acc, _, arg)
+			acc[arg] = true
+			return acc
+		end)
+	end
+
+	for _, client in ipairs(clients) do
+		if margs[client.name] == true then
+			vim.lsp.buf_detach_client(buf, client.id)
+		end
+	end
+end, {
+	nargs = "*",
+	complete = function()
+		local clients = vim.lsp.get_clients({ buf = 0 })
+		return vim.iter(ipairs(clients))
+			:map(function(_, client)
+				return client.name
+			end)
+			:totable()
+	end,
+})
+
+--------------
 -- autocmds --
 --------------
 
