@@ -1,6 +1,6 @@
 --- @module 'fzf-lua'
 
---- @class iron-e.fzf.Oci: fzf-lua.config.Resolved
+--- @class iron-e.fzf.Oci: fzf-lua.config.Base
 --- @field exec_empty_query? boolean
 --- @field last_query? string
 --- @field image? string
@@ -157,17 +157,21 @@ function M.live_tags(opts)
 		end,
 	}, default_action_bindings)
 
-	require("fzf-lua").fzf_live(function(args)
-		if had_tags then
-			had_tags = false
-			return opts.tags
-		end
+	require("fzf-lua").fzf_live(
+		function(args)
+			if had_tags then
+				had_tags = false
+				return opts.tags
+			end
 
-		return function(fzf_cb)
-			opts.tags = {}
-			load_fzf_for_each_tag(args[1], fzf_cb, opts)
-		end
-	end, opts)
+			return function(fzf_cb)
+				opts.tags = {}
+				load_fzf_for_each_tag(args[1], fzf_cb, opts)
+			end
+		end,
+		--- @diagnostic disable-next-line param-type-mismatch
+		opts
+	)
 end
 
 return M
