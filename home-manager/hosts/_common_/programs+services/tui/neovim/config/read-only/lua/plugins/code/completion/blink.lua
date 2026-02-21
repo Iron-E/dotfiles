@@ -209,6 +209,7 @@ return {
 				["<C-f>"] = { scroll_docs("down"), "fallback" },
 
 				["<C-c>"] = { "show", "fallback" },
+				["<C-e>"] = { "cancel", "fallback" },
 				["<C-Space>"] = { "accept", "fallback" },
 
 				["<C-n>"] = { "snippet_forward", "fallback" },
