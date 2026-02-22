@@ -143,3 +143,69 @@ do
 	vim.keymap.set(modes, "<A-w>x", "<Cmd>Jqflist " .. pattern .. "<CR>")
 	vim.keymap.set(modes, "<A-w><A-x>", "<Cmd>Jloclist " .. pattern .. "<CR>")
 end
+
+-- I hate how de/indenting up moves my cursor
+
+do
+	local group = vim.api.nvim_create_augroup("config.indent_helper", { clear = true })
+
+	---handle an indent operator, and then restore the cursor to it's old position
+	---@param char '<'|'>'
+	local function handle_indent(char)
+		local view = vim.fn.winsaveview()
+
+		local buf = vim.api.nvim_get_current_buf()
+		local win = vim.api.nvim_get_current_win()
+
+		vim.api.nvim_feedkeys(char, "nt", false)
+		vim.api.nvim_create_autocmd("ModeChanged", {
+			desc = "Restore cursor position after de/indent",
+			group = group,
+			buffer = buf,
+			callback = function(ev)
+				if not ev.match:find(":n$") then
+					return
+				end
+
+				-- reset the window view
+				vim.fn.winrestview(view)
+
+				-- move the cursor by the amount of the offset
+				-- the offset amount depends on whether tabs are used
+				local offset = 1
+				if vim.api.nvim_get_option_value("expandtab", { buf = buf }) then
+					offset = vim.api.nvim_get_option_value("shiftwidth", { buf = buf })
+					if offset == 0 then -- the 'shiftwidth' option equals tabstop when 0
+						offset = vim.api.nvim_get_option_value("tabstop", { buf = buf })
+					end
+				end
+
+				local cursor = vim.api.nvim_win_get_cursor(win)
+				if char == "<" then -- de-indent
+					cursor[2] = math.max(0, cursor[2] - offset)
+				else -- indent
+					cursor[2] = cursor[2] + offset
+				end
+
+				-- offset cursor
+				vim.api.nvim_win_set_cursor(win, cursor)
+
+				return true
+			end,
+		})
+	end
+
+	vim.api.nvim_set_keymap("n", "<", "", {
+		desc = "Wrap built-in '<' to restore cursor position",
+		callback = function()
+			handle_indent("<")
+		end,
+	})
+
+	vim.api.nvim_set_keymap("n", ">", "", {
+		desc = "Wrap built-in '>' to restore cursor position",
+		callback = function()
+			handle_indent(">")
+		end,
+	})
+end
