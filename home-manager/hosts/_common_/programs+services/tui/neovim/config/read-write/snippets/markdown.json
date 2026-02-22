@@ -22,6 +22,15 @@
 		],
 		"prefix": "details"
 	},
+	"frontmatter": {
+		"body": [
+			"---",
+			"${1:}",
+			"---",
+			"$0"
+		],
+		"prefix": "frontmatter"
+	},
 	"mermaid": {
 		"body": [
 			"```mermaid",
