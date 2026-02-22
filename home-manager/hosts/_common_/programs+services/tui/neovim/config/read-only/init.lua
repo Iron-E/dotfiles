@@ -24,6 +24,4 @@ require("init/lsp")
 require("init/treesitter")
 
 -- Plugins
-require("init/lazy")
-
-require("stenvim"):register()
+require("plugins")

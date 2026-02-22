@@ -22,7 +22,7 @@ return {
 
 		init = function()
 			vim.api.nvim_create_user_command("OCITags", function(args)
-				local oci = require("custom-fzf.oci")
+				local oci = require("plugins.custom-fzf.oci")
 				if args.bang then
 					oci.tags()
 					return

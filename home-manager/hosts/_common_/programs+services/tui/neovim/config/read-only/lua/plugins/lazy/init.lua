@@ -22,9 +22,21 @@ end
 vim.g.lazy_event_file_read = { "BufNewFile", "BufReadPre" }
 
 vim.opt.rtp:prepend(install_dir)
-require("lazy").setup("plugins", {
-	dev = { fallback = true, path = "~/Programming", patterns = { "Iron-E" } },
-	install = { colorscheme = { "highlite", "habamax" } },
+require("lazy").setup({
+	--- @diagnostic disable-next-line: assign-type-mismatch
+	dev = {
+		fallback = true,
+		path = "~/Programming",
+		patterns = { "Iron-E" },
+	},
+
+	install = {
+		colorscheme = {
+			"highlite",
+			"habamax",
+		},
+	},
+
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -38,5 +50,17 @@ require("lazy").setup("plugins", {
 			},
 		},
 	},
-	ui = { border = vim.o.winborder },
+
+	spec = {
+		{ "folke/lazy.nvim", tag = "stable" },
+		{ import = "plugins.lazy.code" },
+		{ import = "plugins.lazy.input" },
+		{ import = "plugins.lazy.misc" },
+		{ import = "plugins.lazy.theme" },
+		{ import = "plugins.lazy.ui" },
+	},
+
+	ui = {
+		border = vim.o.winborder,
+	},
 })

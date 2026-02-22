@@ -16,7 +16,7 @@ return {
 				PERF = { icon = "󰓅" },
 				TEST = { icon = "" },
 				TODO = { icon = "󰦕" },
-				WARN = { icon = "" },
+				WARN = { icon = "", alt = { "SAFETY", "SEC" } },
 			},
 		},
 	},

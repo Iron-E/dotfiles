@@ -4,7 +4,7 @@
 function Bench(fn, loops)
 	loops = loops or 100000
 
-	local now = vim.loop.hrtime --- @type fun(): integer
+	local now = vim.uv.hrtime --- @type fun(): integer
 	local total = 0
 
 	for i = 1, loops do

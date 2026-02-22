@@ -1,8 +1,11 @@
-return {
-	{ "folke/lazy.nvim", tag = "stable" },
-	{ import = "plugins.code" },
-	{ import = "plugins.input" },
-	{ import = "plugins.misc" },
-	{ import = "plugins.theme" },
-	{ import = "plugins.ui" },
-}
+--[[
+ ____  _             _
+|  _ \| |_   _  __ _(_)_ __  ___
+| |_) | | | | |/ _` | | '_ \/ __|
+|  __/| | |_| | (_| | | | | \__ \
+|_|   |_|\__,_|\__, |_|_| |_|___/
+               |___/
+--]]
+
+require("plugins.lazy")
+require("stenvim"):register()

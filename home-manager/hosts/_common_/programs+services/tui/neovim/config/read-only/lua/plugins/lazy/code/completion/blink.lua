@@ -40,11 +40,13 @@ return {
 					ghost_text = {
 						enabled = false,
 					},
+
 					menu = {
 						auto_show = function(ctx, _)
 							return ctx.mode == "cmdwin"
 						end,
 					},
+
 					list = {
 						selection = {
 							preselect = function(ctx, _)
@@ -55,6 +57,11 @@ return {
 								return ctx.mode == "cmdline" or (ctx.mode == "cmdwin" and not should_preselect(ctx))
 							end,
 						},
+					},
+
+					trigger = {
+						show_on_blocked_trigger_characters = { " ", "\n", "\t" },
+						show_on_x_blocked_trigger_characters = { "'", '"', "(", "{", "[" },
 					},
 				},
 
