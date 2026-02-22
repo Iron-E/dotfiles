@@ -45,14 +45,15 @@ return {
 			},
 		},
 
-		config = true,
-
 		--- @param o Flash.Config
 		opts = function(_, o)
 			o.modes = {
 				char = {
 					highlight = {
 						backdrop = false,
+						groups = {
+							label = "FlashMatch",
+						},
 					},
 
 					--- @param _ 'f'|'F'|'t'|'T' the motion
