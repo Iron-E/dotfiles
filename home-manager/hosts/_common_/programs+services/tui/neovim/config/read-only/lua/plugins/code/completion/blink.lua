@@ -20,10 +20,6 @@ return {
 				use_nvim_cmp_as_default = true,
 			}
 
-			o.cmdline = {
-				enabled = false,
-			}
-
 			--- @param ctx blink.cmp.Context
 			--- @return boolean
 			local function should_preselect(ctx)
@@ -36,6 +32,36 @@ return {
 				local offset = 1 -- the initial bounds length is 1, which would offset the start_col too far
 				return column == ctx.bounds.start_col + length - offset -- at the end of the match
 			end
+
+			o.cmdline = {
+				enabled = true,
+
+				completion = {
+					ghost_text = {
+						enabled = false,
+					},
+					menu = {
+						auto_show = function(ctx, _)
+							return ctx.mode == "cmdwin"
+						end,
+					},
+					list = {
+						selection = {
+							preselect = function(ctx, _)
+								return ctx.mode == "cmdwin" and should_preselect(ctx)
+							end,
+
+							auto_insert = function(ctx, _)
+								return ctx.mode == "cmdline" or (ctx.mode == "cmdwin" and not should_preselect(ctx))
+							end,
+						},
+					},
+				},
+
+				keymap = {
+					preset = "inherit",
+				},
+			}
 
 			o.completion = {
 				accept = {
