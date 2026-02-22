@@ -24,6 +24,7 @@ function NeatFoldText()
 	local lines = { start, end_ }
 	for i, line_nr in ipairs(lines) do
 		local line = vim.api.nvim_buf_get_lines(0, line_nr - 1, line_nr, true)[1]
+		--- @diagnostic disable-next-line: assign-type-mismatch
 		lines[i] = line
 	end
 

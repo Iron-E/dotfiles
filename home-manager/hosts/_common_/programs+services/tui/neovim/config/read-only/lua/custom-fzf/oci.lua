@@ -169,7 +169,7 @@ function M.live_tags(opts)
 				load_fzf_for_each_tag(args[1], fzf_cb, opts)
 			end
 		end,
-		--- @diagnostic disable-next-line param-type-mismatch
+		--- @diagnostic disable-next-line: param-type-mismatch
 		opts
 	)
 end
