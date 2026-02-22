@@ -18,9 +18,6 @@ in
     recursive = true;
   };
 
-  # TODO: remove when roslyn-ls updates
-  nixpkgs.config.permittedInsecurePackages = [ "dotnet-sdk-6.0.428" ];
-
   # these are the runtime dependencies of my neovim config
   programs.neovim = {
     withNodeJs = false;
