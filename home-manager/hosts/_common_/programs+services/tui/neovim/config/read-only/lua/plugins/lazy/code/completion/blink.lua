@@ -218,13 +218,18 @@ return {
 			--- @return boolean|nil
 			local function show_if_cursor_on_word(cmp)
 				local ctx = cmp.get_context() or default_ctx
-				if ctx.get_mode() == "cmdline" then
+				local mode = ctx.get_mode()
+				if mode == "cmdline" then
 					return cmp.show()
 				end
 
 				local cursor = ctx.get_cursor()
 				local column = cursor[2]
 				if column < 1 then
+					if mode == "cmdwin" then
+						return cmp.show()
+					end
+
 					return
 				end
 
