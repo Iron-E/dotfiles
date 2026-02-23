@@ -212,6 +212,10 @@ return {
 				get_line = function(num)
 					return vim.api.nvim_buf_get_lines(0, num, num + 1, false)[1]
 				end,
+
+				get_mode = function()
+					return "default"
+				end,
 			}
 
 			--- @param cmp blink.cmp.API
