@@ -43,18 +43,19 @@ return {
 
 					menu = {
 						auto_show = function(ctx, _)
-							return ctx.mode == "cmdwin"
+							return ctx.get_mode() == "cmdwin"
 						end,
 					},
 
 					list = {
 						selection = {
 							preselect = function(ctx, _)
-								return ctx.mode == "cmdwin" and should_preselect(ctx)
+								return ctx.get_mode() == "cmdwin" and should_preselect(ctx)
 							end,
 
 							auto_insert = function(ctx, _)
-								return ctx.mode == "cmdline" or (ctx.mode == "cmdwin" and not should_preselect(ctx))
+								local mode = ctx.get_mode()
+								return mode == "cmdline" or (mode == "cmdwin" and not should_preselect(ctx))
 							end,
 						},
 					},
@@ -217,7 +218,7 @@ return {
 			--- @return boolean|nil
 			local function show_if_cursor_on_word(cmp)
 				local ctx = cmp.get_context() or default_ctx
-				if ctx.mode == "cmdline" then
+				if ctx.get_mode() == "cmdline" then
 					return cmp.show()
 				end
 
