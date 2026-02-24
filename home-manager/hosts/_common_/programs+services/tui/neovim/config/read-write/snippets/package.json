@@ -91,6 +91,12 @@
 					"go"
 				],
 				"path": "./go.json"
+			},
+			{
+				"language": [
+					"editorconfig"
+				],
+				"path": "./editorconfig.json.json"
 			}
 		]
 	},
