@@ -22,6 +22,12 @@ return {
 			{
 				"<C-Space>",
 				mode = { "n", "x", "o" },
+				'<Cmd>lua require("flash").treesitter_search()<CR>',
+				desc = "Flash Treesitter Search",
+			},
+			{
+				"<A-v>",
+				mode = { "n", "x", "o" },
 				'<Cmd>lua require("flash").treesitter()<CR>',
 				desc = "Flash Treesitter",
 			},
@@ -34,8 +40,16 @@ return {
 			{
 				"R",
 				mode = { "o", "x" },
-				'<Cmd>lua require("flash").treesitter_search()<CR>',
-				desc = "Flash Treesitter Search",
+				--- SEE: https://github.com/folke/flash.nvim/issues/380#issuecomment-3255575807
+				function()
+					local register = vim.v.register
+					require("flash").treesitter_search({
+						action = function(match, state)
+							require("flash.jump").remote_op(match, state, register)
+						end,
+					})
+				end,
+				desc = "Remote Flash Treesitter Search",
 			},
 			{
 				"<C-s>",
