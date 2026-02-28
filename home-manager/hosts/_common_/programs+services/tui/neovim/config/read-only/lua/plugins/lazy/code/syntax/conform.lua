@@ -14,9 +14,7 @@ return {
 		keys = {
 			{
 				"gq",
-				function()
-					require("conform").format({ async = true })
-				end,
+				"<Cmd>lua require('conform').format({ async = true })<CR>",
 				mode = "",
 				desc = "Format buffer",
 			},
@@ -85,6 +83,8 @@ return {
 					return { formatter, "rustywind" }
 				end,
 
+				["hcl.terragrunt"] = { "terragrunt_hclfmt" },
+				["hcl.terragrunt-stack"] = { "terragrunt_hclfmt" },
 				jsonnet = { "jsonnetfmt" },
 				lua = { "stylua" },
 				markdown = { "deno_fmt" },
