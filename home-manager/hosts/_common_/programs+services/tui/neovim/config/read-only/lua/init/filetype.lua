@@ -26,6 +26,8 @@ vim.filetype.add({
 		["compose.yaml"] = "yaml.docker-compose",
 		["compose.yml"] = "yaml.docker-compose",
 		["docker-compose.yaml"] = "yaml.docker-compose",
+		["terragrunt.hcl"] = "hcl.terragrunt",
+		["terragrunt.stack.hcl"] = "hcl.terragrunt-stack",
 		["docker-compose.yml"] = "yaml.docker-compose",
 		["fish_history"] = "yaml",
 		["librewolf.overrides.cfg"] = "javascript",
@@ -56,7 +58,7 @@ vim.filetype.add({
 	},
 
 	pattern = {
-		[".*/[^/]*%.gitlab%-ci%.ya?ml"] = "yaml.gitlab",
+		[".*/[^/]*%.gitlab%-ci%.ya?ml"] = "yaml.gitlab-ci",
 
 		[".*/[Tt]askfile[^/]*%.ya?ml"] = "yaml.taskfile",
 

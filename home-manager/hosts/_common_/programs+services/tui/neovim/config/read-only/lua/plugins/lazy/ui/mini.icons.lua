@@ -24,6 +24,8 @@ return {
 					o.filetype.opentofu = icon
 					o.filetype["opentofu-vars"] = icon
 					o.filetype["terraform-vars"] = icon
+					o.filetype["hcl.terragrunt"] = icon
+					o.filetype["hcl.terragrunt-stack"] = icon
 				end
 			end
 
