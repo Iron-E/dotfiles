@@ -34,41 +34,7 @@ return {
 			end
 
 			o.cmdline = {
-				enabled = true,
-
-				completion = {
-					ghost_text = {
-						enabled = false,
-					},
-
-					menu = {
-						auto_show = function(ctx, _)
-							return ctx.get_mode() == "cmdwin"
-						end,
-					},
-
-					list = {
-						selection = {
-							preselect = function(ctx, _)
-								return ctx.get_mode() == "cmdwin" and should_preselect(ctx)
-							end,
-
-							auto_insert = function(ctx, _)
-								local mode = ctx.get_mode()
-								return mode == "cmdline" or (mode == "cmdwin" and not should_preselect(ctx))
-							end,
-						},
-					},
-
-					trigger = {
-						show_on_blocked_trigger_characters = { " ", "\n", "\t" },
-						show_on_x_blocked_trigger_characters = { "'", '"', "(", "{", "[" },
-					},
-				},
-
-				keymap = {
-					preset = "inherit",
-				},
+				enabled = false,
 			}
 
 			o.completion = {
