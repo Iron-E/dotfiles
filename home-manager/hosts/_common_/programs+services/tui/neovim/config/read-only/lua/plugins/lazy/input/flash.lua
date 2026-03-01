@@ -22,13 +22,13 @@ return {
 			{
 				"<C-Space>",
 				mode = { "n", "x", "o" },
-				'<Cmd>lua require("flash").treesitter_search()<CR>',
+				'<Cmd>lua require("flash").treesitter_search({ label = { rainbow = { enabled = true } } })<CR>',
 				desc = "Flash Treesitter Search",
 			},
 			{
 				"<A-v>",
 				mode = { "n", "x", "o" },
-				'<Cmd>lua require("flash").treesitter()<CR>',
+				'<Cmd>lua require("flash").treesitter({ label = { rainbow = { enabled = true } } })<CR>',
 				desc = "Flash Treesitter",
 			},
 			{
@@ -47,6 +47,11 @@ return {
 						action = function(match, state)
 							require("flash.jump").remote_op(match, state, register)
 						end,
+						label = {
+							rainbow = {
+								enabled = true,
+							},
+						},
 					})
 				end,
 				desc = "Remote Flash Treesitter Search",
