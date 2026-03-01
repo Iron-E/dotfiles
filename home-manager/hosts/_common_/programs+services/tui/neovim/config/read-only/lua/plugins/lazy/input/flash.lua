@@ -4,7 +4,8 @@
 --- @type LazySpec[]
 return {
 	{
-		"folke/flash.nvim",
+		"Iron-E/flash.nvim",
+		dev = true,
 
 		keys = {
 			{ "F", mode = { "n", "x", "o" }, desc = "flash backward" },
