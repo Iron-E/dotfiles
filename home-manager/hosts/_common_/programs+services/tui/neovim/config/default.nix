@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   config,
   ...
@@ -7,7 +6,6 @@
 let
   package = type: name: config.${type}.${name}.package;
   prg = package "programs";
-  srv = package "services";
 in
 {
   imports = [ ];
@@ -29,108 +27,97 @@ in
         jsregexp # for luasnip
       ];
 
-    extraPackages = builtins.attrValues (
-      {
-        ########
-        # misc #
-        ########
+    extraPackages = builtins.attrValues {
+      ########
+      # misc #
+      ########
 
-        inherit (pkgs)
-          bat # previewer
-          fd # fuzzy finder
-          ;
+      inherit (pkgs)
+        bat # previewer
+        fd # fuzzy finder
+        ;
 
-        gh = prg "gh"; # octo.nvim
-        git = prg "git"; # cloning plugins
-        ripgrep = prg "ripgrep"; # `:Grep`
+      gh = prg "gh"; # octo.nvim
+      git = prg "git"; # cloning plugins
+      ripgrep = prg "ripgrep"; # `:Grep`
 
-        ##############
-        # Formatters #
-        ##############
+      ##############
+      # Formatters #
+      ##############
 
-        inherit (pkgs)
-          csharpier
-          go-jsonnet
-          gojq
-          gotools # for goimports
-          nixfmt
-          opentofu
-          prettierd
-          rustfmt
-          rustywind
-          stylua
-          ;
+      inherit (pkgs)
+        csharpier
+        go-jsonnet
+        gojq
+        gotools # for goimports
+        nixfmt
+        opentofu
+        prettierd
+        rustfmt
+        rustywind
+        stylua
+        ;
 
-        ####################
-        # Language Servers #
-        ####################
+      ####################
+      # Language Servers #
+      ####################
 
-        inherit (pkgs)
-          basedpyright
-          deno
-          docker-language-server
-          emmet-language-server
-          go # required for nvim-lspconfig's gopls support
-          gopls
-          helm-ls
-          jdt-language-server
-          jsonnet-language-server
-          lua-language-server
-          marksman
-          nixd
-          roslyn-ls
-          rust-analyzer
-          sqls
-          tailwindcss-language-server
-          terraform-ls
-          tinymist
-          tofu-ls
-          vscode-css-languageserver
-          vscode-json-languageserver
-          yaml-language-server
-          ;
+      inherit (pkgs)
+        basedpyright
+        deno
+        docker-language-server
+        emmet-language-server
+        go # required for nvim-lspconfig's gopls support
+        gopls
+        helm-ls
+        jdt-language-server
+        jsonnet-language-server
+        lua-language-server
+        marksman
+        nixd
+        roslyn-ls
+        rust-analyzer
+        sqls
+        tailwindcss-language-server
+        terraform-ls
+        tinymist
+        tofu-ls
+        vscode-css-languageserver
+        vscode-json-languageserver
+        yaml-language-server
+        ;
 
-        inherit (pkgs.nodePackages_latest)
-          bash-language-server
-          typescript-language-server
-          ;
+      inherit (pkgs.nodePackages_latest)
+        bash-language-server
+        typescript-language-server
+        ;
 
-        ###########
-        # Linters #
-        ###########
+      ###########
+      # Linters #
+      ###########
 
-        inherit (pkgs)
-          ansible-lint
-          buf
-          deadnix
-          dotenv-linter
-          eslint_d
-          fish
-          golangci-lint
-          hadolint
-          htmlhint
-          nix
-          ruff
-          shellcheck
-          sqlfluff
-          tflint
-          trivy
-          ;
+      inherit (pkgs)
+        deadnix
+        dotenv-linter
+        eslint_d
+        fish
+        golangci-lint
+        hadolint
+        htmlhint
+        nix
+        ruff
+        shellcheck
+        sqlfluff
+        tflint
+        trivy
+        ;
 
-        ###############
-        # Tree Sitter #
-        ###############
+      ###############
+      # Tree Sitter #
+      ###############
 
-        inherit (pkgs) clang tree-sitter;
-        inherit (pkgs.nodePackages_latest) nodejs;
-      }
-      // (lib.optionalAttrs (!pkgs.stdenv.isDarwin) {
-        inherit (pkgs)
-          brightnessctl # mappings
-          ;
-
-        redshift = (srv "redshift"); # `:Redshift` command
-      })
-    );
+      inherit (pkgs) clang tree-sitter;
+      inherit (pkgs.nodePackages_latest) nodejs;
+    };
   };
 }
