@@ -1,90 +1,96 @@
 {
-  "default": {
-    "body": "optional(${1:$TM_SELECTED_TEXT}, ${2:default})",
-    "prefix": "default"
-  },
-  "for": {
-    "body": [
-      "[",
-      "\tfor ${1:i}, ${2:v} in ${3:values}: ${4:$2}",
-      "]"
-    ],
-    "prefix": "for"
-  },
-  "forif": {
-    "body": [
-      "[",
-      "\tfor ${1:i}, ${2:v} in ${3:values}: ${4:$2}",
-      "\tif ${5:true}",
-      "]"
-    ],
-    "prefix": "forif"
-  },
-  "fork": {
-    "body": [
-      "{ ",
-      "\tfor ${1:k}, ${2:v} in ${3:values}: ${4:$1} => ${5:$2}",
-      "}"
-    ],
-    "prefix": "fork"
-  },
-  "forkif": {
-    "body": [
-      "{ ",
-      "\tfor ${1:k}, ${2:v} in ${3:values}: ${4:$1} => ${5:$2}",
-      "\tif ${6:true}",
-      "}"
-    ],
-    "prefix": "forkif"
-  },
-  "mod": {
-    "body": [
-      "module \"$1\" {",
-      "\tsource = \"$2\"",
-      "}"
-    ],
-    "prefix": "mod"
-  },
-  "optional": {
-    "body": "optional(${1:$TM_SELECTED_TEXT})",
-    "prefix": "optional"
-  },
-  "required_providers": {
-    "body": [
-      "terraform {",
-      "\trequired_providers {",
-      "\t\t$0",
-      "\t}",
-      "}"
-    ],
-    "prefix": "required_providers"
-  },
-  "tf-docker_secret": {
-    "body": [
-      "",
-      "resource \"docker_secret\" \"${1:MyResource}\" {",
-      "   name = \"${2:name}\"",
-      "\tdata = base64encode(file(\"${3:filepath}\"))",
-      "}"
-    ],
-    "prefix": "tf-docker_secret"
-  },
-  "tf-require-docker": {
-    "body": [
-      "docker = {",
-      "\tsource  = \"kreuzwerker/docker\"",
-      "\tversion = \"~> 3.0\"",
-      "}"
-    ],
-    "prefix": "tf-require-docker"
-  },
-  "tf-require-kubernetes": {
-    "body": [
-      "kubernetes = {",
-      "\tsource  = \"hashicorp/kubernetes\"",
-      "\tversion = \"~> 2.0\"",
-      "}"
-    ],
-    "prefix": "tf-require-kubernetes"
-  }
+	"default": {
+		"body": "optional(${1:$TM_SELECTED_TEXT}, ${2:default})",
+		"prefix": "default"
+	},
+	"for": {
+		"body": ["[", "  for ${1:i}, ${2:v} in ${3:values}: ${4:$2}", "]"],
+		"prefix": "for"
+	},
+	"forif": {
+		"body": [
+			"[",
+			"  for ${1:i}, ${2:v} in ${3:values}: ${4:$2}",
+			"  if ${5:true}",
+			"]"
+		],
+		"prefix": "forif"
+	},
+	"fork": {
+		"body": [
+			"{ ",
+			"  for ${1:k}, ${2:v} in ${3:values}: ${4:$1} => ${5:$2}",
+			"}"
+		],
+		"prefix": "fork"
+	},
+	"forkif": {
+		"body": [
+			"{ ",
+			"  for ${1:k}, ${2:v} in ${3:values}: ${4:$1} => ${5:$2}",
+			"  if ${6:true}",
+			"}"
+		],
+		"prefix": "forkif"
+	},
+	"list": {
+		"body": "list(${1:})$0",
+		"prefix": "list"
+	},
+	"map": {
+		"body": "map(${1:})$0",
+		"prefix": "map"
+	},
+	"mod": {
+		"body": ["module \"$1\" {", "  source = \"$2\"", "}"],
+		"prefix": "mod"
+	},
+	"object": {
+		"body": ["object({", "  ${1:}", "})$0"],
+		"prefix": "object"
+	},
+	"optional": {
+		"body": "optional(${1:$TM_SELECTED_TEXT})",
+		"prefix": "optional"
+	},
+	"required_providers": {
+		"body": ["terraform {", "  required_providers {", "    $0", "  }", "}"],
+		"prefix": "required_providers"
+	},
+	"set": {
+		"body": "set(${1:})$0",
+		"prefix": "set"
+	},
+	"tf-docker_secret": {
+		"body": [
+			"",
+			"resource \"docker_secret\" \"${1:MyResource}\" {",
+			"   name = \"${2:name}\"",
+			"  data = base64encode(file(\"${3:filepath}\"))",
+			"}"
+		],
+		"prefix": "tf-docker_secret"
+	},
+	"tf-require-docker": {
+		"body": [
+			"docker = {",
+			"  source  = \"kreuzwerker/docker\"",
+			"  version = \"~> 3.0\"",
+			"}"
+		],
+		"prefix": "tf-require-docker"
+	},
+	"tf-require-kubernetes": {
+		"body": [
+			"kubernetes = {",
+			"  source  = \"hashicorp/kubernetes\"",
+			"  version = \"~> 2.0\"",
+			"}"
+		],
+		"prefix": "tf-require-kubernetes"
+	},
+	"tuple": {
+		"body": "tuple([${1:}])$0",
+		"prefix": "tuple"
+	}
 }
