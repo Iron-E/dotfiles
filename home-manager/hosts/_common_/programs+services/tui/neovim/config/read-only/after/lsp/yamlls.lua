@@ -3,7 +3,7 @@ return {
 	filetypes = {
 		"yaml",
 		"yaml.docker-compose",
-		"yaml.gitlab",
+		"yaml.gitlab-ci",
 		"yaml.helm-values",
 		"yaml.taskfile",
 	},
