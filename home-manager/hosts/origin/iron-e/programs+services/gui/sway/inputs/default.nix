@@ -9,7 +9,7 @@ in
     ''
       input "9639:64097:Compx_2.4G_Receiver_Mouse" {
         accel_profile adaptive
-        pointer_accel -0.3
+        pointer_accel -0.8
       }
 
       input "2:7:SynPS/2_Synaptics_TouchPad" {
