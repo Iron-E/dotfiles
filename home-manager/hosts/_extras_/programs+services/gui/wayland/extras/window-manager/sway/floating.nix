@@ -8,6 +8,7 @@
     criteria = [
       { class = "Gcolor3"; }
       { class = "Gxmessage"; }
+      { title = "Bitwarden"; }
       { window_role = "bubble"; }
       { window_role = "pop-up"; }
       { window_role = "Preferences"; }
