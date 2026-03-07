@@ -11,6 +11,8 @@
 
 vim.api.nvim_set_option_value("background", "dark", {}) -- Use a dark background
 vim.api.nvim_set_option_value("breakindent", true, {}) -- Preserve tabs when wrapping lines.
+vim.api.nvim_set_option_value("cindent", true, {}) -- More intelligent 'autoindent'
+vim.opt.cinkeys:remove({ "0#" }) -- NOTE: add this back to fts that need it
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" } -- Completion visual settings
 vim.api.nvim_set_option_value("concealcursor", "nc", {}) -- Don't unconceal in normal or command mode
 vim.api.nvim_set_option_value("cursorline", true, {}) -- Highlight current line
@@ -31,7 +33,6 @@ vim.api.nvim_set_option_value("shiftwidth", 0, {}) -- Use tabstop
 vim.api.nvim_set_option_value("showmode", false, {}) -- Don't show the mode name under the statusline
 vim.api.nvim_set_option_value("showtabline", 0, {}) -- Don't show the tabline until tabline plugins load
 vim.api.nvim_set_option_value("smartcase", true, {}) -- Case sensitive when a capital is provided
-vim.api.nvim_set_option_value("smartindent", true, {}) -- More intelligent 'autoindent' preset
 vim.api.nvim_set_option_value("smoothscroll", true, {}) -- Scroll virtual lines, not logical lines
 vim.api.nvim_set_option_value("softtabstop", -1, {}) -- Use shiftwidth
 vim.api.nvim_set_option_value("spell", true, {}) -- Check spelling
