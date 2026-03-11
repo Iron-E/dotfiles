@@ -3,33 +3,24 @@
   imports = [ ];
 
   programs.git.ignores = [
-    # gitignore
     "**/*.bak"
-    # gitignore
     "**/*.log"
-    # gitignore
     "**/*.orig"
-    # gitignore
     "**/*.pyc"
-    # gitignore
     "**/*.swp"
-    # gitignore
     "**/*.temp"
-    # gitignore
     "**/*.tmp"
-    # gitignore
     "**/*~"
-    # gitignore
     "**/.env"
-    # gitignore
     "**/.envrc"
-    # gitignore
-    "**/node_modules/"
-    # gitignore
-    ".nvim.lua"
-    # gitignore
     "**/.nvim.lua"
-    # gitignore
     "**/.nvim/"
+    "**/bar"
+    "**/bar.*"
+    "**/baz"
+    "**/baz.*"
+    "**/foo"
+    "**/foo.*"
+    "**/node_modules/"
   ];
 }
