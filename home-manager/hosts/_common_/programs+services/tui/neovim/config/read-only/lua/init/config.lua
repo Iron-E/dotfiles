@@ -12,7 +12,7 @@
 vim.api.nvim_set_option_value("background", "dark", {}) -- Use a dark background
 vim.api.nvim_set_option_value("breakindent", true, {}) -- Preserve tabs when wrapping lines.
 vim.api.nvim_set_option_value("cindent", true, {}) -- More intelligent 'autoindent'
-vim.opt.cinkeys:remove({ "0#", ":" }) -- NOTE: add this back to fts that need it
+vim.opt.cinkeys:remove({ "0#", "o", "O" }) -- NOTE: add this back to fts that need it
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" } -- Completion visual settings
 vim.api.nvim_set_option_value("concealcursor", "nc", {}) -- Don't unconceal in normal or command mode
 vim.api.nvim_set_option_value("cursorline", true, {}) -- Highlight current line
