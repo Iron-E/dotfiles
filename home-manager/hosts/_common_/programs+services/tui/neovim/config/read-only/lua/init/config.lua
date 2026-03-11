@@ -49,6 +49,15 @@ vim.api.nvim_set_option_value("wildignorecase", true, {}) -- Ignore case for com
 vim.opt.wildmode = { "longest:full", "full" } -- Command completion mode
 vim.api.nvim_set_option_value("winborder", "rounded", {}) -- Use rounded borders
 
+-- yes, this is an autocmd. no, it is not in the autocmds file.
+-- i think this is an autocmd about applying my config, so it's probably best to keep it here
+local group = vim.api.nvim_create_augroup("config.options", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Prevent ftplugins from overwriting 'iskeyword'",
+	group = group,
+	command = [[set iskeyword=@,48-57,_,192-255]],
+})
+
 -- WARN: Providers (MUST be `0`, not `false`)
 vim.g.loaded_node_provider = 0 -- disable JavaScript
 vim.g.loaded_perl_provider = 0 -- disable Perl
