@@ -25,5 +25,11 @@
     "**/.envrc"
     # gitignore
     "**/node_modules/"
+    # gitignore
+    ".nvim.lua"
+    # gitignore
+    "**/.nvim.lua"
+    # gitignore
+    "**/.nvim/"
   ];
 }
