@@ -43,7 +43,6 @@ vim.api.nvim_set_option_value("tabstop", 3, {}) -- How many spaces a tab is wort
 vim.api.nvim_set_option_value("termguicolors", true, {}) -- Set color mode
 vim.api.nvim_set_option_value("undodir", vim.fn.stdpath("state") .. "/undodir", {}) -- Put undo history in the state dir
 vim.api.nvim_set_option_value("undofile", true, {}) -- Persist undo history
-vim.opt.viewoptions = { "cursor", "folds" } -- Save cursor position and folds in `:mkview`
 vim.api.nvim_set_option_value("visualbell", true, {}) -- Disable beeping
 vim.opt.wildignore = { "*.bak", "*.cache", "*/.git/**/*", "*.min.*", "*/node_modules/**/*", "*.pyc", "*.swp" }
 vim.api.nvim_set_option_value("wildignorecase", true, {}) -- Ignore case for command completions
