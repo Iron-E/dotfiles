@@ -8,6 +8,7 @@
 
     signing = {
       key = null; # HACK: "The option `programs.git.signing.key' is used but not defined." unless this is here
+      format = null;
       signByDefault = true;
     };
   };
