@@ -10,7 +10,7 @@ do -- PERF: disable LSP watcher. Too slow on Linux
 end
 
 -- Do not log the LSP
-vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
+vim.lsp.log.set_level(vim.lsp.log_levels.OFF)
 
 --------------
 -- commands --
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 	desc = "Refresh codelens",
 	group = "config",
 	callback = function()
-		vim.lsp.codelens.refresh({ bufnr = 0 })
+		vim.lsp.codelens.enable(true, { bufnr = 0 })
 	end,
 })
 
