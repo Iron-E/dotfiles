@@ -55,13 +55,14 @@ end, {
 -- autocmds --
 --------------
 
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-	desc = "Refresh codelens",
-	group = "config",
-	callback = function()
-		vim.lsp.codelens.enable(true, { bufnr = 0 })
-	end,
-})
+-- TODO: re-enable in 0.12.1
+-- vim.api.nvim_create_autocmd({ "LspAttach" }, {
+-- 	desc = "Refresh codelens",
+-- 	group = "config",
+-- 	callback = function()
+-- 		vim.lsp.codelens.enable(true, { bufnr = 0 })
+-- 	end,
+-- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Use LSP foldexpr",
