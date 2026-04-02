@@ -2,7 +2,8 @@
 return {
 	settings = {
 		["rust-analyzer"] = {
-			checkOnSave = {
+			checkOnSave = true,
+			check = {
 				extraArgs = {
 					"--target-dir",
 					"/tmp/rust-analyzer-check",
