@@ -20,8 +20,6 @@ local noremap = { noremap = true }
 /_/  /_/_/___/\__/
 --]]
 
-vim.api.nvim_set_keymap("n", "<A-w>u", "<Cmd>Undotree<CR>", noremap)
-
 -- Do not jump snippets on tab
 vim.api.nvim_set_keymap("i", "<Tab>", "<Tab>", noremap)
 vim.api.nvim_set_keymap("s", "<Tab>", "<Tab>", noremap)

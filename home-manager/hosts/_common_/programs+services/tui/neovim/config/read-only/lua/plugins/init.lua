@@ -8,4 +8,5 @@
 --]]
 
 require("plugins.lazy")
+require("plugins.undotree")
 require("stenvim"):register()
