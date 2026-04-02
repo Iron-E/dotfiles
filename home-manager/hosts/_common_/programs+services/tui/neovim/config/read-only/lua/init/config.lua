@@ -17,7 +17,7 @@ vim.opt.cinoptions = { "#1", "(s", ")1000", "C1", "i0", "j1", "J1", "l1", "L1", 
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" } -- Completion visual settings
 vim.api.nvim_set_option_value("concealcursor", "nc", {}) -- Don't unconceal in normal or command mode
 vim.api.nvim_set_option_value("cursorline", true, {}) -- Highlight current line
-vim.opt.diffopt:append({ "algorithm:histogram", "linematch:60" }) -- Highlight inline diffs
+vim.opt.diffopt:append({ "algorithm:histogram" }) -- better algorithm
 vim.api.nvim_set_option_value("exrc", true, {}) -- Allow project-local config
 vim.opt.fillchars = { fold = " ", msgsep = "▔" } -- Set folds to not trail dots
 vim.api.nvim_set_option_value("foldlevelstart", 99, {}) -- starting fold level
@@ -29,6 +29,7 @@ vim.api.nvim_set_option_value("laststatus", 3, {}) -- Only show a statusline at 
 vim.api.nvim_set_option_value("lazyredraw", true, {}) -- Redraw screen less often
 vim.api.nvim_set_option_value("linebreak", true, {}) -- Break lines at whole words
 vim.api.nvim_set_option_value("number", true, {}) -- Show the current line number
+vim.api.nvim_set_option_value("pumborder", "rounded", {}) -- Use rounded borders
 vim.api.nvim_set_option_value("relativenumber", true, {}) -- Line numbers relative to current line
 vim.api.nvim_set_option_value("shiftwidth", 0, {}) -- Use tabstop
 vim.api.nvim_set_option_value("showmode", false, {}) -- Don't show the mode name under the statusline

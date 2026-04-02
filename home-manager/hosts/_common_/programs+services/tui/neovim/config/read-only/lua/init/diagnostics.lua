@@ -16,6 +16,8 @@ local diagnostic_config = {
 
 vim.diagnostic.config(diagnostic_config)
 
+vim.g.query_lint_on = { "BufEnter", "BufWrite", "InsertLeave" }
+
 vim.api.nvim_set_keymap("n", "[d", "", {
 	callback = function()
 		vim.diagnostic.jump({ count = -1, float = true })
