@@ -55,14 +55,12 @@ end, {
 -- autocmds --
 --------------
 
+-- TODO: should these really be enabled globally?
+vim.lsp.on_type_formatting.enable(true)
+vim.lsp.linked_editing_range.enable(true)
+
 -- TODO: re-enable in 0.12.1
--- vim.api.nvim_create_autocmd({ "LspAttach" }, {
--- 	desc = "Refresh codelens",
--- 	group = "config",
--- 	callback = function()
--- 		vim.lsp.codelens.enable(true, { bufnr = 0 })
--- 	end,
--- })
+-- vim.lsp.codelens.enable(true)
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Use LSP foldexpr",
