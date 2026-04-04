@@ -155,7 +155,6 @@ vim.pack.add({
 	"https://github.com/pwntester/octo.nvim", -- deps: plenary, fzf-lua, mini.icons
 }, async_load_if_not_manpage)
 
--- require("plugins.lazy")
 require("plugins.undotree")
 require("stenvim"):register()
 
