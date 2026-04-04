@@ -55,16 +55,18 @@ end, {
 -- autocmds --
 --------------
 
+local group = vim.api.nvim_create_augroup("config.lsp", { clear = true })
+
 -- TODO: should these really be enabled globally?
-vim.lsp.on_type_formatting.enable(true)
 vim.lsp.linked_editing_range.enable(true)
+vim.lsp.on_type_formatting.enable(true)
 
 -- TODO: re-enable in 0.12.1
 -- vim.lsp.codelens.enable(true)
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Use LSP foldexpr",
-	group = "config",
+	group = group,
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		if client == nil or not client:supports_method("textDocument/foldingRange") then
@@ -88,7 +90,7 @@ vim.api.nvim_del_keymap("n", "grx")
 vim.api.nvim_del_keymap("x", "gra")
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = "config",
+	group = group,
 	callback = function(event)
 		local bufnr = event.buf
 		local opts = { buffer = bufnr }
