@@ -7,7 +7,11 @@ vim.keymap.set("n", "<A-w>S", function()
 end, { desc = "Edit snippet with scissors" })
 
 require("scissors").setup({
-	jsonFormatter = { "gojq", "--monochrome-output", "--tab" },
+	jsonFormatOpts = {
+		sort_keys = true,
+		indent = "\t",
+	},
+
 	editSnippetPopup = {
 		height = 0.85, -- relative to the window, number between 0 and 1
 		width = 0.8,
