@@ -1,3 +1,5 @@
+local Util = require("plugins.pack.util")
+
 --- @class iron-e.plugins.Pack
 local M = {
 	--- @type { [string]: fun() }
@@ -5,6 +7,56 @@ local M = {
 }
 
 local group = vim.api.nvim_create_augroup("config.pack", { clear = true })
+
+----------------------
+--- LOCAL PLUGINS ----
+----------------------
+
+local old_add = vim.pack.add
+
+--- @param specs (string|vim.pack.Spec)[]
+--- @param opts? vim.pack.keyset.add
+vim.pack.add = function(specs, opts)
+	opts = opts or {}
+
+	local local_plugins = Util.list_local_plugins()
+
+	for i, spec in ipairs(specs) do
+		local name = Util.plugin_name_from_spec(spec)
+
+		if not local_plugins[name] then
+			goto continue
+		end
+
+		-- stop managing this plugin with vim.pack
+		table.remove(specs, i)
+		pcall(vim.pack.del, { name }, { confirm = true })
+
+		if opts.load == nil then
+			Util.packadd(name)
+		elseif type(opts.load) == "bool" then
+			vim.cmd.packadd({ args = { name }, bang = not opts.load })
+		else
+			opts.load({
+				path = Util.local_pack_path .. name,
+				spec = {
+					name = name,
+					src = spec.src,
+					data = spec.data,
+					version = spec.version,
+				},
+			})
+		end
+
+		::continue::
+	end
+
+	if #specs == 0 then
+		return
+	end
+
+	old_add(specs, opts)
+end
 
 ------------------------
 --- BUILDING PLUGINS ---

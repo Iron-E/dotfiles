@@ -11,13 +11,15 @@ local Pack = require("plugins.pack")
 local Util = require("plugins.pack.util")
 
 local load = {
-	load = Util.load_plugin,
+	load = function(plugin)
+		Util.load_plugin(plugin.spec.name)
+	end,
 }
 
 --- @type vim.pack.keyset.add
 local async_load = {
 	load = function(plugin)
-		Util.enqueue_plugin_load(plugin)
+		Util.enqueue_plugin_load(plugin.spec.name)
 	end,
 }
 
@@ -76,7 +78,7 @@ vim.pack.add({
 	"https://github.com/seblj/roslyn.nvim",
 }, {
 	load = function(plugin)
-		Util.load_plugin_on(plugin, "FileType", "cs")
+		Util.load_plugin_on(plugin.spec.name, "FileType", "cs")
 	end,
 })
 
@@ -104,7 +106,7 @@ vim.pack.add({
 }, {
 	load = function(plugin)
 		if not starting_for_manpage then
-			Util.load_plugin_on(plugin, "InsertEnter")
+			Util.load_plugin_on(plugin.spec.name, "InsertEnter")
 		end
 	end,
 })
@@ -133,7 +135,7 @@ vim.pack.add({
 }, {
 	load = function(plugin)
 		if not starting_for_manpage then
-			Util.load_plugin_on(plugin, "FileType", { "latex", "markdown" })
+			Util.load_plugin_on(plugin.spec.name, "FileType", { "latex", "markdown" })
 		end
 	end,
 })
@@ -143,7 +145,7 @@ vim.pack.add({
 }, {
 	load = function(plugin)
 		if not starting_for_manpage then
-			Util.load_plugin_on(plugin, "FileType", "lua")
+			Util.load_plugin_on(plugin.spec.name, "FileType", "lua")
 		end
 	end,
 })
