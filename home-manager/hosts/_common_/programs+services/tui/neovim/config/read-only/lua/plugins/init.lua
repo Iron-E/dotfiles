@@ -7,6 +7,8 @@
                |___/
 --]]
 
+require("plugins.pack")
+
 -- SEE: https://stackoverflow.com/questions/15429236/how-to-check-if-a-module-exists-in-lua
 local function module_exists(name)
 	if package.loaded[name] then
@@ -32,16 +34,17 @@ local load = {
 		vim.api.nvim_command("packadd! " .. plugin_name)
 
 		--- @type string
-		local config_name = assert(plugin_name:match("^[^.]*"))
+		local config_name = assert(plugin_name:match("^[^%.]*"))
 		if config_name:sub(1, 5) == "nvim-" then
 			config_name = config_name:sub(6)
 		end
 
-		config_name = "plugins.pack." .. config_name
-
-		if module_exists(config_name) then
-			require(config_name)
+		if config_name:sub(-4, -1) == "-lua" then
+			config_name = config_name:sub(1, -5)
 		end
+
+		config_name = "plugins.pack." .. config_name
+		pcall(require, config_name)
 	end,
 }
 
@@ -52,24 +55,6 @@ local lazy_load = {
 
 --- @type vim.pack.keyset.add
 local load_if_not_manpage = vim.g.man ~= true and load or lazy_load
-
--- TODO: migrate build instructions
-
-local group = vim.api.nvim_create_augroup("config.pack", { clear = true })
-vim.api.nvim_create_autocmd("PackChanged", {
-	desc = "Run build hooks for packages",
-	group = group,
-	callback = function(ev)
-		local name = ev.data.spec.name
-		if name == "blink.cmp" then
-			vim.api.nvim_command("packadd blink.cmp")
-			vim.api.nvim_command("BlinkCmp build")
-		elseif name == "nvim-treesitter" then
-			vim.api.nvim_command("packadd nvim-treesitter")
-			vim.api.nvim_command("TSUpdate")
-		end
-	end,
-})
 
 -- load colorscheme first
 vim.pack.add({
@@ -111,7 +96,7 @@ vim.pack.add({
 vim.pack.add({
 	"https://github.com/stevearc/aerial.nvim", -- deps: nvim-treesitter, mini.icons
 	"https://github.com/romgrk/barbar.nvim", -- deps: gitsigns.nvim, mini.icons; TODO: load locally
-	{ src = "https://github.com/Saghen/blink.cmp", version = vim.version.range("^1") }, -- deps: mini.icons, friendly snippets
+	{ src = "https://github.com/Saghen/blink.cmp", name = "blink-cmp", version = vim.version.range("^1") }, -- deps: mini.icons, friendly snippets
 	"https://github.com/ibhagwan/fzf-lua", -- deps: mini.icons
 	"https://github.com/lewis6991/gitsigns.nvim", -- deps: plenary.nvim
 	"https://github.com/Iron-E/nvim-bufmode", -- deps: nvim-libmodal
@@ -131,55 +116,3 @@ vim.pack.add({
 -- require("plugins.lazy")
 require("plugins.undotree")
 require("stenvim"):register()
-
---- @return string[]
-local function get_package_names()
-	local plugins = vim.pack.get(nil, { info = false })
-
-	return vim.iter(ipairs(plugins))
-		:map(function(_, plugin)
-			return plugin.spec.name
-		end)
-		:totable()
-end
-
-vim.api.nvim_create_user_command("PackClean", function()
-	local plugins = vim.pack.get(nil, { info = false })
-
-	local active_plugin_names = {}
-	for _, plugin in ipairs(plugins) do
-		if not plugin.active then
-			table.insert(active_plugin_names, plugin.spec.name)
-		end
-	end
-
-	vim.pack.del(active_plugin_names)
-end, {
-	desc = "Clean inactive packages",
-})
-
-vim.api.nvim_create_user_command("PackRestore", function(args)
-	local fargs
-	if #args.fargs > 0 then
-		fargs = args.fargs
-	end
-
-	vim.pack.update(fargs, { target = "lockfile" })
-end, {
-	desc = "Restore a package to its lockfile version",
-	nargs = "?",
-	complete = get_package_names,
-})
-
-vim.api.nvim_create_user_command("PackUpdate", function(args)
-	local fargs
-	if #args.fargs > 0 then
-		fargs = args.fargs
-	end
-
-	vim.pack.update(fargs)
-end, {
-	desc = "Clean inactive packages",
-	nargs = "?",
-	complete = get_package_names,
-})
