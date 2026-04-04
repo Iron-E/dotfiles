@@ -51,7 +51,7 @@ Pack.build_instructions = {
 
 -- load colorscheme first
 vim.pack.add({
-	"https://github.com/Iron-E/nvim-highlite", -- TODO: load locally
+	"https://github.com/Iron-E/nvim-highlite",
 }, load)
 
 vim.pack.add({
@@ -59,7 +59,7 @@ vim.pack.add({
 }, load)
 
 vim.pack.add({
-	"https://github.com/Iron-E/flash.nvim", -- TODO: load locally
+	"https://github.com/Iron-E/flash.nvim",
 	"https://github.com/brenoprata10/nvim-highlight-colors",
 	"https://github.com/stevearc/quicker.nvim",
 	{ src = "https://github.com/dstein64/vim-win", version = "00a31b44f9388927102dcd96606e236f13681a33" },
@@ -91,7 +91,7 @@ vim.pack.add({
 vim.pack.add({
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/mboughaba/i3config.vim",
-	"https://github.com/Iron-E/nvim-libmodal", -- dep; TODO: load locally
+	"https://github.com/Iron-E/nvim-libmodal", -- dep
 	"https://github.com/mfussenegger/nvim-lint",
 	"https://github.com/chrisgrieser/nvim-scissors",
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
@@ -117,7 +117,7 @@ vim.pack.add({
 }, load_if_not_manpage)
 
 vim.pack.add({
-	"https://github.com/romgrk/barbar.nvim", -- deps: gitsigns.nvim, mini.icons; TODO: load locally
+	"https://github.com/romgrk/barbar.nvim", -- deps: gitsigns.nvim, mini.icons
 }, load_if_not_manpage)
 
 vim.pack.add({

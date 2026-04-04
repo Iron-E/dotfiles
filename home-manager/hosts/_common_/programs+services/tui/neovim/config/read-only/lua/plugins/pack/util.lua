@@ -55,8 +55,8 @@ function M.list_local_plugins()
 		local_plugins = {}
 
 		-- vim.fs.dir checks if the dir exists
-		for basename, kind in vim.fs.dir(M.local_pack_path) do
-			if kind == "directory" then
+		for basename, kind in vim.fs.dir(M.local_pack_path, { follow = true }) do
+			if kind == "directory" or kind == "link" then
 				local_plugins[basename] = true
 			end
 		end
