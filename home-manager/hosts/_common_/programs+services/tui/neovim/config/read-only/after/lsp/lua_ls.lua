@@ -21,10 +21,6 @@ return {
 			telemetry = {
 				enable = false,
 			},
-
-			typeFormat = {
-				format_line = "false",
-			},
 		},
 	},
 }

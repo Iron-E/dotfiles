@@ -1,3 +1,5 @@
+vim.g.barbar_auto_setup = false
+
 vim.api.nvim_set_keymap("n", "[b", ":BufferPrevious<CR>", {
 	desc = "Go to the previous buffer",
 })

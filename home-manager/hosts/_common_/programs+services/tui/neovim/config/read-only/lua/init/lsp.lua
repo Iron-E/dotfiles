@@ -57,9 +57,22 @@ end, {
 
 local group = vim.api.nvim_create_augroup("config.lsp", { clear = true })
 
--- TODO: should these really be enabled globally?
 vim.lsp.linked_editing_range.enable(true)
-vim.lsp.on_type_formatting.enable(true)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "Enable on_type_formatting for certain clients",
+	group = group,
+	callback = function(ev)
+		local client_id = ev.data.client_id
+
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client == nil or client.name == "lua_ls" then
+			return
+		end
+
+		vim.lsp.on_type_formatting.enable(true, { client_id = client_id })
+	end,
+})
 
 -- TODO: re-enable in 0.12.1
 -- vim.lsp.codelens.enable(true)

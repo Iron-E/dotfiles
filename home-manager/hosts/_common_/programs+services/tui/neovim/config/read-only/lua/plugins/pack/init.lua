@@ -1,12 +1,14 @@
-local build_instructions = {
-	["blink-cmp"] = function()
-		vim.api.nvim_command("BlinkCmp build")
-	end,
-
-	["nvim-treesitter"] = function()
-		vim.api.nvim_command("TSUpdate")
-	end,
+--- @class iron-e.plugins.Pack
+local M = {
+	--- @type { [string]: fun() }
+	build_instructions = {},
 }
+
+local group = vim.api.nvim_create_augroup("config.pack", { clear = true })
+
+------------------------
+--- BUILDING PLUGINS ---
+------------------------
 
 vim.api.nvim_create_user_command("PackBuild", function(args)
 	local plugin
@@ -14,7 +16,7 @@ vim.api.nvim_create_user_command("PackBuild", function(args)
 		plugin = args.args
 	end
 
-	local build_instruction = build_instructions[plugin]
+	local build_instruction = M.build_instructions[plugin]
 	if build_instruction == nil then
 		return
 	end
@@ -29,11 +31,10 @@ end, {
 	bang = true,
 	nargs = "?",
 	complete = function()
-		return vim.tbl_keys(build_instructions)
+		return vim.tbl_keys(M.build_instructions)
 	end,
 })
 
-local group = vim.api.nvim_create_augroup("config.pack", { clear = true })
 vim.api.nvim_create_autocmd("PackChanged", {
 	desc = "Run build hooks for packages",
 	group = group,
@@ -45,6 +46,10 @@ vim.api.nvim_create_autocmd("PackChanged", {
 		vim.api.nvim_command("PackBuild! " .. ev.data.spec.name)
 	end,
 })
+
+--------------------------
+--- PLUGIN MAINTENANCE ---
+--------------------------
 
 --- @return string[]
 local function get_package_names()
@@ -97,3 +102,7 @@ end, {
 	nargs = "?",
 	complete = get_package_names,
 })
+
+-------------------
+
+return M
