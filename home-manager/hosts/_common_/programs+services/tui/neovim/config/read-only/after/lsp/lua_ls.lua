@@ -7,16 +7,23 @@ return {
 					"vim",
 				},
 			},
+
 			hint = {
 				enable = true,
 			},
+
 			runtime = {
 				path = vim.split(package.path, ";", { plain = true, trimempty = true }),
 				pathStrict = true,
 				version = "LuaJIT",
 			},
+
 			telemetry = {
 				enable = false,
+			},
+
+			typeFormat = {
+				format_line = "false",
 			},
 		},
 	},
