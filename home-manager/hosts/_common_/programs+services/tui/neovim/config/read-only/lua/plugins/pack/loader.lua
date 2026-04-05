@@ -1,4 +1,4 @@
---- @class iron-e.plugins.pack.Util
+--- @class iron-e.plugins.pack.Loader
 local M = {
 	local_pack_path = vim.fn.stdpath("data") .. "/site/pack/local/opt/",
 
@@ -7,7 +7,7 @@ local M = {
 	plugin_load_queue = {},
 }
 
-local group = vim.api.nvim_create_augroup("config.pack.util", { clear = true })
+local group = vim.api.nvim_create_augroup("config.pack.loader", { clear = true })
 
 --- @param spec string|vim.pack.Spec
 --- @return string

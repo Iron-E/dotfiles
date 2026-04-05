@@ -1,4 +1,4 @@
-local Util = require("plugins.pack.util")
+local Loader = require("plugins.pack.loader")
 
 --- @class iron-e.plugins.Pack
 local M = {
@@ -19,10 +19,10 @@ local old_add = vim.pack.add
 vim.pack.add = function(specs, opts)
 	opts = opts or {}
 
-	local local_plugins = Util.list_local_plugins()
+	local local_plugins = Loader.list_local_plugins()
 
 	for i, spec in ipairs(specs) do
-		local name = Util.plugin_name_from_spec(spec)
+		local name = Loader.plugin_name_from_spec(spec)
 
 		if not local_plugins[name] then
 			goto continue
@@ -33,12 +33,12 @@ vim.pack.add = function(specs, opts)
 		pcall(vim.pack.del, { name }, { confirm = true })
 
 		if opts.load == nil then
-			Util.packadd(name)
+			Loader.packadd(name)
 		elseif type(opts.load) == "bool" then
 			vim.cmd.packadd({ args = { name }, bang = not opts.load })
 		else
 			opts.load({
-				path = Util.local_pack_path .. name,
+				path = Loader.local_pack_path .. name,
 				spec = {
 					name = name,
 					src = spec.src,
@@ -74,7 +74,7 @@ vim.api.nvim_create_user_command("PackBuild", function(args)
 	end
 
 	if args.bang then
-		vim.api.nvim_command("packadd! " .. plugin)
+		Loader.packadd(plugin)
 	end
 
 	build_instruction()
