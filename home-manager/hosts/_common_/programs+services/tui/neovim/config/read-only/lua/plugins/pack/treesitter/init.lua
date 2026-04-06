@@ -74,50 +74,68 @@ local function install_parsers(install, parsers)
 	return task
 end
 
+local ts = require("nvim-treesitter")
+
+do
+	local available = ts.get_available()
+	for _, parser in ipairs(available) do
+		available_parsers[parser] = true
+	end
+
+	local installed = ts.get_installed("parsers")
+	for _, parser in ipairs(installed) do
+		installed_parsers[parser] = true
+		ensure_installed[parser] = nil
+	end
+end
+
+install_parsers(ts.install, ensure_installed)
+
+--- @param buf integer
+--- @param ft string
+local function install_parsers_for_ft(buf, ft)
+	local lang = vim.treesitter.language.get_lang(ft)
+	if available_parsers[lang] == nil then
+		return
+	end
+
+	local installed = installed_parsers[lang]
+	if installed == true then -- already installed
+		return
+	end
+
+	local task = installed
+	if task == nil then
+		task = install_parsers(ts.install, { lang })
+	end
+
+	local win = vim.fn.bufwinid(buf)
+	task:await(function()
+		vim.api.nvim_command("TSWinEnable " .. win .. " " .. buf)
+	end)
+end
+
 local group = vim.api.nvim_create_augroup("config.treesitter", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "Auto-install parsers for each buffer",
 	group = group,
 	callback = function(ev)
-		local ft = ev.match
-		local lang = vim.treesitter.language.get_lang(ft)
-		if available_parsers[lang] == nil then
-			return
-		end
-
-		local installed = installed_parsers[lang]
-		if installed == true then -- already installed
-			return
-		end
-
-		local task = installed
-		if task == nil then
-			local ts = require("nvim-treesitter")
-			task = install_parsers(ts.install, { lang })
-		end
-
-		-- re-trigger filetype detection to attach highlighting
-		local win = vim.api.nvim_get_current_win()
-		task:await(function()
-			vim.api.nvim_command("TSWinEnable " .. win .. " " .. ev.buf)
-		end)
+		install_parsers_for_ft(ev.buf, ev.match)
 	end,
 })
 
-local ts = require("nvim-treesitter")
-
-local available = ts.get_available()
-for _, parser in ipairs(available) do
-	available_parsers[parser] = true
+-- if vim already entered when this was sourced,
+-- then we missed the FT events for the files that were opened at startup.
+if vim.v.vim_did_init == 1 then
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_get_option_value("buflisted", { buf = buf }) then
+			local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
+			install_parsers_for_ft(buf, ft)
+		end
+	end
 end
 
-local installed = ts.get_installed("parsers")
-for _, parser in ipairs(installed) do
-	installed_parsers[parser] = true
-	ensure_installed[parser] = nil
-end
-
-install_parsers(ts.install, ensure_installed)
+-----------------------------
 
 local ts_utils = require("ts_utils") --- @type config.TSUtils
 vim.api.nvim_create_user_command("ShowAs", function(tbl)
