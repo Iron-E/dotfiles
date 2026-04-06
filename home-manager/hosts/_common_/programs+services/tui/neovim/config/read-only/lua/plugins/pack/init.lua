@@ -2,7 +2,7 @@ local Loader = require("plugins.pack.loader")
 
 --- @class iron-e.plugins.Pack
 local M = {
-	--- @type { [string]: fun() }
+	--- @type { [string]: fun(plugin: vim.pack.PlugData) }
 	build_instructions = {},
 }
 
@@ -65,25 +65,35 @@ end
 ------------------------
 
 vim.api.nvim_create_user_command("PackBuild", function(args)
-	local plugin
-	if args.args ~= "" then
-		plugin = args.args
+	--- @type nil|string[]
+	local plugin_names
+	if #args.fargs > 0 then
+		plugin_names = vim.list.unique(args.fargs)
 	end
 
-	local build_instruction = M.build_instructions[plugin]
-	if build_instruction == nil then
-		return
-	end
+	--- @type vim.pack.PlugData[]
+	local plugins = vim.pack.get(plugin_names, { info = false })
 
-	if args.bang then
-		vim.api.nvim_command("packadd " .. plugin)
-	end
+	-- TODO: do I need a coroutine here?
+	for _, plugin in ipairs(plugins) do
+		local build_instruction = M.build_instructions[plugin.spec.name]
+		if build_instruction == nil then
+			goto continue
+		end
 
-	build_instruction()
+		if args.bang then
+			vim.api.nvim_command("packadd " .. plugin.spec.name)
+		end
+
+		vim.notify("Building " .. plugin.spec.name, vim.log.levels.INFO)
+		build_instruction(plugin)
+
+		::continue::
+	end
 end, {
 	desc = "Run a build command for a plugin",
 	bang = true,
-	nargs = "?",
+	nargs = "*",
 	complete = function()
 		return vim.tbl_keys(M.build_instructions)
 	end,
