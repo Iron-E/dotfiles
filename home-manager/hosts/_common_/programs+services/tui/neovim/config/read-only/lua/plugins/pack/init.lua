@@ -14,8 +14,10 @@ local group = vim.api.nvim_create_augroup("config.pack", { clear = true })
 
 local old_add = vim.pack.add
 
+--- vim.pack.add wrapper that adds support for local plugins
 --- @param specs (string|vim.pack.Spec)[]
 --- @param opts? vim.pack.keyset.add
+--- @diagnostic disable-next-line:duplicate-set-field
 vim.pack.add = function(specs, opts)
 	opts = opts or {}
 
