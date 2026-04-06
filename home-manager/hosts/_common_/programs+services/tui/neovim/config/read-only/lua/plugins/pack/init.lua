@@ -76,7 +76,7 @@ vim.api.nvim_create_user_command("PackBuild", function(args)
 	end
 
 	if args.bang then
-		Loader.packadd(plugin)
+		vim.api.nvim_command("packadd " .. plugin)
 	end
 
 	build_instruction()
