@@ -56,11 +56,12 @@ local ensure_installed = {
 	yaml = true,
 }
 
---- @param install fun(parsers: string[]): async.Task
+local ts = require("nvim-treesitter")
+
 --- @param parsers string[]
 --- @return async.Task
-local function install_parsers(install, parsers)
-	local task = install(parsers)
+local function install_parsers(parsers)
+	local task = ts.install(parsers)
 	for _, parser in ipairs(parsers) do
 		installed_parsers[parser] = task
 	end
@@ -74,8 +75,6 @@ local function install_parsers(install, parsers)
 	return task
 end
 
-local ts = require("nvim-treesitter")
-
 do
 	local available = ts.get_available()
 	for _, parser in ipairs(available) do
@@ -87,9 +86,17 @@ do
 		installed_parsers[parser] = true
 		ensure_installed[parser] = nil
 	end
-end
 
-install_parsers(ts.install, ensure_installed)
+	local to_install = {}
+	for lang, _ in pairs(ensure_installed) do
+		table.insert(to_install, lang)
+	end
+
+	if #to_install > 0 then
+		vim.notify("Installing treesitter parsers for " .. table.concat(to_install, ", "), vim.log.levels.INFO)
+		install_parsers(to_install)
+	end
+end
 
 --- @param buf integer
 --- @param ft string
@@ -106,7 +113,7 @@ local function install_parsers_for_ft(buf, ft)
 
 	local task = installed
 	if task == nil then
-		task = install_parsers(ts.install, { lang })
+		task = install_parsers({ lang })
 	end
 
 	local win = vim.fn.bufwinid(buf)
