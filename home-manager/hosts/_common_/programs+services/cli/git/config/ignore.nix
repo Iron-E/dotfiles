@@ -22,5 +22,6 @@
     "**/foo"
     "**/foo.*"
     "**/node_modules/"
+    "**/.session.vim"
   ];
 }
