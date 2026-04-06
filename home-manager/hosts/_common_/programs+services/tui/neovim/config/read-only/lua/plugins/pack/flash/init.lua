@@ -72,5 +72,13 @@ require("flash").setup({
 				},
 			},
 		},
+
+		treesitter_search = {
+			label = {
+				rainbow = {
+					enabled = true,
+				},
+			},
+		},
 	},
 })
