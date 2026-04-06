@@ -29,8 +29,33 @@ local async_load_if_not_manpage = starting_for_manpage and do_not_load or async_
 
 --- Declare how each plugin should be built when updating
 Pack.build_instructions = {
-	["blink.cmp"] = function()
-		vim.api.nvim_command("BlinkCmp build")
+	["blink.cmp"] = function(plugin)
+		-- NOTE: we could do `BlinkCmp build`, but not all systems have cargo installed
+		local on_out = function(err, data)
+			if err then
+				vim.notify("[blink.cmp build] " .. err, vim.log.levels.WARN)
+				return
+			end
+
+			if data then
+				vim.notify("[blink.cmp build] " .. data, vim.log.levels.INFO)
+			end
+		end
+
+		vim.system({ "nix", "run", ".#build-plugin" }, {
+			cwd = plugin.path,
+			text = true,
+			timeout = 60000 * 10, -- ten minute
+			stdout = on_out,
+			stderr = on_out,
+		}, function(obj)
+			if obj.code == 0 then
+				vim.notify("[blink.cmp build] completed", vim.log.levels.INFO)
+				return
+			end
+
+			vim.notify("[blink.cmp build] exit code " .. obj.code, vim.log.levels.ERROR)
+		end)
 	end,
 
 	["nvim-treesitter"] = function()
