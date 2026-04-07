@@ -6,7 +6,7 @@ require("mini.sessions").setup({
 	autowrite = true,
 
 	-- Directory where global sessions are stored (use `''` to disable)
-	directory = "mini.sessions",
+	directory = vim.fn.stdpath("data") .. "/mini.sessions",
 
 	-- File for local session (use `''` to disable)
 	file = ".session.vim",
