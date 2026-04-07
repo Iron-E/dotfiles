@@ -38,6 +38,7 @@
 
     gd = "g diff";
     gdh = "gd HEAD";
+    gdl = "g difftool -d";
     gdr = "g range-diff";
     gds = "gd --stat";
     gdsh = "gds HEAD";

@@ -8,6 +8,7 @@
     git.settings = {
       core.editor = lib.getExe config.programs.neovim.finalPackage;
       diff.tool = "nvim";
+      difftool.nvim.cmd = ''nvim -c "packadd nvim.difftool" -c "DiffTool $LOCAL $REMOTE"'';
       merge.tool = "nvimdiff";
       mergetool =
         let
