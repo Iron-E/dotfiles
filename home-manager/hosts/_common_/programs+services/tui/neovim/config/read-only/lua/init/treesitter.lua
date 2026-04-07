@@ -38,16 +38,27 @@ vim.api.nvim_set_keymap("n", "<F11>", "", {
 -- enable --
 ------------
 
+--- @class iron-e.TSWinEnable
+---@field winid? integer
+---@field bufnr? integer
+---@field restart? boolean
+
 --- Enable treesitter for the current buffer.
----@param winid? integer
----@param bufnr? integer
-local function ts_win_enable(winid, bufnr)
-	if winid == nil then
+--- @param opts iron-e.TSWinEnable
+local function ts_win_enable(opts)
+	local winid = opts.winid
+	local bufnr = opts.bufnr
+	if bufnr == nil and winid == nil then
+		bufnr = vim.api.nvim_get_current_buf()
 		winid = vim.api.nvim_get_current_win()
+	elseif bufnr == nil and winid ~= nil then
+		bufnr = vim.api.nvim_win_get_buf(winid)
+	elseif bufnr ~= nil and winid == nil then
+		winid = vim.fn.bufwinid(bufnr)
 	end
 
-	if bufnr == nil then
-		bufnr = vim.api.nvim_win_get_buf(winid)
+	if opts.restart then
+		pcall(vim.treesitter.stop, bufnr)
 	end
 
 	local ok = pcall(vim.treesitter.start, bufnr)
@@ -60,20 +71,34 @@ local function ts_win_enable(winid, bufnr)
 end
 
 vim.api.nvim_create_user_command("TSWinEnable", function(args)
-	for i, v in ipairs(args) do
-		args[i] = tonumber(v)
+	local winid
+	local bufnr
+	if #args.fargs > 0 then
+		winid = tonumber(args.fargs[1])
+
+		if #args.fargs > 1 then
+			bufnr = tonumber(args.fargs[2])
+		end
 	end
 
-	ts_win_enable(unpack(args))
+	ts_win_enable({
+		winid = winid,
+		bufnr = bufnr,
+		restart = args.bang,
+	})
 end, {
 	desc = "Try to enable treesitter highlighting for a buffer.",
-	nargs = "+",
+	nargs = "*",
+	bang = true,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "Start treesitter for buffer",
 	group = "config",
 	callback = vim.schedule_wrap(function(ev)
-		ts_win_enable(vim.api.nvim_get_current_win(), ev.buf)
+		ts_win_enable({
+			winid = vim.api.nvim_get_current_win(),
+			bufnr = ev.buf,
+		})
 	end),
 })
