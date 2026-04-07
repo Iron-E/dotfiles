@@ -102,6 +102,7 @@ vim.pack.add({
 	"https://github.com/Saghen/blink.compat", -- dep
 	"https://github.com/rafamadriz/friendly-snippets", -- dep-ish
 	"https://github.com/NMAC427/guess-indent.nvim",
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 }, load_if_not_manpage)
 
 vim.pack.add({
@@ -110,7 +111,6 @@ vim.pack.add({
 	"https://github.com/Iron-E/nvim-libmodal", -- dep
 	"https://github.com/mfussenegger/nvim-lint",
 	"https://github.com/chrisgrieser/nvim-scissors",
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	"https://github.com/folke/todo-comments.nvim",
 	"https://github.com/folke/ts-comments.nvim",
 	"https://github.com/tpope/vim-dadbod", -- dep

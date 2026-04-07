@@ -98,59 +98,34 @@ do
 	end
 end
 
---- @param buf integer
---- @param ft string
-local function install_parsers_for_ft(buf, ft, late_start)
-	local lang = vim.treesitter.language.get_lang(ft)
-	if available_parsers[lang] == nil then
-		return
-	end
-
-	local installed = installed_parsers[lang]
-	if installed == true then -- already installed
-		if late_start then
-			vim.cmd.TSWinEnable({
-				args = { vim.fn.bufwinid(buf), buf },
-				bang = late_start,
-			})
-		end
-
-		return
-	end
-
-	local task = installed
-	if task == nil then
-		task = install_parsers({ lang })
-	end
-
-	local win = vim.fn.bufwinid(buf)
-	task:await(function()
-		vim.cmd.TSWinEnable({
-			args = { win, buf },
-			bang = late_start,
-		})
-	end)
-end
-
 local group = vim.api.nvim_create_augroup("config.treesitter", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "Auto-install parsers for each buffer",
 	group = group,
 	callback = function(ev)
-		install_parsers_for_ft(ev.buf, ev.match)
+		local ft = ev.match
+		local lang = vim.treesitter.language.get_lang(ft)
+		if available_parsers[lang] == nil then
+			return
+		end
+
+		local installed = installed_parsers[lang]
+		if installed == true then -- already installed
+			return
+		end
+
+		local task = installed
+		if task == nil then
+			task = install_parsers({ lang })
+		end
+
+		local buf = ev.buf
+		local win = vim.fn.bufwinid(buf)
+		task:await(function()
+			vim.api.nvim_command("TSWinEnable " .. win .. " " .. buf)
+		end)
 	end,
 })
-
--- if vim already entered when this was sourced,
--- then we missed the FT events for the files that were opened at startup.
-if vim.v.vim_did_enter == 1 then
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_get_option_value("buflisted", { buf = buf }) then
-			local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
-			install_parsers_for_ft(buf, ft, true)
-		end
-	end
-end
 
 -----------------------------
 
