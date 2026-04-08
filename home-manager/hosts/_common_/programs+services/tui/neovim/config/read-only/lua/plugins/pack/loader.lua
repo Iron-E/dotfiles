@@ -169,4 +169,25 @@ function M.load_queued_plugins()
 	end))
 end
 
+vim.api.nvim_create_autocmd("VimEnter", {
+	desc = "Load plugins specified in enqueue_plugin_load",
+	group = group,
+	once = true,
+	callback = coroutine.wrap(function()
+		local co = coroutine.running()
+
+		for _, plugin_name in ipairs(M.plugin_load_queue) do
+			vim.schedule(function()
+				M.load_plugin(plugin_name)
+				coroutine.resume(co)
+			end)
+
+			coroutine.yield()
+		end
+
+		-- free the queue
+		M.plugin_load_queue = {}
+	end),
+})
+
 return M

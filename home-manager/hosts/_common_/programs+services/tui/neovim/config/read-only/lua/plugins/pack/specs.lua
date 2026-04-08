@@ -170,6 +170,3 @@ vim.pack.add({
 	"https://github.com/wintermute-cell/gitignore.nvim", -- deps: fzf-lua
 	"https://github.com/pwntester/octo.nvim", -- deps: plenary, fzf-lua, mini.icons
 }, async_load_if_not_manpage)
-
--- Load plugins asynchronously
-Loader.load_queued_plugins()
