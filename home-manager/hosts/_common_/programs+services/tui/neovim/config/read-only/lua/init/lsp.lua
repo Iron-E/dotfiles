@@ -58,6 +58,7 @@ end, {
 local group = vim.api.nvim_create_augroup("config.lsp", { clear = true })
 
 vim.lsp.linked_editing_range.enable(true)
+vim.lsp.codelens.enable(true)
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Enable on_type_formatting for certain clients",
@@ -73,9 +74,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.lsp.on_type_formatting.enable(true, { client_id = client_id })
 	end,
 })
-
--- TODO: re-enable in 0.12.1
--- vim.lsp.codelens.enable(true)
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Use LSP foldexpr",
