@@ -43,6 +43,27 @@ vim.api.nvim_set_keymap("n", "<F11>", "", {
 ---@field bufnr? integer
 ---@field restart? boolean
 
+do
+	local remaps = {
+		["in"] = "<C-i>",
+		["an"] = "<C-o>",
+		["[n"] = "[n",
+		["]n"] = "]n",
+	}
+
+	local keymap = vim.api.nvim_get_keymap("x")
+	for _, mapping in ipairs(keymap) do
+		local remap = remaps[mapping.lhs]
+		if remap then
+			vim.api.nvim_set_keymap("x", remap, "", {
+				callback = mapping.callback,
+				desc = mapping.desc,
+				noremap = true,
+			})
+		end
+	end
+end
+
 --- Enable treesitter for the current buffer.
 --- @param opts iron-e.TSWinEnable
 local function ts_win_enable(opts)
@@ -56,6 +77,9 @@ local function ts_win_enable(opts)
 	elseif bufnr ~= nil and winid == nil then
 		winid = vim.fn.bufwinid(bufnr)
 	end
+
+	--- @cast bufnr -nil
+	--- @cast winid -nil
 
 	if opts.restart then
 		pcall(vim.treesitter.stop, bufnr)
