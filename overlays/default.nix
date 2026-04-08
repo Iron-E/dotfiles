@@ -54,12 +54,12 @@
         }).overrideAttrs
           (
             finalAttrs: previousAttrs: {
-              version = "0.12.0";
+              version = "0.12.1";
               src = prev.fetchFromGitHub {
                 owner = "neovim";
                 repo = "neovim";
                 tag = "v${finalAttrs.version}";
-                hash = "sha256-uWhrGAwQ2nnAkyJ46qGkYxJ5K1jtyUIQOAVu3yTlquk=";
+                hash = "sha256-cbFM5TKGmhEDsdhMvGzMyn0Js0MJwdMwXDkzQcdw/TM=";
               };
             }
           );
