@@ -5,7 +5,7 @@
       "src": "https://github.com/stevearc/aerial.nvim"
     },
     "blink.cmp": {
-      "rev": "451168851e8e2466bc97ee3e026c3dcb9141ce07",
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/Saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
@@ -26,7 +26,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "3f194300c92e3ec2de8f9307d6a7ce988b7b6d0c",
+      "rev": "4deeecf611c0beba6455e6cf06e2c051a6169dd4",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitignore.nvim": {
@@ -34,7 +34,7 @@
       "src": "https://github.com/wintermute-cell/gitignore.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "944ef13cc8d8fe8b846c91f36041c8dfb85ca000",
+      "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "guess-indent.nvim": {
@@ -54,7 +54,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "mini.nvim": {
-      "rev": "3923662bf3d6ca49a9503f8d7196ea0450983e6a",
+      "rev": "2431902e78b76f435542d1e606f08475360068ca",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-bufmode": {
@@ -70,11 +70,11 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "8e2084bf5e40c79c1f42210a6ef96a0a4793a763",
+      "rev": "c588db330592fa477a70d2fee6ba20a57194bdc3",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-scissors": {
-      "rev": "9d22ecef2d019a72748f23cec9db32c7f7b222d2",
+      "rev": "52055050445b46088a695856b6e0ba359dc0e009",
       "src": "https://github.com/chrisgrieser/nvim-scissors"
     },
     "nvim-tabmode": {
@@ -82,7 +82,7 @@
       "src": "https://github.com/Iron-E/nvim-tabmode"
     },
     "nvim-treesitter": {
-      "rev": "81295eb0c5fc05ab3796a28c9f160c3ac4098106",
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -91,7 +91,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "octo.nvim": {
-      "rev": "b51e52888e678441a266bfd5ae2dc0a02a21d67e",
+      "rev": "7f0173a102a9feb3eddbfc0266a5a7e4e61daabf",
       "src": "https://github.com/pwntester/octo.nvim"
     },
     "plenary.nvim": {
@@ -103,7 +103,7 @@
       "src": "https://github.com/stevearc/quicker.nvim"
     },
     "roslyn.nvim": {
-      "rev": "ff43201090361b8936e008a006473b59ef2c0ca6",
+      "rev": "f2ec6ee6384c3b611ddc817b9e78b20cd0334bbb",
       "src": "https://github.com/seblj/roslyn.nvim"
     },
     "todo-comments.nvim": {
@@ -131,7 +131,7 @@
       "src": "https://github.com/MTDL9/vim-log-highlighting"
     },
     "vim-win": {
-      "rev": "78be4acff9434372c6c0aeb0200dddc30fa8920c",
+      "rev": "00a31b44f9388927102dcd96606e236f13681a33",
       "src": "https://github.com/dstein64/vim-win",
       "version": "'00a31b44f9388927102dcd96606e236f13681a33'"
     }
