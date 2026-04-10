@@ -122,6 +122,12 @@ vim.api.nvim_set_keymap("n", "<Leader><A-l>", "<C-w><Right><Cmd>vertical resize<
 -- reset split size
 vim.api.nvim_set_keymap("n", "<A-0>", "<C-w>=", noremap)
 
+-- Buffers
+vim.api.nvim_set_keymap("n", "[B", "<Cmd>bfirst<CR>", no_opts)
+vim.api.nvim_set_keymap("n", "[b", "<Cmd>bprevious<CR>", no_opts)
+vim.api.nvim_set_keymap("n", "]b", "<Cmd>bnext<CR>:", no_opts)
+vim.api.nvim_set_keymap("n", "]B", "<Cmd>blast<CR>", no_opts)
+
 -- Tabs
 vim.api.nvim_set_keymap("n", "[T", "<Cmd>tabfirst<CR>", no_opts)
 vim.api.nvim_set_keymap("n", "[t", "<Cmd>tabprevious<CR>", no_opts)
