@@ -22,7 +22,7 @@ vim.api.nvim_set_option_value("showtabline", 0, {})
 --       create events don't need to check for hiding the tabline, destroy events don't need to check
 --       for showing it?
 local group = vim.api.nvim_create_augroup("config.mini.tabline", { clear = true })
-vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "TabClosed", "TabNew" }, {
+vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "TabClosed", "TabNew", "VimEnter" }, {
 	desc = "Hide tabline when only one buffer open",
 	group = group,
 	callback = function()
