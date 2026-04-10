@@ -41,7 +41,8 @@ vim.api.nvim_set_keymap("n", "<A-w>E", "", {
 			return
 		end
 
-		MiniFiles.open()
+		local cwd = vim.fn.getcwd()
+		MiniFiles.open(cwd)
 	end,
 })
 
