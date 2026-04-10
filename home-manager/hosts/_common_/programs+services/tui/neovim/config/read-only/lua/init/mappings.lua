@@ -125,7 +125,7 @@ vim.api.nvim_set_keymap("n", "<A-0>", "<C-w>=", noremap)
 -- Buffers
 vim.api.nvim_set_keymap("n", "[B", "<Cmd>bfirst<CR>", no_opts)
 vim.api.nvim_set_keymap("n", "[b", "<Cmd>bprevious<CR>", no_opts)
-vim.api.nvim_set_keymap("n", "]b", "<Cmd>bnext<CR>:", no_opts)
+vim.api.nvim_set_keymap("n", "]b", "<Cmd>bnext<CR>", no_opts)
 vim.api.nvim_set_keymap("n", "]B", "<Cmd>blast<CR>", no_opts)
 
 -- Tabs
