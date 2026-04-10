@@ -133,10 +133,6 @@ vim.pack.add({
 }, load_if_not_manpage)
 
 vim.pack.add({
-	"https://github.com/romgrk/barbar.nvim", -- deps: gitsigns.nvim, mini.icons
-}, load_if_not_manpage)
-
-vim.pack.add({
 	"https://github.com/stevearc/aerial.nvim", -- deps: nvim-treesitter, mini.icons
 	"https://github.com/ibhagwan/fzf-lua", -- deps: mini.icons
 	"https://github.com/Iron-E/nvim-bufmode", -- deps: nvim-libmodal
