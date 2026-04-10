@@ -34,16 +34,6 @@ vim.api.nvim_set_keymap("n", "<A-w>e", "", {
 	end,
 })
 
-vim.api.nvim_set_keymap("n", "<A-w>e", "", {
-	desc = "Focus current file in file explorer",
-	callback = function()
-		if not MiniFiles.close() then
-			MiniFiles.open(vim.api.nvim_buf_get_name(0))
-			MiniFiles.reveal_cwd()
-		end
-	end,
-})
-
 vim.api.nvim_set_keymap("n", "<A-w>E", "", {
 	desc = "Open previous file explorer",
 	callback = function()
