@@ -1,8 +1,6 @@
 --- @module 'mini.files'
 
-local files = require("mini.files")
-
-files.setup({
+require("mini.files").setup({
 	--- @type {[string]: fun(entry: fs_entry): boolean}
 	content = {
 		filter = function(entry)
@@ -27,17 +25,23 @@ files.setup({
 vim.api.nvim_set_keymap("n", "<A-w>e", "", {
 	desc = "Focus current file in file explorer",
 	callback = function()
-		if not files.close() then
-			files.open(vim.api.nvim_buf_get_name(0))
-			files.reveal_cwd()
+		if MiniFiles.close() then
+			return
 		end
+
+		MiniFiles.open(vim.api.nvim_buf_get_name(0))
+		MiniFiles.reveal_cwd()
 	end,
 })
 
 vim.api.nvim_set_keymap("n", "<A-w>E", "", {
 	desc = "Open previous file explorer",
 	callback = function()
-		return MiniFiles.close() or MiniFiles.open(MiniFiles.get_latest_path())
+		if MiniFiles.close() then
+			return
+		end
+
+		MiniFiles.open()
 	end,
 })
 
