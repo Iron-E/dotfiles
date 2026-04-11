@@ -1,9 +1,5 @@
 local notify = require("mini.notify")
-notify.setup({
-	lsp_progress = {
-		enable = false,
-	},
-})
+notify.setup()
 
 vim.notify = notify.make_notify({
 	DEBUG = { hl_group = "DiagnosticFloatingHint" },

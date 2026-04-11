@@ -88,22 +88,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("LspProgress", {
-	desc = "Report on LSP progress events",
-	group = group,
-	callback = function(ev)
-		local value = ev.data.params.value
-		vim.api.nvim_echo({ { value.message or "done" } }, false, {
-			id = "lsp." .. ev.data.params.token,
-			kind = "progress",
-			source = "vim.lsp",
-			title = value.title,
-			status = value.kind == "end" and "success" or "running",
-			percent = value.percentage,
-		})
-	end,
-})
-
 -------------
 -- keymaps --
 -------------
