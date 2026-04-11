@@ -1,16 +1,18 @@
 require("mini.tabline").setup({
 	format = function(bufnr, label)
-		local buf_name = vim.api.nvim_buf_get_name(bufnr)
-		local icon, _ = MiniIcons.get("file", buf_name)
-
-		local modified = ""
-		if vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
-			modified = "[+]"
+		local separator
+		if bufnr == vim.api.nvim_get_current_buf() then
+			separator = " "
+		elseif bufnr == vim.fn.bufnr("#") then
+			separator = "🯎"
+		else
+			separator = "▎"
 		end
 
-		return string.format("▎ %s %s %s ", icon, label, modified)
+		return separator .. MiniTabline.default_format(bufnr, label)
 	end,
 })
+
 local function buf_is_listed(bufnr)
 	return vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_get_option_value("buflisted", { buf = bufnr })
 end
