@@ -78,7 +78,6 @@ vim.pack.add({
 	"https://github.com/Iron-E/flash.nvim",
 	"https://github.com/brenoprata10/nvim-highlight-colors",
 	"https://github.com/stevearc/quicker.nvim",
-	{ src = "https://github.com/dstein64/vim-win", version = "00a31b44f9388927102dcd96606e236f13681a33" },
 }, async_load)
 
 vim.pack.add({
