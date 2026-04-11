@@ -101,6 +101,7 @@ vim.api.nvim_del_keymap("n", "grx")
 vim.api.nvim_del_keymap("x", "gra")
 
 vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "Setup keymaps",
 	group = group,
 	callback = function(event)
 		local bufnr = event.buf
@@ -115,16 +116,33 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.keymap.set(modes, "gX", vim.lsp.buf.code_action, opts)
 		end
 
-		if vim.lsp.get_client_by_id(event.data.client_id).server_capabilities.inlayHintProvider then
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		if client == nil then
+			return
+		end
+
+		if client:supports_method("textDocument/inlayHint") then
 			local conceallevel = vim.api.nvim_get_option_value("conceallevel", { scope = "local" })
 
 			local filter = { bufnr = bufnr }
 			vim.lsp.inlay_hint.enable(conceallevel > 0, filter)
 			vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>c", "", {
+				desc = "Toggle inlay hints and text conceal",
 				callback = function()
 					local is_enabled = vim.lsp.inlay_hint.is_enabled(filter)
 					vim.lsp.inlay_hint.enable(not is_enabled, filter)
 					vim.api.nvim_command("ToggleWinConcealLevel")
+				end,
+			})
+		end
+
+		if client:supports_method("textDocument/codeLens") then
+			vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>L", "", {
+				desc = "Toggle code lenses",
+				callback = function()
+					--- @type vim.lsp.capability.enable.Filter
+					local filter = { bufnr = bufnr }
+					vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled(filter), filter)
 				end,
 			})
 		end
