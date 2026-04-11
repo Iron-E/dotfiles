@@ -1,17 +1,4 @@
-require("mini.tabline").setup({
-	format = function(bufnr, label)
-		local separator
-		if bufnr == vim.api.nvim_get_current_buf() then
-			separator = " "
-		elseif bufnr == vim.fn.bufnr("#") then
-			separator = "🯎"
-		else
-			separator = "▎"
-		end
-
-		return separator .. MiniTabline.default_format(bufnr, label)
-	end,
-})
+require("mini.tabline").setup()
 
 local function buf_is_listed(bufnr)
 	return vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_get_option_value("buflisted", { buf = bufnr })
