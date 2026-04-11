@@ -9,4 +9,5 @@
 
 require("plugins.pack.specs")
 require("plugins.undotree")
+require("plugins.winswitch.config")
 require("stenvim"):register()
