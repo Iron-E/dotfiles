@@ -104,7 +104,7 @@ function Input:setup_mappings(bufnr, winid, on_confirm)
 
 	--- @type vim.keymap.set.Opts
 	local opts = {
-		desc = "Cacnel vim.ui.input",
+		desc = "Cancel vim.ui.input",
 		callback = function()
 			on_confirm()
 			UI.cleanup(bufnr, winid)
