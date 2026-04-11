@@ -13,7 +13,6 @@ require("init/filetype")
 
 -- Config
 require("init/config")
-require("init/ui")
 
 require("init/autocmds")
 require("init/commands")
