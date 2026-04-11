@@ -139,6 +139,23 @@ local function input_label(valid_labels)
 	end
 end
 
+--- @param fn fun(): boolean
+--- @param or_ fun()
+local function try_wrap(fn, or_)
+	return function()
+		local success, result = xpcall(function()
+			return fn()
+		end, debug.traceback)
+
+		if not success then
+			vim.notify(tostring(result), vim.log.levels.ERROR)
+			or_()
+		elseif result == true then
+			or_()
+		end
+	end
+end
+
 function M.switch_current()
 	local current_win = vim.api.nvim_get_current_win()
 	local current_buf = vim.api.nvim_win_get_buf(current_win)
@@ -159,31 +176,29 @@ function M.switch_current()
 
 	local popups_by_label = popup_labels(winids_by_label)
 
-	vim.schedule(function()
-		local success, result = xpcall(function()
-			local label = input_label(winids_by_label)
-			if label == nil then
-				return
-			end
+	local function cleanup()
+		cleanup_label_popups(popups_by_label)
+	end
 
-			local target_win = winids_by_label[label]
-			if current_win == target_win then -- don't bother trying to switch the two windows
-				return
-			end
-
-			local target_buf = vim.api.nvim_win_get_buf(target_win)
-
-			vim.api.nvim_win_set_buf(current_win, target_buf)
-			vim.api.nvim_win_set_buf(target_win, current_buf)
-			vim.api.nvim_set_current_win(target_win)
-		end, debug.traceback)
-
-		if not success then
-			vim.notify(tostring(result), vim.log.levels.ERROR)
+	vim.schedule(try_wrap(function()
+		local label = input_label(winids_by_label)
+		if label == nil then
+			return true
 		end
 
-		cleanup_label_popups(popups_by_label)
-	end)
+		local target_win = winids_by_label[label]
+		if current_win == target_win then -- don't bother trying to switch the two windows
+			return true
+		end
+
+		local target_buf = vim.api.nvim_win_get_buf(target_win)
+
+		vim.api.nvim_win_set_buf(current_win, target_buf)
+		vim.api.nvim_win_set_buf(target_win, current_buf)
+		vim.api.nvim_set_current_win(target_win)
+
+		return true
+	end, cleanup))
 end
 
 function M.switch()
@@ -198,30 +213,21 @@ function M.switch()
 	if vim.tbl_isempty(winids_by_label) then -- no valid windows, don't do anything
 		vim.notify("winswitch: too few unique windows", vim.log.levels.ERROR)
 		return
-	elseif #vim.iter(pairs(bufnrs_by_winid))
-		:unique(function(_, bufnr)
-			return bufnr
-		end)
-		:totable() < 2 then
+	elseif
+		#vim.iter(pairs(bufnrs_by_winid))
+			:unique(function(_, bufnr)
+				return bufnr
+			end)
+			:totable() < 2 -- comment to force formatting
+	then
 		vim.notify("winswitch: too few unique buffers", vim.log.levels.ERROR)
 		return
 	end
 
 	local popups_by_label = popup_labels(winids_by_label)
 
-	local function try_wrap(fn)
-		return function()
-			local success, result = xpcall(function()
-				return fn()
-			end, debug.traceback)
-
-			if not success then
-				vim.notify(tostring(result), vim.log.levels.ERROR)
-				cleanup_label_popups(popups_by_label)
-			elseif result == true then
-				cleanup_label_popups(popups_by_label)
-			end
-		end
+	local function cleanup()
+		cleanup_label_popups(popups_by_label)
 	end
 
 	-- I think this is probably worse than callback hell
@@ -268,10 +274,12 @@ function M.switch()
 				vim.api.nvim_win_set_buf(second_winid, first_bufnr)
 
 				return true
-			end),
+			end, cleanup),
 			25
 		)
-	end))
+
+		return false
+	end, cleanup))
 end
 
 return M
