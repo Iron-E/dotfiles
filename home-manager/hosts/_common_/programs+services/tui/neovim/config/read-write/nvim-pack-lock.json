@@ -57,10 +57,6 @@
       "rev": "2431902e78b76f435542d1e606f08475360068ca",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
-    "nvim-bufmode": {
-      "rev": "bb0e247e41d6267cc0ddf985249b3f986c6c3321",
-      "src": "https://github.com/Iron-E/nvim-bufmode"
-    },
     "nvim-highlight-colors": {
       "rev": "e2cb22089cc2358b2b995c09578224f142de6039",
       "src": "https://github.com/brenoprata10/nvim-highlight-colors"
