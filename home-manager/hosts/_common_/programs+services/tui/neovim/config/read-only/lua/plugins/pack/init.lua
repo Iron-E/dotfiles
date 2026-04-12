@@ -64,40 +64,44 @@ end
 --- BUILDING PLUGINS ---
 ------------------------
 
-vim.api.nvim_create_user_command("PackBuild", function(args)
-	--- @type nil|string[]
-	local plugin_names
-	if #args.fargs > 0 then
-		plugin_names = vim.list.unique(args.fargs)
-	end
-
-	--- @type vim.pack.PlugData[]
-	local plugins = vim.pack.get(plugin_names, { info = false })
-
-	-- TODO: do I need a coroutine here?
-	for _, plugin in ipairs(plugins) do
-		local build_instruction = M.build_instructions[plugin.spec.name]
-		if build_instruction == nil then
-			goto continue
+vim.api.nvim_create_user_command(
+	"PackBuild",
+	vim.schedule_wrap(function(args)
+		--- @type nil|string[]
+		local plugin_names
+		if #args.fargs > 0 then
+			plugin_names = vim.list.unique(args.fargs)
 		end
 
-		if args.bang then
-			vim.api.nvim_command("packadd " .. plugin.spec.name)
+		--- @type vim.pack.PlugData[]
+		local plugins = vim.pack.get(plugin_names, { info = false })
+
+		-- TODO: do I need a coroutine here?
+		for _, plugin in ipairs(plugins) do
+			local build_instruction = M.build_instructions[plugin.spec.name]
+			if build_instruction == nil then
+				goto continue
+			end
+
+			if args.bang then
+				vim.api.nvim_command("packadd " .. plugin.spec.name)
+			end
+
+			vim.notify("Building " .. plugin.spec.name, vim.log.levels.INFO)
+			build_instruction(plugin)
+
+			::continue::
 		end
-
-		vim.notify("Building " .. plugin.spec.name, vim.log.levels.INFO)
-		build_instruction(plugin)
-
-		::continue::
-	end
-end, {
-	desc = "Run a build command for a plugin",
-	bang = true,
-	nargs = "*",
-	complete = function()
-		return vim.tbl_keys(M.build_instructions)
-	end,
-})
+	end),
+	{
+		desc = "Run a build command for a plugin",
+		bang = true,
+		nargs = "*",
+		complete = function()
+			return vim.tbl_keys(M.build_instructions)
+		end,
+	}
+)
 
 vim.api.nvim_create_autocmd("PackChanged", {
 	desc = "Run build hooks for packages",
