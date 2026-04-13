@@ -58,7 +58,7 @@ end, {
 local group = vim.api.nvim_create_augroup("config.lsp", { clear = true })
 
 vim.lsp.linked_editing_range.enable(true)
--- vim.lsp.codelens.enable(true) -- TODO: re-enable when appearance is configurable
+vim.lsp.codelens.enable(false) -- TODO: re-enable when appearance is configurable
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Enable CodeLens for certain clients",
