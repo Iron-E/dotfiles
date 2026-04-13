@@ -144,8 +144,8 @@ local function config_heirline()
 
 		update = {
 			"ModeChanged",
+			"TermLeave", -- HACK: for some reason, termleave events don't sync right.
 			callback = redrawstatus,
-			pattern = "*:*",
 		},
 
 		hl = function(self)
