@@ -345,7 +345,7 @@ local function config_heirline()
 		return {
 			hl = { fg = fg },
 			provider = function(self)
-				return self:provide("+", "added")
+				return self:provide(sign, change)
 			end,
 		}
 	end
