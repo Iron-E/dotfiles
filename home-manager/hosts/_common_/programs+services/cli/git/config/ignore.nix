@@ -25,5 +25,6 @@
     "**/.session.vim"
     "**/mise.local.toml"
     "**/mise.*.local.toml"
+    "**/taskfile.yml"
   ];
 }
