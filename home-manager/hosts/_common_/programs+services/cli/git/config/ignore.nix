@@ -23,5 +23,7 @@
     "**/foo.*"
     "**/node_modules/"
     "**/.session.vim"
+    "**/mise.local.toml"
+    "**/mise.*.local.toml"
   ];
 }
