@@ -22,11 +22,6 @@ in
     withPython3 = false;
     withRuby = false;
 
-    extraLuaPackages =
-      luaPkgs: with luaPkgs; [
-        jsregexp # for luasnip
-      ];
-
     extraPackages = builtins.attrValues {
       ########
       # misc #
