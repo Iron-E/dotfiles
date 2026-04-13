@@ -120,15 +120,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = group,
 	callback = function(event)
 		local bufnr = event.buf
-		local opts = { buffer = bufnr }
 
-		vim.api.nvim_buf_set_keymap(bufnr, "n", "gA", "", { callback = vim.lsp.buf.rename })
-		vim.api.nvim_buf_set_keymap(bufnr, "n", "gL", "", { callback = vim.lsp.codelens.run })
-		vim.keymap.set({ "i", "n" }, "<C-h>", vim.lsp.buf.signature_help, opts)
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "gA", "", { desc = "Rename symbol", callback = vim.lsp.buf.rename })
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "gL", "", { desc = "Run codelens", callback = vim.lsp.codelens.run })
+		vim.keymap.set({ "i", "n" }, "<C-h>", vim.lsp.buf.signature_help, { desc = "Signature help", buf = bufnr })
 
 		do
 			local modes = { "n", "x" }
-			vim.keymap.set(modes, "gX", vim.lsp.buf.code_action, opts)
+			vim.keymap.set(modes, "gX", vim.lsp.buf.code_action, { desc = "Code action", buf = bufnr })
 		end
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
