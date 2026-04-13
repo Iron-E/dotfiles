@@ -1,0 +1,27 @@
+{
+	"mise": {
+		"body": [
+			"[settings]",
+			"experimental = true",
+			"lockfile = true",
+			"",
+			"[tools]",
+			"# TODO: run `mise use --pin lefthook`",
+			"",
+			"[tasks.lefthook-install]",
+			"run = \"lefthook check-install || lefthook install\"",
+			"",
+			"[hooks]",
+			"enter = [\"mise install --locked\", { task =  \"lefthook-install\" }]",
+			"",
+			"[[watch_files]]",
+			"patterns = [\"mise.toml\"]",
+			"run = \"mise lock\"",
+			"",
+			"[[watch_files]]",
+			"patterns = [\"lefthook.yml\"]",
+			"task = \"lefthook-install\""
+		],
+		"prefix": "mise"
+	}
+}

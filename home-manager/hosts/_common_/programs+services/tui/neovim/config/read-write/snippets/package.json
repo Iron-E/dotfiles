@@ -98,6 +98,12 @@
 					"editorconfig"
 				],
 				"path": "./editorconfig.json.json"
+			},
+			{
+				"language": [
+					"toml"
+				],
+				"path": "./toml.json"
 			}
 		]
 	},
