@@ -26,5 +26,7 @@
     "**/mise.local.toml"
     "**/mise.*.local.toml"
     "**/taskfile.yml"
+    "**/taskfile.yaml"
+    "**/lefthook-local.*"
   ];
 }
