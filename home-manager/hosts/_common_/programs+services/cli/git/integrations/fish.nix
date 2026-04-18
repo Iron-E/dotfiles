@@ -4,7 +4,7 @@
 
   programs.fish.functions = lib.optionalAttrs config.programs.git.enable {
     gkz = {
-      description = "Reads a stream of revisions from stdin and greps ";
+      description = "Change directory to another git worktree";
       body = # fish
         ''
           set -f result (
