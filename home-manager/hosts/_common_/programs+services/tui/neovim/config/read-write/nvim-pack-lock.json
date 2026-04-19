@@ -26,7 +26,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "1e866cce085cc6df3d3e4fb59f00105fa84cef6c",
+      "rev": "cebf88881a4fab2c20a2a950269953417af1c3e8",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitignore.nvim": {
@@ -54,7 +54,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "mini.nvim": {
-      "rev": "c67822c53e8e282fe863343e88aa0a8ca3534059",
+      "rev": "418ef4930ddabe80f449c6f1323f8b6abb172d1c",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-highlight-colors": {
@@ -66,7 +66,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "8a9378a822719346a0288fa004dab302ca3c0a8f",
+      "rev": "4b7fbaa239c5db6b36f424a4521ca9f1a401be33",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-scissors": {
@@ -87,7 +87,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "octo.nvim": {
-      "rev": "351b2922642c3ade27c1d13374c685d1d6ab27a9",
+      "rev": "65550fa020775fb18e6eacab86b80145560bfd9c",
       "src": "https://github.com/pwntester/octo.nvim"
     },
     "plenary.nvim": {
@@ -99,7 +99,7 @@
       "src": "https://github.com/stevearc/quicker.nvim"
     },
     "roslyn.nvim": {
-      "rev": "f2ec6ee6384c3b611ddc817b9e78b20cd0334bbb",
+      "rev": "6a5e60a7c25d9ce0835aa9c69379f1c92e0a9d56",
       "src": "https://github.com/seblj/roslyn.nvim"
     },
     "todo-comments.nvim": {
