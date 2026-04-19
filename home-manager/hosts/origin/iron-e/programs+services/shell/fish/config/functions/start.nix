@@ -20,7 +20,7 @@
           sudo pacman -Syu
 
           # update neovim
-          nvim +'lua vim.defer_fn(function() vim.cmd "Lazy sync" end, 100)'
+          nvim -c PackUpdate
         end
       '';
   };
