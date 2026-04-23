@@ -189,6 +189,7 @@ vim.lsp.enable({
 	"terraformls",
 	"tinymist",
 	"tofu_ls",
+	"tombi",
 	"ts_ls",
 	"yamlls",
 })

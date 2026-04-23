@@ -77,6 +77,7 @@ in
         terraform-ls
         tinymist
         tofu-ls
+        tombi
         vscode-css-languageserver
         vscode-json-languageserver
         yaml-language-server
