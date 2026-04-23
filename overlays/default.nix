@@ -53,13 +53,13 @@
           };
         }).overrideAttrs
           (
-            finalAttrs: previousAttrs: {
-              version = "0.12.1";
+            finalAttrs: _previousAttrs: {
+              version = "0.12.2";
               src = prev.fetchFromGitHub {
                 owner = "neovim";
                 repo = "neovim";
                 tag = "v${finalAttrs.version}";
-                hash = "sha256-cbFM5TKGmhEDsdhMvGzMyn0Js0MJwdMwXDkzQcdw/TM=";
+                hash = "sha256-V+jZiNv0SvG/GOOUPzmBkOQGrnrN3UW2BY2n9NxP2Eg=";
               };
             }
           );
