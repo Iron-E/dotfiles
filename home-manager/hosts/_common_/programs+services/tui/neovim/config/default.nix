@@ -59,6 +59,7 @@ in
 
       inherit (pkgs)
         basedpyright
+        bash-language-server
         deno
         docker-language-server
         emmet-language-server
@@ -70,7 +71,7 @@ in
         lua-language-server
         marksman
         nixd
-        roslyn-ls
+        # roslyn-ls
         rust-analyzer
         sqls
         tailwindcss-language-server
@@ -78,14 +79,10 @@ in
         tinymist
         tofu-ls
         tombi
+        typescript-language-server
         vscode-css-languageserver
         vscode-json-languageserver
         yaml-language-server
-        ;
-
-      inherit (pkgs.nodePackages_latest)
-        bash-language-server
-        typescript-language-server
         ;
 
       ###########
@@ -112,8 +109,7 @@ in
       # Tree Sitter #
       ###############
 
-      inherit (pkgs) clang tree-sitter;
-      inherit (pkgs.nodePackages_latest) nodejs;
+      inherit (pkgs) clang nodejs tree-sitter;
     };
   };
 }
