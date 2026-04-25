@@ -5,5 +5,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  home.packages = with pkgs; [ bandwhich ];
+  home.packages = with pkgs; [ brightnessctl ];
 }
