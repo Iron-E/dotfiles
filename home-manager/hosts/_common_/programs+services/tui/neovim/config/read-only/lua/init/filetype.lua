@@ -21,16 +21,23 @@ local function in_tofu(path)
 	return root ~= nil
 end
 
+local state = vim.uv.os_getenv("XDG_STATE_HOME")
+
 vim.filetype.add({
 	filename = {
 		["compose.yaml"] = "yaml.docker-compose",
 		["compose.yml"] = "yaml.docker-compose",
 		["docker-compose.yaml"] = "yaml.docker-compose",
-		["terragrunt.hcl"] = "hcl.terragrunt",
-		["terragrunt.stack.hcl"] = "hcl.terragrunt-stack",
 		["docker-compose.yml"] = "yaml.docker-compose",
 		["fish_history"] = "yaml",
 		["librewolf.overrides.cfg"] = "javascript",
+		["terragrunt.hcl"] = "hcl.terragrunt",
+		["terragrunt.stack.hcl"] = "hcl.terragrunt-stack",
+		["wireplumber.conf"] = "spajson",
+		[state .. "/wireplumber/default-nodes"] = "dosini",
+		[state .. "/wireplumber/default-profile"] = "dosini",
+		[state .. "/wireplumber/default-routes"] = "dosini",
+		[state .. "/wireplumber/stream-properties"] = "dosini",
 	},
 
 	extension = {

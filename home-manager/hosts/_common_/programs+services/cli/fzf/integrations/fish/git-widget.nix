@@ -30,7 +30,7 @@
     functions.vi_bindings.body = # fish
       ''
         for mode in default insert
-          bind -M $mode alt-g fzf-cdg-widget repaint
+          bind -M $mode ctrl-g fzf-cdg-widget repaint
         end
       '';
   };
