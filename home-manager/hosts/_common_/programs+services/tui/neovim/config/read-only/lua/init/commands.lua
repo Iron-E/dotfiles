@@ -3,6 +3,26 @@ local scope_local = { scope = "local" }
 
 local no_opts = {}
 
+vim.api.nvim_create_user_command("BdeleteInactive", function(args)
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		--- @type vim.api.keyset.option
+		local opts = { buf = buf }
+
+		if
+			vim.api.nvim_buf_is_valid(buf)
+			and vim.api.nvim_get_option_value("buflisted", opts)
+			and vim.api.nvim_get_option_value("buftype", opts) == ""
+			and #vim.fn.win_findbuf(buf) == 0
+		then
+			vim.api.nvim_buf_delete(buf, { force = args.bang, unload = false })
+		end
+	end
+end, {
+	desc = "Delete all inactive buffers.",
+	bang = true,
+	force = true,
+})
+
 vim.api.nvim_create_user_command("SetTabstop", function(tbl)
 	local expandtab = tbl.bang
 	local tabstop = 3
