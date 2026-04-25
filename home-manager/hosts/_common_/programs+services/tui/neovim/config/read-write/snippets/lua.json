@@ -1,4 +1,8 @@
 {
+	"api": {
+		"body": "vim.api.nvim_${1:}",
+		"prefix": "api"
+	},
 	"barbar-minimal": {
 		"body": [
 			"--[[ minimal.lua ]]",
