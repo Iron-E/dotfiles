@@ -4,9 +4,9 @@
 
   home.shellAliases =
     let
-      inherit (config.programs.git) aliases;
+      inherit (config.programs.git.settings) alias;
     in
-    lib.optionalAttrs (aliases.pwd ? null != null) {
+    lib.optionalAttrs (alias.pwd ? null != null) {
       # TODO: update after:
       # - https://github.com/ajeetdsouza/zoxide/issues/863
       # - https://github.com/ajeetdsouza/zoxide/issues/944
