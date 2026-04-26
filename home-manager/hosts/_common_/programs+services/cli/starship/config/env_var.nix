@@ -1,12 +1,8 @@
 {
   lib,
   config,
-  outputs,
   ...
 }:
-let
-  util = outputs.lib;
-in
 {
   imports = [ ];
 
@@ -19,18 +15,28 @@ in
       variable = "NNNLVL";
     };
 
-    VIM =
-      util.config.optionalIfAnyEnabled
-        (with config.programs; [
-          neovim
-          vim
-        ])
-        {
-          description = "Show whether the shell is being accessed inside (Neo)Vim";
-          format = "[]($style inverted)[ \${symbol} ]($style)";
-          style = "bg:green fg:black";
-          symbol = "";
-          variable = "VIMRUNTIME";
-        };
+    NVIM = {
+      description = "Show whether the shell is being accessed inside NeoVim";
+      format = "[]($style inverted)[ \${symbol} ]($style)";
+      style = "bg:green fg:black";
+      symbol = " ";
+      variable = "NVIM";
+    };
+
+    VIM = {
+      description = "Show whether the shell is being accessed inside Vim";
+      format = "[]($style inverted)[ \${symbol} ]($style)";
+      style = "bg:green fg:black";
+      symbol = " ";
+      variable = "VIMRUNTIME";
+    };
+
+    YAZI = {
+      description = "Show whether the shell is being accessed inside (Neo)Vim";
+      format = "[]($style inverted)[ \${symbol} ]($style)";
+      style = "bg:yellow fg:black";
+      symbol = " ";
+      variable = "YAZI_LEVEL";
+    };
   };
 }
