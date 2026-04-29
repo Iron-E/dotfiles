@@ -20,6 +20,7 @@
         "crictl"
         "dagger"
         "docker"
+        "mise"
         "nerdctl"
       ];
     in
