@@ -23,7 +23,7 @@
         { profile = { inherit name outputs; }; };
     in
     [
-      (output "AU Optronics 0x403D Unknown" "laptop" {
+      (output "eDP-1" "laptop" {
         mode = "1920x1080@60.049Hz";
       })
 
