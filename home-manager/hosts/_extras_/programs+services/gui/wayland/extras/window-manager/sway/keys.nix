@@ -89,27 +89,39 @@
           ${lhs.audio.mute} = volume.toggle;
 
           # Modes
+          ${lhs.withModAlt "k"} = rhs.enterMode "kill";
           ${lhs.withMod "r"} = rhs.enterMode "resize";
         };
 
-      modes.resize =
+      modes =
         let
-          resize = "10 px or 10 ppt";
+          genMode =
+            enterMode: # string
+            mappings: # attrset
+            mappings // (lib.genAttrs [ lhs.escape lhs.return enterMode ] (_: rhs.enterMode "default"));
         in
-        rec {
-          h = "resize shrink width ${resize}";
-          ${lhs.left} = h;
+        {
+          kill = genMode (lhs.withModAlt "k") {
+            "--whole-window button1" = "kill";
+          };
 
-          j = "resize grow height ${resize}";
-          ${lhs.down} = j;
+          resize =
+            let
+              resize = "10 px or 10 ppt";
+            in
+            genMode (lhs.withMod "r") rec {
+              h = "resize shrink width ${resize}";
+              ${lhs.left} = h;
 
-          k = "resize shrink height ${resize}";
-          ${lhs.up} = k;
+              j = "resize grow height ${resize}";
+              ${lhs.down} = j;
 
-          l = "resize grow width ${resize}";
-          ${lhs.right} = l;
-        }
-        # define bindings for leaving the mode
-        // lib.genAttrs [ lhs.escape lhs.return (lhs.withMod "r") ] (_: rhs.enterMode "default");
+              k = "resize shrink height ${resize}";
+              ${lhs.up} = k;
+
+              l = "resize grow width ${resize}";
+              ${lhs.right} = l;
+            };
+        };
     };
 }
