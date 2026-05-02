@@ -32,6 +32,7 @@ in
       "\${mise}"
       "\${direnv}"
       "\${nix_shell}"
+      "\${env_var.SHELL_PRIVATE}"
       "\${env_var.NNN}"
       "\${env_var.NVIM}"
       "\${env_var.VIM}"
