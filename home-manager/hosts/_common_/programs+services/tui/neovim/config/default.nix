@@ -71,6 +71,7 @@ in
         lua-language-server
         marksman
         nixd
+        regal
         # roslyn-ls
         rust-analyzer
         sqls
