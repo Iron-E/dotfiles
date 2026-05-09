@@ -7,6 +7,7 @@
 
     ka = "k apply";
     kaf = "k apply -f";
+    kak = "k apply -k";
 
     kat = "k attach";
 
@@ -23,6 +24,7 @@
 
     krm = "k delete";
     krmf = "k delete -f";
+    krmk = "k delete -k";
 
     kd = "k diff";
 
