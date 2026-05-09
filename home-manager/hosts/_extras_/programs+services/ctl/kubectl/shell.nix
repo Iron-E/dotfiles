@@ -38,6 +38,8 @@
 
     kg = "k get";
 
+    kk = "k kustomize";
+
     kl = "k logs";
 
     ko = "k rollout";
