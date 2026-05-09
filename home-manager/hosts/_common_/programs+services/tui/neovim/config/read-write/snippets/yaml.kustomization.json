@@ -16,5 +16,13 @@
 			"$0"
 		],
 		"prefix": "kustomization"
+	},
+	"local-config": {
+		"body": "config.kubernetes.io/local-config: \"true\"$0",
+		"prefix": [
+			"local-config",
+			"internal-config",
+			"private-config"
+		]
 	}
 }
