@@ -104,6 +104,12 @@
 					"toml"
 				],
 				"path": "./toml.json"
+			},
+			{
+				"language": [
+					"yaml.kustomization"
+				],
+				"path": "./yaml.kustomization.json"
 			}
 		]
 	},

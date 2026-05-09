@@ -1,0 +1,20 @@
+{
+	"component": {
+		"body": [
+			"apiVersion: kustomize.config.k8s.io/v1alpha1",
+			"kind: Component",
+			"",
+			"$0"
+		],
+		"prefix": "component"
+	},
+	"kustomization": {
+		"body": [
+			"apiVersion: kustomize.config.k8s.io/v1beta1",
+			"kind: Kustomization",
+			"",
+			"$0"
+		],
+		"prefix": "kustomization"
+	}
+}

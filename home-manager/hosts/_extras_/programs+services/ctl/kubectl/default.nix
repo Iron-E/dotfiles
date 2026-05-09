@@ -1,9 +1,9 @@
-{ outputs, pkgs, ...}:
+{ outputs, ... }:
 let
   util = outputs.lib;
 in
 {
   imports = util.fs.readSubmodules ./.;
 
-  home.packages = with pkgs; [ kubectl ];
+  programs.kubectl.enable = true;
 }
