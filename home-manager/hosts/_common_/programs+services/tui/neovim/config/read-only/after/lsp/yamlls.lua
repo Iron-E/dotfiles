@@ -5,6 +5,7 @@ return {
 		"yaml.docker-compose",
 		"yaml.gitlab-ci",
 		"yaml.helm-values",
+		"yaml.kustomization",
 		"yaml.taskfile",
 	},
 
