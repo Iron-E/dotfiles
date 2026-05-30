@@ -119,9 +119,19 @@ local function get_repos_config()
 	}
 end
 
+--- @type vim.lsp.Config
 return {
 	cmd = { "actions-languageserver", "--stdio" },
 	filetypes = { "yaml.ghactions" },
+
+	before_init = function(params, _)
+		params.initializationOptions = {
+			-- Optional: provide a GitHub token and repo context for added functionality
+			-- (e.g., repository-specific completions)
+			sessionToken = get_github_token(),
+			repos = get_repos_config(),
+		}
+	end,
 
 	-- `root_dir` ensures that the LSP does not attach to all yaml files
 	root_dir = function(bufnr, on_dir)
@@ -135,12 +145,12 @@ return {
 		end
 	end,
 
-	init_options = {
-		-- Optional: provide a GitHub token and repo context for added functionality
-		-- (e.g., repository-specific completions)
-		sessionToken = get_github_token(),
-		repos = get_repos_config(),
-	},
+	-- init_options = {
+	-- 	-- Optional: provide a GitHub token and repo context for added functionality
+	-- 	-- (e.g., repository-specific completions)
+	-- 	sessionToken = get_github_token(),
+	-- 	repos = get_repos_config(),
+	-- },
 
 	-- allow the lsp to register capabilities on demand
 	capabilities = {
