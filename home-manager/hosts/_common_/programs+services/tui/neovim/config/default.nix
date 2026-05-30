@@ -90,6 +90,7 @@ in
       ###########
 
       inherit (pkgs)
+        actionlint
         deadnix
         dotenv-linter
         eslint_d
