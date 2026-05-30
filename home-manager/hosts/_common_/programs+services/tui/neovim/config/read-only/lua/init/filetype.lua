@@ -69,6 +69,7 @@ vim.filetype.add({
 
 	pattern = {
 		[".*/[^/]*%.gitlab%-ci%.ya?ml"] = "yaml.gitlab-ci",
+		[".*/%.github/workflows/.*%.ya?ml"] = "yaml.ghactions",
 
 		[".*/[Tt]askfile[^/]*%.ya?ml"] = "yaml.taskfile",
 
