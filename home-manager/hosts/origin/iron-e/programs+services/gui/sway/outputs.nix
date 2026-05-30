@@ -7,7 +7,7 @@
     let
       # HACK: cannot use identifier, see https://github.com/swaywm/swaybg/issues/44#issuecomment-1375655825
       laptop = "eDP-1";
-      leftMonitor = "LG Electronics LG HDR 4K 0x0004DF17";
+      leftMonitor = "Dell Inc. DELL U2725QE FQ01984";
       rightMonitor = "Dell Inc. DELL U2725QE 2B11H84";
     in
     {

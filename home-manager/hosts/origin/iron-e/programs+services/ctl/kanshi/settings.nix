@@ -27,7 +27,7 @@
         mode = "1920x1080@60.049Hz";
       })
 
-      (output "LG Electronics LG HDR 4K 0x0004DF17" "left_monitor" {
+      (output "Dell Inc. DELL U2725QE FQ01984" "left_monitor" {
         mode = "2560x1440@59.951Hz";
         transform = "90";
       })
