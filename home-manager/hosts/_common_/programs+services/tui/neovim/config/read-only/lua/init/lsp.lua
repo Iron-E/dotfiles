@@ -168,6 +168,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 ------------
 
 vim.lsp.enable({
+	"actionsls",
 	"basedpyright",
 	"bashls",
 	"buf_ls",
