@@ -179,7 +179,12 @@
 		"prefix": "home-manager-default"
 	},
 	"istrlang": {
-		"body": "/* ${1:lang} */ ''$2''$0",
+		"body": [
+			"# ${1:lang}",
+			"  ''",
+			"    $2",
+			"  ''$0"
+		],
 		"prefix": "istrlang"
 	},
 	"let-util": {
