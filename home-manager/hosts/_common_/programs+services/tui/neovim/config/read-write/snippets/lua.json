@@ -3,6 +3,18 @@
 		"body": "vim.api.nvim_${1:}",
 		"prefix": "api"
 	},
+	"autocmd": {
+		"body": [
+			"vim.api.nvim_create_autocmd(${1:events}, {",
+			"\tdesc = \"${2:desc}\",",
+			"\tgroup = ${3:group},",
+			"\tcallback = function(ev)",
+			"\t\t${4:}",
+			"\tend,",
+			"})$0"
+		],
+		"prefix": "autocmd"
+	},
 	"barbar-minimal": {
 		"body": [
 			"--[[ minimal.lua ]]",

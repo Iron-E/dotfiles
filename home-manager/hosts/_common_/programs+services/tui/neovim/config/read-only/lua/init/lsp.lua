@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local client_id = ev.data.client_id
 
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		if client == nil or not client.name == "yamlls" then
+		if client == nil or not (client.name == "yamlls" or client.name == "lua_ls") then
 			return
 		end
 
