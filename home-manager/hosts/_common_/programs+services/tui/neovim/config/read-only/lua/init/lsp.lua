@@ -76,21 +76,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	desc = "Enable on_type_formatting for certain clients",
-	group = group,
-	callback = function(ev)
-		local client_id = ev.data.client_id
-
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		if client == nil or client.name == "lua_ls" then
-			return
-		end
-
-		vim.lsp.on_type_formatting.enable(true, { client_id = client_id })
-	end,
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Use LSP foldexpr",
 	group = group,
 	callback = function(args)
