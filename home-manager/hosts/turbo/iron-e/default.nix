@@ -10,7 +10,7 @@ in
       ../../_common_/programs+services/ctl/docker
       ../../_extras_/programs+services/cli/_1password
       ../../_extras_/programs+services/cli/aws
-      ../../_extras_/programs+services/ctl
+      ../../_extras_/programs+services/ctl/kubectl
     ]
     ++ (util.fs.filterSubmodules ../../_common_ [
       ../../_common_/home
