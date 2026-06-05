@@ -11,7 +11,7 @@ in
   imports = util.fs.readSubmodules ./.;
 
   programs.zathura = {
-    enable = true;
+    enable = !pkgs.stdenv.isDarwin;
     package = config.lib.nixGL.wrap pkgs.zathura;
   };
 }

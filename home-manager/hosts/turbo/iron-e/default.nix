@@ -18,7 +18,6 @@ in
       ../../_common_/programs+services/cli
       ../../_common_/programs+services/ctl
       ../../_common_/programs+services/lang
-      ../../_common_/programs+services/gui
     ])
     ++ (util.fs.filterSubmodules ../../_common_/programs+services/cli [
       ../../_common_/programs+services/cli/gpg
@@ -29,11 +28,7 @@ in
     ++ (util.fs.filterSubmodules ../../_common_/programs+services/lang [
       ../../_common_/programs+services/lang/cargo
       ../../_common_/programs+services/lang/rustup
-      ../../_common_/programs+services/lang/typst
-    ])
-    ++ [
-      ../../_common_/programs+services/gui/ghostty
-    ];
+    ]);
 
   home =
     let

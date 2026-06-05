@@ -1,9 +1,7 @@
-{ outputs, pkgs, ... }:
+{ outputs, ... }:
 let
   util = outputs.lib;
 in
 {
   imports = util.fs.readSubmodules ./.;
-
-  gtk.enable = !pkgs.stdenv.isDarwin;
 }
