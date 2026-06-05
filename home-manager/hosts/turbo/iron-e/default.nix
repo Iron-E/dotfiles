@@ -39,12 +39,18 @@ in
       ../../_common_/programs+services/lang/typst
     ]);
 
-  home = {
-    username = "iron-e";
+  home =
+    let
+      username = "iron-e";
+    in
+    {
+      inherit username;
 
-    # SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    stateVersion = "24.05";
-  };
+      # SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+      stateVersion = "24.05";
+
+      sessionVariables.HM_PROFILE = "${username}@turbo";
+    };
 
   xdg.enable = true;
 }

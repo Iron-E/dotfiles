@@ -10,7 +10,9 @@ return {
 			},
 			options = {
 				home_manager = {
-					expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."iron-e@origin".options',
+					expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."' .. vim.uv.os_getenv(
+						"HM_PROFILE"
+					) .. '".options',
 				},
 			},
 		},
