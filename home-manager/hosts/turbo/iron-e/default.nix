@@ -13,12 +13,7 @@ in
       ../../_extras_/programs+services/ctl/kubectl
     ]
     ++ (util.fs.filterSubmodules ../../_common_ [
-      ../../_common_/home
       ../../_common_/programs+services
-      ../../_common_/xdg
-    ])
-    ++ (util.fs.filterSubmodules ../../_common_/home [
-      ../../_common_/home/theme.nix
     ])
     ++ (util.fs.filterSubmodules ../../_common_/programs+services [
       ../../_common_/programs+services/cli
