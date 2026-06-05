@@ -97,6 +97,13 @@
 			},
 			{
 				"language": [
+					"gotmpl",
+					"helm"
+				],
+				"path": "./gotmpl.json"
+			},
+			{
+				"language": [
 					"editorconfig"
 				],
 				"path": "./editorconfig.json.json"
@@ -119,6 +126,12 @@
 					"hcl.terragrunt-stack"
 				],
 				"path": "./hcl.terragrunt.json"
+			},
+			{
+				"language": [
+					"jsonnet"
+				],
+				"path": "./jsonnet.json"
 			}
 		]
 	},

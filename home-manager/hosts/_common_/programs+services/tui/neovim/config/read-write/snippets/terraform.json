@@ -3,6 +3,10 @@
 		"body": "optional(${1:$TM_SELECTED_TEXT}, ${2:default})",
 		"prefix": "default"
 	},
+	"eot": {
+		"body": ["<<-EOT", "  ${1:TM_SELECTED_TEXT}", "EOT$0"],
+		"prefix": "eot"
+	},
 	"for": {
 		"body": ["[", "  for ${1:i}, ${2:v} in ${3:values}: ${4:$2}", "]"],
 		"prefix": "for"
@@ -45,6 +49,10 @@
 		"body": ["module \"$1\" {", "  source = \"$2\"", "}"],
 		"prefix": "mod"
 	},
+	"null-coalesce": {
+		"body": "coalesce(try(${1:foo}, null), ${2:bar})",
+		"prefix": "null-coalesce"
+	},
 	"object": {
 		"body": ["object({", "  ${1:}", "})$0"],
 		"prefix": "object"
@@ -71,23 +79,9 @@
 		],
 		"prefix": "tf-docker_secret"
 	},
-	"tf-require-docker": {
-		"body": [
-			"docker = {",
-			"  source  = \"kreuzwerker/docker\"",
-			"  version = \"~> 3.0\"",
-			"}"
-		],
-		"prefix": "tf-require-docker"
-	},
-	"tf-require-kubernetes": {
-		"body": [
-			"kubernetes = {",
-			"  source  = \"hashicorp/kubernetes\"",
-			"  version = \"~> 2.0\"",
-			"}"
-		],
-		"prefix": "tf-require-kubernetes"
+	"try-null-coalesce": {
+		"body": "try(coalesce(${1:foo}, ${2:bar}), null)",
+		"prefix": "try-null-coalesce"
 	},
 	"tuple": {
 		"body": "tuple([${1:}])$0",

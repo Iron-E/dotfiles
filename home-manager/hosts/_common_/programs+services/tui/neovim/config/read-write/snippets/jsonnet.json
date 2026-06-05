@@ -1,0 +1,10 @@
+{
+	"im": {
+		"body": "import '${1:./}'$0",
+		"prefix": "im"
+	},
+	"local": {
+		"body": "local ${1:foo} = ${2:bar}$0",
+		"prefix": "local"
+	}
+}
