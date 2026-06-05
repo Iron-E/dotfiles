@@ -14,7 +14,6 @@ in
     ]
     ++ (util.fs.filterSubmodules ../../_common_ [
       ../../_common_/home
-      ../../_common_/nixgl
       ../../_common_/programs+services
       ../../_common_/xdg
     ])
