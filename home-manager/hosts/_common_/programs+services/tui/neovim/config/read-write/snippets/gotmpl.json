@@ -1,0 +1,138 @@
+{
+	"and": {
+		"body": "and ${1:x} ${2:y}",
+		"prefix": "and"
+	},
+	"block": {
+		"body": "{{block \"${1:name}\" ${2:var}}}${3:body}{{end}}$0",
+		"prefix": "block"
+	},
+	"break": {
+		"body": "{{break}}$0",
+		"prefix": "break"
+	},
+	"call": {
+		"body": "call ${1:func} ${2:args}",
+		"prefix": "call"
+	},
+	"continue": {
+		"body": "{{continue}}$0",
+		"prefix": "continue"
+	},
+	"define": {
+		"body": "{{define \"${1:name}\"}}${2:body}{{end}}$0",
+		"prefix": "define"
+	},
+	"elif": {
+		"body": "{{else if ${1:var}}}${2:body}",
+		"prefix": "elif"
+	},
+	"else": {
+		"body": "{{else}}${3:body}",
+		"prefix": "else"
+	},
+	"eq": {
+		"body": "eq ${1:x} ${2:y}",
+		"prefix": "eq"
+	},
+	"for": {
+		"body": "{{range ${1:var}}}${2:body}{{end}}$0",
+		"prefix": "for"
+	},
+	"fori": {
+		"body": "{{range $i, $${2:value} := ${1:var}}}${3:body}{{end}}$0",
+		"prefix": "fori"
+	},
+	"forr": {
+		"body": "{{range $${2:key}, $${3:value} := ${1:var}}}${4:body}{{end}}$0",
+		"prefix": "forr"
+	},
+	"ge": {
+		"body": "ge ${1:x} ${2:y}",
+		"prefix": "ge"
+	},
+	"gt": {
+		"body": "gt ${1:x} ${2:y}",
+		"prefix": "gt"
+	},
+	"html": {
+		"body": "html ${1:args}",
+		"prefix": "html"
+	},
+	"if": {
+		"body": "{{if ${1:var}}}${2:body}{{end}}$0",
+		"prefix": "if"
+	},
+	"index": {
+		"body": "index ${1:arr} ${2:indices}",
+		"prefix": "index"
+	},
+	"js": {
+		"body": "js ${1:args}",
+		"prefix": "js"
+	},
+	"le": {
+		"body": "le ${1:x} ${2:y}",
+		"prefix": "le"
+	},
+	"len": {
+		"body": "len ${1:arg}",
+		"prefix": "len"
+	},
+	"lt": {
+		"body": "lt ${1:x} ${2:y}",
+		"prefix": "lt"
+	},
+	"not": {
+		"body": "not ${1:arg}",
+		"prefix": "not"
+	},
+	"or": {
+		"body": "or ${1:x} ${2:y}",
+		"prefix": "or"
+	},
+	"printf": {
+		"body": "printf \"${1:format}\" ${2:args}",
+		"prefix": "printf"
+	},
+	"println": {
+		"body": "println ${1:arg}",
+		"prefix": "println"
+	},
+	"slice": {
+		"body": "slice ${1:arr} ${2:from} ${3:args}",
+		"prefix": "slice"
+	},
+	"st": {
+		"body": "{{${1:body}}}$0",
+		"prefix": "st"
+	},
+	"stb": {
+		"body": "{{- ${1:body} -}}$0",
+		"prefix": "stb"
+	},
+	"stl": {
+		"body": "{{- ${1:body}}}$0",
+		"prefix": "stl"
+	},
+	"str": {
+		"body": "{{${1:body} -}}$0",
+		"prefix": "str"
+	},
+	"template": {
+		"body": "{{template \"${1:name}\"}}$0",
+		"prefix": "template"
+	},
+	"templated": {
+		"body": "{{template \"${1:name}\" ${2:scope}}}$0",
+		"prefix": "templated"
+	},
+	"urlquery": {
+		"body": "urlquery ${1:arg}",
+		"prefix": "urlquery"
+	},
+	"with": {
+		"body": "{{with ${1:var}}}${2:body}{{end}}$0",
+		"prefix": "with"
+	}
+}

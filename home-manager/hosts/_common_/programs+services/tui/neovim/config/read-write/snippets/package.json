@@ -71,7 +71,9 @@
 			{
 				"language": [
 					"opentofu",
-					"terraform"
+					"terraform",
+					"hcl.terragrunt",
+					"hcl.terragrunt-stack"
 				],
 				"path": "./terraform.json"
 			},
@@ -110,6 +112,13 @@
 					"yaml.kustomization"
 				],
 				"path": "./yaml.kustomization.json"
+			},
+			{
+				"language": [
+					"hcl.terragrunt",
+					"hcl.terragrunt-stack"
+				],
+				"path": "./hcl.terragrunt.json"
 			}
 		]
 	},

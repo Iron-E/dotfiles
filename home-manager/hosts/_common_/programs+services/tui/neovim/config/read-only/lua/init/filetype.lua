@@ -25,6 +25,8 @@ local state = vim.uv.os_getenv("XDG_STATE_HOME")
 
 vim.filetype.add({
 	filename = {
+		["action.yml"] = "yaml.ghactions",
+		["action.yaml"] = "yaml.ghactions",
 		["compose.yaml"] = "yaml.docker-compose",
 		["compose.yml"] = "yaml.docker-compose",
 		["docker-compose.yaml"] = "yaml.docker-compose",
