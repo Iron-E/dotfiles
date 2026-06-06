@@ -23,7 +23,7 @@ Options:
 	return
 end
 
-nix run .#home-manager -- $operation --impure --flake .#$argv[1] $argv[2..]
+nix run .#home-manager -- $operation --impure --flake .#$argv[1] $argv[2..] || exit $status
 
 if [ -z "$_flag_link" ]
 	return
