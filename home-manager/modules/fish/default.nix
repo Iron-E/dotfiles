@@ -43,12 +43,10 @@ in
 
   config = mkIf cfg.enable (mkMerge [
     {
-      home.activation.zzzSetFishTheme =
-        lib.hm.dag.entryAfter [ "writeBoundary" ]
-          # sh
-          ''
-            run ${lib.getExe cfg.package} -c "fish_config theme choose ${cfg.theme.name} && yes | fish_config theme save"
-          '';
+      programs.fish.interactiveShellInit = # fish
+        ''
+          fish_config theme choose $theme
+        '';
     }
 
     (mkIf (cfg.theme.source != null) {
