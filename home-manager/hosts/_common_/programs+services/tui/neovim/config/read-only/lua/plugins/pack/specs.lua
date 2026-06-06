@@ -31,7 +31,7 @@ local async_load_if_not_manpage = starting_for_manpage and do_not_load or async_
 Pack.build_instructions = {
 	["blink.cmp"] = function(plugin)
 		-- NOTE: we could do `BlinkCmp build`, but not all systems have cargo installed
-		local on_out = function(err, data)
+		local on_out = vim.schedule_wrap(function(err, data)
 			if err then
 				vim.notify("[blink.cmp build] " .. err, vim.log.levels.WARN)
 				return
@@ -40,7 +40,7 @@ Pack.build_instructions = {
 			if data then
 				vim.notify("[blink.cmp build] " .. data, vim.log.levels.INFO)
 			end
-		end
+		end)
 
 		vim.system({ "nix", "run", ".#build-plugin" }, {
 			cwd = plugin.path,
