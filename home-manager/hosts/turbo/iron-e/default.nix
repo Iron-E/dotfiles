@@ -38,7 +38,7 @@ in
       inherit username;
 
       # SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-      stateVersion = "25.11";
+      stateVersion = "26.05";
 
       sessionVariables.HM_PROFILE = "${username}@turbo";
     };
