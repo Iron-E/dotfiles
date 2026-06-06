@@ -12,20 +12,18 @@ in
     {
       enableDefaultConfig = false;
 
-      matchBlocks = {
+      settings = {
         "*" = {
-          controlMaster = "auto";
-          controlPath = "~/.ssh/cm-%r@%h:%p";
-          controlPersist = "30s";
-          setEnv.TERM = "xterm-256color"; # HACK: ghostty not working right on older machines via ssh
+          ControlMaster = "auto";
+          ControlPath = "~/.ssh/cm-%r@%h:%p";
+          ControlPersist = "30s";
+          SetEnv.TERM = "xterm-256color"; # HACK: ghostty not working right on older machines via ssh
 
-          extraOptions = {
-            inherit IdentityAgent;
-          };
+          inherit IdentityAgent;
         };
 
         "*.github.com" = {
-          user = builtins.getEnv "GIT_USER_NAME";
+          User = builtins.getEnv "GIT_USER_NAME";
         };
       };
     };
