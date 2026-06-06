@@ -1,6 +1,9 @@
-{ config, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [ ];
 
-  services.gpg-agent.pinentry = config.lib.pinentry;
+  services.gpg-agent.pinentry = lib.optionalAttrs (!pkgs.stdenv.isDarwin) {
+    # NOTE: requires services.dbus.packages = [ pkgs.gcr ];
+    package = pkgs.pinentry-gnome3;
+  };
 }
