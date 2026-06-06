@@ -16,7 +16,6 @@ in
     ])
     ++ (util.fs.filterSubmodules ../../_common_/programs+services [
       ../../_common_/programs+services/ctl
-      ../../_common_/programs+services/lang
     ])
     ++ [
       ../../_common_/programs+services/ctl/docker
