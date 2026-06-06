@@ -105,7 +105,7 @@
           )
           {
             "iron-e@origin" = "x86_64-linux";
-            "iron-e@turbo" = "aarch64-darwin";
+            "iron-e@garuda" = "aarch64-darwin";
           };
     };
 }
