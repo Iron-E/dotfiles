@@ -1,8 +1,9 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [ ];
 
-  home.pointerCursor = lib.optionalAttrs pkgs.stdenv.isLinux {
+  home.pointerCursor = {
+    enable = pkgs.stdenv.isLinux;
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
   };
