@@ -114,7 +114,20 @@ vim.api.nvim_create_autocmd("CursorHold", {
 vim.api.nvim_create_autocmd({ "FocusGained", "VimResume" }, {
 	desc = "Check for external changes to file",
 	group = augroup,
-	command = "checktime",
+	callback = function(ev)
+		--- @type vim.api.keyset.option
+		local opts = { buf = ev.buf }
+
+		if
+			vim.api.nvim_get_option_value("buftype", opts) == "nofile"
+			and vim.api.nvim_get_option_value("swapfile", opts) == "off"
+			and vim.api.nvim_buf_get_name(ev.buf) == "[Command Line]"
+		then
+			return
+		end
+
+		vim.api.nvim_command("checktime")
+	end,
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
