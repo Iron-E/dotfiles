@@ -25,16 +25,12 @@ in
     ../../_extras_/programs+services/lang
   ];
 
-  home =
-    let
-      username = "iron-e";
-    in
-    {
-      inherit username;
+  home = {
+    username = "iron-e";
 
-      # SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-      stateVersion = "26.05";
+    # SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+    stateVersion = "26.05";
 
-      sessionVariables.HM_PROFILE = "${username}@origin";
-    };
+    sessionVariables.HM_PROFILE = "iron-e@origin";
+  };
 }

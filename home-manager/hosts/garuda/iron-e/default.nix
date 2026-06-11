@@ -21,18 +21,14 @@ in
       ../../_common_/programs+services/ctl/docker
     ];
 
-  home =
-    let
-      username = "iron-e";
-    in
-    {
-      inherit username;
+  home = {
+    username = "iron-e";
 
-      # SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-      stateVersion = "26.05";
+    # SEE: https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+    stateVersion = "26.05";
 
-      sessionVariables.HM_PROFILE = "${username}@garuda";
-    };
+    sessionVariables.HM_PROFILE = "iron-e@garuda";
+  };
 
   xdg.enable = true;
 }
