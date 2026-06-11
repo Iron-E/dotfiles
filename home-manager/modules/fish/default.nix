@@ -45,7 +45,7 @@ in
     {
       programs.fish.interactiveShellInit = # fish
         ''
-          fish_config theme choose $theme
+          fish_config theme choose ${cfg.theme.name}
         '';
     }
 
