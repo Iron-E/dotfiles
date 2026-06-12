@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  program.gh.settings = {
+  programs.gh.settings = {
     telemetry = "disabled";
   };
 }
