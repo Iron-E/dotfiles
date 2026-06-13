@@ -14,12 +14,14 @@ in
     ../../_extras_/programs+services/cli/nh
     ../../_extras_/programs+services/cli/nix-forecast
     ../../_extras_/programs+services/cli/rclone
+    ../../_extras_/programs+services/cli/zk
     ../../_extras_/programs+services/ctl/autorandr
     ../../_extras_/programs+services/ctl/brightnessctl
     ../../_extras_/programs+services/ctl/kubectl
     # ../../_extras_/programs+services/gui/bitwarden
     ../../_extras_/programs+services/gui/brave
     ../../_extras_/programs+services/gui/librewolf
+    ../../_extras_/programs+services/gui/obsidian
     ../../_extras_/programs+services/gui/wayland
     ../../_extras_/programs+services/gui/xsession/config
     ../../_extras_/programs+services/lang
