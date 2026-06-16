@@ -6,7 +6,7 @@ in
   imports = util.fs.readSubmodules ./.;
 
   xdg.configFile = {
-    "leaf/themes/highlite.toml".source = ./config.toml;
+    "leaf/themes/highlite.toml".source = ./highlite.toml;
     "leaf/config.toml".source = (pkgs.formats.toml { }).generate "leaf-config" {
       # All settings are optional. If a setting is missing or the file
       # does not exist, leaf uses its built-in defaults.
