@@ -2,94 +2,108 @@
 {
   imports = [ ];
 
-  programs.git.settings.alias = {
-    ###############
-    # LOG HELPERS #
-    ###############
+  programs.git.settings.alias =
+    let
+      ls-diff-filter =
+        f: # string
+        lib.trim
+          # sh
+          ''
+            ! git ls-diff --diff-filter=${f} "''${@:-HEAD}" #
+          '';
+    in
+    {
+      ###############
+      # LOG HELPERS #
+      ###############
 
-    graph = "log --graph --pretty=format:'%C(#ffb7b7)%h%C(reset bold) %an%C(reset) %s %C(#ff4090)(%cr)%C(bold #ffa6ff)%d%C(reset)' --abbrev-commit --date=relative";
+      graph = "log --graph --pretty=format:'%C(#ffb7b7)%h%C(reset bold) %an%C(reset) %s %C(#ff4090)(%cr)%C(bold #ffa6ff)%d%C(reset)' --abbrev-commit --date=relative";
 
-    clog = "log --topo-order --oneline --cherry";
+      clog = "log --topo-order --oneline --cherry";
 
-    tlog = "log --topo-order";
+      tlog = "log --topo-order";
 
-    ls = "ls-files";
-    ls-added = "diff --name-only --diff-filter=A";
-    ls-broken = "diff --name-only --diff-filter=B";
-    ls-copied = "diff --name-only --diff-filter=C";
-    ls-deleted = "diff --name-only --diff-filter=D";
-    ls-modified = "diff --name-only --diff-filter=M";
-    ls-renamed = "diff --name-only --diff-filter=R";
-    ls-type-changed = "diff --name-only --diff-filter=T";
-    ls-unknown = "diff --name-only --diff-filter=X";
-    ls-unmerged = "diff --name-only --diff-filter=U";
+      ##############
+      # LS HELPERS #
+      ##############
 
-    # "list diff"
-    # list files that were changed in the given commit range.
-    # e.g. `g ls-diff HEAD`, or `g ls-diff HEAD~4..`
-    ls-diff =
-      lib.trim
-        # sh
-        ''
-          ! git diff --name-only "''${@:-HEAD}" #
-        '';
+      ls = "ls-files";
 
-    # "list log"
-    # list when files were last changed
-    ls-log =
-      lib.trim # sh
-        ''
-          ! git ls-tree --abbrev=12 --format '%(objectname)%x09%(path)' "''${@:-HEAD}" #
-        '';
+      # "list diff"
+      # list files that were changed in the given commit range.
+      # e.g. `g ls-diff HEAD`, or `g ls-diff HEAD~4..`
+      ls-diff =
+        lib.trim
+          # sh
+          ''
+            ! git diff --name-only "''${@:-HEAD}" #
+          '';
 
-    # "list log"
-    # list when files were last changed
-    ls-log-recurse =
-      lib.trim # sh
-        ''
-          ! git ls-log -tr "''${@:-HEAD}" #
-        '';
+      ls-added = ls-diff-filter "A";
+      ls-broken = ls-diff-filter "B";
+      ls-copied = ls-diff-filter "C";
+      ls-deleted = ls-diff-filter "D";
+      ls-modified = ls-diff-filter "M";
+      ls-renamed = ls-diff-filter "R";
+      ls-type-changed = ls-diff-filter "T";
+      ls-unknown = ls-diff-filter "X";
+      ls-unmerged = ls-diff-filter "U";
 
-    lsr = "ls-remote";
+      # "list log"
+      # list when files were last changed
+      ls-log =
+        lib.trim # sh
+          ''
+            ! git ls-tree --abbrev=12 --format '%(objectname)%x09%(path)' "''${@:-HEAD}" #
+          '';
 
-    lst = "ls-tree";
+      # "list log"
+      # list when files were last changed
+      ls-log-recurse =
+        lib.trim # sh
+          ''
+            ! git ls-log -tr "''${@:-HEAD}" #
+          '';
 
-    ################
-    # PATH HELPERS #
-    ################
+      lsr = "ls-remote";
+      lst = "ls-tree";
 
-    # print working directory
-    pwd = "rev-parse --show-toplevel";
+      ################
+      # PATH HELPERS #
+      ################
 
-    ##################
-    # BRANCH ALIASES #
-    ##################
+      # print working directory
+      pwd = "rev-parse --show-toplevel";
 
-    main = "symbolic-ref refs/remotes/origin/HEAD --short";
+      ##################
+      # BRANCH ALIASES #
+      ##################
 
-    # "Print (Current) Branch"
-    pb = "branch --show-current";
+      main = "symbolic-ref refs/remotes/origin/HEAD --short";
 
-    # Print Origin Branch
-    opb = "rev-parse --abbrev-ref '@{push}'";
+      # "Print (Current) Branch"
+      pb = "branch --show-current";
 
-    # Print Release Branch
-    rpb = "! git pb | sed 's/^staging/release/'";
+      # Print Origin Branch
+      opb = "rev-parse --abbrev-ref '@{push}'";
 
-    # Print Staging Branch
-    spb = "! git pb | sed 's/^release/staging/'";
+      # Print Release Branch
+      rpb = "! git pb | sed 's/^staging/release/'";
 
-    # Print Upstream Branch
-    upb = "rev-parse --abbrev-ref '@{upstream}'";
+      # Print Staging Branch
+      spb = "! git pb | sed 's/^release/staging/'";
 
-    ##################
-    # BRANCH HELPERS #
-    ##################
+      # Print Upstream Branch
+      upb = "rev-parse --abbrev-ref '@{upstream}'";
 
-    up =
-      lib.trim # sh
-        ''
-          ! git push --set-upstream origin "$(git pb)"
-        '';
-  };
+      ##################
+      # BRANCH HELPERS #
+      ##################
+
+      up =
+        lib.trim # sh
+          ''
+            ! git push --set-upstream origin "$(git pb)"
+          '';
+    };
 }
