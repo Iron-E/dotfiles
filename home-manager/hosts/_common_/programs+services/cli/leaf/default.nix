@@ -1,6 +1,6 @@
-{ outputs, ... }:
+{ outputs, pkgs, ... }:
 {
   imports = outputs.lib.fs.readSubmodules ./.;
 
-  # TODO: package leaf
+  home.packages = [ outputs.packages.${pkgs.stdenv.system}.leaf ];
 }

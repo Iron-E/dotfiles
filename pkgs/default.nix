@@ -5,5 +5,5 @@ let
   inherit (pkgs) callPackage;
 in
 {
-  # rift = callPackage ./bash/rift.nix { };
+  leaf = callPackage ./leaf.nix { };
 }
