@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, pkgs, ... }:
 {
   imports = [ ];
 
@@ -15,5 +15,9 @@
 
     # mkdir
     mkdir = "mkdir -p";
-  };
+  }
+  // (lib.optionalAttrs pkgs.stdenv.isDarwin {
+    Y = "pbcopy";
+    P = "pbpaste";
+  });
 }
