@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 let
   pname = "leaf";
-  repo = "https://github.com/RivoLink/leaf";
+  repo = "https://github.com/RivoLink/${pname}";
 
   release =
     {
