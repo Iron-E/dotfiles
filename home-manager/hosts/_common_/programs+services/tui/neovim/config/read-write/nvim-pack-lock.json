@@ -26,7 +26,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
+      "rev": "267f5db2aa2202b9f6cc7a50783f0ccd2121766c",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitignore.nvim": {
@@ -34,7 +34,7 @@
       "src": "https://github.com/wintermute-cell/gitignore.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
+      "rev": "2038c666bd9d8a0b7349a0b6ee00dc83104b9ecf",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "guess-indent.nvim": {
@@ -54,7 +54,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "mini.nvim": {
-      "rev": "cbae4fa396bbf9c802b3d2dc2e9c5362e8fb9468",
+      "rev": "64e77a77173a23daa218ebfa2f7d59456b30326b",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-highlight-colors": {
@@ -62,11 +62,11 @@
       "src": "https://github.com/brenoprata10/nvim-highlight-colors"
     },
     "nvim-lint": {
-      "rev": "d48f3a76189d03b2239f6df1b2f7e3fa8353743b",
+      "rev": "01c9842c089069ab497430159312b2c8868a4590",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "229b79051b380377664edc4cbd534930154921a1",
+      "rev": "bfcc0171a43f22afa61d927ffe9fcb6cb85dc99e",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-scissors": {
@@ -87,7 +87,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "octo.nvim": {
-      "rev": "c86a43da3514dbe916eb96ecac4d776890078786",
+      "rev": "66b8eeca8e18213a19742f8a031e6947c738342f",
       "src": "https://github.com/pwntester/octo.nvim"
     },
     "plenary.nvim": {
@@ -99,7 +99,7 @@
       "src": "https://github.com/stevearc/quicker.nvim"
     },
     "roslyn.nvim": {
-      "rev": "dedfc3f539c51a5841feb572e8b73ec58ff2ca9d",
+      "rev": "c4ef25973bcc30a2c8c8766711fbbdb3d02b70a3",
       "src": "https://github.com/seblj/roslyn.nvim"
     },
     "todo-comments.nvim": {
@@ -119,7 +119,7 @@
       "src": "https://github.com/kristijanhusak/vim-dadbod-completion"
     },
     "vim-dadbod-ui": {
-      "rev": "07e92e22114cc5b1ba4938d99897d85b58e20475",
+      "rev": "afd07819d8efcefc3317205b855ad4e3513b0011",
       "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
     },
     "vim-log-highlighting": {
