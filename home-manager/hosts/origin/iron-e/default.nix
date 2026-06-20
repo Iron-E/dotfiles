@@ -20,7 +20,7 @@ in
     ../../_extras_/programs+services/ctl/kubectl
     # ../../_extras_/programs+services/gui/bitwarden
     ../../_extras_/programs+services/gui/brave
-    ../../_extras_/programs+services/gui/librewolf
+    # ../../_extras_/programs+services/gui/librewolf
     ../../_extras_/programs+services/gui/obsidian
     ../../_extras_/programs+services/gui/wayland
     ../../_extras_/programs+services/gui/xsession/config
