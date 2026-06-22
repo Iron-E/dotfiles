@@ -5,5 +5,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  home.packages = with pkgs; [ tokei ];
+  home.packages = with pkgs; [ scc ];
 }
