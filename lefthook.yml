@@ -1,0 +1,22 @@
+glob_matcher: doublestar
+
+pre-commit:
+  piped: true
+  parallel: false
+  fail_on_changes: always
+  fail_on_changes_diff: true
+  jobs:
+    # - name: checks
+    #   group:
+    #     jobs: []
+    - name: fixes
+      group:
+        jobs:
+          - name: nix fmt
+            glob: "**/*.nix"
+            run: |
+              nix fmt {staged_files}
+          - name: stylua
+            glob: "**/*.lua"
+            run: |
+              stylua {staged_files}
