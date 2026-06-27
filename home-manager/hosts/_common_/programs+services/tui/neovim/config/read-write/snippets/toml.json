@@ -19,7 +19,7 @@
 			"",
 			"[[watch_files]]",
 			"patterns = [\"mise.toml\"]",
-			"run = \"mise lock && mise install --locked\"",
+			"run = \"mise install\"",
 			"",
 			"[[watch_files]]",
 			"patterns = [\"lefthook.yml\"]",
