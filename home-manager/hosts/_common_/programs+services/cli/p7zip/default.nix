@@ -1,4 +1,4 @@
-{ outputs, pkgs, ...}:
+{ outputs, pkgs, ... }:
 let
   util = outputs.lib;
 in

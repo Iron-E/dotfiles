@@ -8,24 +8,23 @@
   imports = [ ];
 
   xdg.configFile."viddy.toml".source = (pkgs.formats.toml { }).generate "viddy-config" {
-    general =
-      {
-        no_shell = false;
-        skip_empty_diffs = false;
-        disable_mouse = true;
-      }
-      // (
-        if config.programs.fish.enable then
-          {
-            shell = "fish";
-            shell_options = "--interactive";
-          }
-        else
-          {
-            shell = "bash";
-            shell_options = "-i";
-          }
-      );
+    general = {
+      no_shell = false;
+      skip_empty_diffs = false;
+      disable_mouse = true;
+    }
+    // (
+      if config.programs.fish.enable then
+        {
+          shell = "fish";
+          shell_options = "--interactive";
+        }
+      else
+        {
+          shell = "bash";
+          shell_options = "-i";
+        }
+    );
 
     keymap = {
       timemachine_go_to_past = "Shift-j";
