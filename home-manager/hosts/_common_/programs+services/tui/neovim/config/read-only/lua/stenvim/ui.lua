@@ -17,8 +17,13 @@ end
 --- @param bufnr integer
 --- @param winid integer
 function UI.cleanup(bufnr, winid)
-	vim.api.nvim_win_close(winid, true)
-	vim.api.nvim_buf_delete(bufnr, { force = true, unload = false })
+	if vim.api.nvim_win_is_valid(winid) then
+		vim.api.nvim_win_close(winid, true)
+	end
+
+	if vim.api.nvim_buf_is_valid(bufnr) then
+		vim.api.nvim_buf_delete(bufnr, { force = true, unload = false })
+	end
 end
 
 --- Updates the `UI.screen_width` and `UI.default_win_width` values.

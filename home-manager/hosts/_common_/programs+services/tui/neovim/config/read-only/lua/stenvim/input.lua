@@ -1,5 +1,4 @@
 local Events = require("stenvim.events")
-local Func = require("stenvim.func")
 local Highlight = require("stenvim.highlight")
 local UI = require("stenvim.ui")
 
@@ -57,7 +56,15 @@ function Input:setup_autocmds(bufnr, winid, on_confirm, highlight_fn)
 		callback = vim.schedule_wrap(function()
 			if vim.api.nvim_buf_is_valid(bufnr) then
 				UI.cleanup(bufnr, winid)
-				on_confirm()
+
+				local ok, result = pcall(function()
+					-- this might be nil, so we can't just pass it to pcall directly
+					on_confirm()
+				end)
+
+				if not ok then
+					vim.notify("stenvim: on_confirm failed: " .. result, vim.log.levels.ERROR)
+				end
 			end
 		end),
 	})
@@ -147,11 +154,20 @@ function Input:input(opts, on_confirm)
 
 	self.set_completefunc(opts.completion)
 
-	on_confirm = Func.map(on_confirm, self.enter_normal_mode)
+	local safe_on_confirm = function(...)
+		if on_confirm ~= nil then
+			local ok, result = pcall(on_confirm, ...)
+			if not ok then
+				vim.notify("stenvim: on_confirm failed: " .. result, vim.log.levels.ERROR)
+			end
+		end
 
-	self:setup_autocmds(bufnr, winid, on_confirm, opts.highlight)
+		self.enter_normal_mode()
+	end
+
+	self:setup_autocmds(bufnr, winid, safe_on_confirm, opts.highlight)
 	self:setup_completion(bufnr)
-	self:setup_mappings(bufnr, winid, on_confirm)
+	self:setup_mappings(bufnr, winid, safe_on_confirm)
 
 	self.enter_append_mode()
 end
