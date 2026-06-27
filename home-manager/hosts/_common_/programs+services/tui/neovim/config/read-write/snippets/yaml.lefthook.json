@@ -1,0 +1,21 @@
+{
+	"lefthook": {
+		"body": [
+			"glob_matcher: doublestar",
+			"",
+			"pre-commit:",
+			"  piped: true",
+			"  parallel: false",
+			"  fail_on_changes: always",
+			"  fail_on_changes_diff: true",
+			"  jobs:",
+			"    - name: checks",
+			"      group:",
+			"        jobs: []",
+			"    - name: fixes",
+			"      group:",
+			"        jobs: []"
+		],
+		"prefix": "lefthook"
+	}
+}

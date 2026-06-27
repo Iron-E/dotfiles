@@ -27,18 +27,35 @@ vim.filetype.add({
 	filename = {
 		["action.yml"] = "yaml.ghactions",
 		["action.yaml"] = "yaml.ghactions",
+
 		["compose.yaml"] = "yaml.docker-compose",
 		["compose.yml"] = "yaml.docker-compose",
+
 		["docker-compose.yaml"] = "yaml.docker-compose",
 		["docker-compose.yml"] = "yaml.docker-compose",
+
 		["fish_history"] = "yaml",
+
 		["kustomization.yaml"] = "yaml.kustomization",
 		["kustomization.yml"] = "yaml.kustomization",
 		["Kustomization"] = "yaml.kustomization",
+
 		["librewolf.overrides.cfg"] = "javascript",
+
 		["terragrunt.hcl"] = "hcl.terragrunt",
 		["terragrunt.stack.hcl"] = "hcl.terragrunt-stack",
+
 		["wireplumber.conf"] = "spajson",
+
+		[".lefthook-local.yaml"] = "yaml.lefthook",
+		[".lefthook-local.yml"] = "yaml.lefthook",
+		[".lefthook.yaml"] = "yaml.lefthook",
+		[".lefthook.yml"] = "yaml.lefthook",
+		["lefthook-local.yaml"] = "yaml.lefthook",
+		["lefthook-local.yml"] = "yaml.lefthook",
+		["lefthook.yaml"] = "yaml.lefthook",
+		["lefthook.yml"] = "yaml.lefthook",
+
 		[state .. "/wireplumber/default-nodes"] = "dosini",
 		[state .. "/wireplumber/default-profile"] = "dosini",
 		[state .. "/wireplumber/default-routes"] = "dosini",

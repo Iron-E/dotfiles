@@ -6,6 +6,7 @@ return {
 		"yaml.gitlab-ci",
 		"yaml.helm-values",
 		"yaml.kustomization",
+		"yaml.lefthook",
 		"yaml.taskfile",
 	},
 

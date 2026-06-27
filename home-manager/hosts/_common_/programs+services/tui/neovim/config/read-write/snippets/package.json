@@ -132,6 +132,12 @@
 					"jsonnet"
 				],
 				"path": "./jsonnet.json"
+			},
+			{
+				"language": [
+					"yaml.lefthook"
+				],
+				"path": "./yaml.lefthook.json"
 			}
 		]
 	},
