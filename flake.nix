@@ -72,8 +72,7 @@
       );
 
       # Formatter for your nix files, available through 'nix fmt'
-      # TODO: https://github.com/kamadorueda/alejandra/issues/387
-      # formatter = lib.systems.genValues (system: nixpkgs.legacyPackages.${system}.alejandra);
+      formatter = lib.systems.genValues (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
 
       # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs; };
