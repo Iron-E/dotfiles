@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  stdenv,
+  fetchurl,
+  ...
+}:
 let
   pname = "leaf";
   repo = "https://github.com/RivoLink/${pname}";
@@ -25,13 +30,13 @@ let
         sha = "b985eefcfd0c4b74d72c0c5d7b9ffa4aec045022b49f09636c2388b57c0ce183";
       };
     }
-    .${pkgs.stdenv.hostPlatform.system};
+    .${stdenv.hostPlatform.system};
 in
-pkgs.stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: {
   inherit pname;
   version = "1.24.2";
 
-  src = pkgs.fetchurl {
+  src = fetchurl {
     url = "${repo}/releases/download/${finalAttrs.version}/${release.name}";
     sha256 = release.sha;
   };
@@ -43,13 +48,13 @@ pkgs.stdenv.mkDerivation (finalAttrs: {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp $src $out/bin/leaf
-    chmod +x $out/bin/leaf
+    cp $src $out/bin/${finalAttrs.pname}
+    chmod +x $out/bin/${finalAttrs.pname}
   '';
 
   meta = {
     description = "Terminal Markdown previewer — GUI-like experience.";
-    homepage = "https://github.com/RivoLink/leaf";
+    homepage = repo;
     license = with lib.licenses; [ mit ];
     mainProgram = finalAttrs.pname;
   };
