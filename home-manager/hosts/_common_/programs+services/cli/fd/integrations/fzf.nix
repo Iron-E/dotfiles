@@ -1,18 +1,18 @@
 { lib, ... }:
 {
-  programs =
+  programs.fzf =
     let
       defaultCommand = "fd";
-      mkWidgetCommand = opts: "${defaultCommand} ${lib.concatStringsSep " " opts} $dir";
-      fileWidgetCommand = mkWidgetCommand [ ];
-      changeDirWidgetCommand = mkWidgetCommand [
+      mkWidgetCommand =
+        opts: # string[]
+        "${defaultCommand} ${lib.strings.escapeShellArgs opts} $dir";
+    in
+    {
+      inherit defaultCommand;
+      fileWidget.fish.command = mkWidgetCommand [ ];
+      changeDirWidget.fish.command = mkWidgetCommand [
         "-t"
         "d"
       ];
-    in
-    {
-      fzf = {
-        inherit changeDirWidgetCommand fileWidgetCommand defaultCommand;
-      };
     };
 }

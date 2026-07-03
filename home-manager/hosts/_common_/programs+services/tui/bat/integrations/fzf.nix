@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.fzf.fileWidgetOptions =
+  programs.fzf.fileWidget.options =
     let
       ls = if config.programs.lsd.enable then "lsd" else "ls";
     in
