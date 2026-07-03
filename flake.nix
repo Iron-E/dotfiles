@@ -84,7 +84,7 @@
         builtins.mapAttrs
           (
             name: # string
-            value: # string
+            system: # string
             let
               # foo@bar -> [ "foo" "bar" ]
               nameParts = nixpkgs.lib.splitString "@" name;
@@ -92,7 +92,7 @@
               hostModule = ./home-manager/hosts/${builtins.elemAt nameParts 1}/${builtins.elemAt nameParts 0};
             in
             home-manager.lib.homeManagerConfiguration {
-              pkgs = nixpkgs.legacyPackages.${value};
+              pkgs = nixpkgs.legacyPackages.${system};
 
               modules = [ hostModule ] ++ (builtins.attrValues outputs.homeManagerModules);
 
