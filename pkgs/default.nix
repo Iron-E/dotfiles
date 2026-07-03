@@ -6,4 +6,5 @@ let
 in
 {
   leaf = callPackage ./leaf.nix { };
+  git-worktree-share = callPackage ./git-worktree-share.nix { };
 }
