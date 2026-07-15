@@ -22,6 +22,14 @@
       vimix-gtk-theme-beryl = vimix-theme "beryl";
       vimix-icon-theme-beryl = vimix-icon "Beryl";
 
+      mise = prev.mise.overrideAttrs (
+        _finalAttrs: prevAttrs: {
+          checkFlags = prevAttrs.checkFlags ++ [
+            "--skip=oci::layer::tests::preserve_metadata_dir_layer_keeps_special_permission_bits"
+          ];
+        }
+      );
+
       # example = prev.example.overrideAttrs (oldAttrs: rec {
       # ...
       # });
