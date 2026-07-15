@@ -122,7 +122,7 @@ end
 --- @type vim.lsp.Config
 return {
 	cmd = { "actions-languageserver", "--stdio" },
-	filetypes = { "yaml.ghactions" },
+	filetypes = { "yaml.gh-action", "yaml.gh-wf" },
 
 	before_init = function(params, _)
 		params.initializationOptions = {

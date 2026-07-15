@@ -25,8 +25,8 @@ local state = vim.uv.os_getenv("XDG_STATE_HOME")
 
 vim.filetype.add({
 	filename = {
-		["action.yml"] = "yaml.ghactions",
-		["action.yaml"] = "yaml.ghactions",
+		["action.yml"] = "yaml.gh-action",
+		["action.yaml"] = "yaml.gh-action",
 
 		["compose.yaml"] = "yaml.docker-compose",
 		["compose.yml"] = "yaml.docker-compose",
@@ -88,7 +88,7 @@ vim.filetype.add({
 
 	pattern = {
 		[".*/[^/]*%.gitlab%-ci%.ya?ml"] = "yaml.gitlab-ci",
-		[".*/%.github/workflows/.*%.ya?ml"] = "yaml.ghactions",
+		[".*/%.github/workflows/.*%.ya?ml"] = "yaml.gh-wf",
 
 		[".*/[Tt]askfile[^/]*%.ya?ml"] = "yaml.taskfile",
 

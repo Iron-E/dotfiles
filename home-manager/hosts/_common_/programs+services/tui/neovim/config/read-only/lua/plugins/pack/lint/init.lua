@@ -17,7 +17,7 @@ lint.linters_by_ft = {
 	sql = { "sqlfluff" },
 	terraform = { "terraform_validate", "tflint", "trivy" },
 	opentofu = { "tofu", "tflint", "trivy" },
-	["yaml.ghactions"] = { "actionlint" },
+	["yaml.gh-wf"] = { "actionlint" },
 }
 
 lint.linters_by_ft.less = lint.linters_by_ft.css
