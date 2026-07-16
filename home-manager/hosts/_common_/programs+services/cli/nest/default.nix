@@ -13,6 +13,9 @@ in
           PARENT="''${1:?must pass <parent> dir}"
           CHILD="''${2:?must pass <child> dir}"
 
+          CHILD_DIR="$(dirname "$CHILD")"
+          CHILD_BASE="$(basename "$CHILD")"
+
           if [ ! -e "$PARENT" ]; then
             echo "<parent> does not exist on disk"
             exit 1
@@ -27,8 +30,8 @@ in
 
           set -x
           mv "$PARENT" "$DIR"
-          mkdir -p "$PARENT"
-          mv "$DIR/$PARENT" "$PARENT/$CHILD"
+          mkdir -p "$PARENT/$CHILD_DIR"
+          mv "$DIR/$PARENT" "$PARENT/$CHILD_DIR/$CHILD_BASE"
         '';
     })
   ];
