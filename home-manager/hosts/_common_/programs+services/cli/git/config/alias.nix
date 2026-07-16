@@ -72,6 +72,11 @@
       # PATH HELPERS #
       ################
 
+      nest = # sh
+        ''
+          ! nest "''${1:?must provide dir name}" "$(git --git-dir "''${1:?must provide dir name}/.git" pb)"
+        '';
+
       # print working directory
       pwd = "rev-parse --show-toplevel";
 
