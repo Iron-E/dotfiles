@@ -72,13 +72,18 @@
       # PATH HELPERS #
       ################
 
-      nest = # sh
-        ''
-          ! nest "''${1:?must provide dir name}" "$(git --git-dir "''${1:?must provide dir name}/.git" pb)"
-        '';
+      nest =
+        lib.trim # sh
+          ''
+            ! nest "''${1:?must provide dir name}" "$(git --git-dir "''${1:?must provide dir name}/.git" pb)" #
+          '';
 
       # common working directory
-      cwd = "rev-parse --git-common-dir";
+      cwd =
+        lib.trim # sh
+          ''
+            ! dirname "$(git rev-parse --git-common-dir)" #
+          '';
 
       # print working directory
       pwd = "rev-parse --show-toplevel";
