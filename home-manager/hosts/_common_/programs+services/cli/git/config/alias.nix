@@ -77,8 +77,16 @@
           ! nest "''${1:?must provide dir name}" "$(git --git-dir "''${1:?must provide dir name}/.git" pb)"
         '';
 
+      # common working directory
+      cwd = "rev-parse --git-common-dir";
+
       # print working directory
       pwd = "rev-parse --show-toplevel";
+
+      wrk = # sh
+        ''
+          ! NAME=''${1:?must pass name of worktree}; DIR="$(dirname "$(g cwd)")/$NAME"; mkdir -p "$DIR"; git worktree add "$DIR" -b "$NAME"
+        '';
 
       ##################
       # BRANCH ALIASES #
