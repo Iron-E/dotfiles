@@ -82,16 +82,16 @@
       cwd =
         lib.trim # sh
           ''
-            ! dirname "$(git rev-parse --git-common-dir)" #
+            ! dirname "$(git rev-parse --path-format=absolute --git-common-dir)" #
           '';
 
       # print working directory
-      pwd = "rev-parse --show-toplevel";
+      pwd = "rev-parse --path-format=absolute --show-toplevel";
 
       wrk =
         lib.trim # sh
           ''
-            ! NAME=''${1:?must pass name of worktree}; DIR="$(dirname "$(git cwd)")/$NAME"; mkdir -p "$DIR" &>/dev/null || true; git worktree add "$DIR" -b "$NAME" #
+            ! NAME=''${1:?must pass name of worktree}; DIR="$(dirname "$(git cwd)")/$NAME"; mkdir -p "$DIR" &>/dev/null || true; git worktree add "$DIR" -b "$NAME" "''${@:2}" #
           '';
 
       ##################
