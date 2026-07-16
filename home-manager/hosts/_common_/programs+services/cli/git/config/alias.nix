@@ -85,7 +85,7 @@
 
       wrk = # sh
         ''
-          ! NAME=''${1:?must pass name of worktree}; DIR="$(dirname "$(g cwd)")/$NAME"; mkdir -p "$DIR"; git worktree add "$DIR" -b "$NAME"
+          ! NAME=''${1:?must pass name of worktree}; DIR="$(dirname "$(git cwd)")/$NAME"; mkdir -p "$DIR" &>/dev/null || true; git worktree add "$DIR" -b "$NAME"
         '';
 
       ##################
