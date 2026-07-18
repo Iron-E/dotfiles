@@ -1,5 +1,8 @@
 # This file defines overlays
-{ ... }:
+{ inputs, ... }:
+let
+  inherit (inputs.nixpkgs) lib;
+in
 {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final;
@@ -22,6 +25,11 @@
       vimix-gtk-theme-beryl = vimix-theme "beryl";
       vimix-icon-theme-beryl = vimix-icon "Beryl";
 
+      # example = prev.example.overrideAttrs (oldAttrs: rec {
+      # ...
+      # });
+    }
+    // (lib.optionalAttrs prev.stdenv.isDarwin {
       mise = prev.mise.overrideAttrs (
         _finalAttrs: prevAttrs: {
           checkFlags = prevAttrs.checkFlags ++ [
@@ -29,9 +37,5 @@
           ];
         }
       );
-
-      # example = prev.example.overrideAttrs (oldAttrs: rec {
-      # ...
-      # });
-    };
+    });
 }
