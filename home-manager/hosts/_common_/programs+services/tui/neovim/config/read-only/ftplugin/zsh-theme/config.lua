@@ -1,1 +1,1 @@
-vim.api.nvim_command('SetTabstop')
+vim.api.nvim_command("SetTabstop")

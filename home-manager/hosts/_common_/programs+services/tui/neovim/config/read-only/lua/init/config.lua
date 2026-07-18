@@ -60,7 +60,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- WARN: Providers (MUST be `0`, not `false`)
-vim.g.loaded_node_provider = 0 -- disable JavaScript
-vim.g.loaded_perl_provider = 0 -- disable Perl
-vim.g.loaded_python3_provider = 0 -- disable Python 3
-vim.g.loaded_ruby_provider = 0 -- disable Ruby
+vim.api.nvim_set_var("loaded_node_provider", 0) -- disable JavaScript
+vim.api.nvim_set_var("loaded_perl_provider", 0) -- disable Perl
+vim.api.nvim_set_var("loaded_python3_provider", 0) -- disable Python 3
+vim.api.nvim_set_var("loaded_ruby_provider", 0) -- disable Ruby
+
+vim.api.nvim_set_var("markdown_recommended_style", 0) -- disable markdown ftplugin screw
