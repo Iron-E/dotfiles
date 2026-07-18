@@ -20,9 +20,4 @@ xkb_keymap {
 		replace key <INS>  { [ Multi_key ] };
     	replace key <ESC>  { [ Caps_Lock ] };
 	};
-
-	// See /usr/share/X11/xkb/rules/evdev
-	xkb_geometry {
-		include "thinkpad(us)"
-	};
 };
