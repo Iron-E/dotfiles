@@ -24,11 +24,6 @@
 
     # overlays
 
-    # neovim-nightly-overlay = {
-    # 	url = "github:nix-community/neovim-nightly-overlay";
-    # 	inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     # non-flakes
 
     i3blocks-contrib = {
