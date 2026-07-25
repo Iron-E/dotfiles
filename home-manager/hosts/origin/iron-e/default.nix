@@ -13,6 +13,7 @@ in
     ../../_extras_/programs+services/cli/nextdns
     ../../_extras_/programs+services/cli/nh
     ../../_extras_/programs+services/cli/nix-forecast
+    ../../_extras_/programs+services/cli/qmk
     ../../_extras_/programs+services/cli/rclone
     ../../_extras_/programs+services/cli/zk
     ../../_extras_/programs+services/ctl/autorandr
