@@ -124,5 +124,11 @@
           ''
             ! git push --set-upstream origin "$(git pb)"
           '';
+
+      ##################
+      # REBASE HELPERS #
+      ##################
+
+      rq = "-c sequence.editor=: rebase --interactive";
     };
 }
