@@ -9,11 +9,14 @@
 			"  fail_on_changes: always",
 			"  fail_on_changes_diff: true",
 			"  jobs:",
-			"    - name: checks",
+			"    - name: fixes",
+			"      file_types:",
+			"        - text",
 			"      group:",
 			"        jobs: []",
-			"    - name: fixes",
+			"    - name: checks",
 			"      group:",
+			"        parallel: true",
 			"        jobs: []"
 		],
 		"prefix": "lefthook"
