@@ -28,6 +28,7 @@ local opts = {
 	},
 
 	formatters_by_ft = {
+		c = { "clang-format" },
 		cs = { "csharpier" },
 
 		css = function(bufnr)
