@@ -156,15 +156,39 @@ local function try_wrap(fn, or_)
 	end
 end
 
+---@param first_winid integer
+---@param second_winid integer
+local function swap_same_buf(first_winid, second_winid)
+	local first_cursor = vim.api.nvim_win_get_cursor(first_winid)
+	local second_cursor = vim.api.nvim_win_get_cursor(second_winid)
+
+	local first_view
+	vim.api.nvim_win_call(first_winid, function()
+		first_view = vim.fn.winsaveview()
+	end)
+
+	local second_view
+	vim.api.nvim_win_call(second_winid, function()
+		second_view = vim.fn.winsaveview()
+		vim.fn.winrestview(first_view)
+	end)
+
+	vim.api.nvim_win_call(first_winid, function()
+		vim.fn.winrestview(second_view)
+	end)
+
+	vim.api.nvim_win_set_cursor(first_winid, second_cursor)
+	vim.api.nvim_win_set_cursor(second_winid, first_cursor)
+end
+
 function M.switch_current()
 	local current_win = vim.api.nvim_get_current_win()
 	local current_buf = vim.api.nvim_win_get_buf(current_win)
 
 	local winids = get_visible_winids()
 	local winids_by_label = vim.iter(winids)
-		:filter(default_should_label_winid)
 		:filter(function(winid)
-			return not (winid == current_win or vim.api.nvim_win_get_buf(winid) == current_buf)
+			return default_should_label_winid(winid) and winid ~= current_win
 		end)
 		:enumerate()
 		:fold({}, assign_label)
@@ -192,10 +216,13 @@ function M.switch_current()
 		end
 
 		local target_buf = vim.api.nvim_win_get_buf(target_win)
-
-		vim.api.nvim_win_set_buf(current_win, target_buf)
-		vim.api.nvim_win_set_buf(target_win, current_buf)
-		vim.api.nvim_set_current_win(target_win)
+		if target_buf == current_buf then
+			swap_same_buf(current_win, target_win)
+		else
+			vim.api.nvim_win_set_buf(current_win, target_buf)
+			vim.api.nvim_win_set_buf(target_win, current_buf)
+			vim.api.nvim_set_current_win(target_win)
+		end
 
 		return true
 	end, cleanup))
@@ -252,14 +279,6 @@ function M.switch()
 		second_winids[first_label] = nil
 		vim.hl.range(popups_by_label[first_label].bufnr, ns, "Visual", { 0, 0 }, { 0, 1 })
 
-		for label, winid in pairs(second_winids) do
-			local bufnr = bufnrs_by_winid[winid]
-			if bufnr == first_bufnr then
-				second_winids[label] = nil
-				cleanup_label_popup(popups_by_label[label])
-			end
-		end
-
 		vim.defer_fn(
 			try_wrap(function()
 				local second_label = input_label(second_winids)
@@ -269,9 +288,12 @@ function M.switch()
 
 				local second_winid = winids_by_label[second_label]
 				local second_bufnr = vim.api.nvim_win_get_buf(second_winid)
-
-				vim.api.nvim_win_set_buf(first_winid, second_bufnr)
-				vim.api.nvim_win_set_buf(second_winid, first_bufnr)
+				if second_bufnr == first_bufnr then
+					swap_same_buf(first_winid, second_winid)
+				else
+					vim.api.nvim_win_set_buf(first_winid, second_bufnr)
+					vim.api.nvim_win_set_buf(second_winid, first_bufnr)
+				end
 
 				return true
 			end, cleanup),
