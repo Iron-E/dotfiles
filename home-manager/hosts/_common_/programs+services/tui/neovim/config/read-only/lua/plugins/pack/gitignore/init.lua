@@ -32,7 +32,7 @@ gitignore.generate = function(opts)
 		add_entry()
 	end
 
-	FzfLua.fzf_exec(add_entries, picker_opts)
+	require("fzf-lua").fzf_exec(add_entries, picker_opts)
 end
 
 vim.api.nvim_create_user_command("Gitignore", gitignore.generate, {

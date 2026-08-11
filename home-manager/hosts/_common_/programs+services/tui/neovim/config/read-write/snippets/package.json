@@ -138,6 +138,12 @@
 					"yaml.lefthook"
 				],
 				"path": "./yaml.lefthook.json"
+			},
+			{
+				"language": [
+					"gitignore"
+				],
+				"path": "./gitignore.json"
 			}
 		]
 	},

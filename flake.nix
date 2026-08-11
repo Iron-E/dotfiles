@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-vimix.url = "github:nixos/nixpkgs/e2587caef70cea85dd97d7daab492899902dbf5d";
     nix.url = "github:nixos/nixpkgs/a84ebe20c6bc2ecbcfb000a50776219f48d134cc";
 
     home-manager = {
