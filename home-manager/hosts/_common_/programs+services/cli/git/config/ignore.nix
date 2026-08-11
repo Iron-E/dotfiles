@@ -25,6 +25,8 @@
     "**/.session.vim"
     "**/mise.local.toml"
     "**/mise.*.local.toml"
+    "**/mise.local.lock"
+    "**/mise.*.local.lock"
     "**/taskfile.yml"
     "**/taskfile.yaml"
     "**/lefthook-local.*"
