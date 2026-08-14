@@ -1,6 +1,7 @@
 local Pack = require("plugins.pack")
 local Loader = require("plugins.pack.loader")
 
+--- @type vim.pack.keyset.add
 local load = {
 	load = function(plugin)
 		Loader.load_plugin(plugin.spec.name)
@@ -165,3 +166,12 @@ vim.pack.add({
 	"https://github.com/wintermute-cell/gitignore.nvim", -- deps: fzf-lua
 	"https://github.com/pwntester/octo.nvim", -- deps: plenary, fzf-lua, mini.icons
 }, async_load_if_not_manpage)
+
+vim.pack.add({
+	"https://github.com/MunifTanjim/nui.nvim", -- dep
+	{ src = "https://github.com/JavaHello/spring-boot.nvim", version = "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0" }, -- dep
+}, do_not_load)
+
+vim.pack.add({
+	{ src = "https://github.com/nvim-java/nvim-java", version = vim.version.range("^4") }, -- deps: spring-boot.nvim, nui.nvim
+}, do_not_load)

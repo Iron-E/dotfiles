@@ -145,6 +145,21 @@ end, {
 	desc = "Clean inactive packages",
 })
 
+vim.api.nvim_create_user_command("PackLoad", function(args)
+	-- TODO: also load dependencies, which requires putting them in `spec.data`
+	local fn = Loader.load_plugin
+	if args.bang then
+		fn = Loader.enqueue_plugin_load
+	end
+
+	fn(args.args)
+end, {
+	bang = true,
+	desc = "Load a plugin. With [!], enqueue the plugin to be loaded later during startup.",
+	nargs = 1,
+	complete = get_package_names,
+})
+
 vim.api.nvim_create_user_command("PackRestore", function(args)
 	local fargs
 	if #args.fargs > 0 then
