@@ -113,7 +113,6 @@ vim.pack.add({
 	"https://github.com/chrisgrieser/nvim-scissors",
 	"https://github.com/folke/todo-comments.nvim",
 	"https://github.com/folke/ts-comments.nvim",
-	"https://github.com/tpope/vim-dadbod", -- dep
 	"https://github.com/MTDL9/vim-log-highlighting",
 }, async_load_if_not_manpage)
 
@@ -138,8 +137,6 @@ vim.pack.add({
 	"https://github.com/Iron-E/nvim-bufmode", -- deps: nvim-libmodal
 	"https://github.com/Iron-E/nvim-tabmode", -- deps: nvim-libmodal
 	"https://github.com/nvim-treesitter/nvim-treesitter-context", -- deps: nvim-treesitter
-	"https://github.com/kristijanhusak/vim-dadbod-completion", -- deps: dadbod
-	"https://github.com/kristijanhusak/vim-dadbod-ui", -- deps: dadbod
 }, async_load_if_not_manpage)
 
 vim.pack.add({
