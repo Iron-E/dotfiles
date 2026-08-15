@@ -35,30 +35,37 @@ vim.api.nvim_create_autocmd("OptionSet", {
 
 do
 	--- @param buf integer
-	local function apply_indent_guide_settings(buf)
-		--- @type vim.api.keyset.option
-		local opts = {}
-		if buf then
-			local win = vim.fn.bufwinid(buf)
-			if vim.api.nvim_win_is_valid(win) then
-				opts.win = win
-			end
-		end
-
+	--- @param log boolean
+	local function apply_indent_guide_settings(buf, log)
 		local tabstop = vim.api.nvim_get_option_value("tabstop", { buf = buf })
 		local listchars = "nbsp:␣,tab:│ ,trail:•,leadmultispace:│" .. string.rep(" ", tabstop - 1)
 
-		vim.api.nvim_set_option_value("list", true, opts)
-		vim.api.nvim_set_option_value("listchars", listchars, opts)
+		for _, win in ipairs(vim.fn.win_findbuf(buf)) do
+			if not vim.api.nvim_win_is_valid(win) then
+				goto continue
+			end
 
-		vim.api.nvim_set_option_value("showbreak", "└ ", opts)
+			--- @type vim.api.keyset.option
+			local opts = { win = win }
+
+			vim.api.nvim_set_option_value("list", true, opts)
+			vim.api.nvim_set_option_value("listchars", listchars, opts)
+
+			vim.api.nvim_set_option_value("showbreak", "└ ", opts)
+
+			if log then
+				vim.notify("Set list,listchars,showbreak for tabstop=" .. tabstop .. " in win " .. win, vim.log.levels.INFO)
+			end
+
+			::continue::
+		end
 	end
 
 	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost", "InsertLeave" }, {
 		desc = "Reset indent guide settings",
 		group = augroup,
 		callback = function(ev)
-			apply_indent_guide_settings(ev.buf)
+			apply_indent_guide_settings(ev.buf, false)
 		end,
 	})
 
@@ -67,7 +74,7 @@ do
 		group = augroup,
 		pattern = "tabstop",
 		callback = function(ev)
-			apply_indent_guide_settings(ev.buf)
+			apply_indent_guide_settings(ev.buf, true)
 		end,
 	})
 end
