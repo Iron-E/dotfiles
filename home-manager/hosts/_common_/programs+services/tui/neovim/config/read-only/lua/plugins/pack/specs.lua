@@ -72,7 +72,7 @@ vim.pack.add({
 }, load)
 
 vim.pack.add({
-	"https://github.com/nvim-mini/mini.nvim", -- dep (mini.icons)
+	"https://github.com/nvim-mini/mini.nvim", -- w/ dep (mini.icons)
 }, load)
 
 vim.pack.add({
@@ -88,17 +88,7 @@ vim.pack.add({
 vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/nvim-lua/plenary.nvim", -- dep
-}, load_if_not_manpage)
-
-vim.pack.add({
 	"https://github.com/seblj/roslyn.nvim",
-}, {
-	load = function(plugin)
-		Loader.load_plugin_on(plugin.spec.name, "FileType", "cs")
-	end,
-})
-
-vim.pack.add({
 	"https://github.com/Saghen/blink.compat", -- dep
 	"https://github.com/rafamadriz/friendly-snippets", -- dep-ish
 	"https://github.com/NMAC427/guess-indent.nvim",
