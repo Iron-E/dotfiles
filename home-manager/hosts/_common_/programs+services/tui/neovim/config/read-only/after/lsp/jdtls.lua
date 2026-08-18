@@ -68,6 +68,10 @@ return {
 					matchCase = "off",
 				},
 
+				format = {
+					enabled = false,
+				},
+
 				runtimes = runtimes,
 
 				telemetry = {
