@@ -2,13 +2,13 @@
 	"mise": {
 		"body": [
 			"[settings]",
-			"experimental = true",
 			"lockfile = true",
 			"",
 			"[tools]",
 			"# TODO: run `mise use lefthook`",
 			"",
 			"[tasks.lefthook-install]",
+			"quiet = true",
 			"run = \"lefthook check-install || lefthook install\"",
 			"",
 			"[[hooks.enter]]",
@@ -26,5 +26,33 @@
 			"task = \"lefthook-install\""
 		],
 		"prefix": "mise"
+	},
+	"mise-local": {
+		"body": [
+			"[settings]",
+			"lockfile = true",
+			"",
+			"[tools]",
+			"# TODO: run `mise use lefthook`",
+			"",
+			"[tasks.lefthook-local-install]",
+			"quiet = true",
+			"run = 'if [ -f \"lefthook-local.yml\" ]; then lefthook check-install || lefthook install; fi'",
+			"",
+			"[[hooks.enter]]",
+			"run = 'if [ ! -f \"mise.toml\" ]; then mise install --locked; fi'",
+			"",
+			"[[hooks.enter]]",
+			"task = \"lefthook-local-install\"",
+			"",
+			"[[watch_files]]",
+			"patterns = [\"mise.local.toml\"]",
+			"run = 'if [ ! -f \"mise.toml\" ]; then mise install; fi'",
+			"",
+			"[[watch_files]]",
+			"patterns = [\"lefthook-local.yml\"]",
+			"task = \"lefthook-local-install\""
+		],
+		"prefix": "mise-local"
 	}
 }
