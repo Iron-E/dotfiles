@@ -2,5 +2,5 @@
 {
   imports = [ ];
 
-  home.sessionSearchVariables.PATH = lib.optional pkgs.stdenv.isDarwin "/opt/homebrew/bin";
+  home.sessionSearchVariables.PATH = lib.optional pkgs.stdenv.hostPlatform.isDarwin "/opt/homebrew/bin";
 }

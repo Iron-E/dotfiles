@@ -5,5 +5,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  services.gpg-agent.enable = !pkgs.stdenv.isDarwin;
+  services.gpg-agent.enable = !pkgs.stdenv.hostPlatform.isDarwin;
 }

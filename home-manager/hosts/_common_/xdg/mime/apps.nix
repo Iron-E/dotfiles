@@ -7,7 +7,7 @@
 {
   imports = [ ];
 
-  xdg.mimeApps = lib.optionalAttrs pkgs.stdenv.isLinux {
+  xdg.mimeApps = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
     enable = true;
     defaultApplications = lib.optionalAttrs config.programs.librewolf.enable {
       "text/html" = "librewolf.desktop";

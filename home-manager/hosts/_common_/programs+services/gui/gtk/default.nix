@@ -5,5 +5,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  gtk.enable = !pkgs.stdenv.isDarwin;
+  gtk.enable = !pkgs.stdenv.hostPlatform.isDarwin;
 }

@@ -46,7 +46,7 @@
     };
   };
 
-  home.file = lib.optionalAttrs pkgs.stdenv.isDarwin {
+  home.file = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
     "Library/Application Support/viddy.toml".source = config.xdg.configFile."viddy.toml".source;
   };
 }

@@ -12,6 +12,6 @@ in
 
   programs.ghostty = {
     enable = true;
-    package = if pkgs.stdenv.isDarwin then null else config.lib.nixGL.wrap pkgs.ghostty;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then null else config.lib.nixGL.wrap pkgs.ghostty;
   };
 }

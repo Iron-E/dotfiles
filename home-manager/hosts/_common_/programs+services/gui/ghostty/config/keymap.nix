@@ -40,7 +40,7 @@
   ]
   ++ (
     # HACK: macOS has system bindings to ctrl(+shift)+tab
-    if pkgs.stdenv.isDarwin then
+    if pkgs.stdenv.hostPlatform.isDarwin then
       [
         "ctrl+shift+tab=esc:[27;6;9~" # previous_tab
         "ctrl+tab=esc:[27;5;9~" # next_tab

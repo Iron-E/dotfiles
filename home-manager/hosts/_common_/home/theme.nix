@@ -3,7 +3,7 @@
   imports = [ ];
 
   home.pointerCursor = {
-    enable = pkgs.stdenv.isLinux;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
   };

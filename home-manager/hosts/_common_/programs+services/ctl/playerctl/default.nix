@@ -5,5 +5,5 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  services.playerctld.enable = pkgs.stdenv.isLinux;
+  services.playerctld.enable = pkgs.stdenv.hostPlatform.isLinux;
 }

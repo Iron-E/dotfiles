@@ -10,7 +10,7 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  home.packages = lib.optionals pkgs.stdenv.isLinux (
+  home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (
     with pkgs;
     [
       (lib.hiPrio k3s)

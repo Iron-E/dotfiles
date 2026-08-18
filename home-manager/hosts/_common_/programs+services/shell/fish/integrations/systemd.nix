@@ -6,7 +6,7 @@
 {
   imports = [ ];
 
-  programs.fish.functions = lib.optionalAttrs pkgs.stdenv.isLinux {
+  programs.fish.functions = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
     srun = {
       description = "Run a command in a transient systemd scope.";
       body = # fish

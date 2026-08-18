@@ -2,7 +2,7 @@
 {
   imports = [ ];
 
-  programs.ghostty = lib.optionalAttrs pkgs.stdenv.isDarwin {
+  programs.ghostty = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
     installBatSyntax = false;
   };
 }

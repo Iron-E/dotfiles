@@ -3,7 +3,7 @@
   imports = [ ];
 
   programs.fish.shellInit =
-    lib.optionalString pkgs.stdenv.isDarwin # fish
+    lib.optionalString pkgs.stdenv.hostPlatform.isDarwin # fish
       ''
         if command -qs brew # homebrew is installed
           brew shellenv | source

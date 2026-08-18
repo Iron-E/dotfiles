@@ -34,7 +34,7 @@ in
       # ...
       # });
     }
-    // (lib.optionalAttrs prev.stdenv.isDarwin {
+    // (lib.optionalAttrs prev.stdenv.hostPlatform.isDarwin {
       mise = prev.mise.overrideAttrs (
         _finalAttrs: prevAttrs: {
           checkFlags = prevAttrs.checkFlags ++ [

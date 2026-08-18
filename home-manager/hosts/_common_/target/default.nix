@@ -13,12 +13,12 @@ in
   imports = util.fs.readSubmodules ./.;
 
   targets = {
-    genericLinux = lib.optionalAttrs (pkgs.stdenv.isLinux && !isNixOS) {
+    genericLinux = lib.optionalAttrs (pkgs.stdenv.hostPlatform.isLinux && !isNixOS) {
       enable = true;
       nixGL.packages = inputs.nixgl.packages;
     };
 
-    darwin = lib.optionalAttrs pkgs.stdenv.isDarwin {
+    darwin = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
       copyApps.enable = false;
       linkApps.enable = true;
       search = "DuckDuckGo";

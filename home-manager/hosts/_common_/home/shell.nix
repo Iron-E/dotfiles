@@ -16,7 +16,7 @@
     # mkdir
     mkdir = "mkdir -p";
   }
-  // (lib.optionalAttrs pkgs.stdenv.isDarwin {
+  // (lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
     Y = "pbcopy";
     P = "pbpaste";
   });

@@ -12,7 +12,7 @@ in
   imports = util.fs.readSubmodules ./.;
 
   nix.package = lib.mkDefault (
-    if pkgs.stdenv.isDarwin then
+    if pkgs.stdenv.hostPlatform.isDarwin then
       inputs.nix.legacyPackages.${pkgs.stdenv.hostPlatform.system}.nix
     else
       pkgs.nix
