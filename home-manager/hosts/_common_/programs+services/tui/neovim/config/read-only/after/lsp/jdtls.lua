@@ -28,7 +28,7 @@ return {
 	cmd = function(dispatchers, config)
 		local data_dir = get_jdtls_workspace_dir()
 		if config.root_dir then
-			data_dir = vim.fs.joinpath(data_dir, vim.fn.fnamemodify(config.root_dir, ":p:h:t"))
+			data_dir = vim.fs.joinpath(data_dir, vim.base64.encode(vim.fs.abspath(config.root_dir)))
 		end
 
 		local config_cmd = {
