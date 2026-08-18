@@ -33,6 +33,7 @@ return {
 
 		local config_cmd = {
 			"jdtls",
+			"--jvm-arg=-Djava.import.generatesMetadataFilesAtProjectRoot=false",
 			"--jvm-arg=-Xmx8g",
 			"-data",
 			data_dir,
