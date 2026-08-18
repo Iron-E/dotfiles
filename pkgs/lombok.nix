@@ -21,8 +21,8 @@ stdenv.mkDerivation (finalAttrs: {
 
   installPhase = ''
     mkdir -p "$out/bin"
-    cp "$src" "$out/bin/${finalAttrs.pname}"
-    chmod +x "$out/bin/${finalAttrs.pname}"
+    cp "$src" "$out/bin/${finalAttrs.pname}.jar"
+    chmod +x "$out/bin/${finalAttrs.pname}.jar"
   '';
 
   meta = {
