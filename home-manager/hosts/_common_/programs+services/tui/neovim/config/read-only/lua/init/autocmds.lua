@@ -18,48 +18,48 @@ local function propagate_optionset_event(from, derive)
 			vim.api.nvim_set_option_value(key, value, { scope = "local" })
 		end
 	end
-	local function cb()
-		for _, win in ipairs(vim.api.nvim_list_wins()) do
+
+	--- @param wins integer[]
+	local function set_for_wins(wins)
+		for _, win in ipairs(wins) do
 			if win_is_normal(win) then
 				vim.api.nvim_win_call(win, set)
 			end
 		end
 	end
 
+	local function default_cb()
+		set_for_wins(vim.api.nvim_list_wins())
+	end
+
 	local desc = "Synchronize options with " .. from
+
+	vim.api.nvim_create_autocmd("FileType", {
+		desc = desc,
+		group = augroup,
+		callback = function(ev)
+			set_for_wins(vim.fn.win_findbuf(ev.buf))
+		end,
+	})
 
 	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "FocusGained", "VimResume" }, {
 		desc = desc,
 		group = augroup,
-		callback = cb,
+		callback = default_cb,
 	})
 
 	vim.api.nvim_create_autocmd("OptionSet", {
 		desc = desc,
 		group = augroup,
 		pattern = from,
-		callback = cb,
+		callback = default_cb,
 	})
 
 	-- Call once after startup
 	vim.api.nvim_create_autocmd("UIEnter", {
 		desc = desc,
 		group = augroup,
-		callback = coroutine.wrap(function()
-			local co = coroutine.running()
-
-			for _, win in ipairs(vim.api.nvim_list_wins()) do
-				vim.schedule(function()
-					if win_is_normal(win) then
-						vim.api.nvim_win_call(win, set)
-					end
-
-					coroutine.resume(co)
-				end)
-
-				coroutine.yield()
-			end
-		end),
+		callback = vim.schedule_wrap(default_cb),
 	})
 end
 
