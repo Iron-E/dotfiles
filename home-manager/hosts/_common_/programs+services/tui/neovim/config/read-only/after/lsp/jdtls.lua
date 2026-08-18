@@ -56,26 +56,26 @@ return {
 
 	settings = {
 		java = {
+			codeGeneration = {
+				generateComments = true,
+				useBlocks = true,
+			},
+
+			completion = {
+				enabled = true,
+				matchCase = "off",
+			},
+
 			configuration = {
-				codeGeneration = {
-					generateComments = true,
-					useBlocks = true,
-				},
-
-				completion = {
-					enabled = true,
-					matchCase = "off",
-				},
-
-				format = {
-					enabled = false,
-				},
-
 				runtimes = runtimes,
+			},
 
-				telemetry = {
-					enabled = false,
-				},
+			format = {
+				enabled = false,
+			},
+
+			telemetry = {
+				enabled = false,
 			},
 		},
 	},
