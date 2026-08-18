@@ -90,7 +90,6 @@ in
       ###########
 
       inherit (pkgs)
-        actionlint
         deadnix
         dotenv-linter
         eslint_d
@@ -104,6 +103,7 @@ in
         sqlfluff
         tflint
         trivy
+        zizmor
         ;
 
       ###############
