@@ -25,17 +25,11 @@ in
     withNodeJs = false;
     withPython3 = false;
     withRuby = false;
-    extraWrapperArgs = [
-      "--set"
-      "SPRING_TOOLS_PATH"
-      "${spring-tools.out}"
-    ];
 
     extraPackages = builtins.attrValues {
       ########
       # misc #
       ########
-      inherit spring-tools; # jdtls
 
       inherit (pkgs)
         bat # previewer

@@ -86,11 +86,7 @@ vim.pack.add({
 }, load)
 
 vim.pack.add({
-	"https://github.com/JavaHello/spring-boot.nvim", -- dep
-}, load_if_not_manpage)
-
-vim.pack.add({
-	"https://github.com/mfussenegger/nvim-jdtls", -- deps: spring-boot.nvim, before: lspconfig
+	"https://github.com/mfussenegger/nvim-jdtls", -- before: lspconfig
 }, load_if_not_manpage)
 
 vim.pack.add({

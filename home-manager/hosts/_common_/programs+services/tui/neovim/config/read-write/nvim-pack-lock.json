@@ -57,18 +57,9 @@
       "rev": "e58ad4b0c9e9376096b9704f98fc00d4c9448870",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
-    "nui.nvim": {
-      "rev": "5959922693a785a0e1624b45c968c844822f1ca1",
-      "src": "https://github.com/MunifTanjim/nui.nvim"
-    },
     "nvim-highlight-colors": {
       "rev": "e4c7af0211866162d999ce0bdd6a029302e19139",
       "src": "https://github.com/brenoprata10/nvim-highlight-colors"
-    },
-    "nvim-java": {
-      "rev": "dcf18d8334f29fb2921390f4f06ddecfd472e329",
-      "src": "https://github.com/nvim-java/nvim-java",
-      "version": "4.0.0 - 5.0.0"
     },
     "nvim-jdtls": {
       "rev": "6e9d953f0b82bccdb834cfde0e893f3119c22592",
@@ -115,10 +106,6 @@
       "rev": "de9a98d61ed3fd01b5016eea5fe9e32f1a4c7cfb",
       "src": "https://github.com/seblj/roslyn.nvim"
     },
-    "spring-boot.nvim": {
-      "rev": "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0",
-      "src": "https://github.com/JavaHello/spring-boot.nvim"
-    },
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
@@ -126,18 +113,6 @@
     "ts-comments.nvim": {
       "rev": "a59d6092213447450191122c9346f309161504cb",
       "src": "https://github.com/folke/ts-comments.nvim"
-    },
-    "vim-dadbod": {
-      "rev": "6d1d41da4873a445c5605f2005ad2c68c99d8770",
-      "src": "https://github.com/tpope/vim-dadbod"
-    },
-    "vim-dadbod-completion": {
-      "rev": "a8dac0b3cf6132c80dc9b18bef36d4cf7a9e1fe6",
-      "src": "https://github.com/kristijanhusak/vim-dadbod-completion"
-    },
-    "vim-dadbod-ui": {
-      "rev": "afd07819d8efcefc3317205b855ad4e3513b0011",
-      "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
     },
     "vim-log-highlighting": {
       "rev": "1037e26f3120e6a6a2c0c33b14a84336dee2a78f",

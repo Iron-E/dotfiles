@@ -51,7 +51,6 @@ return {
 	end,
 
 	init_options = {
-		bundles = require("spring_boot").java_extensions(),
 		extendedClientCapabilities = require("jdtls.capabilities"),
 	},
 
