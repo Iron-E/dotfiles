@@ -2,5 +2,5 @@
 {
   imports = [ ];
 
-  home.shellAliases.miseg = "mise -C ${lib.strings.escapeShellArg "${config.xdg.configHome}/mise"}";
+  home.shellAliases.miseg = "MISE_DEFAULT_CONFIG_FILENAME=config.toml mise -C ${lib.strings.escapeShellArg "${config.xdg.configHome}/mise"}";
 }
