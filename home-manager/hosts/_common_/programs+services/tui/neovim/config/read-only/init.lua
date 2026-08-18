@@ -20,8 +20,10 @@ require("init/functions")
 require("init/mappings")
 
 require("init/diagnostics")
-require("init/lsp")
 require("init/treesitter")
 
 -- Plugins
 require("plugins")
+
+-- LSP last, since its config can depend on plugins
+require("init/lsp")

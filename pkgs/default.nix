@@ -5,6 +5,8 @@ let
   inherit (pkgs) callPackage;
 in
 {
-  leaf = callPackage ./leaf.nix { };
   git-worktree-share = callPackage ./git-worktree-share.nix { };
+  leaf = callPackage ./leaf.nix { };
+  lombok = callPackage ./lombok.nix { };
+  spring-tools = callPackage ./spring-tools.nix { };
 }

@@ -1,11 +1,15 @@
 {
   pkgs,
   config,
+  outputs,
   ...
 }:
 let
   package = type: name: config.${type}.${name}.package;
   prg = package "programs";
+
+  outPkg = name: outputs.packages.${pkgs.stdenv.system}.${name};
+  spring-tools = outPkg "spring-tools";
 in
 {
   imports = [ ];
@@ -21,11 +25,17 @@ in
     withNodeJs = false;
     withPython3 = false;
     withRuby = false;
+    extraWrapperArgs = [
+      "--set"
+      "SPRING_TOOLS_PATH"
+      "${spring-tools.out}"
+    ];
 
     extraPackages = builtins.attrValues {
       ########
       # misc #
       ########
+      inherit spring-tools; # jdtls
 
       inherit (pkgs)
         bat # previewer
@@ -34,6 +44,7 @@ in
 
       gh = prg "gh"; # octo.nvim
       git = prg "git"; # cloning plugins
+      lombok = outPkg "lombok"; # jdtls
       ripgrep = prg "ripgrep"; # `:Grep`
 
       ##############

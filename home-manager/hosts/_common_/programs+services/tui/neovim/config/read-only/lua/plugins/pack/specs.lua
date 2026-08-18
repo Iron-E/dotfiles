@@ -86,13 +86,24 @@ vim.pack.add({
 }, load)
 
 vim.pack.add({
+	"https://github.com/JavaHello/spring-boot.nvim", -- dep
+}, load_if_not_manpage)
+
+vim.pack.add({
+	"https://github.com/mfussenegger/nvim-jdtls", -- deps: spring-boot.nvim, before: lspconfig
+}, load_if_not_manpage)
+
+vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/nvim-lua/plenary.nvim", -- dep
-	"https://github.com/seblj/roslyn.nvim",
+}, load_if_not_manpage)
+
+vim.pack.add({
 	"https://github.com/Saghen/blink.compat", -- dep
 	"https://github.com/rafamadriz/friendly-snippets", -- dep-ish
 	"https://github.com/NMAC427/guess-indent.nvim",
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	"https://github.com/nvim-lua/plenary.nvim", -- dep
+	"https://github.com/seblj/roslyn.nvim", -- after: nvim-lspconfig
 }, load_if_not_manpage)
 
 vim.pack.add({
@@ -153,12 +164,3 @@ vim.pack.add({
 	"https://github.com/wintermute-cell/gitignore.nvim", -- deps: fzf-lua
 	"https://github.com/pwntester/octo.nvim", -- deps: plenary, fzf-lua, mini.icons
 }, async_load_if_not_manpage)
-
-vim.pack.add({
-	"https://github.com/MunifTanjim/nui.nvim", -- dep
-	{ src = "https://github.com/JavaHello/spring-boot.nvim", version = "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0" }, -- dep
-}, do_not_load)
-
-vim.pack.add({
-	{ src = "https://github.com/nvim-java/nvim-java", version = vim.version.range("^4") }, -- deps: spring-boot.nvim, nui.nvim
-}, do_not_load)

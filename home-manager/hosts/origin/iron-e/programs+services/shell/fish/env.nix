@@ -21,9 +21,6 @@
       		# Diff
       		set -gx DIFFPROG "$EDITOR"
 
-      		# Java
-      		set -gx JAVA_HOME /usr/lib/jvm/java-18-openjdk
-
       		# Oracle
       		set -gx ORACLE_HOME $HOME/Oracle
       		set -gx TNS_ADMIN $ORACLE_HOME/network/admin/tnsnames.ora
