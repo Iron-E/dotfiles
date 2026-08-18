@@ -1,5 +1,4 @@
 [settings]
-experimental = true
 lockfile = true
 
 [tools]
@@ -7,10 +6,11 @@ lefthook = "2"
 stylua = "2"
 
 [tasks.lefthook-install]
+quiet = true
 run = "lefthook check-install || lefthook install"
 
 [[hooks.enter]]
-script = "mise install --locked"
+run = "mise install --locked"
 
 [[hooks.enter]]
 task = "lefthook-install"
