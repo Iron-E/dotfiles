@@ -33,14 +33,14 @@ return {
 
 		local config_cmd = {
 			"jdtls",
+			"--jvm-arg=-Xmx8g",
 			"-data",
 			data_dir,
-			"-Xmx8g",
 		}
 
 		local lombok_path = vim.fn.exepath("lombok.jar")
 		if lombok_path ~= "" then
-			table.insert(config_cmd, "-javaagent:" .. lombok_path)
+			table.insert(config_cmd, "--jvm-arg=-javaagent:" .. lombok_path)
 		end
 
 		return vim.lsp.rpc.start(config_cmd, dispatchers, {
