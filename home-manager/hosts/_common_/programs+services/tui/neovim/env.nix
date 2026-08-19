@@ -9,6 +9,6 @@
     in
     {
       EDITOR = nvim;
-      MANPAGER = "${nvim} --cmd 'let g:man = v:true' +Man!";
+      MANPAGER = "${nvim} --cmd 'lua _G.__iron_e_startup_for_manpage = true' +Man!";
     };
 }

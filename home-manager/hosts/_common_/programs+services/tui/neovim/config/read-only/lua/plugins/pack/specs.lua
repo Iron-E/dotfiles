@@ -20,7 +20,7 @@ local do_not_load = {
 	load = function() end,
 }
 
-local starting_for_manpage = vim.g.man == true
+local starting_for_manpage = _G.__iron_e_startup_for_manpage == true
 
 --- @type vim.pack.keyset.add
 local load_if_not_manpage = starting_for_manpage and do_not_load or load
