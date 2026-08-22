@@ -4,4 +4,5 @@
   # List your module files here
   fish = import ./fish;
   kubectl = import ./kubectl;
+  rust = import ./rust;
 }

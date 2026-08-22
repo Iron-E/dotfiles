@@ -4,4 +4,6 @@ let
 in
 {
   imports = util.fs.readSubmodules ./.;
+
+  programs.rust.enable = true;
 }
