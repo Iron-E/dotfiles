@@ -14,7 +14,7 @@
     "**/.env"
     "**/.envrc"
     "**/.nvim.lua"
-    "**/.nvim/"
+    "**/.nvim"
     "**/bar"
     "**/bar.*"
     "**/baz"
