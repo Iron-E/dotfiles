@@ -1,19 +1,43 @@
---- Benchmark some `fn`, printing the average time it takes to run given the number of `loops`.
+--- @class iron-e.BenchOpts
+--- @field title? string optional title
+--- @field iter? integer the number of times to run the code. Higher number = more accurate average
+--- @field cont? integer interrupt execution after this many iter, to give neovim a chance to do other things
+
+--- Benchmark some `fn`, printing the average time it takes to run given the number of `iter`.
 --- @param fn fun(i: integer) the code to benchmark
---- @param loops? integer the number of times to run the code. Higher number = more accurate average
-function Bench(fn, loops)
-	loops = loops or 100000
+--- @param opts? iron-e.BenchOpts
+function Bench(fn, opts)
+	coroutine.resume(coroutine.create(function()
+		opts = opts or {}
+		opts.iter = opts.iter or 100000
+		opts.cont = opts.cont or 100
 
-	local now = vim.uv.hrtime --- @type fun(): integer
-	local total = 0
+		if opts.title == nil then
+			opts.title = ""
+		elseif opts.title ~= "" then
+			opts.title = opts.title .. " "
+		end
 
-	for i = 1, loops do
-		local start = now()
-		fn(i)
-		total = total + (now() - start)
-	end
+		local co = coroutine.running()
+		local now = vim.uv.hrtime --- @type fun(): integer
+		local total = 0
 
-	print(total / loops)
+		for i = 1, opts.iter do
+			local start = now()
+			fn(i)
+			total = total + (now() - start)
+
+			if i % opts.cont == 0 then
+				vim.schedule(function()
+					coroutine.resume(co)
+				end)
+
+				coroutine.yield()
+			end
+		end
+
+		vim.notify("Benchmark " .. opts.title .. "complete: " .. tostring(total / opts.iter), vim.log.levels.INFO)
+	end))
 end
 
 --- @return string fold_text a neat template for the summary of what is on a fold
