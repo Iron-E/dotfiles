@@ -1,0 +1,26 @@
+{
+	"define-sink": {
+		"body": [
+			"(define* (sink input #:key (buf-size 4096))",
+			"  \"Redirect an input port to the current output port. ",
+			"Use with-output-to-port to change the destination.\"",
+			"  (let ((buf (make-bytevector buf-size)))",
+			"\t (let loop ((position 0))",
+			"\t\t(let ((n (get-bytevector-n! input buf 0 buf-size)))",
+			"\t\t  (when (and (not (eof-object? n)) (> n 0))",
+			"\t\t\t (put-bytevector (current-output-port) buf 0 n)",
+			"\t\t\t (loop (1+ n))))))",
+			"  (close-port input))"
+		],
+		"prefix": "define-sink"
+	},
+	"shebang": {
+		"body": [
+			"#!/usr/bin/env -S guile -q -s",
+			"!#",
+			"",
+			"$0"
+		],
+		"prefix": "shebang"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"shebang-guile": {
+		"body": [
+			"#!/usr/bin/env -S guile -q -s",
+			"!#",
+			"",
+			"$0"
+		],
+		"prefix": "shebang-guile"
+	}
+}

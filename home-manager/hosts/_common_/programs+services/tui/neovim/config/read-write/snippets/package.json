@@ -144,6 +144,18 @@
 					"gitignore"
 				],
 				"path": "./gitignore.json"
+			},
+			{
+				"language": [
+					"scheme.guile"
+				],
+				"path": "./scheme.guile.json"
+			},
+			{
+				"language": [
+					"scheme"
+				],
+				"path": "./scheme.json"
 			}
 		]
 	},

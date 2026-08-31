@@ -161,6 +161,7 @@ vim.lsp.enable({
 	"docker_language_server",
 	"emmet_language_server",
 	"gopls",
+	"guile_ls",
 	"helm_ls",
 	"html",
 	"jdtls",

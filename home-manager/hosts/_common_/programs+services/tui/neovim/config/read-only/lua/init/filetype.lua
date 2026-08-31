@@ -77,6 +77,34 @@ vim.filetype.add({
 		yaml = "yaml",
 		yml = "yaml",
 
+		scm = function(_, bufnr)
+			local line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, true)[1]
+			if string.find(line, "^#!.*[Gg]uile") then
+				return "scheme.guile"
+			end
+
+			local detected
+			vim.api.nvim_buf_call(bufnr, function()
+				detected = vim.fn.search([[\v(; .*)@<!<(define-module|use-modules|ice-9)>]], "cnw") ~= 0
+			end)
+
+			if detected then
+				return "scheme.guile"
+			end
+
+			local alt_buf = vim.fn.bufnr("#")
+			if alt_buf == -1 then
+				return "scheme"
+			end
+
+			local alt_buf_ft = vim.api.nvim_get_option_value("filetype", { buf = vim.fn.bufnr("#") })
+			if string.find(alt_buf_ft, "^scheme") then
+				return alt_buf_ft
+			end
+
+			return "scheme"
+		end,
+
 		tfvars = function(path)
 			if in_tofu(path) then
 				return "opentofu-vars"

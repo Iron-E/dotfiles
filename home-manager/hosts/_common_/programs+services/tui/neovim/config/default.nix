@@ -9,7 +9,6 @@ let
   prg = package "programs";
 
   outPkg = name: outputs.packages.${pkgs.stdenv.system}.${name};
-  spring-tools = outPkg "spring-tools";
 in
 {
   imports = [ ];
@@ -70,6 +69,7 @@ in
         emmet-language-server
         go # required for nvim-lspconfig's gopls support
         gopls
+        guile-lsp-server
         helm-ls
         jdt-language-server
         jsonnet-language-server
