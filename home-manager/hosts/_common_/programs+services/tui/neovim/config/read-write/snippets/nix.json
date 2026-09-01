@@ -155,10 +155,8 @@
 	},
 	"home-manager": {
 		"body": [
-			"{ inputs, outputs, config, lib, pkgs, ... }:",
-			"let",
-			"\tutil = outputs.lib;",
-			"in {",
+			"{ ... }:",
+			"{",
 			"\timports = [];",
 			"",
 			"\t${0:$TM_SELECTED_TEXT}",
