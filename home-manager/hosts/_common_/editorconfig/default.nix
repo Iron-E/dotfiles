@@ -63,7 +63,7 @@
         trailing_table_separator = "smart";
       };
 
-      "*.{libsonnet,jsonnet,nix,rpy,yaml,yml}" = {
+      "*.{scm,libsonnet,jsonnet,nix,rpy,yaml,yml}" = {
         indent_style = "space";
         tab_width = 2;
       };
