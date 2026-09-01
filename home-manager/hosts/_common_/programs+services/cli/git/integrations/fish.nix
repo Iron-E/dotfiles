@@ -9,10 +9,25 @@
         ''
           set -f result (
             git worktree list \
-            | fzf \
+            | fzi \
               --with-nth "{3}"\t"{1}" \
               --nth "1" \
               --accept-nth "1"
+          )
+
+          if [ -n "$result" ]
+            cd "$result"
+          end
+        '';
+    };
+
+    gzf = {
+      description = "Change directory to another git repo";
+      body = # fish
+        ''
+          set -f result (
+            fd -t d --hidden '^\.git$' -X dirname -z {} \
+            | fzi --scheme=path --read0
           )
 
           if [ -n "$result" ]
