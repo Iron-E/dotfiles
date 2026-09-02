@@ -8,6 +8,7 @@ lint.linters_by_ft = {
 	fish = { "fish" },
 	go = { "golangcilint" },
 	html = { "htmlhint" },
+	janet = { "janet" },
 	javascript = { "eslint_d" },
 	json = { "jq" },
 	nix = { "deadnix", "nix" },

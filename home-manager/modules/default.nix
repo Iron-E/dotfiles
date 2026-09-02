@@ -3,6 +3,7 @@
 {
   # List your module files here
   fish = import ./fish;
+  janet = import ./janet;
   kubectl = import ./kubectl;
   rust = import ./rust;
 }

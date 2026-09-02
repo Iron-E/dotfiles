@@ -36,4 +36,6 @@ in
 
     sessionVariables.HM_PROFILE = "iron-e@origin";
   };
+
+  programs.janet.enable = true;
 }
