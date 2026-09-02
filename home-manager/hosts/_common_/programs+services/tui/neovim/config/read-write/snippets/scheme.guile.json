@@ -14,6 +14,20 @@
 		],
 		"prefix": "define-sink"
 	},
+	"let": {
+		"body": "(let (${1:(foo (bar))}) ${2:body})$0",
+		"prefix": "let"
+	},
+	"pipefail": {
+		"body": [
+			"(define* (checkpid pid #:optional (fail-message \"\"))",
+			"\t\t\t\"Check the exit code of the pid given, erroring if necessary.\"",
+			"\t\t\t(let* ((st (cdr (waitpid pid)))",
+			"\t\t\t\t\t (code (or (status:exit-val st) (status:stop-sig st) (status:term-sig st))))",
+			"\t\t\t  (unless (zero? st) (display fail-message) (exit code))))"
+		],
+		"prefix": "pipefail"
+	},
 	"shebang": {
 		"body": [
 			"#!/usr/bin/env -S guile -q -s",
