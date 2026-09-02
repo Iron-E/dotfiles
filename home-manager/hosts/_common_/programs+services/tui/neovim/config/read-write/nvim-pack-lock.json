@@ -54,7 +54,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "mini.nvim": {
-      "rev": "e58ad4b0c9e9376096b9704f98fc00d4c9448870",
+      "rev": "9d01f392b33fb2ba36fbc87fc0bf4453e63ffb0a",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-highlight-colors": {
@@ -66,11 +66,11 @@
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-lint": {
-      "rev": "9b99aad869102ac01775187abd8d49017b148612",
+      "rev": "3d55c8f67c6ae5c15e1042571e107c7a3d5c5f4e",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "51dbf5359da86721662c87ca10eb73add973737b",
+      "rev": "ee1e369181a9e64904cdd7b739e98c70778cfc71",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-scissors": {
@@ -82,7 +82,7 @@
       "src": "https://github.com/Iron-E/nvim-tabmode"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "427e9222363d07c32d6db6169e4049c28d58d141",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -91,7 +91,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "octo.nvim": {
-      "rev": "205f024d3ea4a3d81aac751b6bf8e2d01e0c204f",
+      "rev": "af2411604b51cb4a0f3e2de50b1b7cacc2581c48",
       "src": "https://github.com/pwntester/octo.nvim"
     },
     "plenary.nvim": {
