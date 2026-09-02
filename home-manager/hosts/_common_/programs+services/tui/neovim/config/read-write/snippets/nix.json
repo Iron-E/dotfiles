@@ -202,6 +202,16 @@
 		],
 		"prefix": "mkFileset"
 	},
+	"mkOption": {
+		"body": [
+			"mkOption {",
+			"  description = \"${1:desc}\";",
+			"  type = types.${2|bool,path,enum,anything,raw,int,float,number,str,lines,either,oneOf,nullOr,attrTag,listOf,attrsOf,attrListOf,uniq,json,toml|};",
+			"  default = ${3:default};",
+			"};$0"
+		],
+		"prefix": "mkOption"
+	},
 	"mkPkgs": {
 		"body": [
 			"mkPkgs = system: import nixpkgs {",
@@ -237,6 +247,36 @@
 		],
 		"prefix": "module"
 	},
+	"module-1": {
+		"body": [
+			"{",
+			"  config,",
+			"  lib,",
+			"  pkgs,",
+			"  ...",
+			"}:",
+			"let",
+			"  inherit (lib)",
+			"    mkEnableOption",
+			"    mkPackageOption",
+			"    mkIf",
+			"    ;",
+			"",
+			"  cfg = config.programs.${1:program};",
+			"in",
+			"{",
+			"  options.programs.${1:program} = {",
+			"    enable = mkEnableOption \"${1:program}\";",
+			"    package = mkPackageOption pkgs \"${1:program}\" { nullable = true; };",
+			"  };",
+			"",
+			"  config = mkIf cfg.enable {",
+			"    home.packages = mkIf (cfg.package != null) [ cfg.package ];",
+			"  };",
+			"}"
+		],
+		"prefix": "module"
+	},
 	"multiline": {
 		"body": [
 			"/* ${1:lang} */ ''",
@@ -252,6 +292,10 @@
 	"strlang": {
 		"body": "/* ${1:lang} */ \"$0\"",
 		"prefix": "strlang"
+	},
+	"types": {
+		"body": "types.${2|bool,path,enum,anything,raw,int,float,number,str,lines,either,oneOf,nullOr,attrTag,listOf,attrsOf,attrListOf,uniq,json,toml|}$0",
+		"prefix": "types"
 	},
 	"util": {
 		"body": "util = outputs.lib;",
