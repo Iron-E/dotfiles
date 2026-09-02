@@ -69,7 +69,6 @@ in
         emmet-language-server
         go # required for nvim-lspconfig's gopls support
         gopls
-        guile-lsp-server
         helm-ls
         jdt-language-server
         jsonnet-language-server

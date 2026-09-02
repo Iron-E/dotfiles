@@ -5,5 +5,6 @@ in
 {
   imports = util.fs.readSubmodules ./.;
 
-  home.file.".guile".source = ./guile.scm;
+  programs.janet.enable = true;
+  programs.guile.enable = true;
 }
