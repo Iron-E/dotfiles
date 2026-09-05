@@ -1,0 +1,20 @@
+{
+	"regal": {
+		"body": [
+			"rules:",
+			"  idiotmatic:",
+			"    directory-package-mismatch:",
+			"      level: ignore",
+			"",
+			"    no-defined-entrypoint:",
+			"      level: ignore",
+			"",
+			"  testing:",
+			"    print-or-trace-call:",
+			"      ignore:",
+			"        files:",
+			"          - \"*_test.rego\""
+		],
+		"prefix": "regal"
+	}
+}

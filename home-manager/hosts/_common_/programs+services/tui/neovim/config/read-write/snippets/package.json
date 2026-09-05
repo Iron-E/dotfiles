@@ -156,6 +156,12 @@
 					"scheme"
 				],
 				"path": "./scheme.json"
+			},
+			{
+				"language": [
+					"yaml.regal"
+				],
+				"path": "./yaml.regal.json"
 			}
 		]
 	},
