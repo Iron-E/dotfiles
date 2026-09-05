@@ -42,6 +42,9 @@ vim.filetype.add({
 
 		["librewolf.overrides.cfg"] = "javascript",
 
+		[".regal.yml"] = "yaml.regal",
+		[".regal.yaml"] = "yaml.regal",
+
 		["terragrunt.hcl"] = "hcl.terragrunt",
 		["terragrunt.stack.hcl"] = "hcl.terragrunt-stack",
 
@@ -120,6 +123,7 @@ vim.filetype.add({
 
 		[".*/[Tt]askfile[^/]*%.ya?ml"] = "yaml.taskfile",
 
+		[".*/%.regal/config%.ya?ml"] = "yaml.regal",
 		[".*/templates/.*%.tm?pl"] = function(path)
 			if in_helm_chart(path) then
 				return "helm"
