@@ -6,5 +6,6 @@
   guile = import ./guile;
   janet = import ./janet;
   kubectl = import ./kubectl;
+  open-policy-agent = import ./open-policy-agent;
   rust = import ./rust;
 }

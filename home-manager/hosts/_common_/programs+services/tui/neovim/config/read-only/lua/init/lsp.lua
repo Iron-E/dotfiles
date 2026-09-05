@@ -170,6 +170,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"marksman",
 	"nixd",
+	"regal",
 	"rust_analyzer",
 	"sqls",
 	"tailwindcss",
