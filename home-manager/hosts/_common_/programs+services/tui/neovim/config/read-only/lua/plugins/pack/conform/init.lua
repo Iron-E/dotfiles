@@ -52,6 +52,7 @@ local opts = {
 		nix = { "nixfmt" },
 		opentofu = { "tofu_fmt" },
 		proto = { "buf" },
+		rego = { "opa_fmt" },
 		rust = { "rustfmt" },
 		sh = { "shellcheck", timeout_ms = 1000 },
 		sql = { "deno_fmt" },
