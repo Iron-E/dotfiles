@@ -35,10 +35,6 @@ require("mini.sessions").setup({
 	},
 })
 
-vim.api.nvim_create_user_command("Restart", "lua MiniSessions.restart()", {
-	desc = "Restart neovim and preserve current session.",
-})
-
 --- @param name string
 --- @return nil|string
 local function get_input_session_name(name)
