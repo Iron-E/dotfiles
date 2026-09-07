@@ -13,7 +13,7 @@ vim.api.nvim_set_option_value("background", "dark", {}) -- Use a dark background
 vim.api.nvim_set_option_value("breakindent", true, {}) -- Preserve tabs when wrapping lines.
 vim.api.nvim_set_option_value("cindent", true, {}) -- More intelligent 'autoindent'
 vim.opt.cinkeys:remove({ "0#" }) -- NOTE: add this back to fts that need it
-vim.opt.cinoptions = { "#1", "(s", ")1000", "C1", "i0", "j1", "J1", "l1", "L1", "m1" }
+vim.opt.cinoptions = { "#-1", "(s", ")1000", "C1", "i0", "j1", "J1", "l1", "L1", "m1" }
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" } -- Completion visual settings
 vim.api.nvim_set_option_value("concealcursor", "nc", {}) -- Don't unconceal in normal or command mode
 vim.api.nvim_set_option_value("cursorline", true, {}) -- Highlight current line
@@ -23,7 +23,7 @@ vim.opt.fillchars = { fold = " ", msgsep = "▔" } -- Set folds to not trail dot
 vim.api.nvim_set_option_value("foldlevelstart", 99, {}) -- starting fold level
 vim.api.nvim_set_option_value("foldmethod", "indent", {}) -- Set folding to occur from a marker
 vim.api.nvim_set_option_value("foldtext", "v:lua.NeatFoldText()", {}) -- Set text of folds
-vim.opt.formatoptions:append("cro")
+vim.opt.formatoptions:append("ro")
 vim.api.nvim_set_option_value("ignorecase", true, {}) -- Case insensitive search by default
 vim.api.nvim_set_option_value("inccommand", "split", {}) -- Show regular expression previews in a split
 vim.api.nvim_set_option_value("laststatus", 3, {}) -- Only show a statusline at the bottom of the screen
