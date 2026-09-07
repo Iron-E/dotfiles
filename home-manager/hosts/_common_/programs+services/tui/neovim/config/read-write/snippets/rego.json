@@ -1,0 +1,95 @@
+{
+	"metadata": {
+		"body": [
+			"# METADATA",
+			"# $0"
+		],
+		"prefix": "metadata"
+	},
+	"metadata-authors": {
+		"body": [
+			"# A list of authors for the annotation target. Read more in the Metadata Authors section below.",
+			"# authors:",
+			"#  - foo"
+		],
+		"prefix": "metadata-authors"
+	},
+	"metadata-compile-options": {
+		"body": [
+			"# Options controlling how the annotation target is processed by the Compile API when generating data filters. Read more in the Metadata Compile section below.",
+			"# compile: ",
+			"#   foo: bar"
+		],
+		"prefix": "metadata-compile-options"
+	},
+	"metadata-custom": {
+		"body": [
+			"# A custom mapping of named parameters holding arbitrary data. Read more in the Metadata Custom section below.",
+			"# custom: ",
+			"#   foo:",
+			"#     bar: true"
+		],
+		"prefix": "metadata-custom"
+	},
+	"metadata-description": {
+		"body": [
+			"# A description of the annotation target. Read more in the Metadata Description section below.",
+			"# description: |",
+			"#  Long-winded desc"
+		],
+		"prefix": "metadata-description"
+	},
+	"metadata-entrypoint": {
+		"body": [
+			"# Whether or not the annotation target is to be used as a policy entrypoint. Read more in the Metadata Entrypoint section below.",
+			"# entrypoint: false"
+		],
+		"prefix": "metadata-entrypoint"
+	},
+	"metadata-labels": {
+		"body": [
+			"# Arbitrary labels attached to a rule, recorded in decision logs when the rule is evaluated. Read more in the Metadata Labels section below.",
+			"# labels:",
+			"#  foo: bar"
+		],
+		"prefix": "metadata-labels"
+	},
+	"metadata-organizations": {
+		"body": [
+			"# A list of organizations related to the annotation target. Read more in the Metadata Organizations section below.",
+			"# organizations: ",
+			"#   - Foo"
+		],
+		"prefix": "metadata-organizations"
+	},
+	"metadata-related-resources": {
+		"body": [
+			"# A list of URLs pointing to related resources/documentation. Read more in the Metadata Related Resources section below.",
+			"# related_resources: ",
+			"#   - https://..."
+		],
+		"prefix": "metadata-related-resources"
+	},
+	"metadata-schemas": {
+		"body": [
+			"# A list of associations between value paths and schema definitions. Read more in the Metadata Schemas section below.",
+			"# schemas: ",
+			"#   - input.x: {type: number}"
+		],
+		"prefix": "metadata-schemas"
+	},
+	"metadata-scope": {
+		"body": [
+			"# The scope for which the metadata applies. Read more in the Metadata Scope section below.",
+			"# scope: \"package|rule|document|subpackages\""
+		],
+		"prefix": "metadata-scope"
+	},
+	"metadata-title": {
+		"body": [
+			"# A human-readable name for the annotation target. Read more in the Metadata Title section below.",
+			"# title: \"The Title\""
+		],
+		"prefix": "metadata-title"
+	}
+}

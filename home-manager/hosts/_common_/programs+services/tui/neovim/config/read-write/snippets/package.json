@@ -162,6 +162,12 @@
 					"yaml.regal"
 				],
 				"path": "./yaml.regal.json"
+			},
+			{
+				"language": [
+					"rego"
+				],
+				"path": "./rego.json"
 			}
 		]
 	},
