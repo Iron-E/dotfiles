@@ -32,7 +32,7 @@ themes {
 			base "#C0C0C0"
 			background "#505050"
 			emphasis_0 "#EE4A59"
-			emphasis_1 "#FF8900"
+			emphasis_1 "#353535"
 			emphasis_2 "#F0DF33"
 			emphasis_3 "#70D533"
 		}
@@ -101,8 +101,8 @@ themes {
 		}
 
 		exit_code_success {
-			base 172 151 57
-			background 0
+			base "#22FF22"
+			background "none"
 			emphasis_0 "#EE4A59"
 			emphasis_1 "#FF8900"
 			emphasis_2 "#F0DF33"
@@ -110,8 +110,8 @@ themes {
 		}
 
 		exit_code_error {
-			base 201 73 34
-			background 0
+			base "#C0C0C0"
+			background "#4F201D"
 			emphasis_0 "#EE4A59"
 			emphasis_1 "#FF8900"
 			emphasis_2 "#F0DF33"
