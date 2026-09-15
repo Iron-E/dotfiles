@@ -8,7 +8,14 @@ require("nvim-highlight-colors").setup({
 	render = "virtual",
 
 	exclude_buffer = function(bufnr)
-		-- TODO: should this be for all the clients on a buffer?
-		return vim.lsp.document_color.is_enabled({ bufnr = bufnr })
+		local supports = false
+		for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+			if client:supports_method("textDocument/documentColor", bufnr) then
+				supports = true
+				break
+			end
+		end
+
+		return supports and vim.lsp.document_color.is_enabled({ bufnr = bufnr })
 	end,
 })
