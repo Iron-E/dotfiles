@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [ ];
 
@@ -26,7 +31,7 @@
       body = # fish
         ''
           set -f result (
-            fd -t d --hidden '^\.git$' -X dirname -z {} \
+            fd -t d --hidden '^\.git$' -X ${lib.getExe' pkgs.coreutils "dirname"} -z {} \
             | fzi --scheme=path --read0
           )
 
