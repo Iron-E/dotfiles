@@ -16,6 +16,35 @@ local function available_or(else_, formatter, bufnr)
 	return else_
 end
 
+local deno_supported = {
+	astro = true,
+	cjs = true,
+	css = true,
+	cts = true,
+	html = true,
+	js = true,
+	json = true,
+	jsonc = true,
+	jsx = true,
+	less = true,
+	md = true,
+	mjs = true,
+	mts = true,
+	scss = true,
+	svelte = true,
+	svg = true,
+	ts = true,
+	tsx = true,
+	vue = true,
+	xml = true,
+	yaml = true,
+	yml = true,
+	ipynb = true,
+	sql = true,
+	vto = true,
+	njk = true,
+}
+
 --- @type conform.setupOpts
 local opts = {
 	formatters = {
@@ -23,6 +52,16 @@ local opts = {
 			require_cwd = true,
 			cwd = function(_, ctx)
 				return vim.fs.root(ctx.filename, { "deno.json", "deno.lock" })
+			end,
+
+			condition = function(_, ctx)
+				local ext = vim.fs.ext(ctx.filename)
+				return deno_supported[ext] ~= nil
+			end,
+
+			args = function(_, ctx)
+				local ext = vim.fs.ext(ctx.filename)
+				return { "fmt", "--ext", ext, "-" }
 			end,
 		},
 	},
