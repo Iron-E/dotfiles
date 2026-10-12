@@ -6,6 +6,7 @@ let
 in
 {
   git-worktree-share = callPackage ./git-worktree-share.nix { };
+  ctrld = callPackage ./ctrld.nix { };
   leaf = callPackage ./leaf.nix { };
   lombok = callPackage ./lombok.nix { };
 }

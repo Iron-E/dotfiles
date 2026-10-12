@@ -10,7 +10,6 @@ in
     ../../_extras_/programs+services/cli/aws
     # ../../_extras_/programs+services/cli/cryfs
     ../../_extras_/programs+services/cli/hydra-check
-    ../../_extras_/programs+services/cli/nextdns
     ../../_extras_/programs+services/cli/nh
     ../../_extras_/programs+services/cli/nix-forecast
     ../../_extras_/programs+services/cli/qmk
