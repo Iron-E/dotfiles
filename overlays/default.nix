@@ -24,6 +24,53 @@ in
           themeVariants = [ "beryl" ];
         };
 
+    tuios = prev.tuios.overrideAttrs (
+      finalAttrs: prevAttrs: {
+        version = "a9cd3ad4870ab6a9db54accf643ebdad010a5da1";
+        src =
+          prevAttrs.src.override {
+            hash = "sha256-75chj/JTYXYd1Oop0Isx8frLxhjvEwEKOPgnyafUtQ4=";
+            tag = null;
+            rev = finalAttrs.version;
+          }
+          // {
+            tag = finalAttrs.version;
+          };
+
+        vendorHash = "sha256-cnDNr/wiEqBJH8zZstJwZF6hO1wn6bllN/KwU2iu70w=";
+
+        ldflags = [
+          "-s"
+          "-w"
+          "-X=main.version=${finalAttrs.version}"
+          "-X=main.commit=${finalAttrs.src.rev}"
+          "-X=main.date=1970-01-01T00:00:00Z"
+          "-X=main.builtBy=nixpkgs"
+        ];
+
+        postPatch = (prevAttrs.postPatch or "") + ''
+          go work edit -dropuse=./e2e/tui
+        '';
+
+        passthru = prevAttrs.passthru // {
+          overrideModAttrs = prev.lib.composeExtensions (prevAttrs.passthru.overrideModAttrs or (_: _: { })) (
+            _finalModAttrs: prevModAttrs: {
+              buildPhase = ''
+                runHook preBuild
+                go work vendor
+                runHook postBuild
+              '';
+
+              # Belt and braces: GOWORK="" means "search for go.work", i.e. workspace mode on.
+              env = (prevModAttrs.env or { }) // {
+                GOWORK = "";
+              };
+            }
+          );
+        };
+      }
+    );
+
     vimix-icon-theme-beryl = prev.vimix-icon-theme.override {
       colorVariants = [ "Beryl" ];
     };
