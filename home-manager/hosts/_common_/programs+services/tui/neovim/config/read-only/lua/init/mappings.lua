@@ -134,6 +134,13 @@ vim.api.nvim_set_keymap("n", "[t", "<Cmd>tabprevious<CR>", no_opts)
 vim.api.nvim_set_keymap("n", "]T", "<Cmd>tablast<CR>:", no_opts)
 vim.api.nvim_set_keymap("n", "]t", "<Cmd>tabnext<CR>", no_opts)
 
+-- Viewport
+do
+	local center = "zszH"
+	vim.api.nvim_set_keymap("n", "<Leader>zm", center, noremap)
+	vim.api.nvim_set_keymap("n", "<Leader>zz", "zz" .. center, noremap)
+end
+
 -- Conflict markers
 
 do
