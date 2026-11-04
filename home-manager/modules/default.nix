@@ -1,12 +1,3 @@
 # Add your reusable home-manager modules to this directory, on their own file (https://nixos.wiki/wiki/Module).
 # These should be stuff you would like to share with others, not your personal configurations.
-{
-  # List your module files here
-  fish = import ./fish;
-  guile = import ./guile;
-  janet = import ./janet;
-  kubectl = import ./kubectl;
-  open-policy-agent = import ./open-policy-agent;
-  rust = import ./rust;
-  tuios = import ./tuios;
-}
+{ util, ... }: util.fs.genSubmoduleAttrs ./. (module: import module)

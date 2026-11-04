@@ -1,10 +1,10 @@
-nixpkgs: # `flake`
+lib: # `flake`
 {
-  attrsets = import ./attrsets nixpkgs;
-  config = import ./config nixpkgs;
-  fs = import ./fs nixpkgs;
-  generators = import ./generators nixpkgs;
-  lists = import ./lists nixpkgs;
-  strings = import ./strings nixpkgs;
-  systems = import ./systems nixpkgs;
+  attrsets = import ./attrsets lib;
+  config = import ./config lib;
+  fs = import ./fs lib;
+  generators = import ./generators lib;
+  lists = import ./lists lib;
+  strings = import ./strings lib;
+  systems = import ./systems lib;
 }

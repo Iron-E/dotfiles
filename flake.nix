@@ -50,7 +50,7 @@
     }:
     let
       inherit (self) outputs;
-      lib = import ./lib nixpkgs;
+      lib = import ./lib nixpkgs.lib;
     in
     {
       inherit lib;
@@ -62,8 +62,14 @@
       packages = lib.systems.genValues (
         system:
         nixpkgs.lib.mergeAttrsList [
-          (import ./pkgs nixpkgs.legacyPackages.${system}) # Your custom packages
-          { home-manager = home-manager.packages.${system}.default; } # `nix run .#home-manager`
+          # Custom packages
+          (import ./pkgs {
+            pkgs = nixpkgs.legacyPackages.${system};
+            util = lib;
+          })
+
+          # `nix run .#home-manager`
+          { home-manager = home-manager.packages.${system}.default; }
         ]
       );
 
@@ -71,10 +77,10 @@
       formatter = lib.systems.genValues (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
 
       # Your custom packages and modifications, exported as overlays
-      overlays = import ./overlays { inherit inputs; };
+      overlays = import ./overlays inputs;
 
       # Reusable home-manager modules you might want to export. Usually things you would upstream into home-manager
-      homeManagerModules = import ./home-manager/modules;
+      homeManagerModules = import ./home-manager/modules { util = lib; };
 
       homeConfigurations =
         builtins.mapAttrs

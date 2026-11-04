@@ -1,7 +1,5 @@
-nixpkgs: # `flake`
+lib@{ toList, ... }: # `flake`
 let
-  inherit (nixpkgs) lib;
-  inherit (lib) toList;
   inherit (builtins) length;
 
   reserveWith = # grows the list to at least the given size using `fn`

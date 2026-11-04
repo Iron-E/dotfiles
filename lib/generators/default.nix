@@ -1,8 +1,4 @@
-nixpkgs: # `flake`
-let
-  inherit (nixpkgs) lib;
-  inherit (lib) generators;
-in
+lib@{ generators, ... }: # `flake`
 {
   toXmodmap =
     let

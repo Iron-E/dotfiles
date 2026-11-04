@@ -1,7 +1,5 @@
-nixpkgs: # `flake`
+lib: # `flake`
 let
-  inherit (nixpkgs) lib;
-
   entriesToPaths = # convert output of `readDir` to list of path
     parent: # `path`
     fsEntries: # the output of `readDir`
@@ -56,6 +54,19 @@ let
       submodules = readSubmodules' path;
     in
     builtins.filter (path: path != libPath) submodules;
+
+  submoduleName =
+    path: # path
+    lib.removeSuffix ".nix" (baseNameOf path);
+
+  genSubmoduleAttrs =
+    path: # path
+    f: # path -> any
+    let
+      submodules = readSubmodules path;
+      toNameValuePair = module: lib.nameValuePair (submoduleName module) (f module);
+    in
+    builtins.listToAttrs (map toNameValuePair submodules);
 in
 {
   inherit
@@ -65,6 +76,8 @@ in
     readModules
     readSubmodules
     readSubmodules'
+    submoduleName
+    genSubmoduleAttrs
     ;
 
   filterSubmodules = lib.flip lib.pipe [

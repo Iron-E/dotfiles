@@ -1,6 +1,5 @@
-nixpkgs: # `flake`
+{ genAttrs, ... }: # `flake`
 let
-  inherit (nixpkgs) lib;
   default = [
     "aarch64-darwin"
     "aarch64-linux"
@@ -11,5 +10,5 @@ let
 in
 {
   default = default;
-  genValues = lib.genAttrs default;
+  genValues = genAttrs default;
 }

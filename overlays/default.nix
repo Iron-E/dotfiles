@@ -1,12 +1,16 @@
 # This file defines overlays
-{ inputs, ... }:
+{ nixpkgs-vimix, self, ... }:
 let
-  # inherit (inputs.nixpkgs) lib;
-  inherit (inputs) nixpkgs-vimix;
+  util = self.outputs.lib;
 in
 {
   # Bring custom packages rom the 'pkgs' directory
-  additions = final: _prev: (import ../pkgs final);
+  additions =
+    final: _prev:
+    (import ../pkgs {
+      inherit util;
+      pkgs = final;
+    });
 
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.

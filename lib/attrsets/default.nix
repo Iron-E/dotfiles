@@ -1,11 +1,9 @@
-nixpkgs:
-let
-  inherit (nixpkgs.lib)
-    attrByPath
-    optionalAttrs
-    recursiveUpdate
-    ;
-in
+{
+  attrByPath,
+  optionalAttrs,
+  recursiveUpdate,
+  ...
+}:
 {
   concat = # recursively merges a list of attrsets together
     attrsets: builtins.foldl' recursiveUpdate { } attrsets;

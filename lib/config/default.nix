@@ -1,13 +1,10 @@
-nixpkgs: # `flake`
+lib@{
+  getAttrFromPath,
+  recursiveUpdate,
+  ...
+}: # `flake`
 let
-  inherit (nixpkgs) lib;
-  inherit (lib)
-    getAttrFromPath
-    recursiveUpdate
-    ;
-
-  attrsets = import ../attrsets nixpkgs;
-
+  attrsets = import ../attrsets lib;
   getEnabled = builtins.getAttr "enable";
 in
 {
