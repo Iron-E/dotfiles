@@ -30,10 +30,10 @@ in
 
     tuios = prev.tuios.overrideAttrs (
       finalAttrs: prevAttrs: {
-        version = "a9cd3ad4870ab6a9db54accf643ebdad010a5da1";
+        version = "91a743c5a79785766ccb968bda6f022c54950eb8";
         src =
           prevAttrs.src.override {
-            hash = "sha256-75chj/JTYXYd1Oop0Isx8frLxhjvEwEKOPgnyafUtQ4=";
+            hash = "sha256-+l7OY1AfsMTBNnuRELo7NO/NrbM2u+wixpioNvMLlg8=";
             tag = null;
             rev = finalAttrs.version;
           }
@@ -41,7 +41,7 @@ in
             tag = finalAttrs.version;
           };
 
-        vendorHash = "sha256-cnDNr/wiEqBJH8zZstJwZF6hO1wn6bllN/KwU2iu70w=";
+        vendorHash = "sha256-j6IiDD4MJ5nRzZa34Mt03L0LI5GG+wY4CrcNldsXwXY=";
 
         ldflags = [
           "-s"

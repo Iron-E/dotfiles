@@ -29,7 +29,7 @@
       git_dirty = false;
       file_actions = false;
       file_drag = false;
-      sections = "sessions:25,agents";
+      sections = "sessions:25,terminals,agents:34";
       show_numbers = true;
       # How I hoped this word would never show up in my personal config... had I any choice, it still wouldn't.
       subagent_collapse = "collapsed";
@@ -41,4 +41,5 @@
   daemon.persist_scrollback = false;
   dock.compact = true;
   hints.alphabet = "asdfjklghzxcvmbnqweruiopty";
+  worktree.path = "{{ repo_path }}/../{{ branch }}";
 }

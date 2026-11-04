@@ -41,78 +41,7 @@ in
       move_workspace_left = [ "ctrl+alt+i" ];
       move_workspace_right = [ "ctrl+alt+o" ];
       new_workspace = [ "ctrl+shift+t" ];
-    };
-
-    gui = {
-      close_window = [ ];
-      command_palette = [ ];
-      equalize_splits = [ ];
-      gui_copy = [ ];
-      gui_copy_mode = [ ];
-      gui_find = [ ];
-      gui_font_bigger = [ ];
-      gui_font_reset = [ ];
-      gui_font_smaller = [ ];
-      gui_inbox = [ ];
-      gui_keys = [ ];
-      gui_pane_picker = [ ];
-      gui_paste = [ ];
-      gui_quit = [ ];
-      gui_reopen_closed = [ ];
-      gui_resize_down = [ ];
-      gui_resize_left = [ ];
-      gui_resize_right = [ ];
-      gui_resize_up = [ ];
-      gui_split_root_down = [ ];
-      gui_split_root_right = [ ];
-      gui_switcher = [ ];
-      gui_switcher_back = [ ];
-      gui_toggle_float = [ ];
-      gui_toggle_sidebar = [ ];
-      move_and_follow_1 = [ ];
-      move_and_follow_2 = [ ];
-      move_and_follow_3 = [ ];
-      move_and_follow_4 = [ ];
-      move_and_follow_5 = [ ];
-      move_and_follow_6 = [ ];
-      move_and_follow_7 = [ ];
-      move_and_follow_8 = [ ];
-      move_and_follow_9 = [ ];
-      new_window = [ ];
-      next_session = [ ];
-      prefix_next_attention = [ ];
-      prev_session = [ ];
-      rotate_split = [ ];
-      send_to_workspace_1 = [ ];
-      send_to_workspace_2 = [ ];
-      send_to_workspace_3 = [ ];
-      send_to_workspace_4 = [ ];
-      send_to_workspace_5 = [ ];
-      send_to_workspace_6 = [ ];
-      send_to_workspace_7 = [ ];
-      send_to_workspace_8 = [ ];
-      send_to_workspace_9 = [ ];
-      split_horizontal = [ ];
-      split_vertical = [ ];
-      swap_down = [ ];
-      swap_left = [ ];
-      swap_right = [ ];
-      swap_up = [ ];
-      switch_workspace_1 = [ ];
-      switch_workspace_2 = [ ];
-      switch_workspace_3 = [ ];
-      switch_workspace_4 = [ ];
-      switch_workspace_5 = [ ];
-      switch_workspace_6 = [ ];
-      switch_workspace_7 = [ ];
-      switch_workspace_8 = [ ];
-      switch_workspace_9 = [ ];
-      terminal_focus_down = [ ];
-      terminal_focus_left = [ ];
-      terminal_focus_right = [ ];
-      terminal_focus_up = [ ];
-      toggle_multifocus_active = [ ];
-      toggle_zoom = [ ];
+      toggle_scratch = [ "ctrl+alt+f" ];
     };
 
     inbox = {
@@ -120,7 +49,11 @@ in
       "open_menu:inbox_z" = [ "z" ];
       "open_menu:inbox_leader" = [ "\\" ];
 
-      inbox_close = [ "q" ];
+      inbox_close = [
+        "q"
+        "esc"
+      ];
+
       inbox_help = [ "?" ];
 
       inbox_back = [ "h" ];
@@ -145,8 +78,8 @@ in
       inbox_sort = [ "s" ];
       inbox_filter = [ "tab" ];
 
-      inbox_mark = [ "m" ];
-      inbox_mark_all = [ "M" ];
+      inbox_mailbox = [ "m" ];
+      inbox_mark = [ "M" ];
 
       inbox_page_up = pageup;
       inbox_page_down = pagedown;
@@ -167,7 +100,6 @@ in
       inbox_expand = [ ];
       inbox_first = [ ];
       inbox_fold = [ ];
-      inbox_mailbox = [ ];
       inbox_review = [ ];
       inbox_show_snoozed = [ ];
       inbox_tab_next = [ ];
@@ -185,13 +117,13 @@ in
       inbox_artifact = [ "x" ];
       inbox_tab_next = [ "t" ];
       inbox_tab_prev = [ "T" ];
-      inbox_mailbox = [ "m" ];
       inbox_view_pane = [ "d" ];
+      inbox_mark_all = [ "M" ];
     };
 
     menus.inbox_z = menu "z" {
-      inbox_fold = [ "a" ];
-      inbox_expand = [ "A" ];
+      inbox_expand = [ "a" ];
+      inbox_fold = [ "A" ];
     };
 
     inbox_peek = {
@@ -237,9 +169,9 @@ in
       resize_master_grow = [ "<" ];
       resize_master_shrink = [ ">" ];
 
-      snap_fullscreen = [ "_" ];
-      snap_left = [ "ctrl+shift+h" ];
-      snap_right = [ "ctrl+shift+l" ];
+      snap_fullscreen = [ ];
+      snap_left = [ ];
+      snap_right = [ ];
 
       resize_height_grow_top = [ ];
       resize_height_shrink_top = [ ];
@@ -249,14 +181,41 @@ in
     };
 
     menus.layout_leader = menu "\\" {
-      toggle_tiling = [ "t" ];
-      unsnap = [ "_" ];
+      prefix_toggle_sidebar = [ "b" ];
     };
 
     menus.layout_z = menu "z" {
       resize_height_grow_top = [ "shift+=" ];
       resize_height_shrink_top = [ "-" ];
       resize_master_grow_left = [ "<" ];
+      minimize_prefix_restore_all = [ "R" ];
+      "open_menu:layout_z_m" = [ "m" ];
+      "open_menu:layout_z_r" = [ "r" ];
+    };
+
+    menus.layout_z_m = menu "zm" {
+      minimize_prefix_focused = [ "m" ];
+      minimize_prefix_restore_1 = [ "1" ];
+      minimize_prefix_restore_2 = [ "2" ];
+      minimize_prefix_restore_3 = [ "3" ];
+      minimize_prefix_restore_4 = [ "4" ];
+      minimize_prefix_restore_5 = [ "5" ];
+      minimize_prefix_restore_6 = [ "6" ];
+      minimize_prefix_restore_7 = [ "7" ];
+      minimize_prefix_restore_8 = [ "8" ];
+      minimize_prefix_restore_9 = [ "9" ];
+    };
+
+    menus.layout_z_r = menu "zr" {
+      restore_minimized_1 = [ "1" ];
+      restore_minimized_2 = [ "2" ];
+      restore_minimized_3 = [ "3" ];
+      restore_minimized_4 = [ "4" ];
+      restore_minimized_5 = [ "5" ];
+      restore_minimized_6 = [ "6" ];
+      restore_minimized_7 = [ "7" ];
+      restore_minimized_8 = [ "8" ];
+      restore_minimized_9 = [ "9" ];
     };
 
     layout_prefix = {
@@ -266,14 +225,14 @@ in
       add_master = [ "m" ];
       cycle_master_position = [ "r" ];
       focus_master = [ "'" ];
-      layout_prefix_cancel = [ "escape" ];
+      layout_prefix_cancel = [ "esc" ];
       layout_prefix_load = [ "<" ];
       layout_prefix_save = [ ">" ];
       remove_master = [ "d" ];
-      snap_corner_1 = [ "1" ];
-      snap_corner_2 = [ "2" ];
-      snap_corner_3 = [ "3" ];
-      snap_corner_4 = [ "4" ];
+      snap_corner_1 = [ ];
+      snap_corner_2 = [ ];
+      snap_corner_3 = [ ];
+      snap_corner_4 = [ ];
 
       swap_with_master = [ ];
       resize_height_50 = [ ];
@@ -321,8 +280,15 @@ in
         "ctrl+j"
       ];
 
-      list_page_up = pageup;
-      list_page_down = pagedown;
+      list_page_up = [
+        "pageup"
+        "ctrl+b"
+      ];
+
+      list_page_down = [
+        "pagedown"
+        "ctrl+f"
+      ];
 
       list_first = [
         "Home"
@@ -342,7 +308,13 @@ in
     mail = {
       "open_menu:mail_g" = [ "g" ];
 
-      mail_back = [ "h" ];
+      prefix_inbox = [ "a" ];
+      mail_back = [
+        "h"
+        "esc"
+        "q"
+      ];
+
       mail_down = [ "j" ];
       mail_up = [ "k" ];
       mail_open = [ "l" ];
@@ -361,18 +333,18 @@ in
     };
 
     minimize_prefix = {
-      minimize_prefix_cancel = [ "escape" ];
-      minimize_prefix_focused = [ "m" ];
-      minimize_prefix_restore_1 = [ "1" ];
-      minimize_prefix_restore_2 = [ "2" ];
-      minimize_prefix_restore_3 = [ "3" ];
-      minimize_prefix_restore_4 = [ "4" ];
-      minimize_prefix_restore_5 = [ "5" ];
-      minimize_prefix_restore_6 = [ "6" ];
-      minimize_prefix_restore_7 = [ "7" ];
-      minimize_prefix_restore_8 = [ "8" ];
-      minimize_prefix_restore_9 = [ "9" ];
-      minimize_prefix_restore_all = [ "M" ];
+      minimize_prefix_cancel = [ ];
+      minimize_prefix_focused = [ ];
+      minimize_prefix_restore_1 = [ ];
+      minimize_prefix_restore_2 = [ ];
+      minimize_prefix_restore_3 = [ ];
+      minimize_prefix_restore_4 = [ ];
+      minimize_prefix_restore_5 = [ ];
+      minimize_prefix_restore_6 = [ ];
+      minimize_prefix_restore_7 = [ ];
+      minimize_prefix_restore_8 = [ ];
+      minimize_prefix_restore_9 = [ ];
+      minimize_prefix_restore_all = [ ];
     };
 
     mode_control = {
@@ -386,8 +358,10 @@ in
 
     prefix_mode = {
       "open_menu:prefix_mode_g" = [ "g" ];
+      "open_menu:prefix_mode_z" = [ "z" ];
       "open_menu:prefix_mode_prev" = [ "[" ];
       "open_menu:prefix_mode_next" = [ "]" ];
+      "open_menu:prefix_mode_last" = [ "^" ];
 
       choose_buffer = [ "\"" ];
       paste_buffer = [ "p" ];
@@ -398,36 +372,36 @@ in
 
       goto_picker = [ "/" ];
       display_panes = [ "space" ];
-      pick_path = [ "ctrl+t" ];
+      pick_path = [ ];
 
-      prefix_select_0 = [ "0" ];
-      prefix_select_1 = [ "1" ];
-      prefix_select_2 = [ "2" ];
-      prefix_select_3 = [ "3" ];
-      prefix_select_4 = [ "4" ];
-      prefix_select_5 = [ "5" ];
-      prefix_select_6 = [ "6" ];
-      prefix_select_7 = [ "7" ];
-      prefix_select_8 = [ "8" ];
-      prefix_select_9 = [ "9" ];
+      prefix_select_0 = [ ];
+      prefix_select_1 = [ ];
+      prefix_select_2 = [ ];
+      prefix_select_3 = [ ];
+      prefix_select_4 = [ ];
+      prefix_select_5 = [ ];
+      prefix_select_6 = [ ];
+      prefix_select_7 = [ ];
+      prefix_select_8 = [ ];
+      prefix_select_9 = [ ];
 
-      terminal_focus_left = [ "h" ];
-      terminal_focus_down = [ "j" ];
-      terminal_focus_up = [ "k" ];
-      terminal_focus_right = [ "l" ];
+      terminal_focus_left = [ ];
+      terminal_focus_down = [ ];
+      terminal_focus_up = [ ];
+      terminal_focus_right = [ ];
 
       prefix_rename_window = [ "A" ];
 
       edit_scrollback = [ "e" ];
-      prefix_scrollback = [ "#" ];
-      prefix_selection = [ ];
+      prefix_scrollback = [ ";" ];
 
+      prefix_selection = [ "k" ];
       hints = [ "y" ];
       hints_all_panes = [ "Y" ];
       nest = [ "Q" ];
 
-      prefix_window = [ "w" ];
-      prefix_workspace = [ "W" ];
+      prefix_window = [ ];
+      prefix_workspace = [ "w" ];
 
       new_worktree = [ ];
       prefix_agents_settings = [ ];
@@ -436,15 +410,15 @@ in
       prefix_debug = [ ];
       prefix_detach = [ ];
       prefix_equalize_splits = [ "=" ];
-      prefix_exit_mode = [ "escape" ];
+      prefix_exit_mode = [ "esc" ];
       prefix_explore = [ "b" ];
       prefix_file_search = [ ];
-      prefix_fullscreen = [ "_" ];
+      prefix_fullscreen = [ "f" ];
       prefix_help = [ "?" ];
-      prefix_inbox = [ "I" ];
+      prefix_inbox = [ "a" ];
       prefix_keybinds = [ ];
-      prefix_layout = [ "L" ];
-      prefix_mail = [ "i" ];
+      prefix_layout = [ "l" ];
+      prefix_mail = [ "m" ];
       prefix_minimize = [ ];
       prefix_new_window = [ "n" ];
       prefix_quit = [ ];
@@ -458,11 +432,11 @@ in
       prefix_toggle_other_rail = [ ];
       prefix_toggle_sidebar = [ "B" ];
       prefix_toggle_spotlight = [ ];
-      prefix_toggle_tiling = [ "t" ];
+      prefix_toggle_tiling = [ ];
       prefix_transfers = [ ];
 
       toggle_calm = [ "@" ];
-      toggle_scratch = [ "f" ];
+      toggle_scratch = [ ];
 
       prefix_workspace_switcher = [ ];
       prefix_session_switcher = [ ];
@@ -487,18 +461,27 @@ in
       set_note = [ "A" ];
     };
 
+    menus.prefix_mode_z = menu "z" {
+      minimize_prefix_restore_all = [ "R" ];
+      "open_menu:layout_z_m" = [ "m" ];
+      "open_menu:layout_z_r" = [ "r" ];
+    };
+
     menus.prefix_mode_prev = menu "[" {
       prev_agent = [ "a" ];
       prev_session = [ "s" ];
-      prefix_last_message = [ "m" ];
       prefix_prev_window = [ "[" ];
+    };
+
+    menus.prefix_mode_last = menu "^" {
+      prefix_last_message = [ "m" ];
     };
 
     menus.prefix_mode_next = menu "]" {
       next_agent = [ "a" ];
       next_session = [ "s" ];
       prefix_jump_notif = [ "n" ];
-      prefix_next_attention = [ "i" ];
+      prefix_next_attention = [ "m" ];
       prefix_next_finished = [ "f" ];
       prefix_next_window = [ "]" ];
     };
@@ -532,15 +515,19 @@ in
     };
 
     menus.review_leader = menu "\\" {
-      "open_menu:review_s" = [ "s" ];
+      "open_menu:review_leader_f" = [ "f" ];
+      "open_menu:review_leader_h" = [ "h" ];
       review_undo_stage = [ "u" ];
     };
 
-    menus.review_s = menu "s" {
-      review_stage_file = [ "f" ];
-      review_stage_hunk = [ "h" ];
-      review_unstage_file = [ "F" ];
-      review_unstage_hunk = [ "H" ];
+    menus.review_leader_f = menu "\\s" {
+      review_stage_file = [ "s" ];
+      review_unstage_file = [ "u" ];
+    };
+
+    menus.review_leader_h = menu "\\h" {
+      review_stage_hunk = [ "s" ];
+      review_unstage_hunk = [ "u" ];
     };
 
     menus.review_prev = menu "[" {
@@ -586,8 +573,8 @@ in
       jump_8 = [ "8" ];
       jump_9 = [ "9" ];
 
-      mail = [ "i" ];
-      menu = [ "m" ];
+      mail = [ "m" ];
+      menu = [ "tab" ];
 
       new_session = [ "n" ];
       new_window = [ ];
@@ -596,8 +583,8 @@ in
       reorder_up = [ "K" ];
 
       section = [
-        "tab"
-        "shift+tab"
+        "L"
+        "H"
       ];
 
       switch_edge = [ ];
@@ -693,23 +680,25 @@ in
       "open_menu:window_management_next" = [ "]" ];
       "open_menu:window_management_last" = [ "^" ];
 
-      close_window = [ "q" ];
       command_palette = [ ":" ];
+      choose_buffer = [ "\"" ];
+      launcher = [ "!" ];
+      prefix_inbox = [ "a" ];
+      prefix_mail = [ "m" ];
+
+      close_window = [ "q" ];
       copy_selection = [ "y" ];
       focus_rail_pane = [ ];
       focus_sidebar = [ "b" ];
-      prefix_toggle_sidebar = [ "B" ];
-      launcher = [ "!" ];
       minimize_window = [ ];
       new_session = [ "o" ];
       new_window = [ "n" ];
-      prefix_inbox = [ "I" ];
       rename_window = [ ];
       restore_all = [ ];
       toggle_pip = [ "." ];
       toggle_zoom = [ "f" ];
 
-      mark_pane = [ "m" ];
+      mark_pane = [ "M" ];
       join_marked_left = [ "ctrl+h" ];
       join_marked_down = [ "ctrl+j" ];
       join_marked_up = [ "ctrl+k" ];
@@ -754,18 +743,18 @@ in
     };
 
     window_prefix = {
-      window_prefix_cancel = [ "escape" ];
-      window_prefix_close = [ "d" ];
-      window_prefix_float = [ "f" ];
-      window_prefix_new = [ "n" ];
-      window_prefix_next = [ "]" ];
-      window_prefix_prev = [ "[" ];
-      window_prefix_rename = [ "A" ];
-      window_prefix_tiling = [ "t" ];
+      window_prefix_cancel = [ ];
+      window_prefix_close = [ ];
+      window_prefix_float = [ ];
+      window_prefix_new = [ ];
+      window_prefix_next = [ ];
+      window_prefix_prev = [ ];
+      window_prefix_rename = [ ];
+      window_prefix_tiling = [ ];
     };
 
     workspace_prefix = {
-      workspace_prefix_cancel = [ "escape" ];
+      workspace_prefix_cancel = [ "esc" ];
       workspace_prefix_move_1 = [ "shift+1" ];
       workspace_prefix_move_2 = [ "shift+2" ];
       workspace_prefix_move_3 = [ "shift+3" ];
