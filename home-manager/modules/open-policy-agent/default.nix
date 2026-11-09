@@ -21,10 +21,8 @@ let
 
   lspModule = submodule {
     options = {
-      enable = mkOption {
-        description = "Whether to enable the regal language server for opa.";
+      enable = mkEnableOption "regal" // {
         default = true;
-        type = types.bool;
       };
 
       package = mkPackageOption pkgs "regal" { nullable = true; };

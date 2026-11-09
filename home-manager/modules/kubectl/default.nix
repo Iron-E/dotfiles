@@ -6,14 +6,14 @@
 }:
 let
   inherit (lib)
+    mkEnableOption
     mkIf
     mkOption
+    mkPackageOption
     types
     ;
 
   cfg = config.programs.kubectl;
-
-  format = pkgs.formats.yaml { };
 
   kubercModule = types.submodule {
     options = {
@@ -84,17 +84,8 @@ let
 in
 {
   options.programs.kubectl = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable kubectl integration";
-    };
-
-    package = mkOption {
-      type = types.package;
-      default = pkgs.kubectl;
-      description = "Kubectl package";
-    };
+    enable = mkEnableOption "kubectl";
+    package = mkPackageOption pkgs "kubectl" { nullable = true; };
 
     kuberc = mkOption {
       type = kubercModule;
@@ -104,8 +95,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ cfg.package ];
-
+    home.packages = mkIf (cfg.package != null) [ cfg.package ];
     home.sessionVariables.KUBERC = "${config.xdg.configHome}/kube/kuberc.yaml";
 
     xdg.configFile."kube/kuberc.yaml".source =
@@ -119,7 +109,7 @@ in
           acc ++ [ { inherit name default; } ]
         ) [ ];
       in
-      format.generate "kuberc.yaml" {
+      (pkgs.formats.yaml { }).generate "kuberc.yaml" {
         apiVersion = "kubectl.config.k8s.io/${cfg.kuberc.apiVersion}";
         kind = "Preference";
 
