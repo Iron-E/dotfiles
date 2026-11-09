@@ -1,9 +1,30 @@
 { ... }:
 let
+  open = menu: "open_menu:" + menu;
   menu = title: keys: {
     inherit title;
     inherit keys;
   };
+
+  left = [
+    "left"
+    "h"
+  ];
+
+  down = [
+    "down"
+    "j"
+  ];
+
+  up = [
+    "up"
+    "k"
+  ];
+
+  right = [
+    "right"
+    "l"
+  ];
 
   pageup = [
     "pageup"
@@ -20,8 +41,8 @@ in
     leader_key = "ctrl+shift+w";
 
     copy_mode = {
-      copy_mode_line_start = [ "Home" ];
-      copy_mode_line_end = [ "End" ];
+      copy_mode_line_start = [ "home" ];
+      copy_mode_line_end = [ "end" ];
       edit_scrollback = [ "alt+e" ];
     };
 
@@ -45,9 +66,9 @@ in
     };
 
     inbox = {
-      "open_menu:inbox_g" = [ "g" ];
-      "open_menu:inbox_z" = [ "z" ];
-      "open_menu:inbox_leader" = [ "\\" ];
+      ${open "inbox_g"} = [ "g" ];
+      ${open "inbox_z"} = [ "z" ];
+      ${open "inbox_leader"} = [ "\\" ];
 
       inbox_close = [
         "q"
@@ -56,10 +77,10 @@ in
 
       inbox_help = [ "?" ];
 
-      inbox_back = [ "h" ];
-      inbox_down = [ "j" ];
-      inbox_up = [ "k" ];
-      inbox_open = [ "l" ];
+      inbox_back = left;
+      inbox_down = down;
+      inbox_up = up;
+      inbox_open = right;
 
       inbox_go = [ "enter" ];
 
@@ -68,7 +89,7 @@ in
 
       inbox_allow = [ "y" ];
       inbox_allow_always = [ "Y" ];
-      inbox_reply = [ "n" ];
+      inbox_reply = [ "i" ]; # match other reply bindings
       inbox_deny_reason = [ "N" ];
 
       inbox_settle = [ "d" ];
@@ -100,6 +121,10 @@ in
       inbox_expand = [ ];
       inbox_first = [ ];
       inbox_fold = [ ];
+      inbox_next_needs = [ ];
+      inbox_region_next = [ ];
+      inbox_list_wider = [ ];
+      inbox_mark_all = [ ];
       inbox_review = [ ];
       inbox_show_snoozed = [ ];
       inbox_tab_next = [ ];
@@ -107,12 +132,12 @@ in
       inbox_view_pane = [ ];
     };
 
-    menus.inbox_leader = menu "\\" {
+    menus.inbox_leader = menu "inbox: \\" {
       inbox_show_snoozed = [ "z" ];
       inbox_review = [ "r" ];
     };
 
-    menus.inbox_g = menu "g" {
+    menus.inbox_g = menu "inbox: g" {
       inbox_first = [ "g" ];
       inbox_artifact = [ "x" ];
       inbox_tab_next = [ "t" ];
@@ -121,7 +146,7 @@ in
       inbox_mark_all = [ "M" ];
     };
 
-    menus.inbox_z = menu "z" {
+    menus.inbox_z = menu "inbox: z" {
       inbox_expand = [ "a" ];
       inbox_fold = [ "A" ];
     };
@@ -141,13 +166,13 @@ in
     };
 
     layout = {
-      "open_menu:layout_z" = [ "z" ];
-      "open_menu:layout_leader" = [ "\\" ];
+      ${open "layout_z"} = [ "z" ];
+      ${open "layout_leader"} = [ "\\" ];
 
-      terminal_focus_left = [ "h" ];
-      terminal_focus_down = [ "j" ];
-      terminal_focus_up = [ "k" ];
-      terminal_focus_right = [ "l" ];
+      terminal_focus_left = left;
+      terminal_focus_down = down;
+      terminal_focus_up = up;
+      terminal_focus_right = right;
 
       swap_down = [ "J" ];
       swap_left = [ "H" ];
@@ -173,6 +198,7 @@ in
       snap_left = [ ];
       snap_right = [ ];
 
+      prefix_toggle_sidebar = [ ];
       resize_height_grow_top = [ ];
       resize_height_shrink_top = [ ];
       resize_master_grow_left = [ ];
@@ -189,8 +215,8 @@ in
       resize_height_shrink_top = [ "-" ];
       resize_master_grow_left = [ "<" ];
       minimize_prefix_restore_all = [ "R" ];
-      "open_menu:layout_z_m" = [ "m" ];
-      "open_menu:layout_z_r" = [ "r" ];
+      ${open "layout_z_m"} = [ "m" ];
+      ${open "layout_z_r"} = [ "r" ];
     };
 
     menus.layout_z_m = menu "zm" {
@@ -219,9 +245,9 @@ in
     };
 
     layout_prefix = {
-      "open_menu:layout_prefix_g" = [ "g" ];
-      "open_menu:layout_prefix_w" = [ "w" ];
-      "open_menu:layout_prefix_h" = [ "h" ];
+      ${open "layout_prefix_g"} = [ "g" ];
+      ${open "layout_prefix_w"} = [ "w" ];
+      ${open "layout_prefix_h"} = left;
       add_master = [ "m" ];
       cycle_master_position = [ "r" ];
       focus_master = [ "'" ];
@@ -247,11 +273,11 @@ in
       resize_width_90 = [ ];
     };
 
-    menus.layout_prefix_g = menu "g" {
+    menus.layout_prefix_g = menu "layout: g" {
       swap_with_master = [ "s" ];
     };
 
-    menus.layout_prefix_h = menu "h" {
+    menus.layout_prefix_h = menu "layout: h" {
       resize_height_50 = [ "5" ];
       resize_height_60 = [ "6" ];
       resize_height_70 = [ "7" ];
@@ -259,7 +285,7 @@ in
       resize_height_90 = [ "9" ];
     };
 
-    menus.layout_prefix_w = menu "w" {
+    menus.layout_prefix_w = menu "layout: w" {
       resize_width_50 = [ "5" ];
       resize_width_60 = [ "6" ];
       resize_width_70 = [ "7" ];
@@ -268,45 +294,36 @@ in
     };
 
     lists = {
-      list_up = [
-        "up"
-        "k"
-        "ctrl+k"
-      ];
+      list_up = up ++ [ "ctrl+k" ];
+      list_down = down ++ [ "ctrl+j" ];
 
-      list_down = [
-        "down"
-        "j"
-        "ctrl+j"
-      ];
-
-      list_page_up = [
+      list_page_up = left ++ [
         "pageup"
+        "ctrl+h"
         "ctrl+b"
       ];
 
-      list_page_down = [
+      list_page_down = right ++ [
         "pagedown"
+        "ctrl+l"
         "ctrl+f"
       ];
 
       list_first = [
-        "Home"
-        "left"
+        "home"
         "H"
         "ctrl+H"
       ];
 
       list_last = [
-        "End"
-        "right"
+        "end"
         "L"
         "ctrl+L"
       ];
     };
 
     mail = {
-      "open_menu:mail_g" = [ "g" ];
+      ${open "mail_g"} = [ "g" ];
 
       prefix_inbox = [ "a" ];
       mail_back = [
@@ -315,9 +332,9 @@ in
         "q"
       ];
 
-      mail_down = [ "j" ];
-      mail_up = [ "k" ];
-      mail_open = [ "l" ];
+      mail_down = down;
+      mail_up = up;
+      mail_open = right;
 
       mail_page_down = pagedown;
       mail_page_up = pageup;
@@ -328,7 +345,7 @@ in
       mail_focus_pane = [ ];
     };
 
-    menus.mail_g = menu "g" {
+    menus.mail_g = menu "mail: g" {
       mail_focus_pane = [ "d" ];
     };
 
@@ -357,17 +374,18 @@ in
     };
 
     prefix_mode = {
-      "open_menu:prefix_mode_g" = [ "g" ];
-      "open_menu:prefix_mode_z" = [ "z" ];
-      "open_menu:prefix_mode_prev" = [ "[" ];
-      "open_menu:prefix_mode_next" = [ "]" ];
-      "open_menu:prefix_mode_last" = [ "^" ];
+      ${open "prefix_mode_leader"} = [ "\\" ];
+      ${open "prefix_mode_g"} = [ "g" ];
+      ${open "prefix_mode_z"} = [ "z" ];
+      ${open "prefix_mode_prev"} = [ "[" ];
+      ${open "prefix_mode_next"} = [ "]" ];
+      ${open "prefix_mode_last"} = [ "^" ];
 
       choose_buffer = [ "\"" ];
       paste_buffer = [ "p" ];
       paste_image = [ "P" ];
 
-      launcher = [ "!" ];
+      launcher = [ ];
       prefix_command_palette = [ ":" ];
 
       goto_picker = [ "/" ];
@@ -395,7 +413,7 @@ in
       edit_scrollback = [ "e" ];
       prefix_scrollback = [ ";" ];
 
-      prefix_selection = [ "k" ];
+      prefix_selection = up;
       hints = [ "y" ];
       hints_all_panes = [ "Y" ];
       nest = [ "Q" ];
@@ -417,7 +435,7 @@ in
       prefix_help = [ "?" ];
       prefix_inbox = [ "a" ];
       prefix_keybinds = [ ];
-      prefix_layout = [ "l" ];
+      prefix_layout = right;
       prefix_mail = [ "m" ];
       prefix_minimize = [ ];
       prefix_new_window = [ "n" ];
@@ -430,12 +448,12 @@ in
       prefix_split_vertical = [ "v" ];
       prefix_tape = [ ];
       prefix_toggle_other_rail = [ ];
-      prefix_toggle_sidebar = [ "B" ];
+      prefix_toggle_sidebar = [ ];
       prefix_toggle_spotlight = [ ];
       prefix_toggle_tiling = [ ];
       prefix_transfers = [ ];
 
-      toggle_calm = [ "@" ];
+      toggle_calm = [ ];
       toggle_scratch = [ ];
 
       prefix_workspace_switcher = [ ];
@@ -454,6 +472,10 @@ in
       prefix_next_window = [ ];
     };
 
+    menus.prefix_mode_leader = menu "\\" {
+      prefix_toggle_sidebar = [ "b" ];
+    };
+
     menus.prefix_mode_g = menu "g" {
       prefix_workspace_switcher = [ "O" ];
       prefix_session_switcher = [ "w" ];
@@ -463,8 +485,8 @@ in
 
     menus.prefix_mode_z = menu "z" {
       minimize_prefix_restore_all = [ "R" ];
-      "open_menu:layout_z_m" = [ "m" ];
-      "open_menu:layout_z_r" = [ "r" ];
+      ${open "layout_z_m"} = [ "m" ];
+      ${open "layout_z_r"} = [ "r" ];
     };
 
     menus.prefix_mode_prev = menu "[" {
@@ -499,9 +521,9 @@ in
     };
 
     review = {
-      "open_menu:review_prev" = [ "[" ];
-      "open_menu:review_next" = [ "]" ];
-      "open_menu:review_leader" = [ "\\" ];
+      ${open "review_prev"} = [ "[" ];
+      ${open "review_next"} = [ "]" ];
+      ${open "review_leader"} = [ "\\" ];
 
       review_undo_stage = [ ];
       review_stage_file = [ ];
@@ -514,30 +536,30 @@ in
       review_next_hunk = [ ];
     };
 
-    menus.review_leader = menu "\\" {
-      "open_menu:review_leader_f" = [ "f" ];
-      "open_menu:review_leader_h" = [ "h" ];
+    menus.review_leader = menu "review: \\" {
+      ${open "review_leader_f"} = [ "f" ];
+      ${open "review_leader_h"} = left;
       review_undo_stage = [ "u" ];
     };
 
-    menus.review_leader_f = menu "\\s" {
+    menus.review_leader_f = menu "review: \\f" {
       review_stage_file = [ "s" ];
       review_unstage_file = [ "u" ];
     };
 
-    menus.review_leader_h = menu "\\h" {
+    menus.review_leader_h = menu "review: \\h" {
       review_stage_hunk = [ "s" ];
       review_unstage_hunk = [ "u" ];
     };
 
-    menus.review_prev = menu "[" {
+    menus.review_prev = menu "review [" {
       review_prev_file = [ "f" ];
-      review_prev_hunk = [ "h" ];
+      review_prev_hunk = left;
     };
 
-    menus.review_next = menu "]" {
+    menus.review_next = menu "review ]" {
       review_next_file = [ "f" ];
-      review_next_hunk = [ "h" ];
+      review_next_hunk = left;
     };
 
     script = {
@@ -545,13 +567,13 @@ in
     };
 
     sidebar = {
-      "open_menu:sidebar_g" = [ "g" ];
+      ${open "sidebar_g"} = [ "g" ];
       accent = [ ];
 
-      collapse = [ "h" ];
-      cursor_down = [ "j" ];
-      cursor_up = [ "k" ];
-      expand = [ "l" ];
+      collapse = left;
+      cursor_down = down;
+      cursor_up = up;
+      expand = right;
       last = [ "G" ];
 
       activate = [ "enter" ];
@@ -599,14 +621,14 @@ in
       rename = [ ];
     };
 
-    menus.sidebar_g = menu "g" {
+    menus.sidebar_g = menu "sidebar: g" {
       first = [ "g" ];
       palette = [ "w" ];
       rename = [ "A" ];
     };
 
     sidebar_agents = {
-      "open_menu:sidebar_agents_z" = [ "z" ];
+      ${open "sidebar_agents_z"} = [ "z" ];
       agent_cancel_queued = [ "d" ];
       agent_reply = [ "i" ];
       agent_review = [ "r" ];
@@ -616,7 +638,7 @@ in
       agent_subagents = [ ];
     };
 
-    menus.sidebar_agents_z = menu "z" {
+    menus.sidebar_agents_z = menu "sidebar agents: z" {
       agent_subagents = [ "a" ];
     };
 
@@ -676,9 +698,9 @@ in
     };
 
     window_management = {
-      "open_menu:window_management_prev" = [ "[" ];
-      "open_menu:window_management_next" = [ "]" ];
-      "open_menu:window_management_last" = [ "^" ];
+      ${open "window_management_prev"} = [ "[" ];
+      ${open "window_management_next"} = [ "]" ];
+      ${open "window_management_last"} = [ "^" ];
 
       command_palette = [ ":" ];
       choose_buffer = [ "\"" ];
@@ -716,12 +738,15 @@ in
 
       start_screensaver = [ ];
 
-      prev_agent = [ ];
-      prev_session = [ ];
-      prev_window = [ ];
+      last_pane = [ ];
+      last_session = [ ];
+      last_workspace = [ ];
       next_agent = [ ];
       next_session = [ ];
       next_window = [ ];
+      prev_agent = [ ];
+      prev_session = [ ];
+      prev_window = [ ];
     };
 
     menus.window_management_prev = menu "[" {

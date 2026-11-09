@@ -30,10 +30,10 @@ in
 
     tuios = prev.tuios.overrideAttrs (
       finalAttrs: prevAttrs: {
-        version = "91a743c5a79785766ccb968bda6f022c54950eb8";
+        version = "c29f871bff8ca0c20976dd8a83369da7c669ce78";
         src =
           prevAttrs.src.override {
-            hash = "sha256-+l7OY1AfsMTBNnuRELo7NO/NrbM2u+wixpioNvMLlg8=";
+            hash = "sha256-UK2wntGLOeN4FSHK8+uCxhlMGU5ISCI8OBT5ld5x/4Y=";
             tag = null;
             rev = finalAttrs.version;
           }
@@ -41,7 +41,7 @@ in
             tag = finalAttrs.version;
           };
 
-        vendorHash = "sha256-j6IiDD4MJ5nRzZa34Mt03L0LI5GG+wY4CrcNldsXwXY=";
+        vendorHash = "sha256-O4zh8r0SkNGrOTEu0RnR6Sg8jnzKBMn3RgjZZfuS+6A=";
 
         ldflags = [
           "-s"
@@ -65,7 +65,7 @@ in
                 runHook postBuild
               '';
 
-              # Belt and braces: GOWORK="" means "search for go.work", i.e. workspace mode on.
+              # GOWORK="" means "search for go.work", i.e. workspace mode on.
               env = (prevModAttrs.env or { }) // {
                 GOWORK = "";
               };
